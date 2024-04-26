@@ -5,11 +5,12 @@ class ArticleDescription {
     private string $name;
     private string $artist;
     private string $genre;
-    /*enum Format {
-        case CD;
-        case Cassette;
-        case Vinyl;
-    }*/
+    
+    enum Format: string {
+        case CD = "CD";
+        case Cassette = "Cassette";
+        case Vinyl = "Vinyl";
+    }
 
-
+    
 }
