@@ -1,4 +1,5 @@
 <?php
+namespace Entity;
 
 enum Format: string {
     case CD = "CD";
@@ -6,7 +7,7 @@ enum Format: string {
     case Vinyl = "Vinyl";
 }
 
-class ArticleDescription {
+class EArticleDescription {
     private string $ean;
     private string $name;
     private string $artist;
@@ -21,4 +22,19 @@ class ArticleDescription {
         $this->format = $format;
     }
     
+    public function getEan(): string {
+        return $this->ean;
+    }
+    public function getName(): string {
+        return $this->name;
+    }
+    public function getArtist(): string {
+        return $this->artist;
+    }
+    public function getGenre(): string {
+        return $this->genre;
+    }
+    public function getFormat(): Format {
+        return $this->format;
+    }
 }

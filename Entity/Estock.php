@@ -1,6 +1,7 @@
 <?php
+namespace Entity;
 
-class Stock {
+class EStock {
     private EArticleDescription $Article;
     private int $quantity;
     private float $price;

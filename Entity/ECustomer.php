@@ -1,4 +1,5 @@
 <?php
+namespace Entity;
 
 class ECustomer extends EUser {
     private  $username;
