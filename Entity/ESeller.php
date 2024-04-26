@@ -30,11 +30,11 @@ class ESeller extends EUser {
         $this->shopName = $shopName;
     }
 
-    public function getStock(): EStock {
+    public function getStock(): Stock {
         return $this->stock;
     }
     
-    public function setStock(EStock $stock): void {
+    public function setStock(Stock $stock): void {
         $this->stock = $stock;
     }
 
