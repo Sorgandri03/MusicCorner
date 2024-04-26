@@ -4,7 +4,7 @@ class ESeller extends EUser {
 
     private String $shopName;
     
-    private Stock $stock;
+    private $stock;
 
     private float $shopRating;
     
@@ -30,11 +30,11 @@ class ESeller extends EUser {
         $this->shopName = $shopName;
     }
 
-    public function getStock(): Stock {
+    public function getStock(): EStock {
         return $this->stock;
     }
     
-    public function setStock(Stock $stock): void {
+    public function setStock(EStock $stock): void {
         $this->stock = $stock;
     }
 

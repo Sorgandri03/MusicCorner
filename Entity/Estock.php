@@ -1,7 +1,7 @@
 <?php
 
 class Stock {
-    private EArticleDescription $Article;
+    private $Article;
     private int $quantity;
     private float $price;
 

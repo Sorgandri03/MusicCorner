@@ -8,7 +8,7 @@ class EOrder {
     private ECreditCard $payment;
     private string $status;
     private string $price;
-    private EShoppingCart $cart;
+    private $cart;
 
     public function __construct(string $id, ECustomer $customer, DateTime $orderDate, EAddress $shippingAddress, ECreditCard $payment, string $status, string $price, EShoppingCart $cart) {
         $this->id = $id;
@@ -17,8 +17,11 @@ class EOrder {
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
         $this->status = $status;
-        $this->price = $price;
         $this->cart = $cart;
+        
+        
+        
+        $this->price = $price;
     }
     public function getId(): string {
         return $this->id;
