@@ -1,4 +1,6 @@
 <?php
+
+
 class ECustomer extends EUser {
     private String $username;
 
@@ -8,7 +10,10 @@ class ECustomer extends EUser {
 
     private array $addresses;
     
+    private array $creditCards = array();
     
-    
+    private function addCreditCard() {
+        $creditCards[] = new ECreditCard();
+    }
 
 }
