@@ -1,0 +1,51 @@
+<?php
+class ESeller extends EUser {
+    private String $shopId;
+
+    private String $shopName;
+    
+    private Stock $stock;
+
+    private float $shopRating;
+    
+    public function __construct(string $email, string $password, string $shopId, string $shopName, Stock $stock, float $shopRating) {
+        parent::__construct($email, $password);
+        $this->shopId = $shopId;
+        $this->shopName = $shopName;
+        $this->stock = $stock;
+        $this->shopRating = $shopRating;
+    }
+    
+    public function getShopId(): string {
+        return $this->shopId;
+    }
+
+    public function setShopId(string $shopId): void {
+        $this->shopId = $shopId;
+    }
+
+    public function getShopName(): string {
+        return $this->shopName;
+    }
+
+    public function setShopName(string $shopName): void {
+        $this->shopName = $shopName;
+    }
+
+    public function getStock(): Stock {
+        return $this->stock;
+    }
+    
+    public function setStock(Stock $stock): void {
+        $this->stock = $stock;
+    }
+
+    public function getShopRating(): float {
+        return $this->shopRating;
+    }
+
+    public function setShopRating(float $shopRating): void {
+        $this->shopRating = $shopRating;
+    }
+
+}
