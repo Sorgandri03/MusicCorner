@@ -8,12 +8,10 @@ class ESeller extends EUser {
 
     private float $shopRating;
     
-    public function __construct(string $email, string $password, string $shopId, string $shopName, Stock $stock, float $shopRating) {
+    public function __construct(string $email, string $password, string $shopId, string $shopName) {
         parent::__construct($email, $password);
         $this->shopId = $shopId;
         $this->shopName = $shopName;
-        $this->stock = $stock;
-        $this->shopRating = $shopRating;
     }
     
     public function getShopId(): string {
@@ -47,5 +45,5 @@ class ESeller extends EUser {
     public function setShopRating(float $shopRating): void {
         $this->shopRating = $shopRating;
     }
-
+//devo aggiunge metodi per il rating e lo stock
 }

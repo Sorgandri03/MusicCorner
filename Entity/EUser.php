@@ -1,5 +1,5 @@
 <?php
-class EUser {
+abstract class EUser {
     private String $email;
 
     private String $password;
@@ -12,7 +12,7 @@ class EUser {
     public function getEmail(): string {
         return $this->email;
     }
-    
+
     public function setEmail(string $email): void {
         $this->email = $email;
     }
