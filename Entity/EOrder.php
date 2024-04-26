@@ -1,16 +1,17 @@
 <?php
+namespace Entity;
 
 class EOrder {
     private string $id;
     private ECustomer $customer;
-    private DateTime $orderDate;
+    private \DateTime $orderDate;
     private EAddress $shippingAddress;
     private ECreditCard $payment;
     private string $status;
     private string $price;
     private $cart;
 
-    public function __construct(string $id, ECustomer $customer, DateTime $orderDate, EAddress $shippingAddress, ECreditCard $payment, string $status, string $price, EShoppingCart $cart) {
+    public function __construct(string $id, ECustomer $customer, \DateTime $orderDate, EAddress $shippingAddress, ECreditCard $payment, string $status, string $price, EShoppingCart $cart) {
         $this->id = $id;
         $this->customer = $customer;
         $this->orderDate = $orderDate;
@@ -29,7 +30,7 @@ class EOrder {
     public function getCustomer(): ECustomer {
         return $this->customer;
     }
-    public function getOrderDate(): DateTime {
+    public function getOrderDate(): \DateTime {
         return $this->orderDate;
     }
     public function getShippingAddress(): EAddress {
@@ -53,7 +54,7 @@ class EOrder {
     public function setCustomer(ECustomer $customer): void {
         $this->customer = $customer;
     }
-    public function setOrderDate(DateTime $orderDate): void {
+    public function setOrderDate(\DateTime $orderDate): void {
         $this->orderDate = $orderDate;
     }
     public function setShippingAddress(EAddress $shippingAddress): void {

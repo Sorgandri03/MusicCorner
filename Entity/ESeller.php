@@ -1,10 +1,12 @@
 <?php
+namespace Entity;
+
 class ESeller extends EUser {
     private String $shopId;
 
     private String $shopName;
     
-    private $stock;
+    private EStock $stock;
 
     private float $shopRating;
     
@@ -30,11 +32,11 @@ class ESeller extends EUser {
         $this->shopName = $shopName;
     }
 
-    public function getStock(): Stock {
+    public function getStock(): EStock {
         return $this->stock;
     }
     
-    public function setStock(Stock $stock): void {
+    public function setStock(EStock $stock): void {
         $this->stock = $stock;
     }
 
