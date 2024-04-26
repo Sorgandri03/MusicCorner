@@ -1,16 +1,24 @@
 <?php
 
+enum Format: string {
+    case CD = "CD";
+    case Cassette = "Cassette";
+    case Vinyl = "Vinyl";
+}
+
 class ArticleDescription {
     private string $ean;
     private string $name;
     private string $artist;
     private string $genre;
-    
-    enum Format: string {
-        case CD = "CD";
-        case Cassette = "Cassette";
-        case Vinyl = "Vinyl";
-    }
+    private Format $format;
 
+    public function __construct(string $ean, string $name, string $artist, string $genre, Format $format) {
+        $this->ean = $ean;
+        $this->name = $name;
+        $this->artist = $artist;
+        $this->genre = $genre;
+        $this->format = $format;
+    }
     
 }
