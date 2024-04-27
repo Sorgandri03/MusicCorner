@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 class EAdmin extends EUser {
     private String $adminId;

@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 class EStock {
     private EArticleDescription $Article;

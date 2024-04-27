@@ -1,5 +1,5 @@
 <?php
-namespace Entity;
+
 
 class ECreditCard {
     private string $number;

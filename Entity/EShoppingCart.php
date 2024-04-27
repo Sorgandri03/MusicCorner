@@ -1,5 +1,5 @@
 <?php
-namespace Entity;
+
 class EShoppingCart {
     private string $id;
     private array $articles = array();

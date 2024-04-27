@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 class EOrder {
     private string $id;

@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 abstract class EUser {
     private String $email;

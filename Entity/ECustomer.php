@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 class ECustomer extends EUser {
     private  $username;
@@ -27,9 +26,11 @@ class ECustomer extends EUser {
      
     //metodo per il ban
 
-    public function __construct(string $username, string $customerId) {
+    public function __construct(string $username, string $customerId, string $email, string $password) {
+        
         $this->username = $username;
         $this->customerId = $customerId;
+        parent::__construct($email, $password);
     }
 
     public function getUsername(): string {

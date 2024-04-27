@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 class ESeller extends EUser {    
     private String $shopName;

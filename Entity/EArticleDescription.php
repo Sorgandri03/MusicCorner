@@ -1,5 +1,4 @@
 <?php
-namespace Entity;
 
 enum Format: string {
     case CD = "CD";

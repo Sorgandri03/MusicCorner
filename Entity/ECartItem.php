@@ -1,6 +1,5 @@
 <?php
 
-namespace Entity;
 
 class CartItem
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Entity;
+
 
 class EAddress {
     private string $street;
