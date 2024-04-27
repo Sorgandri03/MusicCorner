@@ -1,6 +1,5 @@
 <?php
 
-namespace Foundation;
 
 class FDB {
     private static $instance = null;

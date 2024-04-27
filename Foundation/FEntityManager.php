@@ -1,5 +1,4 @@
 <?php
-namespace Foundation;
 
 abstract class FEntityManager {
     private static $instance = null;
@@ -17,9 +16,7 @@ abstract class FEntityManager {
 
     //END SINGLETON
 
-    public function create() {
-        
-    }
+    //public function create(){}
     public function delete() {
         
     }
