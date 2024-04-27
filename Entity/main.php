@@ -1,4 +1,6 @@
 <?php
+namespace Entity;
+
 use Entity\EArticleDescription;
 use Entity\EStock;
 use Entity\Format;
