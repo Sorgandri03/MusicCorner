@@ -22,4 +22,7 @@ class EStock {
     public function getPrice(): float {
         return $this->price;
     }
+    public function __toString(): string {
+        return $this->Article->getArtist() . " " . $this->Article->getName() . " " . $this->Article->getGenre() . " " . $this->Article->getFormat() . " " . $this->quantity . " " . $this->price;
+    }
 }

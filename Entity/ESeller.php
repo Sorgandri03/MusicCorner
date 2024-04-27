@@ -5,15 +5,15 @@ class ESeller extends EUser {
     
     private float $shopRating=0;
 
-    private array $catalogue = array();
+    public array $catalogue = array();
     
     public function __construct(string $email, string $password, string $shopName) {
         parent::__construct($email, $password);
         $this->shopName = $shopName;
     }
     
-    public function addStock(float $price, int $quantity, EArticleDescription $article) {
-        $catalogue[] = new EStock(  $article,  $quantity,  $price);
+    public function addStock(EArticleDescription $article, int $quantity, float $price) {
+        $this->catalogue[] = new EStock($article,  $quantity,  $price);
     }
     public function getCatalogue(): array 
         { return $this->catalogue; }

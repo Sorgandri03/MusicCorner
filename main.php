@@ -5,17 +5,17 @@ spl_autoload_register(function ($className) {
     if (file_exists($filePath)) 
     { require_once $filePath; } });
 
-//$a = new ECustomer("1", "2", "3", "password");
 
-$z=new EArticleDescription("1", "2", "3", "4", Format::CD);
+$z = new EArticleDescription("1", "2", "3", "4", Format::CD);
 
-$B= new ESeller("pippo.coca@dipre.it", "mussolini", "bellaRga");
+$B = new ESeller("pippo.coca@dipre.it", "mussolini", "bellaRga");
 
-$B->addStock("10", "10",$z);
+$a = new EStock($z, "10","10");
 
-$catalogue = $B->getCatalogue();
-foreach ($catalogue as &$item) {
-    echo $item->getArticle()->getName();
+$B->addStock($z, "10","10");
+
+$a = $B->getCatalogue();
+foreach ($a as $key) {
+    echo $key;
 }
 
-//print $a->getEmail();
