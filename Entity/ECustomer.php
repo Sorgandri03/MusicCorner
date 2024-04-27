@@ -11,6 +11,8 @@ class ECustomer extends EUser {
     private array $addresses = array();
     
     private array $creditCards = array();
+
+    private array $orders = array();
     
     public function addCreditCard(string $number, string $expiration_date, string $cvv, string $owner_name, string $billing_address) {
         $creditCards[] = new ECreditCard( $number,  $expiration_date,  $cvv,  $owner_name,  $billing_address);
@@ -18,6 +20,9 @@ class ECustomer extends EUser {
 
     public function addAddress(string $street, string $city, int $cap, string $receiver_name) {
         $creditCards[] = new EAddress( $street,  $city,  $cap,  $receiver_name);
+    }
+    public function addOrder(string $id, ECustomer $customer, \DateTime $orderDate, EAddress $shippingAddress, ECreditCard $payment, string $status, string $price, EShoppingCart $cart) {
+        $orders[] = new EOrder( $id,  $customer,  $orderDate,  $shippingAddress,  $payment,  $status,  $price,  $cart);
     }
      
     //metodo per il ban
