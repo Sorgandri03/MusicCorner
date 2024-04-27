@@ -1,29 +1,21 @@
 <?php
 namespace Entity;
 
-class ESeller extends EUser {
-    private String $shopId;
-
+class ESeller extends EUser {    
     private String $shopName;
     
-    private EStock $stock;
-
     private float $shopRating;
+
+    private array $catalogue = array();
     
-    public function __construct(string $email, string $password, string $shopId, string $shopName) {
+    public function __construct(string $email, string $password, float $shopRating, string $shopName) {
         parent::__construct($email, $password);
-        $this->shopId = $shopId;
         $this->shopName = $shopName;
+        $this->shopRating=$shopRating;
     }
-    
-    public function getShopId(): string {
-        return $this->shopId;
+    public function addStock(float $price, int $quantity, EArticleDescription $article) {
+        $catalogue[] = new EStock(  $article,  $quantity,  $price);
     }
-
-    public function setShopId(string $shopId): void {
-        $this->shopId = $shopId;
-    }
-
     public function getShopName(): string {
         return $this->shopName;
     }
@@ -31,15 +23,7 @@ class ESeller extends EUser {
     public function setShopName(string $shopName): void {
         $this->shopName = $shopName;
     }
-
-    public function getStock(): EStock {
-        return $this->stock;
-    }
     
-    public function setStock(EStock $stock): void {
-        $this->stock = $stock;
-    }
-
     public function getShopRating(): float {
         return $this->shopRating;
     }
