@@ -1,10 +1,8 @@
 <?php
 namespace Entity;
 
-use Entity\EArticleDescription;
-use Entity\EStock;
-use Entity\Format;
+use Entity\ECustomer;
 
-$a = new EArticleDescription("1", "name", "artist", "genre", Format::CD);
-$stock = new EStock($a, 10, 19.99);
-echo $stock->getArticle()->getEan(); // 1
+$a = new ECustomer("sorgandri03", "sorgandri03@gmail.com");
+
+print $a->getEmail();
