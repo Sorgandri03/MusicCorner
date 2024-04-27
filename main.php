@@ -5,6 +5,6 @@ spl_autoload_register(function ($className) {
     if (file_exists($filePath)) 
     { require_once $filePath; } });
 
-$a = new ECustomer("1", "2", "3", "password");
+$a = new EArticleDescription("ean", "name", "artist", "genre", Format::Cassette);
 
-print $a->getEmail();
+print $a->getFormat();

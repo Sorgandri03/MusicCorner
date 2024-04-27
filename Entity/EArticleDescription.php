@@ -1,9 +1,9 @@
 <?php
 
-enum Format: string {
-    case CD = "CD";
-    case Cassette = "Cassette";
-    case Vinyl = "Vinyl";
+enum Format {
+    case CD;
+    case Cassette;
+    case Vinyl;
 }
 
 class EArticleDescription {
@@ -33,7 +33,16 @@ class EArticleDescription {
     public function getGenre(): string {
         return $this->genre;
     }
-    public function getFormat(): Format {
-        return $this->format;
+    public function getFormat(): string {
+        switch ($this->format) {
+            case Format::CD:
+                return "CD";
+            case Format::Cassette:
+                return "Cassette";
+            case Format::Vinyl:
+                return "Vinyl";
+            default:
+                return ""; // Add a default case to handle unknown formats
+        }
     }
 }
