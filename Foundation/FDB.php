@@ -8,11 +8,11 @@ class FDB {
     private $DB_HOST = "localhost";
     private $DB_USER = "root";
     private $DB_PASS = "";
-    private $db;
+    private static $db;
     private function __construct(){
         try{
-            $this->db = new PDO("mysql:host=$this->DB_HOST;dbname=$this->DB_NAME", $this->DB_USER, $this->DB_PASS);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$db = new PDO("mysql:host=$this->DB_HOST;dbname=$this->DB_NAME", $this->DB_USER, $this->DB_PASS);
+            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";
         }catch(PDOException $e){
             echo "ERROR". $e->getMessage();
@@ -31,7 +31,7 @@ class FDB {
 
     //END SINGLETON
 
-    public function query($sql){
+    /*public function query($sql){
         return $this->db->query($sql);
     }
     
@@ -39,6 +39,21 @@ class FDB {
         $values = $object->getValues();
         $query = "INSERT INTO ".$object->getTable()." VALUES ($values)";
         $this->query($query);
+    }*/
+
+    public static function saveObject($foundClass, $obj)
+    {
+        try{
+            $query = "INSERT INTO " . $foundClass::getTable() . " VALUES " . $foundClass::getValue();
+            $stmt = self::$db->prepare($query);
+            $foundClass::bind($stmt, $obj);
+            $stmt->execute();
+            $id = self::$db->lastInsertId();
+            return $id;
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return null;
+        }
     }
 
 }

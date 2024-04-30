@@ -46,11 +46,5 @@ class EArticleDescription {
         }
     }
 
-    public function getValues(): string {
-        return "'" . $this->ean ."','". $this->name ."','". $this->artists ."','". $this->genre ."','". $this->getFormat() . "'";
-    }
-
-    public function getTable(): string {
-        return "articledescription";
-    }
+    
 }
