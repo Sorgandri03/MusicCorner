@@ -1,5 +1,6 @@
 <?php
 
+
 class FArticleDescription{
     private static $table = "articledescription";
     public static $value = "(:EAN, :Name, :Artists, :Genre, :Format)";

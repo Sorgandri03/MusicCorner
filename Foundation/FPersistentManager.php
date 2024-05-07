@@ -5,7 +5,7 @@ class FPersistentManager{
     private static $instance = null;
 
     private function __construct(){
-        spl_autoload_register([$this, 'autoload']);
+        spl_autoload_register(array($this, 'autoload'));
     }
 
     public static function getInstance(){
@@ -22,13 +22,11 @@ class FPersistentManager{
         $result = call_user_func([$class, 'read'], $id);
         return $result;
     }
-
-    public function autoload ($className) { 
-        $filePath = __DIR__ . $className . '.php'; 
-        if (file_exists($filePath))
-        { require_once $filePath; } }
-
     
+    function autoload ($className) { 
+        $filePath = __DIR__. "\\" .  $className . '.php'; 
+        if (file_exists($filePath)) 
+        { require_once $filePath; } }
 }
 
 
