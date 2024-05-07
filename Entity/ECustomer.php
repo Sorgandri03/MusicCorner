@@ -2,8 +2,6 @@
 
 class ECustomer extends EUser {
     private  $username;
-
-    private String $customerId;
     
     private int $suspensionTime=0;
 
@@ -13,8 +11,8 @@ class ECustomer extends EUser {
 
     private array $orders = array();
     
-    public function addCreditCard(string $number, string $expiration_date, string $cvv, string $owner_name, string $billing_address) {
-        $this->creditCards[] = new ECreditCard( $number,  $expiration_date,  $cvv,  $owner_name,  $billing_address);
+    public function addCreditCard(string $number, string $expiration_date, string $cvv, string $billing_address) {
+        $this->creditCards[] = new ECreditCard( $number,  $expiration_date,  $cvv,  $this,  $billing_address);
     }
 
     public function addAddress(string $street, string $city, int $cap, string $receiver_name) {
@@ -26,10 +24,9 @@ class ECustomer extends EUser {
      
     //metodo per il ban
 
-    public function __construct(string $username, string $customerId, string $email, string $password) {
+    public function __construct(string $username, string $email, string $password) {
         
         $this->username = $username;
-        $this->customerId = $customerId;
         parent::__construct($email, $password);
     }
 
@@ -41,13 +38,8 @@ class ECustomer extends EUser {
         $this->username = $username;
     }
 
-    public function getCustomerId(): string {
-        return $this->customerId;
+    public function setCreditCards(array $creditCards): void {
+        $this->creditCards = $creditCards;
     }
-
-    public function setCustomerId(string $customerId): void {
-        $this->customerId = $customerId;
-    }
-
 
 }

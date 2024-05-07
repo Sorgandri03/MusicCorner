@@ -30,33 +30,35 @@ class FCreditCard{
         }
     }
 
-    public static function getObj($id){
-        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+    public static function getObj($cardNumber){
+        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $cardNumber);
         if(count($result) > 0){
-            $user = self::crateCardObj($result);
-            return $user;
+            $card = self::createCardObj($result);
+            return $card;
         }else{
             return null;
         }
 
     }
 
-    public static function crateCardObj($result){
-        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['billingAddress'], $result[0]['owner'], $result[0]['expiringDate'], $result[0]['cvv']);
+    public static function createCardObj($result){
+        $owner = FCustomer::getObj($result[0]['owner']);
+        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $result[0]['billingAddress']);
         return $card;
     }
 
-    public static function getAllCards($owner){
+    public static function getCardsByOwner($owner){
         $queryResult = FDB::getInstance()->retriveObj(self::getTable(), 'owner', $owner);
-
         $cards = array();
-
         if(count($queryResult) == 1){
-            $card = self::getObj($queryResult[0][self::getKey()]);
+            $result = self::getObj($queryResult[0][self::getKey()]);
+            $card = self::createCardObj($result);
             $cards[] = $card;
-        }elseif(count($queryResult) > 1){
+        }
+        elseif(count($queryResult) > 1){
             for($i = 0; $i < count($queryResult); $i++){
-                $card = self::getObj($queryResult[$i][self::getKey()]);
+                $result = self::getObj($queryResult[$i][self::getKey()]);
+                $card = self::createCardObj($result);
                 $cards[] = $card;
             }
         }
