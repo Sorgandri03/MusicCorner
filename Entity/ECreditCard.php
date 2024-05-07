@@ -5,14 +5,14 @@ class ECreditCard {
     private string $number;
     private string $expiration_date;
     private string $cvv;
-    private string $owner_name;
+    private ECustomer $owner;
     private string $billing_address;
 
-    public function __construct(string $number, string $expiration_date, string $cvv, string $owner_name, string $billing_address) {
+    public function __construct(string $number, string $expiration_date, string $cvv, ECustomer $owner, string $billing_address) {
         $this->number = $number;
         $this->expiration_date = $expiration_date;
         $this->cvv = $cvv;
-        $this->owner_name = $owner_name;
+        $this->owner = $owner;
         $this->billing_address = $billing_address;
     }
     public function getNumber(): string {
@@ -24,8 +24,8 @@ class ECreditCard {
     public function getCvv(): string {
         return $this->cvv;
     }
-    public function getOwnerName(): string {
-        return $this->owner_name;
+    public function getOwnerName(): ECustomer {
+        return $this->owner;
     }
     public function getBillingAddress(): string {
         return $this->billing_address;
@@ -39,8 +39,8 @@ class ECreditCard {
     public function setCvv(string $cvv): void {
         $this->cvv = $cvv;
     }
-    public function setOwnerName(string $owner_name): void {
-        $this->owner_name = $owner_name;
+    public function setOwnerName(ECustomer $owner): void {
+        $this->owner = $owner;
     }
     public function setBillingAddress(string $billing_address): void {
         $this->billing_address = $billing_address;
