@@ -3,7 +3,6 @@
 
 class FDB {
     private static $instance = null;
-
     private $DB_NAME = "musiccorner";
     private $DB_HOST = "localhost";
     private $DB_USER = "root";
@@ -21,28 +20,17 @@ class FDB {
 
     }
 
-    public static function getinstance() {
-        if(self::$instance == null){
-            $c = __CLASS__;
-            self::$instance = new $c;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
         }
         return self::$instance;
     }
 
     //END SINGLETON
 
-    /*public function query($sql){
-        return $this->db->query($sql);
-    }
-    
-    public function create(Object $object){
-        $values = $object->getValues();
-        $query = "INSERT INTO ".$object->getTable()." VALUES ($values)";
-        $this->query($query);
-    }*/
 
-    public static function saveObject($foundClass, $obj)
-    {
+    public static function saveObject($foundClass, $obj){
         try{
             $query = "INSERT INTO " . $foundClass::getTable() . " VALUES " . $foundClass::getValue();
             $stmt = self::$db->prepare($query);
@@ -55,5 +43,9 @@ class FDB {
             return null;
         }
     }
+
+    
+
+    
 
 }

@@ -31,9 +31,9 @@ class FArticleDescription{
         }
     }
 
-    /*
-    public function read($EAN){
-        $result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
+    
+    public static function read($EAN){
+        /*$result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
         
         while($row = $result->fetch()) {
             $EAN = $row['EAN'];
@@ -53,9 +53,10 @@ class FArticleDescription{
             }
         }
 
-        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);
+        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);*/
+        echo "funzia";
         
-    }*/
+    }
 
     public static function getTable(): string {
         return self::$table;
