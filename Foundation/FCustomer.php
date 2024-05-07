@@ -20,8 +20,8 @@ class FCustomer {
     }
 
     public static function createCustomerObj($result){
-        $customer = new ECustomer($result[0]['username'], $result[0]['email'], $result[0]['password']);
-        return $customer;
+        $cmer = new ECustomer($result[0]['username'], $result[0]['email'], $result[0]['password']);
+        return $cmer;
     }
 
     public static function addCreditCards(ECustomer $owner){
@@ -31,8 +31,8 @@ class FCustomer {
     public static function getObj($email){
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
-            $card = self::createCustomerObj($result);
-            return $card;
+            $customer = self::createCustomerObj($result);
+            return $customer;
         }else{
             return null;
         }
