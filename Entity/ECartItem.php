@@ -6,15 +6,15 @@ class CartItem
     private EArticleDescription $article;
     private int $quantity;
     private EShoppingCart $cartID;
-    private ESeller $sellerID;
+    private ESeller $seller;
 
 
-    public function __construct(EArticleDescription $article, int $quantity, EShoppingCart $cartID, ESeller $sellerID)
+    public function __construct(EArticleDescription $article, int $quantity, EShoppingCart $cartID, ESeller $seller)
     {
         $this->article = $article;
         $this->quantity = $quantity;
         $this->cartID = $cartID;
-        $this->sellerID = $sellerID;
+        $this->seller = $seller;
     }
     
 
@@ -30,9 +30,9 @@ class CartItem
     {
         return $this->cartID;
     }
-    public function getSellerID(): ESeller
+    public function getSeller(): ESeller
     {
-        return $this->sellerID;
+        return $this->seller;
     }
     public function setQuantity(int $quantity): void
     {
@@ -42,9 +42,9 @@ class CartItem
     {
         $this->cartID = $cartID;
     }
-    public function setSellerID(ESeller $sellerID): void
+    public function setSeller(ESeller $seller): void
     {
-        $this->sellerID = $sellerID;
+        $this->seller = $seller;
     }
     public function setArticle(EArticleDescription $article): void
     {
