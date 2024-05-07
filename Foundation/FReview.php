@@ -11,12 +11,12 @@ class FReview {
     }
     //Tocca vede come è fatto il db perche non so la chiave
     public static function bind($stmt, $Review){
-        $stmt->bindValue(':customer', $Review->getEan(), PDO::PARAM_STR);
-        $stmt->bindValue(':reviewText', $Review->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':articleRating', $Review->getArtists(), PDO::PARAM_STR);
-        $stmt->bindValue(':sellerRating', $Review->getGenre(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $Review->getCustomer()->getEmail(),PDO::PARAM_STR);
+        $stmt->bindValue(':reviewText', $Review->getReviewText(), PDO::PARAM_STR);
+        $stmt->bindValue(':articleRating', $Review->getArticleRating(),PDO::PARAM_STR);
+        $stmt->bindValue(':sellerRating', $Review->getSellerRating(), PDO::PARAM_STR);
         $stmt->bindValue(':article', $Review->getArticle()->getEan(),PDO::PARAM_STR);
-        $stmt->bindValue(':seller',$Review->getSeller()->getShopRating() , PDO::PARAM_STR);
+        $stmt->bindValue(':seller',$Review->getSeller()->getEmail(), PDO::PARAM_STR);
 
     }
 

@@ -24,9 +24,14 @@ class ESeller extends EUser {
     public function setRating(): void {
       //DA FARE
     }
+    
+    public function getEmail(): string { 
+        return parent::getEmail(); }
 
-
-    public function setShopName(string $shopName): void {
+    public function setEmail(string $email): void {
+         parent::setEmail( $email) ; }
+    
+         public function setShopName(string $shopName): void {
         $this->shopName = $shopName;
     }
     
