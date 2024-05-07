@@ -44,6 +44,28 @@ class FDB {
         }
     }
 
+    public static function retriveObj($table, $field ,$id){
+        try{
+            $query = "SELECT * FROM " .$table. " WHERE ".$field." = '".$id."';";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $rowNum = $stmt->rowCount();
+            if($rowNum > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                return $result;
+            }else{
+                return array();
+            }
+        }catch(PDOException $e){
+            echo "ERROR" . $e->getMessage();
+            return array();
+        }
+    }
+
     
 
     

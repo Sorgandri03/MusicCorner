@@ -1,9 +1,8 @@
 <?php
 
-
-class FArticleDescription{
-    private static $table = "articledescription";
-    public static $value = "(:EAN, :Name, :Artists, :Genre, :Format)";
+class FCreditCard{
+    private static $table = "creditcard";
+    public static $value = "(:cardNumber, :billingAddress, :ownerName, :expiringDate, :cvv)";
     public static function getValue(): string {
         return self::$value;
     }
@@ -11,12 +10,12 @@ class FArticleDescription{
         return self::$table;
     }
 
-    public static function bind($stmt, $ArticleDescription){
-        $stmt->bindValue(':EAN', $ArticleDescription->getEan(), PDO::PARAM_STR);
-        $stmt->bindValue(':Name', $ArticleDescription->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':Artists', $ArticleDescription->getArtists(), PDO::PARAM_STR);
-        $stmt->bindValue(':Genre', $ArticleDescription->getGenre(), PDO::PARAM_STR);
-        $stmt->bindValue(':Format', $ArticleDescription->getFormat(), PDO::PARAM_STR);
+    public static function bind($stmt, $creditCard){
+        $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
+        $stmt->bindValue(':billingAddress', $creditCard->getExpirationDate(), PDO::PARAM_STR);
+        $stmt->bindValue(':ownerName', $creditCard->getOwnerName(), PDO::PARAM_STR);
+        $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);
+        $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_INT);
     }
 
     public static function saveObj($obj){
@@ -29,30 +28,6 @@ class FArticleDescription{
     }
 
     
-    public static function read($EAN){
-        /*$result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
-        
-        while($row = $result->fetch()) {
-            $EAN = $row['EAN'];
-            $Name = $row['Name'];   
-            $Artists = $row['Artists'];
-            $Genre = $row['Genre'];
-
-            switch($row['Format']){
-                case "CD":
-                    $Format = Format::CD;
-                case "Vynil":
-                    $Format = Format::Vinyl;
-                case "Cassette":
-                    $Format = Format::Cassette;
-                default:
-                    $Format = Format::CD;
-            }
-        }
-
-        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);*/
-        echo "funzia";
-        
-    }
+    
     
 }
