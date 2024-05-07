@@ -9,14 +9,14 @@ class FReview {
     public static function getTable(): string {
         return self::$table;
     }
-    //manca EReview e tocca vede come è fatto il db perche non so la chiave
+    //Tocca vede come è fatto il db perche non so la chiave
     public static function bind($stmt, $Review){
         $stmt->bindValue(':customer', $Review->getEan(), PDO::PARAM_STR);
         $stmt->bindValue(':reviewText', $Review->getName(), PDO::PARAM_STR);
         $stmt->bindValue(':articleRating', $Review->getArtists(), PDO::PARAM_STR);
         $stmt->bindValue(':sellerRating', $Review->getGenre(), PDO::PARAM_STR);
-        $stmt->bindValue(':article',  , PDO::PARAM_STR);
-        $stmt->bindValue(':seller', , PDO::PARAM_STR);
+        $stmt->bindValue(':article', $Review->getArticle()->getEan(),PDO::PARAM_STR);
+        $stmt->bindValue(':seller',$Review->getSeller()->getShopRating() , PDO::PARAM_STR);
 
     }
 
