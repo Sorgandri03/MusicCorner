@@ -1,5 +1,6 @@
-<?phpphp
-class FArticleDescription{
+<?php
+
+class FCustomer {
     private static $table = "customer";
     public static $value = "(username:, customerId:, :addresses, :creditcard, :Format)";
     public static function getValue(): string {
@@ -16,3 +17,4 @@ class FArticleDescription{
         $stmt->bindValue(':creditcard', $ArticleDescription->getCreditCard(), PDO::PARAM_STR);
         $stmt->bindValue(':Format', $ArticleDescription->getFormat(), PDO::PARAM_STR);
     }
+}
