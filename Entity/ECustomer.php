@@ -13,8 +13,8 @@ class ECustomer extends EUser {
 
     private array $orders = array();
     
-    public function addCreditCard(string $number, string $expiration_date, string $cvv, string $owner_name, string $billing_address) {
-        $this->creditCards[] = new ECreditCard( $number,  $expiration_date,  $cvv,  $owner_name,  $billing_address);
+    public function addCreditCard(string $number, string $expiration_date, string $cvv, string $billing_address) {
+        $this->creditCards[] = new ECreditCard( $number,  $expiration_date,  $cvv,  $this,  $billing_address);
     }
 
     public function addAddress(string $street, string $city, int $cap, string $receiver_name) {
@@ -49,5 +49,8 @@ class ECustomer extends EUser {
         $this->customerId = $customerId;
     }
 
+    public function setCreditCards(array $creditCards): void {
+        $this->creditCards = $creditCards;
+    }
 
 }

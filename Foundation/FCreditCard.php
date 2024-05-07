@@ -33,7 +33,7 @@ class FCreditCard{
     public static function getObj($id){
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
-            $user = self::crateCardObj($result);
+            $user = self::createCardObj($result);
             return $user;
         }else{
             return null;
@@ -41,7 +41,7 @@ class FCreditCard{
 
     }
 
-    public static function crateCardObj($result){
+    public static function createCardObj($result){
         $card = new ECreditCard($result[0]['cardNumber'], $result[0]['billingAddress'], $result[0]['owner'], $result[0]['expiringDate'], $result[0]['cvv']);
         return $card;
     }
