@@ -2,8 +2,6 @@
 
 class ECustomer extends EUser {
     private  $username;
-
-    private String $customerId;
     
     private int $suspensionTime=0;
 
@@ -26,10 +24,9 @@ class ECustomer extends EUser {
      
     //metodo per il ban
 
-    public function __construct(string $username, string $customerId, string $email, string $password) {
+    public function __construct(string $username, string $email, string $password) {
         
         $this->username = $username;
-        $this->customerId = $customerId;
         parent::__construct($email, $password);
     }
 
@@ -39,14 +36,6 @@ class ECustomer extends EUser {
 
     public function setUsername(string $username): void {
         $this->username = $username;
-    }
-
-    public function getCustomerId(): string {
-        return $this->customerId;
-    }
-
-    public function setCustomerId(string $customerId): void {
-        $this->customerId = $customerId;
     }
 
     public function setCreditCards(array $creditCards): void {
