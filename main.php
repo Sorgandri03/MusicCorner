@@ -20,7 +20,7 @@ class Main {
         //$gianmarco = new ECustomer("FrancoMinchia", "francominchia@gmail.com", "password");
         $leonardo = new ECustomer("LPint02", "leonardo@gmail.com", "password");
         //FPersistentManager::getInstance()->uploadObj($gianmarco);
-        FPersistentManager::getInstance()->uploadObj($leonardo);
+        echo FStock::getKey();
 
     }
 

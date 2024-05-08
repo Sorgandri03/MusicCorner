@@ -3,7 +3,7 @@
 class FStock{
     private static $table = "stock";
     /* Manca stock e la chiave*/
-    public static $value = "(:price, :quantity, :article)";
+    public static $value = "(:price, :quantity, :article, NULL)";
     public static function getValue(): string {
         return self::$value;
     }
@@ -25,6 +25,7 @@ class FStock{
     public static function saveObj($obj){
         $saveArticle = FDB::getInstance()->saveObject(self::class, $obj);
         if($saveArticle !== null){
+            $obj->setId($saveArticle);
             return true;
         }else{
             return false;

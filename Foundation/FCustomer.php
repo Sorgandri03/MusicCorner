@@ -41,7 +41,7 @@ class FCustomer {
     public static function saveObj($customer){
         $saveCustomer = FDB::getInstance()->saveObject(self::class, $customer);
         if($saveCustomer !== null){
-            return $saveCustomer;
+            return true;
         }else{
             return false;
         }
