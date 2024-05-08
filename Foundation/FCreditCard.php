@@ -42,7 +42,7 @@ class FCreditCard{
     }
 
     public static function createCardObj($result){
-        $owner = FCustomer::getObj($result[0]['owner']);
+        $owner = FCustomer::getObj($result[0]['owner']); 
         $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $result[0]['billingAddress']);
         return $card;
     }
