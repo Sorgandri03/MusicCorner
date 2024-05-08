@@ -4,9 +4,6 @@ class FPersistentManager{
 
     private static $instance = null;
 
-    private function __construct(){
-        spl_autoload_register(array($this, 'autoload'));
-    }
 
     public static function getInstance(){
         if (!self::$instance) {
@@ -19,14 +16,15 @@ class FPersistentManager{
 
     public function retrieveObject($entity, $id){
         $class = "F" . substr($entity,1);
-        $result = call_user_func([$class, 'read'], $id);
+        $result = call_user_func([$class, "getObj"], $id);
         return $result;
     }
-    
-    function autoload ($className) { 
-        $filePath = __DIR__. "\\" .  $className . '.php'; 
-        if (file_exists($filePath)) 
-        { require_once $filePath; } }
+
+    public static function uploadObj($obj){
+        $class = "F" . substr(get_class($obj), 1);
+        $result = call_user_func([$class, "saveObj"], $obj);
+        return $result;
+    }
 }
 
 

@@ -11,7 +11,7 @@ class FStock{
         return self::$table;
     }
     public static function getKey(): string {
-        return "";
+        return "id";
     }
 
 

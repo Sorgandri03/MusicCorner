@@ -2,7 +2,7 @@
 
 class FCustomer {
     private static $table = "customer";
-    public static $value = "(:username, :email, :password)";
+    public static $value = "(:username, :email, :password, NULL)";
     public static function getValue(): string {
         return self::$value;
     }
@@ -10,7 +10,7 @@ class FCustomer {
         return self::$table;
     }
     public static function getKey(): string {
-        return "customerId";
+        return "email";
     }
 
     public static function bind($stmt, $customer){
@@ -20,8 +20,8 @@ class FCustomer {
     }
 
     public static function createCustomerObj($result){
-        $cmer = new ECustomer($result[0]['username'], $result[0]['email'], $result[0]['password']);
-        return $cmer;
+        $customer = new ECustomer($result[0]['username'], $result[0]['email'], $result[0]['password']);
+        return $customer;
     }
 
     public static function addCreditCards(ECustomer $owner){
@@ -36,6 +36,14 @@ class FCustomer {
         }else{
             return null;
         }
+    }
 
+    public static function saveObj($customer){
+        $saveCustomer = FDB::getInstance()->saveObject(self::class, $customer);
+        if($saveCustomer !== null){
+            return $saveCustomer;
+        }else{
+            return false;
+        }
     }
 }
