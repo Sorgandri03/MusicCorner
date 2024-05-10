@@ -1,6 +1,6 @@
 <?php
 
-abstract class EUser {
+class EUser {
     private String $email;
 
     private String $password;
