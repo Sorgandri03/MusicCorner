@@ -15,7 +15,7 @@ class FAdmin{
     }
 
     public static function bind($stmt, $admin){
-        $stmt->bindValue(':', $admin->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
     }
 
     public static function saveObj($obj){
