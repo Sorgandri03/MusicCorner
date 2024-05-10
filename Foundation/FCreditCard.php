@@ -2,7 +2,7 @@
 
 class FCreditCard{
     private static $table = "creditcard";
-    public static $value = "(:cardNumber, :billingAddress, :ownerName, :expiringDate, :cvv)";
+    public static $value = "(:cardNumber, :owner, :expiringDate, :cvv, :addressID)";
     public static function getValue(): string {
         return self::$value;
     }
