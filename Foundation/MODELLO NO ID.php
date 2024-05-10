@@ -1,8 +1,9 @@
 <?php
 
-class FCreditCard{
+class FObj{
     private static $table = "";
-    public static $value = "";
+    private static $value = "";
+    private static $key = "";
     public static function getValue(): string {
         return self::$value;
     }
@@ -11,6 +12,9 @@ class FCreditCard{
     }
     public static function getKey(): string {
         return "";
+    }
+    public static function getKey(): string {
+        return self::$key;
     }
 
     public static function bind($stmt, $obj){
@@ -34,7 +38,7 @@ class FCreditCard{
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
             $obj = self::createObj($result);
-            return $card;
+            return $obj;
         }else{
             return null;
         }
