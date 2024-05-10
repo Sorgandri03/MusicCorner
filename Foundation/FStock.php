@@ -45,7 +45,8 @@ class FStock{
     public static function createObj($result){
         $article = FArticleDescription::getObj($result[0]['article']);
         $seller = FSeller::getObj($result[0]['seller']);
-        $obj = new EStock($article, $seller, $result[0]['quantity'], $result[0]['price']);
+        $obj = new EStock($article, $result[0]['quantity'], $result[0]['price']);
+        $seller->addStock($obj);
         $obj->setId($result[0]['id']);
         return $obj;
     }

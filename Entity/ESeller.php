@@ -12,8 +12,8 @@ class ESeller extends EUser {
         $this->shopName = $shopName;
     }
     
-    public function addStock(EArticleDescription $article, int $quantity, float $price) {
-        $this->catalogue[] = new EStock($article, $this, $quantity, $price);
+    public function addStock(EStock $stock): void {
+        $this->catalogue[] = $stock;
     }
     
     public function getCatalogue(): array {

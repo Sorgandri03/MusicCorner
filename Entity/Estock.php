@@ -5,11 +5,9 @@ class EStock {
     private float $price;
     private int $quantity;
     private EArticleDescription $article;
-    private ESeller $seller;
 
-    public function __construct(EArticleDescription $article, ESeller $seller, int $quantity, float $price) {
+    public function __construct(EArticleDescription $article, int $quantity, float $price) {
         $this->article = $article;
-        $this->seller = $seller;
         $this->quantity = $quantity;
         $this->price = $price;
     }
@@ -33,8 +31,5 @@ class EStock {
     }
     public function setId(int $id): void {
         $this->id = $id;
-    }
-    public function getSeller(): ESeller {
-        return $this->seller;
     }
 }
