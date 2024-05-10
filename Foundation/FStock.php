@@ -1,9 +1,9 @@
 <?php
 
 class FStock{
-    private static $table = "stock";
-    /* Manca stock e la chiave*/
-    public static $value = "(:price, :quantity, :article, NULL)";
+    private static $table = "Stock";
+    private static $value = "(NULL, :price, :quantity, :article)";
+    private static $key = "id";
     public static function getValue(): string {
         return self::$value;
     }
@@ -11,15 +11,14 @@ class FStock{
         return self::$table;
     }
     public static function getKey(): string {
-        return "id";
+        return self::$key;
     }
 
-
-    public static function bind($stmt, $Seller){
-        $stmt->bindValue(':email', $Seller->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
-        $stmt->bindValue(':shopRating', $Seller->getShopRating(), PDO::PARAM_STR);
-        // manca stock $stmt->bindValue(':Format', $Seller->getFormat(), PDO::PARAM_STR);
+    public static function bind($stmt, $stock){
+        $stmt->bindValue(':price', (String) $stock->getPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(':quantity', $stock->getQuantity(),PDO::PARAM_STR);
+        $stmt->bindValue(':article', $stock->getArticle()->getEAN(), PDO::PARAM_STR);
+        
     }
 
     public static function saveObj($obj){
@@ -32,31 +31,23 @@ class FStock{
         }
     }
 
-    
-    public static function read($EAN){
-        /*$result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
-        
-        while($row = $result->fetch()) {
-            $EAN = $row['EAN'];
-            $Name = $row['Name'];   
-            $Artists = $row['Artists'];
-            $Genre = $row['Genre'];
-
-            switch($row['Format']){
-                case "CD":
-                    $Format = Format::CD;
-                case "Vynil":
-                    $Format = Format::Vinyl;
-                case "Cassette":
-                    $Format = Format::Cassette;
-                default:
-                    $Format = Format::CD;
-            }
+    public static function getObj($id){
+        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+        if(count($result) > 0){
+            $obj = self::createObj($result);
+            return $obj;
+        }else{
+            return null;
         }
 
-        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);*/
-        echo "funzia";
-        
     }
+
+    public static function createObj($result){
+        $article = FArticleDescription::getObj($result[0]['article']);
+        $obj = new EStock($article, $result[0]['quantity'], $result[0]['price']);
+        $obj->setId($result[0]['id']);
+        return $obj;
+    }
+
     
 }
