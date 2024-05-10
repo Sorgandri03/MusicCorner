@@ -1,6 +1,6 @@
 <?php
 
-class FShoppingCart{
+class FCart{
     private static $table = "Cart";
     private static $value = "(NULL, :customer)";
     private static $key = "id";
@@ -45,8 +45,9 @@ class FShoppingCart{
         return $obj;
     }
 
-    public static function getCartItems() : array {
-        return [];
+    public static function addCartItems($cart) : void {
+        $articles = FCartItem::getItemsbyCart($cart->getId());
+        $cart->setCartItems($articles);
     }
     
     
