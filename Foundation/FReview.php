@@ -15,12 +15,12 @@ class FReview {
         return self::$key;
     }
     public static function bind($stmt, $Review){
-        $stmt->bindValue(':customer', $Review->getCustomer(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $Review->getCustomer()->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':reviewText', $Review->getReviewText(), PDO::PARAM_STR);
         $stmt->bindValue(':articleRating', $Review->getArticleRating(), PDO::PARAM_INT);
         $stmt->bindValue(':sellerRating', $Review->getSellerRating(), PDO::PARAM_INT);
-        $stmt->bindValue(':article', $Review->getArticle(), PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $Review->getSeller(), PDO::PARAM_STR);
+        $stmt->bindValue(':article', $Review->getArticle()->getEAN(), PDO::PARAM_STR);
+        $stmt->bindValue(':seller', $Review->getSeller()->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':id', $Review->getId(), PDO::PARAM_INT);
 
     }
