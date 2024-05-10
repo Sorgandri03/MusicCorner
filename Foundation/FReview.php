@@ -28,6 +28,7 @@ class FReview {
     public static function saveObj($obj){
         $saveArticle = FDB::getInstance()->saveObject(self::class, $obj);
         if($saveArticle !== null){
+            $obj->setId($saveArticle);
             return true;
         }else{
             return false;
@@ -35,6 +36,7 @@ class FReview {
     }
     public static function createObj($result){
         $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['id']);
+        $obj->setId($result[0]['id']);
         return $obj;
     }
         
