@@ -1,14 +1,15 @@
 <?php
 
-class EShoppingCart {
+class ECart {
     private string $id;
     private array $articles = array();
     private ECustomer $customer;
-    public function __construct(string $id, ECustomer $customer) {
-        $this->id = $id;
+    public function __construct(ECustomer $customer) {
         $this->customer = $customer;
     }
-
+    public function setId(string $id): void {
+        $this->id = $id;
+    }
     public function getId(): string {
         return $this->id;
     }
@@ -21,6 +22,9 @@ class EShoppingCart {
 
     public function addArticle(EArticleDescription $article): void {
         $this->articles[] = $article;
+    }
+    public function addArticles(array $articles): void {
+        $this->articles = $articles;
     }
    
 }
