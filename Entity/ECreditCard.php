@@ -24,7 +24,7 @@ class ECreditCard {
     public function getCvv(): int {
         return $this->cvv;
     }
-    public function getOwnerName(): ECustomer {
+    public function getOwner(): ECustomer {
         return $this->owner;
     }
     public function getBillingAddress(): string {
@@ -39,7 +39,7 @@ class ECreditCard {
     public function setCvv(int $cvv): void {
         $this->cvv = $cvv;
     }
-    public function setOwnerName(ECustomer $owner): void {
+    public function setOwner(ECustomer $owner): void {
         $this->owner = $owner;
     }
     public function setBillingAddress(string $billing_address): void {

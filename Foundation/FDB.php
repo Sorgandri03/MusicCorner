@@ -1,16 +1,12 @@
 <?php
-
+require_once(__DIR__ . '/../config/config.php');
 
 class FDB {
     private static $instance = null;
-    private $DB_NAME = "musiccorner";
-    private $DB_HOST = "localhost";
-    private $DB_USER = "root";
-    private $DB_PASS = "";
     private static $db;
     private function __construct(){
         try{
-            self::$db = new PDO("mysql:host=$this->DB_HOST;dbname=$this->DB_NAME", $this->DB_USER, $this->DB_PASS);
+            self::$db = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST."; charset=utf8;", DB_USER, DB_PASS);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";
         }catch(PDOException $e){

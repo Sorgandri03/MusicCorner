@@ -17,10 +17,9 @@ class Main {
             echo $key;
         }
         */
-        //$gianmarco = new ECustomer("FrancoMinchia", "francominchia@gmail.com", "password");
-        $leonardo = new ECustomer("LPint02", "leonardo@gmail.com", "password");
-        //FPersistentManager::getInstance()->uploadObj($gianmarco);
-        echo FStock::getKey();
+        $leonardo = new ECustomer("leonardo", "lpint02@gmail.com", "password");
+        $carta = new ECreditCard("4023000000000000", "05/25", 390, $leonardo, "Via san pio delle camere 9");
+        FPersistentManager::getInstance()->uploadObj($carta);
 
     }
 
