@@ -11,9 +11,6 @@ class FObj{
         return self::$table;
     }
     public static function getKey(): string {
-        return "";
-    }
-    public static function getKey(): string {
         return self::$key;
     }
 
