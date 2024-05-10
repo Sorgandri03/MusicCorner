@@ -42,6 +42,7 @@ class FCart{
     public static function createObj($result){
         $customer = FCustomer::getObj($result[0]['customer']);
         $obj = new ECart($customer);
+        $obj->setId($result[0]['id']);
         return $obj;
     }
 
