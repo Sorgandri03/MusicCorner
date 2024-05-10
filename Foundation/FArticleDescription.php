@@ -15,12 +15,12 @@ class FArticleDescription{
         return self::$key;
     }
 
-    public static function bind($stmt, $ArticleDescription){
-        $stmt->bindValue(':EAN', $ArticleDescription->getEAN(), PDO::PARAM_STR);
-        $stmt->bindValue(':name', $ArticleDescription->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':artist', $ArticleDescription->getArtist(), PDO::PARAM_STR);
-        $stmt->bindValue(':genre', $ArticleDescription->getGenre(),PDO::PARAM_STR);
-        $stmt->bindValue(':format', $ArticleDescription->getFormat(),PDO::PARAM_STR);
+    public static function bind($stmt, $articleDescription){
+        $stmt->bindValue(':EAN', $articleDescription->getEAN(), PDO::PARAM_STR);
+        $stmt->bindValue(':name', $articleDescription->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(':artist', $articleDescription->getArtist(), PDO::PARAM_STR);
+        $stmt->bindValue(':genre', $articleDescription->getGenre(),PDO::PARAM_STR);
+        $stmt->bindValue(':format', $articleDescription->getFormat(),PDO::PARAM_STR);
     }
 
     public static function saveObj($obj){

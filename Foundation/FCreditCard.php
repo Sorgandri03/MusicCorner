@@ -41,7 +41,7 @@ class FCreditCard{
 
     }
 
-    public static function createCardObj($result){
+    public static function createObj($result){
         $owner = FCustomer::getObj($result[0]['owner']); 
         $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $result[0]['billingAddress']);
         return $card;
@@ -52,13 +52,13 @@ class FCreditCard{
         $cards = array();
         if(count($queryResult) == 1){
             $result = self::getObj($queryResult[0][self::getKey()]);
-            $card = self::createCardObj($result);
+            $card = self::createObj($result);
             $cards[] = $card;
         }
         elseif(count($queryResult) > 1){
             for($i = 0; $i < count($queryResult); $i++){
                 $result = self::getObj($queryResult[$i][self::getKey()]);
-                $card = self::createCardObj($result);
+                $card = self::createObj($result);
                 $cards[] = $card;
             }
         }
