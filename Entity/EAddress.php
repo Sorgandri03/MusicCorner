@@ -5,13 +5,14 @@ class EAddress {
     private string $street;
     private string $city;
     private int $cap;
-    private string $receiver_name;
+    private string $name;
+    private int $id;
 
-    public function __construct(string $street, string $city, int $cap, string $receiver_name) {
+    public function __construct(string $street, string $city, int $cap, string $name) {
         $this->street = $street;
         $this->city = $city;
         $this->cap = $cap;
-        $this->receiver_name = $receiver_name;
+        $this->name = $name;
     }
     public function getStreet(): string {
         return $this->street;
@@ -22,8 +23,11 @@ class EAddress {
     public function getCap(): int {
         return $this->cap;
     }
-    public function getReceiverName(): string {
-        return $this->receiver_name;
+    public function getName(): string {
+        return $this->name;
+    }
+    public function getId(): int {
+        return $this->id;
     }
     public function setStreet(string $street): void {
         $this->street = $street;
@@ -34,8 +38,11 @@ class EAddress {
     public function setCap(int $cap): void {
         $this->cap = $cap;
     }
-    public function setReceiverName(string $receiver_name): void {
-        $this->receiver_name = $receiver_name;
+    public function setName(string $name): void {
+        $this->name = $name;
+    }
+    public function setId(int $id): void {
+        $this->id = $id;
     }
 }
     
