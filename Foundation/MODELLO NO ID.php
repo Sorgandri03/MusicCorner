@@ -1,3 +1,4 @@
+<?php
 /*
 class FObj{
     private static $table = "";
