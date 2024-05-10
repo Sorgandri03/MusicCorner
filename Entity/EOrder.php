@@ -9,7 +9,6 @@ enum Status {
 
 class EOrder {
     private int $id;
-    private ECustomer $customer;
     private DateTime $orderDateTime;
     private Status $status;
     private float $price;
@@ -17,8 +16,7 @@ class EOrder {
     private EAddress $shippingAddress;
     private $cart;
 
-    public function __construct(ECustomer $customer, EAddress $shippingAddress, ECreditCard $payment, float $price, ECart $cart) {
-        $this->customer = $customer;
+    public function __construct(EAddress $shippingAddress, ECreditCard $payment, float $price, ECart $cart) {
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
         $this->cart = $cart;
@@ -27,9 +25,6 @@ class EOrder {
     }
     public function getId(): int {
         return $this->id;
-    }
-    public function getCustomer(): ECustomer {
-        return $this->customer;
     }
     public function getOrderDateTime(): DateTime {
         return $this->orderDateTime;
@@ -65,9 +60,6 @@ class EOrder {
     public function setId(int $id): void {
         $this->id = $id;
     }
-    public function setCustomer(ECustomer $customer): void {
-        $this->customer = $customer;
-    }
     public function setOrderDateTime(DateTime $orderDateTime): void {
         $this->orderDateTime = $orderDateTime;
     }
@@ -86,8 +78,4 @@ class EOrder {
     public function setCart(ECart $cart): void {
         $this->cart = $cart;
     }
-    
-
-
-
 }
