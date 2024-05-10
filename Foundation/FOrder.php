@@ -49,11 +49,9 @@ class FOrder{
         $payment = FCreditCard::getObj($result[0]['payment']);
         $shippingAddress = FAddress::getObj($result[0]['shipmentAddress']);
         $cart = FCart::getObj($result[0]['cart']);
-        $obj = new EOrder($shippingAddress, $payment, $result[0]['price'], $cart);
-        $customer->addOrder($obj);
+        $obj = new EOrder($customer, $shippingAddress, $payment, $result[0]['price'], $cart);
         $obj->setId($result[0]['id']);
         $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
         return $obj;
     }
-
 }

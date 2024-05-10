@@ -21,8 +21,6 @@ class FReview {
         $stmt->bindValue(':sellerRating', $Review->getSellerRating(), PDO::PARAM_INT);
         $stmt->bindValue(':article', $Review->getArticle()->getEAN(), PDO::PARAM_STR);
         $stmt->bindValue(':seller', $Review->getSeller()->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':id', $Review->getId(), PDO::PARAM_INT);
-
     }
 
     public static function saveObj($obj){
@@ -35,7 +33,7 @@ class FReview {
         }
     }
     public static function createObj($result){
-        $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['id']);
+        $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller']);
         $obj->setId($result[0]['id']);
         return $obj;
     }

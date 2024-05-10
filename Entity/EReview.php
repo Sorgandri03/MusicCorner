@@ -9,15 +9,13 @@ class EReview {
     private int $articleRating;
     private int $sellerRating;
 
-    public function __construct(EArticleDescription $article, ECustomer $customer, ESeller $seller, string $reviewText, int $articleRating, int $sellerRating, int $id = null) {
+    public function __construct(EArticleDescription $article, ECustomer $customer, ESeller $seller, string $reviewText, int $articleRating, int $sellerRating) {
     $this->article = $article;
     $this->customer = $customer;
     $this->seller = $seller;
     $this->reviewText = $reviewText;
     $this->articleRating = $articleRating;
     $this->sellerRating = $sellerRating;
-    $this->id = $id;
-    
     }
 
     public function getArticle(): EArticleDescription {

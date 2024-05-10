@@ -2,7 +2,7 @@
 
 class FAddress{
     private static $table = "Address";
-    public static $value = "(NULL, :street, :cap, :city, :name)";
+    public static $value = "(NULL, :street, :cap, :city, :name, :customer)";
     private static $key = "id";
     public static function getValue(): string {
         return self::$value;
@@ -19,6 +19,7 @@ class FAddress{
         $stmt->bindValue(':cap', $address->getCap(), PDO::PARAM_STR);
         $stmt->bindValue(':city', $address->getCity(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $address->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $address->getCustomer(), PDO::PARAM_STR);
     }
 
     public static function saveObj($obj){
@@ -43,7 +44,7 @@ class FAddress{
     }
 
     public static function createObj($result){
-        $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name']);
+        $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $result[0]['customer']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
