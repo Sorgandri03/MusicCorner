@@ -2,6 +2,7 @@
 class FUser{
     private static $table = "User";
     private static $value = "(:email, :password)";
+    private static $key = "email";
     public static function getValue(): string {
         return self::$value;
     }
@@ -31,7 +32,7 @@ class FUser{
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
             $obj = self::createObj($result);
-            return $card;
+            return $obj;
         }else{
             return null;
         }
@@ -39,8 +40,7 @@ class FUser{
     }
 
     public static function createObj($result){
-        $entity2 = FUser::getObj($result[0]['entity2']);
-        $obj = new EEntity();
+        $obj = new EUser($result[0]['email'],$result[0]['password']);
         return $obj;
     }
 
