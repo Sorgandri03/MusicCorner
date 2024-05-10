@@ -16,7 +16,7 @@ class FCartItem{
 
     public static function bind($stmt, $cartItem){
         $stmt->bindValue(':article', $cartItem->getArticle()->getEAN(),PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $cartItem->getSeller(), PDO::PARAM_STR);
+        $stmt->bindValue(':seller', $cartItem->getSeller()->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':cartID', $cartItem->getCart()->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
     }

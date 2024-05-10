@@ -1,36 +1,38 @@
 <?php
+enum Status {
+    case Received;
+    case Processing;
+    case Shipped;
+    case InDelivery;
+    case Delivered;
+}
 
 class EOrder {
-    private string $id;
+    private int $id;
     private ECustomer $customer;
-    private \DateTime $orderDate;
-    private EAddress $shippingAddress;
+    private DateTime $orderDateTime;
+    private Status $status;
+    private float $price;
     private ECreditCard $payment;
-    private string $status;
-    private string $price;
+    private EAddress $shippingAddress;
     private $cart;
 
-    public function __construct(string $id, ECustomer $customer, \DateTime $orderDate, EAddress $shippingAddress, ECreditCard $payment, string $status, string $price, EShoppingCart $cart) {
-        $this->id = $id;
+    public function __construct(ECustomer $customer, EAddress $shippingAddress, ECreditCard $payment, Status $status, float $price, ECart $cart) {
         $this->customer = $customer;
-        $this->orderDate = $orderDate;
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
         $this->status = $status;
         $this->cart = $cart;
-        
-        
-        
         $this->price = $price;
     }
-    public function getId(): string {
+    public function getId(): int {
         return $this->id;
     }
     public function getCustomer(): ECustomer {
         return $this->customer;
     }
-    public function getOrderDate(): \DateTime {
-        return $this->orderDate;
+    public function getOrderDateTime(): DateTime {
+        return $this->orderDateTime;
     }
     public function getShippingAddress(): EAddress {
         return $this->shippingAddress;
@@ -39,22 +41,35 @@ class EOrder {
         return $this->payment;
     }
     public function getStatus(): string {
-        return $this->status;
+        switch ($this->status) {
+            case Status::Received:
+                return "Received";
+            case Status::Processing:
+                return "Processing";
+            case Status::Shipped:
+                return "Shipped";
+            case Status::InDelivery:
+                return "InDelivery";
+            case Status::Delivered:
+                return "Delivered";
+            default:
+                return ""; // Add a default case to handle unknown formats
+        }
     }
-    public function getPrice(): string {
+    public function getPrice(): float {
         return $this->price;
     }
-    public function getCart(): EShoppingCart {
+    public function getCart(): ECart {
         return $this->cart;
     }
-    public function setId(string $id): void {
+    public function setId(int $id): void {
         $this->id = $id;
     }
     public function setCustomer(ECustomer $customer): void {
         $this->customer = $customer;
     }
-    public function setOrderDate(\DateTime $orderDate): void {
-        $this->orderDate = $orderDate;
+    public function setOrderDateTime(DateTime $orderDateTime): void {
+        $this->orderDateTime = $orderDateTime;
     }
     public function setShippingAddress(EAddress $shippingAddress): void {
         $this->shippingAddress = $shippingAddress;
@@ -62,13 +77,13 @@ class EOrder {
     public function setPayment(ECreditCard $payment): void {
         $this->payment = $payment;
     }
-    public function setStatus(string $status): void {
+    public function setStatus(Status $status): void {
         $this->status = $status;
     }
-    public function setPrice(string $price): void {
+    public function setPrice(float $price): void {
         $this->price = $price;
     }
-    public function setCart(EShoppingCart $cart): void {
+    public function setCart(ECart $cart): void {
         $this->cart = $cart;
     }
     
