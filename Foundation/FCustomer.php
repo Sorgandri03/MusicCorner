@@ -1,7 +1,7 @@
 <?php
 
 class FCustomer {
-    private static $table = "customer";
+    private static $table = "Customer";
     public static $value = "(:username, :email, :password, NULL)";
     public static function getValue(): string {
         return self::$value;
