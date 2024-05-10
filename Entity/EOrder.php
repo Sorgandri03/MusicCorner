@@ -17,13 +17,13 @@ class EOrder {
     private EAddress $shippingAddress;
     private $cart;
 
-    public function __construct(ECustomer $customer, EAddress $shippingAddress, ECreditCard $payment, Status $status, float $price, ECart $cart) {
+    public function __construct(ECustomer $customer, EAddress $shippingAddress, ECreditCard $payment, float $price, ECart $cart) {
         $this->customer = $customer;
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
-        $this->status = $status;
         $this->cart = $cart;
         $this->price = $price;
+        $this->orderDateTime = new DateTime();
     }
     public function getId(): int {
         return $this->id;

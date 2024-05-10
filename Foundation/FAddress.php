@@ -16,7 +16,7 @@ class FAddress{
 
     public static function bind($stmt, $address){
         $stmt->bindValue(':street', $address->getStreet(), PDO::PARAM_STR);
-        $stmt->bindValue(':cap', $address->getCap(), PDO::PARAM_INT);
+        $stmt->bindValue(':cap', $address->getCap(), PDO::PARAM_STR);
         $stmt->bindValue(':city', $address->getCity(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $address->getName(), PDO::PARAM_STR);
     }

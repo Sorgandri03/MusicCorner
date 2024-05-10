@@ -1,8 +1,8 @@
 <?php
 
 class FCreditCard{
-    private static $table = "creditcard";
-    public static $value = "(:cardNumber, :owner, :expiringDate, :cvv, :addressID)";
+    private static $table = "CreditCard";
+    public static $value = "(:cardNumber, :billingAddress, :owner, :expiringDate, :cvv)";
     public static function getValue(): string {
         return self::$value;
     }
@@ -15,10 +15,10 @@ class FCreditCard{
 
     public static function bind($stmt, $creditCard){
         $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
-        $stmt->bindValue(':billingAddress', $creditCard->getExpirationDate(), PDO::PARAM_STR);
+        $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress()->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':owner', $creditCard->getOwner()->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);
-        $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_INT);
+        $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_STR);
     }
 
     public static function saveObj($obj){
@@ -42,8 +42,9 @@ class FCreditCard{
     }
 
     public static function createObj($result){
-        $owner = FCustomer::getObj($result[0]['owner']); 
-        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $result[0]['billingAddress']);
+        $owner = FCustomer::getObj($result[0]['owner']);
+        $address = FAddress::getObj($result[0]['billingAddress']);
+        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $address);
         return $card;
     }
 

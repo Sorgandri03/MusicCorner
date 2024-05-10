@@ -20,7 +20,7 @@ class ECart {
         return $this->customer;
     }
 
-    public function addArticle(EArticleDescription $article): void {
+    public function addArticle(ECartItem $article): void {
         $this->articles[] = $article;
     }
     public function addArticles(array $articles): void {

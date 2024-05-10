@@ -1,19 +1,21 @@
 <?php
 
 class EStock {
-    private EArticleDescription $Article;
-    private int $quantity;
+    private int $id;
     private float $price;
-    private int $id = (int)null;
+    private int $quantity;
+    private EArticleDescription $article;
+    private ESeller $seller;
 
-    public function __construct(EArticleDescription $Article, int $quantity, float $price) {
-        $this->Article = $Article;
+    public function __construct(EArticleDescription $article, ESeller $seller, int $quantity, float $price) {
+        $this->article = $article;
+        $this->seller = $seller;
         $this->quantity = $quantity;
         $this->price = $price;
     }
     
     public function getArticle(): EArticleDescription {
-        return $this->Article;
+        return $this->article;
     }
 
     public function getQuantity(): int {
@@ -24,12 +26,15 @@ class EStock {
         return $this->price;
     }
     public function __toString(): string {
-        return $this->Article->getArtist() . " " . $this->Article->getName() . " " . $this->Article->getGenre() . " " . $this->Article->getFormat() . " " . $this->quantity . " " . $this->price;
+        return $this->article->getArtist() . " " . $this->article->getName() . " " . $this->article->getGenre() . " " . $this->article->getFormat() . " " . $this->quantity . " " . $this->price;
     }
     public function getId(): int {
         return $this->id;
     }
     public function setId(int $id): void {
         $this->id = $id;
+    }
+    public function getSeller(): ESeller {
+        return $this->seller;
     }
 }

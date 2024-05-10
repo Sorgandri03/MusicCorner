@@ -2,7 +2,8 @@
 
 class FCustomer {
     private static $table = "Customer";
-    public static $value = "(:username, :email, :password, NULL)";
+    public static $value = "(:email, :username, NULL)";
+    public static $key = "email";
     public static function getValue(): string {
         return self::$value;
     }
@@ -10,17 +11,17 @@ class FCustomer {
         return self::$table;
     }
     public static function getKey(): string {
-        return "email";
+        return self::$key;
     }
 
     public static function bind($stmt, $customer){
         $stmt->bindValue(':username', $customer->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $customer->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':password', $customer->getPassword(), PDO::PARAM_STR);
     }
 
     public static function createCustomerObj($result){
-        $customer = new ECustomer($result[0]['username'], $result[0]['email'], $result[0]['password']);
+        $user = FUser::getObj($result[0]['email']);
+        $customer = new ECustomer($result[0]['username'], $result[0]['email'], $user->getPassword());
         return $customer;
     }
 
@@ -40,6 +41,7 @@ class FCustomer {
 
     public static function saveObj($customer){
         $saveCustomer = FDB::getInstance()->saveObject(self::class, $customer);
+        $saveUser = FUser::saveCustomer($customer);
         if($saveCustomer !== null){
             return true;
         }else{

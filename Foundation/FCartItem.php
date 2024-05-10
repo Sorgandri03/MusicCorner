@@ -2,7 +2,7 @@
 
 class FCartItem{
     private static $table = "CartItem";
-    private static $value = "(NULL, :article, :seller, :cartID, :quantity)";
+    private static $value = "(NULL, :cartID, :stockID, :quantity)";
     private static $key = "id";
     public static function getValue(): string {
         return self::$value;
@@ -15,9 +15,8 @@ class FCartItem{
     }
 
     public static function bind($stmt, $cartItem){
-        $stmt->bindValue(':article', $cartItem->getArticle()->getEAN(),PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $cartItem->getSeller()->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':cartID', $cartItem->getCart()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':stockID', $cartItem->getArticle()->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
     }
 
@@ -43,10 +42,9 @@ class FCartItem{
     }
 
     public static function createObj($result){
-        $articleDescription = FArticleDescription::getObj($result[0]['article']);
+        $article = FStock::getObj($result[0]['stockID']);
         $cart = FCart::getObj($result[0]['cartID']);
-        $seller = FSeller::getObj($result[0]['seller']);
-        $obj = new ECartItem($articleDescription, $result[0]['quantity'], $cart, $seller);
+        $obj = new ECartItem($article, $result[0]['quantity'], $cart);
         return $obj;
     }
 

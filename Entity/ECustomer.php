@@ -1,7 +1,7 @@
 <?php
 
 class ECustomer extends EUser {
-    private  $username;
+    private $username;
     
     private int $suspensionTime=0;
 
@@ -25,7 +25,6 @@ class ECustomer extends EUser {
     //metodo per il ban
 
     public function __construct(string $username, string $email, string $password) {
-        
         $this->username = $username;
         parent::__construct($email, $password);
     }

@@ -1,19 +1,13 @@
 <?php
 
-enum Format {
-    case CD;
-    case Cassette;
-    case Vinyl;
-}
-
 class EArticleDescription {
     private string $ean;
     private string $name;
     private string $artist;
     private string $genre;
-    private Format $format;
+    private string $format;
 
-    public function __construct(string $ean, string $name, string $artist, string $genre, Format $format) {
+    public function __construct(string $ean, string $name, string $artist, string $genre, string $format) {
         $this->ean = $ean;
         $this->name = $name;
         $this->artist = $artist;
@@ -34,16 +28,7 @@ class EArticleDescription {
         return $this->genre;
     }
     public function getFormat(): string {
-        switch ($this->format) {
-            case Format::CD:
-                return "CD";
-            case Format::Cassette:
-                return "Cassette";
-            case Format::Vinyl:
-                return "Vinyl";
-            default:
-                return ""; // Add a default case to handle unknown formats
-        }
+        return $this->format;
     }
 
     

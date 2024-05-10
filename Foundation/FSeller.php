@@ -2,7 +2,7 @@
 
 class FSeller{
     private static $table = "Seller";
-    private static $value = "(:email, :shopName, :artist)";
+    private static $value = "(:email, :shopName, :shopRating)";
     private static $key = "email";
     public static function getValue(): string {
 
@@ -24,6 +24,7 @@ class FSeller{
 
     public static function saveObj($obj){
         $saveArticle = FDB::getInstance()->saveObject(self::class, $obj);
+        $saveUser = FUser::saveCustomer($obj);
         if($saveArticle !== null){
             return true;
         }else{
@@ -39,11 +40,11 @@ class FSeller{
         }else{
             return null;
         }
-
     }
 
     public static function createObj($result){
-        $obj = new ESeller($result[0]['email'], $result[0]['shopName'], $result[0]['shopRating']);
+        $user = FUser::getObj($result[0]['email']);
+        $obj = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
         return $obj;
     }
 

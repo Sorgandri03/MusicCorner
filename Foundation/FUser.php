@@ -44,4 +44,9 @@ class FUser{
         return $obj;
     }
 
+
+    public static function saveCustomer($customer){
+        $user = new EUser($customer->getEmail(), $customer->getPassword());
+        return self::saveObj($user);
+    }
 }

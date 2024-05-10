@@ -1,8 +1,8 @@
 <?php
 
 class FOrder{
-    private static $table = "Order";
-    public static $value = "(NULL, :customer, :orderDateTime, :status, :price, :payment, :shipmentAddress, :cart)";
+    private static $table = "Orders";
+    public static $value = "(NULL, :customer, :orderDateTime, NULL, :price, :payment, :shipmentAddress, :cart)";
     private static $key = "id";
     public static function getValue(): string {
         return self::$value;
@@ -16,12 +16,11 @@ class FOrder{
 
     public static function bind($stmt, $order){
         $stmt->bindValue(':customer', $order->getCustomer()->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':orderDateTime', $order->getOrderDateTime(), PDO::PARAM_STR);
-        $stmt->bindValue(':status', $order->getCity(), PDO::PARAM_STR);
-        $stmt->bindValue(':price', $order->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':payment', $order->getStreet(), PDO::PARAM_STR);
-        $stmt->bindValue(':shipmentAddress', $order->getCap(), PDO::PARAM_INT);
-        $stmt->bindValue(':cart', $order->getCity(), PDO::PARAM_INT);
+        $stmt->bindValue(':orderDateTime', $order->getOrderDateTime()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
+        $stmt->bindValue(':price', (string) $order->getPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(':payment', $order->getPayment()->getNumber(), PDO::PARAM_STR);
+        $stmt->bindValue(':shipmentAddress', $order->getShippingAddress()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':cart', $order->getCart()->getId(), PDO::PARAM_INT);
     }
 
     public static function saveObj($obj){
@@ -50,9 +49,9 @@ class FOrder{
         $payment = FCreditCard::getObj($result[0]['payment']);
         $shippingAddress = FAddress::getObj($result[0]['shipmentAddress']);
         $cart = FCart::getObj($result[0]['cart']);
-        $obj = new EOrder($customer, $shippingAddress, $payment, $result[0]['status'], $result[0]['price'], $cart);
+        $obj = new EOrder($customer, $shippingAddress, $payment, $result[0]['price'], $cart);
         $obj->setId($result[0]['id']);
-        $obj->setOrderDateTime($result[0]['orderDateTime']);
+        $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
         return $obj;
     }
 

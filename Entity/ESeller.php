@@ -13,25 +13,29 @@ class ESeller extends EUser {
     }
     
     public function addStock(EArticleDescription $article, int $quantity, float $price) {
-        $this->catalogue[] = new EStock($article,  $quantity,  $price);
+        $this->catalogue[] = new EStock($article, $this, $quantity, $price);
     }
-    public function getCatalogue(): array 
-        { return $this->catalogue; }
     
-        public function getShopName(): string {
-        return $this->shopName;
+    public function getCatalogue(): array {
+        return $this->catalogue; 
+    }
+    
+    public function getShopName(): string {
+    return $this->shopName;
     }
     public function setRating(): void {
       //DA FARE
     }
     
     public function getEmail(): string { 
-        return parent::getEmail(); }
+        return parent::getEmail();
+    }
 
     public function setEmail(string $email): void {
-         parent::setEmail( $email) ; }
+        parent::setEmail( $email); 
+    }
     
-         public function setShopName(string $shopName): void {
+    public function setShopName(string $shopName): void {
         $this->shopName = $shopName;
     }
     

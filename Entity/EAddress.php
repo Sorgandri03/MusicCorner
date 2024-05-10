@@ -4,11 +4,11 @@
 class EAddress {
     private string $street;
     private string $city;
-    private int $cap;
+    private string $cap;
     private string $name;
     private int $id;
 
-    public function __construct(string $street, string $city, int $cap, string $name) {
+    public function __construct(string $street, string $city, string $cap, string $name) {
         $this->street = $street;
         $this->city = $city;
         $this->cap = $cap;
@@ -20,7 +20,7 @@ class EAddress {
     public function getCity(): string {
         return $this->city;
     }
-    public function getCap(): int {
+    public function getCap(): string {
         return $this->cap;
     }
     public function getName(): string {
@@ -35,7 +35,7 @@ class EAddress {
     public function setCity(string $city): void {
         $this->city = $city;
     }
-    public function setCap(int $cap): void {
+    public function setCap(string $cap): void {
         $this->cap = $cap;
     }
     public function setName(string $name): void {
