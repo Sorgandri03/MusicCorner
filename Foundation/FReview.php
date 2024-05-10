@@ -1,22 +1,27 @@
 <?php
 
 class FReview {
-    private static $table = "reviews";
-    public static $value = "(:customer, :reviewText, :articleRating, :sellerRating, :article, :seller)";
+    private static $table = "Review";
+    private static $value = "(:NULL,:customer, :reviewText, :articleRating, :sellerRating, :article, :seller)";
+    private static $key = "id";
+
     public static function getValue(): string {
         return self::$value;
     }
     public static function getTable(): string {
         return self::$table;
     }
-    //Tocca vede come è fatto il db perche non so la chiave
+    public static function getKey(): string {
+        return self::$key;
+    }
     public static function bind($stmt, $Review){
-        $stmt->bindValue(':customer', $Review->getCustomer()->getEmail(),PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $Review->getCustomer(), PDO::PARAM_STR);
         $stmt->bindValue(':reviewText', $Review->getReviewText(), PDO::PARAM_STR);
-        $stmt->bindValue(':articleRating', $Review->getArticleRating(),PDO::PARAM_STR);
-        $stmt->bindValue(':sellerRating', $Review->getSellerRating(), PDO::PARAM_STR);
-        $stmt->bindValue(':article', $Review->getArticle()->getEan(),PDO::PARAM_STR);
-        $stmt->bindValue(':seller',$Review->getSeller()->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':articleRating', $Review->getArticleRating(), PDO::PARAM_INT);
+        $stmt->bindValue(':sellerRating', $Review->getSellerRating(), PDO::PARAM_INT);
+        $stmt->bindValue(':article', $Review->getArticle(), PDO::PARAM_STR);
+        $stmt->bindValue(':seller', $Review->getSeller(), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $Review->getId(), PDO::PARAM_INT);
 
     }
 
@@ -28,31 +33,20 @@ class FReview {
             return false;
         }
     }
-
-    
-    public static function read($EAN){
-        /*$result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
+    public static function createObj($result){
+        $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['id']);
+        return $obj;
+    }
         
-        while($row = $result->fetch()) {
-            $EAN = $row['EAN'];
-            $Name = $row['Name'];   
-            $Artists = $row['Artists'];
-            $Genre = $row['Genre'];
-
-            switch($row['Format']){
-                case "CD":
-                    $Format = Format::CD;
-                case "Vynil":
-                    $Format = Format::Vinyl;
-                case "Cassette":
-                    $Format = Format::Cassette;
-                default:
-                    $Format = Format::CD;
-            }
+    
+    public static function getObj($id){
+        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+        if(count($result) > 0){
+            $obj = self::createObj($result);
+            return $obj;
+        }else{
+            return null;
         }
-
-        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);*/
-        echo "funzia";
         
     }
     

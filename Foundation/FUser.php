@@ -1,7 +1,7 @@
 <?php
 class FUser{
     private static $table = "User";
-    private static $value = "(:password)";
+    private static $value = "(:email, :password)";
     private static $key = "email";
     public static function getValue(): string {
         return self::$value;

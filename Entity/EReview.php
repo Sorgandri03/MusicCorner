@@ -4,19 +4,20 @@ class EReview {
     private EArticleDescription $article;
     private ECustomer $customer;
     private ESeller $seller;
-    private ECreditCard $payment;
+    private int $id;
     private string $reviewText;
     private int $articleRating;
     private int $sellerRating;
 
-    public function __construct(EArticleDescription $article, ECustomer $customer, ESeller $seller, ECreditCard $payment, string $reviewText, int $articleRating, int $sellerRating ) {
+    public function __construct(EArticleDescription $article, ECustomer $customer, ESeller $seller, string $reviewText, int $articleRating, int $sellerRating, int $id = null) {
     $this->article = $article;
     $this->customer = $customer;
     $this->seller = $seller;
-    $this->payment = $payment;
     $this->reviewText = $reviewText;
     $this->articleRating = $articleRating;
     $this->sellerRating = $sellerRating;
+    $this->id = $id;
+    
     }
 
     public function getArticle(): EArticleDescription {
@@ -42,12 +43,12 @@ class EReview {
         $this->seller = $seller;
     }
 
-    public function getPayment(): ECreditCard {
-        return $this->payment;
+    public function getId(): int{
+        return $this->id;
     }
 
-    public function setPayment(ECreditCard $payment): void {
-        $this->payment = $payment;
+    public function setId(int $id): void {
+        $this->id = $id;
     }
 
     public function getReviewText(): string {
