@@ -2,8 +2,8 @@
 
 class FArticleDescription{
     private static $table = "ArticleDescription";
-    private static $value = "(:EAN, :name, :artist, genre, format )";
-    private static $key = ":EAN";
+    private static $value = "(:EAN, :name, :artist, :genre, :format )";
+    private static $key = "EAN";
     public static function getValue(): string {
 
         return self::$value;
@@ -18,9 +18,9 @@ class FArticleDescription{
     public static function bind($stmt, $ArticleDescription){
         $stmt->bindValue(':EAN', $ArticleDescription->getEAN(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $ArticleDescription->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':artist', $ArticleDescription->getArtists(), PDO::PARAM_STR);
+        $stmt->bindValue(':artist', $ArticleDescription->getArtist(), PDO::PARAM_STR);
         $stmt->bindValue(':genre', $ArticleDescription->getGenre(),PDO::PARAM_STR);
-        $stmt->bindValue(':format', $ArticleDescription->getFormat(),PDO::PARAM_INT);
+        $stmt->bindValue(':format', $ArticleDescription->getFormat(),PDO::PARAM_STR);
     }
 
     public static function saveObj($obj){

@@ -1,25 +1,26 @@
 <?php
 
 class FSeller{
-    private static $table = "seller";
-    /* Manca stock*/
-    public static $value = "(:email, :shopName, :shopRating, )";
+    private static $table = "Seller";
+    private static $value = "(:email, :shopName, :artist)";
+    private static $key = ":EAN";
     public static function getValue(): string {
+
         return self::$value;
     }
     public static function getTable(): string {
         return self::$table;
     }
     public static function getKey(): string {
-        return "email";
+        return self::$key;
     }
 
-
-    public static function bind($stmt, $Seller){
-        $stmt->bindValue(':email', $Seller->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
-        $stmt->bindValue(':shopRating', $Seller->getShopRating(), PDO::PARAM_STR);
-        // manca stock 
+    public static function bind($stmt, $ArticleDescription){
+        $stmt->bindValue(':EAN', $ArticleDescription->getEAN(), PDO::PARAM_STR);
+        $stmt->bindValue(':name', $ArticleDescription->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(':artist', $ArticleDescription->getArtists(), PDO::PARAM_STR);
+        $stmt->bindValue(':genre', $ArticleDescription->getGenre(),PDO::PARAM_STR);
+        $stmt->bindValue(':format', $ArticleDescription->getFormat(),PDO::PARAM_INT);
     }
 
     public static function saveObj($obj){
@@ -31,31 +32,20 @@ class FSeller{
         }
     }
 
-    
-    public static function read($EAN){
-        /*$result = FDB::getinstance()->query("SELECT * FROM articledescription WHERE EAN = $EAN");
-        
-        while($row = $result->fetch()) {
-            $EAN = $row['EAN'];
-            $Name = $row['Name'];   
-            $Artists = $row['Artists'];
-            $Genre = $row['Genre'];
-
-            switch($row['Format']){
-                case "CD":
-                    $Format = Format::CD;
-                case "Vynil":
-                    $Format = Format::Vinyl;
-                case "Cassette":
-                    $Format = Format::Cassette;
-                default:
-                    $Format = Format::CD;
-            }
+    public static function getObj($id){
+        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+        if(count($result) > 0){
+            $obj = self::createObj($result);
+            return $obj;
+        }else{
+            return null;
         }
 
-        return new EArticleDescription($EAN, $Name, $Artists, $Genre, $Format);*/
-        echo "funzia";
-        
     }
-    
+
+    public static function createObj($result){
+        $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], $result[0]['genre'], $result[0]['format']);
+        return $obj;
+    }
+
 }

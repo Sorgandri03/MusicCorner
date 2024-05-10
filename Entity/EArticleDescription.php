@@ -9,14 +9,14 @@ enum Format {
 class EArticleDescription {
     private string $ean;
     private string $name;
-    private string $artists;
+    private string $artist;
     private string $genre;
     private Format $format;
 
-    public function __construct(string $ean, string $name, string $artists, string $genre, Format $format) {
+    public function __construct(string $ean, string $name, string $artist, string $genre, Format $format) {
         $this->ean = $ean;
         $this->name = $name;
-        $this->artists = $artists;
+        $this->artist = $artist;
         $this->genre = $genre;
         $this->format = $format;
     }
@@ -27,8 +27,8 @@ class EArticleDescription {
     public function getName(): string {
         return $this->name;
     }
-    public function getArtists(): string {
-        return $this->artists;
+    public function getArtist(): string {
+        return $this->artist;
     }
     public function getGenre(): string {
         return $this->genre;
