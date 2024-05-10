@@ -1,5 +1,4 @@
-<?php
-
+/*
 class FObj{
     private static $table = "";
     private static $value = "";
@@ -49,3 +48,4 @@ class FObj{
     }
 
 }
+*/
