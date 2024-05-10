@@ -33,7 +33,7 @@ class FCreditCard{
     public static function getObj($cardNumber){
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $cardNumber);
         if(count($result) > 0){
-            $card = self::createCardObj($result);
+            $card = self::createObj($result);
             return $card;
         }else{
             return null;
