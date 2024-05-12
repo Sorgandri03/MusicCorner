@@ -14,7 +14,7 @@ class FPersistentManager{
 
     //END SINGLETON
 
-    public function retrieveObject($entity, $id){
+    public function retrieveObj($entity, $id){
         $class = "F" . substr($entity,1);
         $result = call_user_func([$class, "getObj"], $id);
         return $result;
