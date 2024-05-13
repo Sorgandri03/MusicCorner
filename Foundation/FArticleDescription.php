@@ -2,7 +2,7 @@
 
 class FArticleDescription{
     private static $table = "ArticleDescription";
-    private static $value = "(:EAN, :name, :artist, :genre, :format )";
+    private static $value = "(:EAN, :name, :artist, :genre, :format)";
     private static $key = "EAN";
     public static function getValue(): string {
 
