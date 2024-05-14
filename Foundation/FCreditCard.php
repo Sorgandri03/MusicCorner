@@ -70,11 +70,10 @@ class FCreditCard{
 
     //END CRUD
 
-    
 
     public static function createEntity($result){
-        $owner = FCustomer::getObj($result[0]['owner']);
-        $address = FAddress::getObj($result[0]['billingAddress']);
+        $owner = FCustomer::retrieveObject($result[0]['owner']);
+        $address = FAddress::retrieveObject($result[0]['billingAddress']);
         $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $address);
         return $card;
     }
