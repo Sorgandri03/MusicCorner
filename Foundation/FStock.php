@@ -68,7 +68,7 @@ class FStock{
 
     public static function createEntity($result){
         $article = FArticleDescription::retrieveObject($result[0]['article']);
-        $seller = FSeller::retieveObject($result[0]['seller']);
+        $seller = FSeller::retrieveObject($result[0]['seller']);
         $obj = new EStock($article, $result[0]['quantity'], $result[0]['price']);
         $seller->addStock($obj);
         $obj->setId($result[0]['id']);
