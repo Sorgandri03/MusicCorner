@@ -5,7 +5,6 @@ class FAddress{
     private static $value = "(NULL, :street, :cap, :city, :name, :customer)";
     private static $key = "id";
     private static $updatequery = "street = :street, cap = :cap, city = :city, name = :name, customer = :customer";
-
     public static function getValue(): string {
         return self::$value;
     }
@@ -19,8 +18,6 @@ class FAddress{
         return self::$updatequery;
     }
 
-    //C
-
     public static function bind($stmt, $address){
         $stmt->bindValue(':street', $address->getStreet(), PDO::PARAM_STR);
         $stmt->bindValue(':cap', $address->getCap(), PDO::PARAM_STR);
@@ -28,7 +25,8 @@ class FAddress{
         $stmt->bindValue(':name', $address->getName(), PDO::PARAM_STR);
         $stmt->bindValue(':customer', $address->getCustomer()->getEmail(), PDO::PARAM_STR);
     }
-     // C
+
+    //C
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -39,18 +37,18 @@ class FAddress{
         }
     }
 
-     //R
-
+    //R
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
-            $obj = self::createObject($result);
+            $obj = self::createEntity($result);
             return $obj;
         }else{
             return null;
         }
 
     }
+
     //U
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
@@ -60,6 +58,7 @@ class FAddress{
             return false;
         }
     }
+
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
@@ -69,9 +68,10 @@ class FAddress{
             return false;
         }
     }
+
     // END OF CRUD
 
-public static function createEntity($result){
+    public static function createEntity($result){
         $customer = FCustomer::retrieveObject($result[0]['customer']);
         $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $customer);
         $obj->setId($result[0]['id']);
