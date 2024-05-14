@@ -74,7 +74,7 @@ class FSeller{
     //END CRUD
 
     public static function createEntity($result){
-        $user = FUser::getObj($result[0]['email']);
+        $user = FUser::retrieveObject($result[0]['email']);
         $obj = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
         return $obj;
     }

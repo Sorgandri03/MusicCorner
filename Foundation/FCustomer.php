@@ -73,7 +73,7 @@ class FCustomer {
     //END CRUD
 
     public static function createEntity($result){
-        $user = FUser::getObj($result[0]['email']);
+        $user = FUser::retrieveObject($result[0]['email']);
         $customer = new ECustomer($result[0]['username'], $result[0]['email'], $user->getPassword());
         return $customer;
     }
