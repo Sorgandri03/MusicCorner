@@ -6,7 +6,6 @@ class FArticleDescription{
     private static $key = "EAN";
     private static $updatequery = "name = :name, artist = :artist, genre = :genre, format = :format";
     public static function getValue(): string {
-
         return self::$value;
     }
     public static function getTable(): string {

@@ -13,7 +13,6 @@ class FDB {
             echo "ERROR". $e->getMessage();
             die;
         }
-
     }
 
     public static function getInstance(){
