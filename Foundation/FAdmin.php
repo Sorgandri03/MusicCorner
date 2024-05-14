@@ -4,6 +4,7 @@ class FAdmin{
     private static $table = "Admin";
     private static $value = "(:email)";
     private static $key = "email";
+    private static $updatequery = "email = :email";
     public static function getValue(): string {
         return self::$value;
     }
@@ -13,15 +14,18 @@ class FAdmin{
     public static function getKey(): string {
         return self::$key;
     }
+    public static function getUpdateQuery(): string {
+        return self::$updatequery;
+    }
 
-    //C
+    
 
     public static function bind($stmt, $admin){
         $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
     }
-
-    public static function saveObj($obj){
-        $saveArticle = FDB::getInstance()->saveObject(self::class, $obj);
+    //C
+    public static function createObject ($obj){
+        $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
             return true;
         }else{
@@ -31,25 +35,43 @@ class FAdmin{
 
     //R
 
-    public static function getObj($id){
-        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+    public static function retrieveObject ($id){
+        $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
-            $obj = self::createObj($result);
+            $obj = self::createEntity($result);
             return $obj;
         }else{
             return null;
         }
     }
-
-    public static function createObj($result){
-        $obj = new EAdmin($result[0]['email'], $result[0]['password']);
-        return $obj;
+    //U
+    public static function updateObject($obj){
+        $updateArticle = FDB::getInstance()->update(self::class, $obj);
+        if($updateArticle !== null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    //U
 
 
 
     //D
+    public static function deleteObject($obj){
+        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
+        if($deleteArticle !== null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    // END OF CRUD
 
+    public static function createEntity($result){
+        $obj = new EAdmin($result[0]['email'], $result[0]['password']);
+        return $obj;
+    }
+
+    
 }
