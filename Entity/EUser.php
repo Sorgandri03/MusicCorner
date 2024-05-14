@@ -10,11 +10,11 @@ class EUser{
         $this->password = $password;
     }
     
-    public function getEmail(): string {
+    public function getId(): string {
         return $this->email;
     }
 
-    public function setEmail(string $email): void {
+    public function setId(string $email): void {
         $this->email = $email;
     }
 

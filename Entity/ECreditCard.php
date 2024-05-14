@@ -15,7 +15,7 @@ class ECreditCard {
         $this->owner = $owner;
         $this->billing_address = $billing_address;
     }
-    public function getNumber(): string {
+    public function getId(): string {
         return $this->number;
     }
     public function getExpirationDate(): string {
@@ -30,7 +30,7 @@ class ECreditCard {
     public function getBillingAddress(): EAddress {
         return $this->billing_address;
     }
-    public function setNumber(string $number): void {
+    public function setId(string $number): void {
         $this->number = $number;
     }
     public function setExpirationDate(string $expiration_date): void {

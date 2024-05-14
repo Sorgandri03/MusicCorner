@@ -14,6 +14,8 @@ class FAdmin{
         return self::$key;
     }
 
+    //C
+
     public static function bind($stmt, $admin){
         $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
     }
@@ -26,6 +28,8 @@ class FAdmin{
             return false;
         }
     }
+
+    //R
 
     public static function getObj($id){
         $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
@@ -41,5 +45,11 @@ class FAdmin{
         $obj = new EAdmin($result[0]['email'], $result[0]['password']);
         return $obj;
     }
+
+    //U
+
+
+
+    //D
 
 }

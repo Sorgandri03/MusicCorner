@@ -18,5 +18,8 @@ class ECustomer extends EUser {
     public function setUsername(string $username): void {
         $this->username = $username;
     }
+    public function getId(): string {
+        return parent::getId();
+    }
 
 }

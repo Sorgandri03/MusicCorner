@@ -25,10 +25,10 @@ class FDB {
 
     //END SINGLETON
 
-
-    public static function saveObject($foundClass, $obj){
+    //C
+    public static function create($foundClass, $obj){
         try{
-            $query = "INSERT INTO " . $foundClass::getTable() . " VALUES " . $foundClass::getValue();
+            $query = "INSERT INTO " . $foundClass::getTable() . " VALUES " . $foundClass::getValue() . ";";
             $stmt = self::$db->prepare($query);
             $foundClass::bind($stmt, $obj);
             $stmt->execute();
@@ -41,7 +41,8 @@ class FDB {
         }
     }
 
-    public static function retriveObj($table, $field ,$id){
+    //R
+    public static function retrieve($table, $field ,$id){
         try{
             $query = "SELECT * FROM " .$table. " WHERE ".$field." = '".$id."';";
             $stmt = self::$db->prepare($query);
@@ -63,8 +64,31 @@ class FDB {
         }
     }
 
-    
+    //U
+    public static function update($foundClass, $obj){
+        try{
+            $query = "UPDATE " . $foundClass::getTable() . " SET ". $foundClass::getUpdateQuery()  . " WHERE " . $foundClass::getKey() . " = '" . $obj->getId() . "';";
+            $stmt = self::$db->prepare($query);
+            $foundClass::bind($stmt, $obj);
+            $stmt->execute();
+            return true;
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
 
-    
+    //D
+    public static function delete($foundClass, $obj){
+        try{
+            $query = "DELETE FROM " . $foundClass::getTable() . " WHERE " . $foundClass::getKey() . " = '" . $obj->getId() . "';";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            return true;
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
 
 }

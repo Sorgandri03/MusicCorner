@@ -15,7 +15,7 @@ class EArticleDescription {
         $this->format = $format;
     }
     
-    public function getEan(): string {
+    public function getId(): string {
         return $this->ean;
     }
     public function getName(): string {
