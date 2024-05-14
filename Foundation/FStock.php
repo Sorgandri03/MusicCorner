@@ -4,6 +4,7 @@ class FStock{
     private static $table = "Stock";
     private static $value = "(NULL, :price, :quantity, :article, :seller)";
     private static $key = "id";
+    private static $updatequery = "price = :price, quantity = :quantity, article = :article, seller = :seller";
     public static function getValue(): string {
         return self::$value;
     }
@@ -13,6 +14,9 @@ class FStock{
     public static function getKey(): string {
         return self::$key;
     }
+    public static function getUpdateQuery(): string {
+        return self::$updatequery;
+    }
 
     public static function bind($stmt, $stock){
         $stmt->bindValue(':price', (String) $stock->getPrice(), PDO::PARAM_STR);
@@ -20,9 +24,9 @@ class FStock{
         $stmt->bindValue(':article', $stock->getArticle()->getEAN(), PDO::PARAM_STR);
         $stmt->bindValue(':seller', $stock->getSeller()->getEmail(), PDO::PARAM_STR);
     }
-
-    public static function saveObj($obj){
-        $saveArticle = FDB::getInstance()->saveObject(self::class, $obj);
+    //C
+    public static function createObject($obj){
+        $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
             $obj->setId($saveArticle);
             return true;
@@ -30,21 +34,41 @@ class FStock{
             return false;
         }
     }
+    //R
 
-    public static function getObj($id){
-        $result = FDB::getInstance()->retriveObj(self::getTable(), self::getKey(), $id);
+    public static function retieveObject($id){
+        $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
-            $obj = self::createObj($result);
+            $obj = self::createEntity($result);
             return $obj;
         }else{
             return null;
         }
 
     }
+    //U
+    public static function updateObject($obj){
+        $updateArticle = FDB::getInstance()->update(self::class, $obj);
+        if($updateArticle !== null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //D
+    public static function deleteObject($obj){
+        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
+        if($deleteArticle !== null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public static function createObj($result){
-        $article = FArticleDescription::getObj($result[0]['article']);
-        $seller = FSeller::getObj($result[0]['seller']);
+        $article = FArticleDescription::createEntity($result[0]['article']);
+        $seller = FSeller::createEntity($result[0]['seller']);
         $obj = new EStock($article, $result[0]['quantity'], $result[0]['price']);
         $seller->addStock($obj);
         $obj->setId($result[0]['id']);
