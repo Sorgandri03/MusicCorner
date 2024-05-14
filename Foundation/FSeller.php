@@ -23,7 +23,7 @@ class FSeller{
 
 
     public static function bind($stmt, $Seller){
-        $stmt->bindValue(':email', $Seller->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $Seller->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
         $stmt->bindValue(':shopRating',(String) $Seller->getShopRating(), PDO::PARAM_STR);
 
@@ -32,7 +32,7 @@ class FSeller{
     //C
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
-        $saveUser = FUser::saveCustomer($obj);
+        $saveUser = FUser::saveUser($obj);
         if($saveArticle !== null){
             return true;
         }else{

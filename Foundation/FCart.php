@@ -19,7 +19,7 @@ class FCart{
     }
 
     public static function bind($stmt, $shoppingCart){
-        $stmt->bindValue(':customer', $shoppingCart->getCustomer()->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $shoppingCart->getCustomer()->getId(), PDO::PARAM_STR);
     }
 
     //C

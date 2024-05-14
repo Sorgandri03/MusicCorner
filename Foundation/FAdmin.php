@@ -17,15 +17,14 @@ class FAdmin{
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
-
-    
-
     public static function bind($stmt, $admin){
-        $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $admin->getId(), PDO::PARAM_STR);
     }
+
     //C
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
+        $saveUser = FUser::saveUser($obj);
         if($saveArticle !== null){
             return true;
         }else{
@@ -69,7 +68,8 @@ class FAdmin{
     // END OF CRUD
 
     public static function createEntity($result){
-        $obj = new EAdmin($result[0]['email'], $result[0]['password']);
+        $user = FUser::retrieveObject($result[0]['email']);
+        $obj = new EAdmin($result[0]['email'], $user->getPassword());
         return $obj;
     }
 

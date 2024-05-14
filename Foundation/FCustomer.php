@@ -4,9 +4,7 @@ class FCustomer {
     private static $table = "Customer";
     public static $value = "(:email, :username, :suspensionTime)";
     public static $key = "email";
-
-    private static $updatequery = "username = :username,  suspensionTime= :suspensionTime" ;
-
+    private static $updatequery = "username = :username, suspensionTime= :suspensionTime" ;
 
     public static function getValue(): string {
         return self::$value;
@@ -24,14 +22,16 @@ class FCustomer {
 
     public static function bind($stmt, $customer){
         $stmt->bindValue(':username', $customer->getUsername(), PDO::PARAM_STR);
-        $stmt->bindValue(':email', $customer->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $customer->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime(), PDO::PARAM_INT);
     }
     
     //C
     public static function createObject($obj){
         $saveCustomer = FDB::getInstance()->create(self::class, $obj);
-        $saveUser = FUser::saveCustomer($obj->getUser());
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        FPersistentManager::getInstance()->createObj($user);
+
         if($saveCustomer !== null){
             return true;
         }else{
@@ -52,8 +52,10 @@ class FCustomer {
     
     //U
     public static function updateObject($obj){
-        $updateArticle = FDB::getInstance()->update(self::class, $obj);
-        if($updateArticle !== null){
+        $update = FDB::getInstance()->update(self::class, $obj);
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $updateUser = FUser::updateObject($user);
+        if($update !== null){
             return true;
         }else{
             return false;
@@ -62,8 +64,8 @@ class FCustomer {
 
     //D
     public static function deleteObject($obj){
-        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
-        if($deleteArticle !== null){
+        $delete = FDB::getInstance()->delete(self::class, $obj);
+        if($delete !== null){
             return true;
         }else{
             return false;

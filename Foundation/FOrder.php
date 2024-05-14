@@ -22,7 +22,7 @@ class FOrder{
     }
 
     public static function bind($stmt, $order){
-        $stmt->bindValue(':customer', $order->getCustomer()->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $order->getCustomer()->getID(), PDO::PARAM_STR);
         $stmt->bindValue(':orderDateTime', $order->getOrderDateTime()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
         $stmt->bindValue(':price', (string) $order->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(':payment', $order->getPayment()->getNumber(), PDO::PARAM_STR);

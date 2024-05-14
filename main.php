@@ -3,8 +3,10 @@
 class Main {
 
     public function __construct() {
-        $carta = FPersistentManager::getInstance()->retrieveObj(ECreditCard::class, 1234567890123456);
-        FPersistentManager::getInstance()->deleteObj($carta);
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, 'email');
+        $customer->setUsername('customer');
+        $customer->setPassword('customer');
+        FPersistentManager::getInstance()->updateObj($customer);
     }
 
 }

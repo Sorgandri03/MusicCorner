@@ -16,13 +16,12 @@ class FUser{
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
-
     public static function bind($stmt, $user){
-        $stmt->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $user->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
     }
         
-  //C
+    //C
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -31,7 +30,8 @@ class FUser{
             return false;
         }
     }
-   //R
+
+    //R
     public static function retrieveObject($email){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
@@ -42,6 +42,7 @@ class FUser{
         }
 
     }
+
     //U
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
@@ -51,6 +52,7 @@ class FUser{
             return false;
         }
     }
+
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
@@ -68,8 +70,8 @@ class FUser{
     }
 
 
-    public static function saveCustomer($customer){
-        $user = new EUser($customer->getEmail(), $customer->getPassword());
-        return self::updateObject($user);
+    public static function saveUser($user){
+        $user = new EUser($user->getId(), $user->getPassword());
+        return self::createObject($user);
     }
 }

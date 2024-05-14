@@ -21,15 +21,15 @@ class FCreditCard{
     public static function bind($stmt, $creditCard){
         $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
         $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress()->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':owner', $creditCard->getOwner()->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':owner', $creditCard->getOwner()->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);
         $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_STR);
     }
 
     //C
     public static function createObject($obj){
-        $saveArticle = FDB::getInstance()->create(self::class, $obj);
-        if($saveArticle !== null){
+        $create = FDB::getInstance()->create(self::class, $obj);
+        if($create !== null){
             return true;
         }else{
             return false;
@@ -45,13 +45,12 @@ class FCreditCard{
         }else{
             return null;
         }
-
     }
 
     //U
     public static function updateObject($obj){
-        $updateArticle = FDB::getInstance()->update(self::class, $obj);
-        if($updateArticle !== null){
+        $update = FDB::getInstance()->update(self::class, $obj);
+        if($update !== null){
             return true;
         }else{
             return false;
@@ -60,8 +59,8 @@ class FCreditCard{
 
     //D
     public static function deleteObject($obj){
-        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
-        if($deleteArticle !== null){
+        $delete = FDB::getInstance()->delete(self::class, $obj);
+        if($delete !== null){
             return true;
         }else{
             return false;

@@ -20,7 +20,7 @@ class FArticleDescription{
     }
 
     public static function bind($stmt, $articleDescription){
-        $stmt->bindValue(':EAN', $articleDescription->getEAN(), PDO::PARAM_STR);
+        $stmt->bindValue(':EAN', $articleDescription->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $articleDescription->getName(), PDO::PARAM_STR);
         $stmt->bindValue(':artist', $articleDescription->getArtist(), PDO::PARAM_STR);
         $stmt->bindValue(':genre', $articleDescription->getGenre(),PDO::PARAM_STR);
