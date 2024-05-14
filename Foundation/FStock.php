@@ -36,7 +36,7 @@ class FStock{
     }
     //R
 
-    public static function retieveObject($id){
+    public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
             $obj = self::createEntity($result);
