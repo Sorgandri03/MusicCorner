@@ -21,5 +21,11 @@ class ECustomer extends EUser {
     public function getId(): string {
         return parent::getId();
     }
+    public function setId(string $id): void {
+        parent::setId($id);
+    }
+    public function getSuspensionTime(): int {
+        return $this->suspensionTime;
+    }
 
 }
