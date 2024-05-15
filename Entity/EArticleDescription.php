@@ -5,9 +5,9 @@ class EArticleDescription {
     private string $name;
     private string $artist;
     private string $genre;
-    private string $format;
+    private int $format;
 
-    public function __construct(string $ean, string $name, string $artist, string $genre, string $format) {
+    public function __construct(string $ean, string $name, string $artist, string $genre, int $format) {
         $this->ean = $ean;
         $this->name = $name;
         $this->artist = $artist;
@@ -28,8 +28,6 @@ class EArticleDescription {
         return $this->genre;
     }
     public function getFormat(): string {
-        return $this->format;
+        return Format[$this->format];
     }
-
-    
 }
