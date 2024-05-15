@@ -88,8 +88,8 @@ class FCreditCard{
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'owner', $owner);
         $cards = array();
         for($i = 0; $i < count($queryResult); $i++){
-            $carta = self::retrieveObject($queryResult[$i][self::getKey()]);
-            $cards[] = $carta;
+            $card = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $cards[] = $card;
         }
         return $cards;
     }

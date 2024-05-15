@@ -21,8 +21,8 @@ class EOrder {
     public function getId(): int {
         return $this->id;
     }
-    public function getOrderDateTime(): DateTime {
-        return $this->orderDateTime;
+    public function getOrderDateTime(): string {
+        return $this->orderDateTime->format('Y-m-d H:i:s');
     }
     public function getShippingAddress(): int {
         return $this->shippingAddress;

@@ -17,8 +17,7 @@ class ECartItem
     }
     
 
-    public function getArticle(): string
-    {
+    public function getArticle(): string {
         return $this->article;
     }
     public function getQuantity(): int {

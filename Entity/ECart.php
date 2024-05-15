@@ -5,11 +5,11 @@ class ECart {
     private array $cartItems = array();
     private string $customer;
 
-
-
     public function __construct(string $customer) {
         $this->customer = $customer;
     }
+
+
     public function setId(string $id): void {
         $this->id = $id;
     }

@@ -25,8 +25,8 @@ class FCartItem{
     }
 
     public static function bind($stmt, $cartItem){
-        $stmt->bindValue(':cartID', $cartItem->getCart()->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':stockID', $cartItem->getArticle()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':cartID', $cartItem->getCart(), PDO::PARAM_INT);
+        $stmt->bindValue(':stockID', $cartItem->getArticle(), PDO::PARAM_INT);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
     }
 
@@ -78,6 +78,7 @@ class FCartItem{
 
     public static function createEntity($result){
         $obj = new ECartItem($result[0]['stockID'], $result[0]['quantity'], $result[0]['cartID']);
+        $obj->setId($result[0]['id']);
         return $obj;
     }
 
@@ -85,8 +86,7 @@ class FCartItem{
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'cartID', $cart);
         $items = array();
         for($i = 0; $i < count($queryResult); $i++){
-            $result = self::retrieveObject($queryResult[$i][self::getKey()]);
-            $item = self::createEntity($result);
+            $item = self::retrieveObject($queryResult[$i][self::getKey()]);
             $items[] = $item;
         }
         return $items;
