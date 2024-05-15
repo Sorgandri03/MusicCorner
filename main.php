@@ -3,10 +3,9 @@
 class Main {
 
     public function __construct() {
-        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, 'email');
-        $customer->setUsername('customer');
-        $customer->setPassword('customer');
-        FPersistentManager::getInstance()->updateObj($customer);
+        $articolo1 = new EArticleDescription('55', 'Spatalino Compilation', 'Enzo Spatalino', 'Progressive Rock', 0);
+        FPersistentManager::getInstance()->createObj($articolo1);
+        echo $articolo1->getFormat();
     }
 
 }
