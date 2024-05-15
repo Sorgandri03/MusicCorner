@@ -1,6 +1,14 @@
 <?php
 
 class FAdmin{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
     private static $table = "Admin";
     private static $value = "(:email)";
     private static $key = "email";

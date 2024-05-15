@@ -1,6 +1,16 @@
 <?php
 
+
 class FAddress{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
+
     private static $table = "Address";
     private static $value = "(NULL, :street, :cap, :city, :name, :customer)";
     private static $key = "id";

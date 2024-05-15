@@ -1,6 +1,14 @@
 <?php
 
 class FCart{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
     private static $table = "Cart";
     private static $value = "(NULL, :customer)";
     private static $key = "id";
