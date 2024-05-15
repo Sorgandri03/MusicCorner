@@ -1,6 +1,15 @@
 <?php
 
 class FCreditCard{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
+
     private static $table = "CreditCard";
     private static $value = "(:cardNumber, :billingAddress, :owner, :expiringDate, :cvv)";
     private static $key = "cardNumber";
