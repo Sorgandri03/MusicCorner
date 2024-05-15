@@ -13,7 +13,7 @@ class EStock {
         $this->seller = $seller;
     }
     
-    public function getArticle(): string {
+    
     public function getArticle(): string {
         return $this->article;
     }

@@ -28,6 +28,14 @@ class ECustomer extends EUser {
         return $this->addresses;
     }
 
+    public function setOrders(array $orders): void {
+        $this->orders = $orders;
+    }
+
+    public function getOrders(): array {
+        return $this->orders;
+    }
+
     public function getUsername(): string {
         return $this->username;
     }
