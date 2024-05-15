@@ -2,6 +2,7 @@
 
 class FCartItem{
     private static $instance = null;
+    private function __construct(){}
     public static function getInstance(){
         if (!self::$instance){
             self::$instance = new self();
@@ -9,6 +10,7 @@ class FCartItem{
         return self::$instance;
     }
     //END SINGLETON
+    
     private static $table = "CartItem";
     private static $value = "(NULL, :cartID, :stockID, :quantity)";
     private static $key = "id";

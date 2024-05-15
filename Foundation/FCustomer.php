@@ -5,7 +5,6 @@ class FCustomer {
     public static $value = "(:email, :username, :suspensionTime)";
     public static $key = "email";
     private static $updatequery = "username = :username, suspensionTime= :suspensionTime" ;
-
     public static function getValue(): string {
         return self::$value;
     }
@@ -29,10 +28,8 @@ class FCustomer {
     //C
     public static function createObject($obj){
         $saveCustomer = FDB::getInstance()->create(self::class, $obj);
-        $user = new EUser($obj->getId(), $obj->getPassword());
-        FPersistentManager::getInstance()->createObj($user);
-
-        if($saveCustomer !== null){
+        $saveUser = FUser::createObject(new EUser($obj->getId(), $obj->getPassword()));
+        if($saveCustomer !== null && $saveUser !== null){
             return true;
         }else{
             return false;
@@ -77,6 +74,8 @@ class FCustomer {
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $customer = new ECustomer($result[0]['username'], $result[0]['email'], $user->getPassword());
+        $customer->setCreditCards(FCreditCard::getCardsByOwner($customer->getId()));
+        $customer->setAddresses(FAddress::getAddressesByCustomer($customer->getId()));
         return $customer;
     }
 

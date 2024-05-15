@@ -7,7 +7,7 @@ define('DB_USER', 'MusicCorner_wayvowelso');
 define('DB_PASS', 'c687f12dcd3469af32fd5e63e9c152f2d69fa6bb');
 define('SQL_FILE_PATH', 'musiccorner.sql');
 
-//Enum
+//Enums
 define('Format', array(
     'CD',
     'Vynil',

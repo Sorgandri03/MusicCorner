@@ -3,6 +3,7 @@
 
 class FAddress{
     private static $instance = null;
+    private function __construct(){}
     public static function getInstance(){
         if (!self::$instance){
             self::$instance = new self();
@@ -33,7 +34,7 @@ class FAddress{
         $stmt->bindValue(':cap', $address->getCap(), PDO::PARAM_STR);
         $stmt->bindValue(':city', $address->getCity(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $address->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(':customer', $address->getCustomer()->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $address->getCustomer(), PDO::PARAM_STR);
     }
 
     //C
@@ -82,23 +83,20 @@ class FAddress{
     // END OF CRUD
 
     public static function createEntity($result){
-        $customer = FCustomer::retrieveObject($result[0]['customer']);
-        $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $customer);
+        $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $result[0]['customer']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
 
+    
     public static function getAddressesbyCustomer($customer){
-        $result = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
-        if(count($result) > 0){
-            $addresses = array();
-            foreach($result as $address){
-                $addresses[] = self::createEntity($address);
-            }
-            return $addresses;
-        }else{
-            return array();
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
+        $addresses = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $address = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $addresses[] = $address;
         }
+        return $addresses;
     }
 
 }

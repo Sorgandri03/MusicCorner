@@ -29,8 +29,8 @@ class FCreditCard{
 
     public static function bind($stmt, $creditCard){
         $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
-        $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress()->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':owner', $creditCard->getOwner()->getId(), PDO::PARAM_STR);
+        $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress(), PDO::PARAM_INT);
+        $stmt->bindValue(':owner', $creditCard->getOwner(), PDO::PARAM_STR);
         $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);
         $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_STR);
     }
@@ -80,26 +80,16 @@ class FCreditCard{
 
 
     public static function createEntity($result){
-        $owner = FCustomer::retrieveObject($result[0]['owner']);
-        $address = FAddress::retrieveObject($result[0]['billingAddress']);
-        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $owner, $address);
+        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $result[0]['owner'], $result[0]['billingAddress']);
         return $card;
     }
 
     public static function getCardsByOwner($owner){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'owner', $owner);
         $cards = array();
-        if(count($queryResult) == 1){
-            $result = self::retrieveObject($queryResult[0][self::getKey()]);
-            $card = self::createEntity($result);
-            $cards[] = $card;
-        }
-        elseif(count($queryResult) > 1){
-            for($i = 0; $i < count($queryResult); $i++){
-                $result = self::retrieveObject($queryResult[$i][self::getKey()]);
-                $card = self::createEntity($result);
-                $cards[] = $card;
-            }
+        for($i = 0; $i < count($queryResult); $i++){
+            $carta = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $cards[] = $carta;
         }
         return $cards;
     }

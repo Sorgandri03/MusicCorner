@@ -87,11 +87,7 @@ class FOrder{
     //END CRUD
 
     public static function createEntity($result){
-        $customer = FCustomer::retrieveObject($result[0]['customer']);
-        $payment = FCreditCard::retrieveObject($result[0]['payment']);
-        $shippingAddress = FAddress::retrieveObject($result[0]['shipmentAddress']);
-        $cart = FCart::retrieveObject($result[0]['cart']);
-        $obj = new EOrder($customer, $shippingAddress, $payment, $result[0]['price'], $cart);
+        $obj = new EOrder($result[0]['customer'], $result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price'], $result[0]['cart']);
         $obj->setId($result[0]['id']);
         $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
         return $obj;
