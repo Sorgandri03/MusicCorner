@@ -14,6 +14,7 @@ class EStock {
     }
     
     public function getArticle(): string {
+    public function getArticle(): string {
         return $this->article;
     }
 

@@ -71,6 +71,8 @@ class FUser{
         }
     }
 
+    //END CRUD
+
 
     public static function createEntity($result){
         $obj = new EUser($result[0]['email'],$result[0]['password']);
@@ -81,5 +83,10 @@ class FUser{
     public static function saveUser($user){
         $user = new EUser($user->getId(), $user->getPassword());
         return self::createObject($user);
+    }
+
+    public static function verify($field, $id){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
+        return FDB::getInstance()->existInDb($queryResult);
     }
 }

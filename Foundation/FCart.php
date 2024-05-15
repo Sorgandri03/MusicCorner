@@ -27,7 +27,7 @@ class FCart{
     }
 
     public static function bind($stmt, $shoppingCart){
-        $stmt->bindValue(':customer', $shoppingCart->getCustomer()->getId(), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $shoppingCart->getCustomer(), PDO::PARAM_STR);
     }
 
     //C
@@ -73,16 +73,10 @@ class FCart{
     //END OF CRUD
 
     public static function createEntity($result){
-        $customer = FCustomer::retrieveObject($result[0]['customer']);
-        $obj = new ECart($customer);
+        $obj = new ECart($result[0]['customer']);
         $obj->setId($result[0]['id']);
+        $obj->setCartItems(FCartItem::getItemsbyCart($obj->getId()));
         return $obj;
     }
-
-    public static function addCartItems($cart) : void {
-        $articles = FCartItem::getItemsbyCart($cart->getId());
-        $cart->setCartItems($articles);
-    }
-    
     
 }

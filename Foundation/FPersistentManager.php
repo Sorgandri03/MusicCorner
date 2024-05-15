@@ -36,7 +36,14 @@ class FPersistentManager{
         $result = call_user_func([$class, "deleteObject"], $obj);
         return $result;
     }
-    
+
+    //END CRUD
+
+
+    public static function verifyUserEmail($email){
+        $result = FUser::verify('email', $email);
+        return $result;
+    }
 }
 
 
