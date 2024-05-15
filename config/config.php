@@ -13,3 +13,10 @@ define('Format', array(
     'Vynil',
     'Cassette'
     ));
+
+define('Status', array(
+    'In preparation',
+    'Shipped',
+    'In delivery',
+    'Delivered'
+    ));
