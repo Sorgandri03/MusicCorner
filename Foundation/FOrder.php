@@ -1,25 +1,38 @@
 <?php
 
 class FOrder{
+    
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
+
     private static $table = "Orders";
     public static $value = "(NULL, :customer, :orderDateTime, NULL, :price, :payment, :shipmentAddress, :cart)";
     private static $key = "id";
 
     private static $updatequery = "customer = :customer, orderDateTime = :orderDateTime, price = :price, payment = :payment, shipmentAddress = :shipmentAddress, cart = :cart";
 
-   
     public static function getTable(): string {
         return self::$table;
     }
+
     public static function getValue(): string {
         return self::$value;
     }
+
     public static function getKey(): string {
         return self::$key;
     }
+
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
+    
 
     public static function bind($stmt, $order){
         $stmt->bindValue(':customer', $order->getCustomer()->getID(), PDO::PARAM_STR);

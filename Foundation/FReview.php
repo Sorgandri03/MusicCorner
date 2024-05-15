@@ -1,6 +1,15 @@
 <?php
 
 class FReview {
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
+
     private static $table = "Review";
     private static $value = "(:NULL, :customer, :reviewText, :articleRating, :sellerRating, :article, :seller)";
     private static $key = "id";

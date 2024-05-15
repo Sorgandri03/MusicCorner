@@ -1,5 +1,13 @@
 <?php
 class FUser{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
     private static $table = "User";
     private static $value = "(:email, :password)";
     private static $key = "email";

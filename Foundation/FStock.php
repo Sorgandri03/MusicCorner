@@ -1,6 +1,14 @@
 <?php
 
 class FStock{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
     private static $table = "Stock";
     private static $value = "(NULL, :price, :quantity, :article, :seller)";
     private static $key = "id";
