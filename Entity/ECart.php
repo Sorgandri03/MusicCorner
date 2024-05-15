@@ -26,8 +26,8 @@ class ECart {
     public function addArticle(int $article): void {
         $this->cartItems[] = $article;
     }
-    public function setCartItems(array $articles): void {
-        $this->articles = $articles;
+    public function setCartItems(array $cartItems): void {
+        $this->cartItems = $cartItems;
     }
    
 }
