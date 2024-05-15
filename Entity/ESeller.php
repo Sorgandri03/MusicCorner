@@ -12,8 +12,11 @@ class ESeller extends EUser {
         $this->shopName = $shopName;
     }
     
-    public function addStock(EStock $stock): void {
-        $this->catalogue[] = $stock;
+    public function setStocks(array $stocks): void {
+        $this->catalogue = $stocks;
+    }
+    public function getStocks(): array {
+        return $this->catalogue;
     }
     
     public function getCatalogue(): array {
@@ -22,9 +25,6 @@ class ESeller extends EUser {
     
     public function getShopName(): string {
     return $this->shopName;
-    }
-    public function setRating(): void {
-      //DA FARE
     }
     
     public function getId(): string { 
@@ -46,5 +46,5 @@ class ESeller extends EUser {
     public function setShopRating(float $shopRating): void {
         $this->shopRating = $shopRating;
     }
-//devo aggiunge metodi per il rating e lo stock
+
 }

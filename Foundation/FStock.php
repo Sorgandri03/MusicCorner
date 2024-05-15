@@ -29,7 +29,7 @@ class FStock{
     public static function bind($stmt, $stock){
         $stmt->bindValue(':price', (String) $stock->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(':quantity', $stock->getQuantity(),PDO::PARAM_STR);
-        $stmt->bindValue(':article', $stock->getArticle()->getEAN(), PDO::PARAM_STR);
+        $stmt->bindValue(':article', $stock->getArticle(), PDO::PARAM_STR);
         $stmt->bindValue(':seller', $stock->getSeller()->getId(), PDO::PARAM_STR);
     }
     //C
@@ -75,12 +75,20 @@ class FStock{
 
 
     public static function createEntity($result){
-        $article = FArticleDescription::retrieveObject($result[0]['article']);
-        $seller = FSeller::retrieveObject($result[0]['seller']);
-        $obj = new EStock($article, $result[0]['quantity'], $result[0]['price']);
+        $obj = new EStock( $result[0]['price'], $result[0]['article'], $result[0]['quantity'], $result[0]['seller']);
         $seller->addStock($obj);
         $obj->setId($result[0]['id']);
         return $obj;
+    }
+
+    public static function getStocksBySeller($seller){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
+        $stocks = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $stock = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $stocks[] = $stock;
+        }
+        return $stocks;
     }
 
     

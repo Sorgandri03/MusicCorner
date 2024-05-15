@@ -4,15 +4,16 @@ class EStock {
     private int $id;
     private float $price;
     private int $quantity;
-    private EArticleDescription $article;
-
-    public function __construct(EArticleDescription $article, int $quantity, float $price) {
+    private string $article;
+    private string $seller;
+    public function __construct(string $article, int $quantity, float $price, string $seller) {
         $this->article = $article;
         $this->quantity = $quantity;
         $this->price = $price;
+        $this->seller = $seller;
     }
     
-    public function getArticle(): EArticleDescription {
+    public function getArticle(): string {
         return $this->article;
     }
 
@@ -23,13 +24,14 @@ class EStock {
     public function getPrice(): float {
         return $this->price;
     }
-    public function __toString(): string {
-        return $this->article->getArtist() . " " . $this->article->getName() . " " . $this->article->getGenre() . " " . $this->article->getFormat() . " " . $this->quantity . " " . $this->price;
-    }
+  
     public function getId(): int {
         return $this->id;
     }
     public function setId(int $id): void {
         $this->id = $id;
+    }
+    public function getSeller(): string {
+        return $this->seller;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 class FCustomer {
+    
     private static $table = "Customer";
     public static $value = "(:email, :username, :suspensionTime)";
     public static $key = "email";

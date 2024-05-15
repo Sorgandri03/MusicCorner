@@ -26,8 +26,6 @@ class ECustomer extends EUser {
         return $this->addresses;
     }
 
-
-
     public function getUsername(): string {
         return $this->username;
     }
