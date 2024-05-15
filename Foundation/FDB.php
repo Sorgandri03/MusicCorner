@@ -90,4 +90,14 @@ class FDB {
         }
     }
 
+    //END CRUD
+
+    public static function existInDb($queryResult){
+        if(count($queryResult) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
