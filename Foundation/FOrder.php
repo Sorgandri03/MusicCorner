@@ -35,12 +35,12 @@ class FOrder{
     
 
     public static function bind($stmt, $order){
-        $stmt->bindValue(':customer', $order->getCustomer()->getID(), PDO::PARAM_STR);
-        $stmt->bindValue(':orderDateTime', $order->getOrderDateTime()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
+        $stmt->bindValue(':customer', $order->getCustomer(), PDO::PARAM_STR);
+        $stmt->bindValue(':orderDateTime', $order->getOrderDateTime(), PDO::PARAM_STR);
         $stmt->bindValue(':price', (string) $order->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':payment', $order->getPayment()->getNumber(), PDO::PARAM_STR);
-        $stmt->bindValue(':shipmentAddress', $order->getShippingAddress()->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':cart', $order->getCart()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':payment', $order->getPayment(), PDO::PARAM_STR);
+        $stmt->bindValue(':shipmentAddress', $order->getShippingAddress(), PDO::PARAM_INT);
+        $stmt->bindValue(':cart', $order->getCart(), PDO::PARAM_INT);
     }
 
     //C
@@ -87,9 +87,21 @@ class FOrder{
     //END CRUD
 
     public static function createEntity($result){
-        $obj = new EOrder($result[0]['customer'], $result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price'], $result[0]['cart']);
+        $obj = new EOrder($result[0]['customer'],$result[0]['shippingaddress'], $result[0]['payment'], $result[0]['price'], $result[0]['cart'], );
         $obj->setId($result[0]['id']);
         $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
         return $obj;
+    }
+    public static function getOrdersbyCustomer($customer){
+        $result = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
+        if(count($result) > 0){
+            $orders = array();
+            foreach($result as $order){
+                $orders[] = self::createEntity($order);
+            }
+            return $orders;
+        }else{
+            return array();
+        }
     }
 }
