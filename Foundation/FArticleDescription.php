@@ -1,6 +1,15 @@
 <?php
 
 class FArticleDescription{
+    private static $instance = null;
+    public static function getInstance(){
+        if (!self::$instance){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    //END SINGLETON
+    
     private static $table = "ArticleDescription";
     private static $value = "(:EAN, :name, :artist, :genre, :format)";
     private static $key = "EAN";
