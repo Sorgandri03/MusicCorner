@@ -5,6 +5,8 @@ class ECustomer extends EUser {
     private int $suspensionTime=0;
     private array $addresses = array();
     private array $creditCards = array();
+    private array $orders = array();
+    
 
 
     public function __construct(string $username, string $email, string $password) {
@@ -24,6 +26,13 @@ class ECustomer extends EUser {
     }
     public function getAddresses(): array {
         return $this->addresses;
+    }
+
+    public function setOrderes(array $orders): void {
+        $this->orders = $orders;
+    }
+    public function getOrderes(): array {
+        return $this->orders;
     }
 
 

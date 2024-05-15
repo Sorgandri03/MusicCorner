@@ -3,13 +3,13 @@
 
 class ECartItem
 {
-    private EStock $article;
+    private string $article;
     private int $quantity;
-    private ECart $cart;
+    private int $cart;
     private int $id;
 
 
-    public function __construct(EStock $article, int $quantity, ECart $cart)
+    public function __construct(string $article, int $quantity, int $cart)
     {
         $this->article = $article;
         $this->quantity = $quantity;
@@ -17,36 +17,29 @@ class ECartItem
     }
     
 
-    public function getArticle(): EStock
+    public function getArticle(): string
     {
         return $this->article;
     }
-    public function getQuantity(): int
-    {
+    public function getQuantity(): int {
         return $this->quantity;
     }
-    public function getCart(): ECart
-    {
+    public function getCart(): int {
         return $this->cart;
     }
-    public function getId(): int
-    {
+    public function getId(): int {
         return $this->id;
     }
-    public function setQuantity(int $quantity): void
-    {
+    public function setQuantity(int $quantity): void {
         $this->quantity = $quantity;
     }
-    public function setCart(ECart $cart): void
-    {
+    public function setCart(int $cart): void {
         $this->cart = $cart;
     }
-    public function setArticle(EStock $article): void
-    {
+    public function setArticle(string $article): void {
         $this->article = $article;
     }
-    public function setId(int $id): void
-    {
+    public function setId(int $id): void {
         $this->id = $id;
     }
 }

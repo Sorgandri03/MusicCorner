@@ -1,15 +1,15 @@
 <?php
 
 class EReview {
-    private EArticleDescription $article;
-    private ECustomer $customer;
-    private ESeller $seller;
+    private string $article;
+    private string $customer;
+    private string $seller;
     private int $id;
     private string $reviewText;
     private int $articleRating;
     private int $sellerRating;
 
-    public function __construct(EArticleDescription $article, ECustomer $customer, ESeller $seller, string $reviewText, int $articleRating, int $sellerRating) {
+    public function __construct(string $article, string $customer, string $seller, string $reviewText, int $articleRating, int $sellerRating) {
     $this->article = $article;
     $this->customer = $customer;
     $this->seller = $seller;
@@ -18,30 +18,30 @@ class EReview {
     $this->sellerRating = $sellerRating;
     }
 
-    public function getArticle(): EArticleDescription {
+    public function getArticle(): string {
         return $this->article;
     }
 
-    public function setArticle(EArticleDescription $article): void {
+    public function setArticle(string $article): void {
         $this->article = $article;
     }
 
-    public function getCustomer(): ECustomer {
+    public function getCustomer(): string {
         return $this->customer;
     }
 
-    public function setCustomer(ECustomer $customer): void {
+    public function setCustomer(string $customer): void {
         $this->customer = $customer;
     }
 
-    public function getSeller(): ESeller {
+    public function getSeller(): string {
         return $this->seller;
     }
-    public function setSeller(ESeller $seller): void {
+    public function setSeller(string $seller): void {
         $this->seller = $seller;
     }
 
-    public function getId(): int{
+    public function getId(): int {
         return $this->id;
     }
 

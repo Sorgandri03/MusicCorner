@@ -29,7 +29,8 @@ class FCartItem{
         $stmt->bindValue(':stockID', $cartItem->getArticle()->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
     }
-// C
+
+    // C
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -39,8 +40,8 @@ class FCartItem{
             return false;
         }
     }
-    // R
 
+    // R
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -51,6 +52,7 @@ class FCartItem{
         }
 
     }
+
     // U
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
@@ -60,6 +62,7 @@ class FCartItem{
             return false;
         }
     }
+
     // D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
@@ -69,31 +72,22 @@ class FCartItem{
             return false;
         }
     }
-//END OF CRUD 
 
+    //END OF CRUD
 
 
     public static function createEntity($result){
-        $article = FStock::retrieveObject($result[0]['stockID']);
-        $cart = FCart::retrieveObject($result[0]['cartID']);
-        $obj = new ECartItem($article, $result[0]['quantity'], $cart);
+        $obj = new ECartItem($result[0]['stockID'], $result[0]['quantity'], $result[0]['cartID']);
         return $obj;
     }
 
     public static function getItemsbyCart($cart){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'cartID', $cart);
         $items = array();
-        if(count($queryResult) == 1){
-            $result = self::retrieveObject($queryResult[0][self::getKey()]);
+        for($i = 0; $i < count($queryResult); $i++){
+            $result = self::retrieveObject($queryResult[$i][self::getKey()]);
             $item = self::createEntity($result);
             $items[] = $item;
-        }
-        elseif(count($queryResult) > 1){
-            for($i = 0; $i < count($queryResult); $i++){
-                $result = self::retrieveObject($queryResult[$i][self::getKey()]);
-                $item = self::createEntity($result);
-                $items[] = $item;
-            }
         }
         return $items;
     }

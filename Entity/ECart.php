@@ -2,9 +2,12 @@
 
 class ECart {
     private string $id;
-    private array $articles = array();
-    private ECustomer $customer;
-    public function __construct(ECustomer $customer) {
+    private array $cartItems = array();
+    private string $customer;
+
+
+
+    public function __construct(string $customer) {
         $this->customer = $customer;
     }
     public function setId(string $id): void {
@@ -13,17 +16,17 @@ class ECart {
     public function getId(): string {
         return $this->id;
     }
-    public function getArticles(): array {
-        return $this->articles;
+    public function getCartItems(): array {
+        return $this->cartItems;
     }
-    public function getCustomer(): ECustomer {
+    public function getCustomer(): string {
         return $this->customer;
     }
 
-    public function addArticle(ECartItem $article): void {
-        $this->articles[] = $article;
+    public function addArticle(int $article): void {
+        $this->cartItems[] = $article;
     }
-    public function addArticles(array $articles): void {
+    public function setCartItems(array $articles): void {
         $this->articles = $articles;
     }
    
