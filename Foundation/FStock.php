@@ -75,8 +75,7 @@ class FStock{
 
 
     public static function createEntity($result){
-        $obj = new EStock( $result[0]['price'], $result[0]['article'], $result[0]['quantity'], $result[0]['seller']);
-        $seller->addStock($obj);
+        $obj = new EStock( $result[0]['article'], $result[0]['quantity'], $result[0]['price'], $result[0]['seller']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
