@@ -27,7 +27,7 @@ class EArticleDescription {
     public function getGenre(): string {
         return $this->genre;
     }
-    public function getFormat(): string {
+    public function getFormat(): int {
         return Format[$this->format];
     }
 }

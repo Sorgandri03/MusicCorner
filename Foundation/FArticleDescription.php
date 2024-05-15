@@ -80,7 +80,7 @@ class FArticleDescription{
 
 
     public static function createEntity($result){
-        $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], $result[0]['genre'], $result[0]['format']);
+        $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], $result[0]['genre'], (int) $result[0]['format']);
         return $obj;
     }
 }
