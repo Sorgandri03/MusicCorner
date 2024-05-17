@@ -82,7 +82,7 @@ class FMessage{
     // END OF CRUD
 
     public static function createEntity($result){
-        $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $result[0]['customer']);
+        $obj = new EMessage($result[0]['sender'], $result[0]['receiver'], $result[0]['text'], $result[0]['timestamp']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
