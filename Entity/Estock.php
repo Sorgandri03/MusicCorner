@@ -35,4 +35,5 @@ class EStock {
     public function getSeller(): string {
         return $this->seller;
     }
+    
 }
