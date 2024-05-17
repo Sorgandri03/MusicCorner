@@ -28,9 +28,9 @@ class FStock{
 
     public static function bind($stmt, $stock){
         $stmt->bindValue(':price', (String) $stock->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':quantity', $stock->getQuantity(),PDO::PARAM_STR);
+        $stmt->bindValue(':quantity', $stock->getQuantity(),PDO::PARAM_INT);
         $stmt->bindValue(':article', $stock->getArticle(), PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $stock->getSeller()->getId(), PDO::PARAM_STR);
+        $stmt->bindValue(':seller', $stock->getSeller(), PDO::PARAM_STR);
     }
     //C
     public static function createObject($obj){

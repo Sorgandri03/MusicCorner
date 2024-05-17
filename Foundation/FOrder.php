@@ -78,7 +78,8 @@ class FOrder{
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
-        if($deleteArticle !== null){
+        $deleteCart = FDB::getInstance()->delete(FCart::class, FCart::retrieveObject($obj->getCart()));
+        if($deleteArticle !== null && $deleteCart !== null){
             return true;
         }else{
             return false;

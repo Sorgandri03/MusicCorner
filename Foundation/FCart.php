@@ -64,6 +64,9 @@ class FCart{
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
+        foreach($obj->getCartItems() as $item){
+            FCartItem::deleteObject($item);
+        }
         if($deleteArticle !== null){
             return true;
         }else{

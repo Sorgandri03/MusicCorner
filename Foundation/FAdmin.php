@@ -41,7 +41,6 @@ class FAdmin{
     }
 
     //R
-
     public static function retrieveObject ($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -51,23 +50,24 @@ class FAdmin{
             return null;
         }
     }
+
     //U
     public static function updateObject($obj){
-        $updateArticle = FDB::getInstance()->update(self::class, $obj);
-        if($updateArticle !== null){
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $update = FUser::updateObject($user);
+        if($update !== null){
             return true;
         }else{
             return false;
         }
     }
 
-
-
-
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
-        if($deleteArticle !== null){
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $deleteUser = FUser::deleteObject($user);
+        if($deleteArticle !== null && $deleteUser !== null){
             return true;
         }else{
             return false;

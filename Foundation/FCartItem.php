@@ -14,6 +14,7 @@ class FCartItem{
     private static $table = "CartItem";
     private static $value = "(NULL, :cartID, :stockID, :quantity)";
     private static $key = "id";
+    private static $updatequery = "cartID = :cartID, stockID = :stockID, quantity = :quantity";
     public static function getValue(): string {
         return self::$value;
     }
@@ -23,14 +24,17 @@ class FCartItem{
     public static function getKey(): string {
         return self::$key;
     }
+    public static function getUpdateQuery(): string {
+        return self::$updatequery;
+    }
 
     public static function bind($stmt, $cartItem){
         $stmt->bindValue(':cartID', $cartItem->getCart(), PDO::PARAM_INT);
-        $stmt->bindValue(':stockID', $cartItem->getArticle(), PDO::PARAM_INT);
+        $stmt->bindValue(':stockID', $cartItem->getStock(), PDO::PARAM_INT);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
     }
 
-    // C
+    //C
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -41,7 +45,7 @@ class FCartItem{
         }
     }
 
-    // R
+    //R
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -53,7 +57,7 @@ class FCartItem{
 
     }
 
-    // U
+    //U
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -63,7 +67,7 @@ class FCartItem{
         }
     }
 
-    // D
+    //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){

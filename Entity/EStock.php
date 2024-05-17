@@ -35,5 +35,14 @@ class EStock {
     public function getSeller(): string {
         return $this->seller;
     }
+    public function setArticle(string $article): void {
+        $this->article = $article;
+    }
+    public function setQuantity(int $quantity): void {
+        $this->quantity = $quantity;
+    }
+    public function setPrice(float $price): void {
+        $this->price = $price;
+    }
     
 }
