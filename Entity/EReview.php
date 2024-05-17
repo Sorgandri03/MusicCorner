@@ -9,7 +9,7 @@ class EReview {
     private int $articleRating;
     private int $sellerRating;
 
-    public function __construct(string $article, string $customer, string $seller, string $reviewText, int $articleRating, int $sellerRating) {
+    public function __construct(string $customer, string $reviewText, int $articleRating, int $sellerRating, string $article, string $seller) {
     $this->article = $article;
     $this->customer = $customer;
     $this->seller = $seller;

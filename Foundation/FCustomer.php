@@ -5,7 +5,7 @@ class FCustomer {
     private static $table = "Customer";
     public static $value = "(:email, :username, :suspensionTime)";
     public static $key = "email";
-    private static $updatequery = "username = :username, suspensionTime= :suspensionTime" ;
+    private static $updatequery = "email = :email, username = :username, suspensionTime= :suspensionTime" ;
     public static function getValue(): string {
         return self::$value;
     }
@@ -53,7 +53,7 @@ class FCustomer {
         $update = FDB::getInstance()->update(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
         $updateUser = FUser::updateObject($user);
-        if($update !== null){
+        if($update !== null && $updateUser !== null){
             return true;
         }else{
             return false;
@@ -63,11 +63,20 @@ class FCustomer {
     //D
     public static function deleteObject($obj){
         $delete = FDB::getInstance()->delete(self::class, $obj);
-        if($delete !== null){
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $deleteUser = FUser::deleteObject($user);
+        foreach($obj->getCreditCards() as $card){
+            FCreditCard::deleteObject($card);
+        }
+        foreach($obj->getAddresses() as $address){
+            FAddress::deleteObject($address);
+        }
+        if($delete !== null && $deleteUser !== null){
             return true;
         }else{
             return false;
         }
+
     }
 
     //END CRUD

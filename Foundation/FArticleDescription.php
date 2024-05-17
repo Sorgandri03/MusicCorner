@@ -13,7 +13,7 @@ class FArticleDescription{
     private static $table = "ArticleDescription";
     private static $value = "(:EAN, :name, :artist, :genre, :format)";
     private static $key = "EAN";
-    private static $updatequery = "name = :name, artist = :artist, genre = :genre, format = :format";
+    private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, genre = :genre, format = :format";
     public static function getValue(): string {
         return self::$value;
     }

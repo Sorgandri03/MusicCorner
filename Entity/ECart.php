@@ -22,12 +22,21 @@ class ECart {
     public function getCustomer(): string {
         return $this->customer;
     }
-
+    public function setCustomer(string $customer): void {
+        $this->customer = $customer;
+    }
     public function addArticle(int $article): void {
         $this->cartItems[] = $article;
     }
     public function setCartItems(array $cartItems): void {
         $this->cartItems = $cartItems;
+    }
+    public function getTotalPrice(): float {
+        $price = 0;
+        foreach ($this->cartItems as $item) {
+            $price += $item->getPrice();
+        }
+        return $price;
     }
    
 }

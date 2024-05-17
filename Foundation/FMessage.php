@@ -1,7 +1,9 @@
 <?php
 
-class FStock{
+
+class FMessage{
     private static $instance = null;
+    private function __construct(){}
     public static function getInstance(){
         if (!self::$instance){
             self::$instance = new self();
@@ -9,10 +11,11 @@ class FStock{
         return self::$instance;
     }
     //END SINGLETON
-    private static $table = "Stock";
-    private static $value = "(NULL, :price, :quantity, :article, :seller)";
+
+    private static $table = "Message";
+    private static $value = "(NULL, :sender, :receiver, :text, :timestamp)";
     private static $key = "id";
-    private static $updatequery = "price = :price, quantity = :quantity, article = :article, seller = :seller";
+    private static $updatequery = "sender = :sender, receiver = :receiver, text = :text, timestamp = :timestamp";
     public static function getValue(): string {
         return self::$value;
     }
@@ -26,14 +29,15 @@ class FStock{
         return self::$updatequery;
     }
 
-    public static function bind($stmt, $stock){
-        $stmt->bindValue(':price', (String) $stock->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':quantity', $stock->getQuantity(),PDO::PARAM_INT);
-        $stmt->bindValue(':article', $stock->getArticle(), PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $stock->getSeller(), PDO::PARAM_STR);
+    public static function bind($stmt, $message){
+        $stmt->bindValue(':street', $message->getSender(), PDO::PARAM_STR);
+        $stmt->bindValue(':receiver', $message->getReceiver(), PDO::PARAM_STR);
+        $stmt->bindValue(':text', $message->getText(), PDO::PARAM_STR);
+        $stmt->bindValue(':timestamp', $message->getTimestamp(), PDO::PARAM_STR);
     }
+
     //C
-    public static function createObject($obj){
+    public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
             $obj->setId($saveArticle);
@@ -42,8 +46,8 @@ class FStock{
             return false;
         }
     }
-    //R
 
+    //R
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -54,6 +58,7 @@ class FStock{
         }
 
     }
+
     //U
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
@@ -63,6 +68,7 @@ class FStock{
             return false;
         }
     }
+
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
@@ -73,22 +79,38 @@ class FStock{
         }
     }
 
+    // END OF CRUD
 
     public static function createEntity($result){
-        $obj = new EStock( $result[0]['article'], $result[0]['quantity'], $result[0]['price'], $result[0]['seller']);
+        $obj = new EMessage($result[0]['sender'], $result[0]['receiver'], $result[0]['text'], $result[0]['timestamp']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
 
-    public static function getStocksBySeller($seller){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
-        $stocks = array();
+    
+    public static function getSentMessages($receiver){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'sender', $receiver);
+        $sentMessages = array();
         for($i = 0; $i < count($queryResult); $i++){
-            $stock = self::retrieveObject($queryResult[$i][self::getKey()]);
-            $stocks[] = $stock;
+            $message = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $sentMessages[] = $message;
         }
-        return $stocks;
+        return $sentMessages;
     }
 
-    
+    public static function getReceivedMessages($sender){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'sender', $sender);
+        $receivedMessages = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $message = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $receivedMessages[] = $message;
+        }
+        return $receivedMessages;
+    }
+
 }
+
+
+    
+
+    

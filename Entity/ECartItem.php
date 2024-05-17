@@ -3,13 +3,13 @@
 
 class ECartItem
 {
-    private string $stock;
+    private int $stock;
     private int $quantity;
     private int $cart;
     private int $id;
 
 
-    public function __construct(string $stock, int $quantity, int $cart)
+    public function __construct(int $stock, int $quantity, int $cart)
     {
         $this->stock = $stock;
         $this->quantity = $quantity;
@@ -17,7 +17,7 @@ class ECartItem
     }
     
 
-    public function getStock(): string {
+    public function getStock(): int {
         return $this->stock;
     }
     public function getQuantity(): int {
@@ -35,10 +35,16 @@ class ECartItem
     public function setCart(int $cart): void {
         $this->cart = $cart;
     }
-    public function setStock(string $stock): void {
+    public function setStock(int $stock): void {
         $this->stock = $stock;
     }
     public function setId(int $id): void {
         $this->id = $id;
+    }
+    public function getPrice(): float {
+        $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $this->stock);
+        $price = 0;
+        $price += $stock->getPrice() * $this->quantity;
+        return $price;
     }
 }

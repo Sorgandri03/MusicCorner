@@ -27,7 +27,22 @@ class EArticleDescription {
     public function getGenre(): string {
         return $this->genre;
     }
-    public function getFormat(): string {
+    public function getFormat(): int {
+        return $this->format;
+    }
+    public function getFormatString(): string {
         return Format[$this->format];
+    }
+    public function setArtist(string $artist) {
+        $this->artist = $artist;
+    }
+    public function setName(string $name) {
+        $this->name = $name;
+    }
+    public function setGenre(string $genre) {
+        $this->genre = $genre;
+    }
+    public function setFormat(int $format) {
+        $this->format = $format;
     }
 }

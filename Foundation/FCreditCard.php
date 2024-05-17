@@ -13,7 +13,7 @@ class FCreditCard{
     private static $table = "CreditCard";
     private static $value = "(:cardNumber, :billingAddress, :owner, :expiringDate, :cvv)";
     private static $key = "cardNumber";
-    private static $updatequery = "billingAddress = :billingAddress, owner = :owner, expiringDate = :expiringDate, cvv = :cvv";
+    private static $updatequery = "cardNumber = :cardNumber, billingAddress = :billingAddress, owner = :owner, expiringDate = :expiringDate, cvv = :cvv";
     public static function getTable(): string {
         return self::$table;
     }
@@ -28,7 +28,7 @@ class FCreditCard{
     }
 
     public static function bind($stmt, $creditCard){
-        $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
+        $stmt->bindValue(':cardNumber', $creditCard->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress(), PDO::PARAM_INT);
         $stmt->bindValue(':owner', $creditCard->getOwner(), PDO::PARAM_STR);
         $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);

@@ -34,7 +34,6 @@ class FSeller{
         $stmt->bindValue(':email', $Seller->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
         $stmt->bindValue(':shopRating',(String) $Seller->getShopRating(), PDO::PARAM_STR);
-
     }
 
     //C
@@ -53,16 +52,19 @@ class FSeller{
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
             $obj = self::createEntity($result);
+            $obj->setShopRating($result[0]['shopRating']);
             return $obj;
         }else{
             return null;
         }
     }
 
-     //U
+    //U
      public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
-        if($updateArticle !== null){
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $updateUser = FUser::updateObject($user);
+        if($updateArticle !== null && $updateUser !== null){
             return true;
         }else{
             return false;
@@ -72,7 +74,12 @@ class FSeller{
     //D
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
-        if($deleteArticle !== null){
+        $user = new EUser($obj->getId(), $obj->getPassword());
+        $deleteUser = FUser::deleteObject($user);
+        foreach($obj->getStocks() as $stock){
+            FStock::deleteObject($stock);
+        }
+        if($deleteArticle !== null && $deleteUser !== null){
             return true;
         }else{
             return false;
