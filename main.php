@@ -2,29 +2,34 @@
 
 class Main {
     public function __construct() {
-        $this->delete();
+        $this->retrieve();
     }
 
     public function create() {
-        $cart = FPersistentManager::getInstance()->retrieveObj(ECart::class, "2");
-        $Order = new EOrder("serafino.cicerone@univaq.it", 4, "6795365485801134", $cart->getTotalPrice(), 2);
-        FPersistentManager::getInstance()->createObj($Order);
+        $Message = new EMessage("viniciomaurizio@musiccorner.it", "petricola@petricolastore.it", "ciao");
+        FPersistentManager::getInstance()->createObj($Message);
     }
 
     public function retrieve() {
-        $Order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, "2");
-        echo $Order->getPrice();
+        $admin = FPersistentManager::getInstance()->retrieveObj(ESeller::class, "petricola@petricolastore.it");
+        foreach ($admin->getSentMessages() as $message){
+            echo $message->getText() . "\n";
+        }
+        foreach ($admin->getReceivedMessages() as $message){
+            echo $message->getText() . "\n";
+        }
+        
     }
 
     public function update() {
-        $Order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, "3");
-        $Order->setCustomer("2");
-        FPersistentManager::getInstance()->updateObj($Order);
+        $Message = FPersistentManager::getInstance()->retrieveObj(EMessage::class, "1");
+        $Message->setText("aaaaaaaaaaaaaaah");
+        FPersistentManager::getInstance()->updateObj($Message);
     }
 
     public function delete() {
-        $Order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, "3");
-        FPersistentManager::getInstance()->deleteObj($Order);
+        $Message = FPersistentManager::getInstance()->retrieveObj(EMessage::class, "1");
+        FPersistentManager::getInstance()->deleteObj($Message);
     }
 }
 

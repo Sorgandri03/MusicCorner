@@ -7,7 +7,7 @@ class EMessage{
     private string $receiver;
     private DateTime $timestamp;
 
-    public function __construct(string $text, string $sender, string $receiver, DateTime $timestamp) {
+    public function __construct(string $sender, string $receiver, string $text) {
         $this->text = $text;
         $this->sender = $sender;
         $this->receiver = $receiver;
@@ -28,6 +28,9 @@ class EMessage{
     public function getTimestamp(): string {
         return $this->timestamp->format('Y-m-d H:i:s');
     }
+    public function setTimestamp(DateTime $timestamp): void {
+        $this->timestamp = $timestamp;
+    }
     public function setId(int $id): void {
         $this->id = $id;
     }
@@ -41,4 +44,19 @@ class EMessage{
         $this->receiver = $receiver;
     }
     
+
+
+    /*
+    PER ORDINARE MESSAGGI:
+    function cmp($a, $b){
+            if ($a->getTimestamp() == $b->getTimestamp()) {
+                return 0;
+            }
+            return ($a->getTimestamp() < $b->getTimestamp()) ? -1 : 1;
+        }
+        usort($messages, "cmp");
+        foreach ($messages as $message){
+            echo $message->getSender() . " " . $message->getText() . " " . $message->getTimestamp() . "\n";
+        }
+    */
 }

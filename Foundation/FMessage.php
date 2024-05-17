@@ -30,7 +30,7 @@ class FMessage{
     }
 
     public static function bind($stmt, $message){
-        $stmt->bindValue(':street', $message->getSender(), PDO::PARAM_STR);
+        $stmt->bindValue(':sender', $message->getSender(), PDO::PARAM_STR);
         $stmt->bindValue(':receiver', $message->getReceiver(), PDO::PARAM_STR);
         $stmt->bindValue(':text', $message->getText(), PDO::PARAM_STR);
         $stmt->bindValue(':timestamp', $message->getTimestamp(), PDO::PARAM_STR);
@@ -82,14 +82,15 @@ class FMessage{
     // END OF CRUD
 
     public static function createEntity($result){
-        $obj = new EMessage($result[0]['sender'], $result[0]['receiver'], $result[0]['text'], $result[0]['timestamp']);
+        $obj = new EMessage($result[0]['sender'], $result[0]['receiver'], $result[0]['text']);
         $obj->setId($result[0]['id']);
+        $obj->setTimestamp(date_create_from_format('Y-m-d H:i:s', $result[0]['timestamp']));
         return $obj;
     }
 
     
-    public static function getSentMessages($receiver){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'sender', $receiver);
+    public static function getSentMessages($sender){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'sender', $sender);
         $sentMessages = array();
         for($i = 0; $i < count($queryResult); $i++){
             $message = self::retrieveObject($queryResult[$i][self::getKey()]);
@@ -98,8 +99,8 @@ class FMessage{
         return $sentMessages;
     }
 
-    public static function getReceivedMessages($sender){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'sender', $sender);
+    public static function getReceivedMessages($receiver){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'receiver', $receiver);
         $receivedMessages = array();
         for($i = 0; $i < count($queryResult); $i++){
             $message = self::retrieveObject($queryResult[$i][self::getKey()]);

@@ -73,13 +73,15 @@ class FAdmin{
             return false;
         }
     }
+
     // END OF CRUD
 
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $obj = new EAdmin($result[0]['email'], $user->getPassword());
+        $obj->setSentMessages(FMessage::getSentMessages($obj->getId()));
+        $obj->setReceivedMessages(FMessage::getReceivedMessages($obj->getId()));
         return $obj;
     }
 
-    
 }
