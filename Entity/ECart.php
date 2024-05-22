@@ -36,5 +36,11 @@ class ECart {
         }
         return $price;
     }
+    public function removeArticle(int $stockId): void {
+        unset($this->cartItems[$stockId]);
+    }
+    public function clearCart(): void {
+        $this->cartItems = array();
+    }
    
 }
