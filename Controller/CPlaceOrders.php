@@ -133,7 +133,7 @@ class CPlaceOrders{
         /**
          * Create order
          */
-        $order = new EOrder($cart->getCart(), $cart->getTotalPrice(), $cart->getTotalPrice());
+        $order = new EOrder(USession::getInstance()->getSessionElement('email'), $addressId, 'Credit Card', $cart->getTotalPrice(), $cart->getId());
 
         /**
          * Save order in the database
