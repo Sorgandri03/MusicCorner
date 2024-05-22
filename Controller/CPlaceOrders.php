@@ -24,18 +24,10 @@ class CPlaceOrders{
             $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
-        }
-
-        if(count($cart->getCartItems())>0){
-            foreach($cart->getCartItems() as $item => $amount){
-                echo $item . " ->  " . $amount . "\n";
+            if(CUser::islogged()){
+                $cart = new ECart(USession::getInstance()->getSessionElement('email'));
             }
         }
-        else{
-            echo 'Cart is empty' . "\n\n";
-        }
-        echo "<br><br>";
 
         /**
          * Add productId to cart
@@ -171,6 +163,7 @@ class CPlaceOrders{
         /**
          * Show order confirmation page
          */
+        echo "Order confirmed";
         //CALL VIEW, PASS ORDER
     }
 }

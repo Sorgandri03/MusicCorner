@@ -12,10 +12,10 @@ class FOrder{
     //END SINGLETON
 
     private static $table = "Orders";
-    public static $value = "(NULL, :customer, :orderDateTime, NULL, :price, :payment, :shippingAddress, :cart)";
+    public static $value = "(NULL, :customer, :orderDateTime, NULL, :price, :payment, :shippingAddress)";
     private static $key = "id";
 
-    private static $updatequery = "customer = :customer, orderDateTime = :orderDateTime, price = :price, payment = :payment, shippingAddress = :shippingAddress, cart = :cart";
+    private static $updatequery = "customer = :customer, orderDateTime = :orderDateTime, price = :price, payment = :payment, shippingAddress = :shippingAddress";
 
     public static function getTable(): string {
         return self::$table;
@@ -40,7 +40,6 @@ class FOrder{
         $stmt->bindValue(':price', (string) $order->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(':payment', $order->getPayment(), PDO::PARAM_STR);
         $stmt->bindValue(':shippingAddress', $order->getShippingAddress(), PDO::PARAM_INT);
-        $stmt->bindValue(':cart', $order->getCart(), PDO::PARAM_INT);
     }
 
     //C
@@ -88,7 +87,7 @@ class FOrder{
     //END CRUD
 
     public static function createEntity($result){
-        $obj = new EOrder($result[0]['customer'],$result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price'], $result[0]['cart']);
+        $obj = new EOrder($result[0]['customer'],$result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price']);
         $obj->setId($result[0]['id']);
         $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
         return $obj;

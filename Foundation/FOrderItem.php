@@ -1,6 +1,6 @@
 <?php
 
-class FCartItem{
+class FOrderItem{
     private static $instance = null;
     private function __construct(){}
     public static function getInstance(){

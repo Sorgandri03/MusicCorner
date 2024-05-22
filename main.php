@@ -2,7 +2,7 @@
 
 class Main {
     public function __construct() {
-        CPlaceOrders::addToCart(3, 100000);
+        CPlaceOrders::addToCart(2, 1);
     }
 
 
