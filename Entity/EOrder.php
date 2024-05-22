@@ -8,16 +8,16 @@ class EOrder {
     private float $price;
     private string $payment;
     private int $shippingAddress;
-    private int $cart;
+    private array $orderItems = array();
 
-    public function __construct(string $customer, int $shippingAddress, string $payment, float $price, int $cart) {
+    public function __construct(string $customer, int $shippingAddress, string $payment, float $price) {
         $this->customer = $customer;
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
-        $this->cart = $cart;
         $this->price = $price;
         $this->orderDateTime = new DateTime();
     }
+
     public function getId(): int {
         return $this->id;
     }
@@ -36,8 +36,8 @@ class EOrder {
     public function getPrice(): float {
         return $this->price;
     }
-    public function getCart(): int {
-        return $this->cart;
+    public function getOrderItems(): array {
+        return $this->orderItems;
     }
     public function getCustomer(): string {
         return $this->customer;
@@ -63,7 +63,7 @@ class EOrder {
     public function setPrice(float $price): void {
         $this->price = $price;
     }
-    public function setCart(int $cart): void {
-        $this->cart = $cart;
+    public function setOrderItems(array $orderItems): void {
+        $this->orderItems = $orderItems;
     }
 }

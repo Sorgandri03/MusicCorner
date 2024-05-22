@@ -119,7 +119,7 @@ class CPlaceOrders{
     public static function placeOrder(){
 
     }
-    public static function confirmOrder(int $cardNumber, int $addressId){
+    public static function confirmOrder(string $cardNumber, int $addressId){
         /**
          * Retrieve user cart from the session
          */
@@ -131,14 +131,32 @@ class CPlaceOrders{
         }
 
         /**
+         * Check if the cart is empty
+         */
+        if(count($cart->getCartItems()) == 0){
+            //GOTO CART PAGE
+            return;
+        }
+
+        /**
          * Create order
          */
-        $order = new EOrder(USession::getInstance()->getSessionElement('email'), $addressId, 'Credit Card', $cart->getTotalPrice(), $cart->getId());
+        $order = new EOrder(USession::getInstance()->getSessionElement('email'), $addressId, $cardNumber, $cart->getTotalPrice());
 
         /**
          * Save order in the database
          */
-        FPersistentManager::getInstance()->storeObj($order);
+        FPersistentManager::getInstance()->createObj($order);
+
+        /**
+         * Add order items to the order
+         */
+        foreach($cart->getCartItems() as $item => $quantity){
+            $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
+            $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
+            $stock->setQuantity($stock->getQuantity() - $quantity);
+            FPersistentManager::getInstance()->createObj($orderItem);
+        }
 
         /**
          * Clear cart
