@@ -18,7 +18,20 @@ class ECart {
         $this->customer = $customer;
     }
     public function addArticle(int $stockId, int $quantity): void {
-        $this->cartItems[$stockId] = $quantity;
+        if(count($this->cartItems) != 0){
+            foreach($this->cartItems as $article => $amount){
+                if($article == $stockId){
+                    $this->cartItems[$stockId] = $amount + $quantity;
+                    break;
+                }
+                else {
+                    $this->cartItems[$stockId] = $quantity;
+                }
+            }
+        }
+        else{
+            $this->cartItems[$stockId] = $quantity;
+        }
     }
     public function removeArticle(int $stockId): void {
         unset($this->cartItems[$stockId]);

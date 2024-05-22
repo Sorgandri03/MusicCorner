@@ -2,7 +2,10 @@
 
 class Main {
     public function __construct() {
-        CPlaceOrders::addToCart(2, 1);
+        $cart = USession::getInstance()->getSessionElement('cart');
+        foreach ($cart->getCartItems() as $item => $quantity) {
+            echo $item . " -> " . $quantity . "<br>";
+        }
     }
 
 

@@ -21,7 +21,7 @@ class CPlaceOrders{
          * Retrieve user cart from the session
          */
         if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
+            $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
             if(CUser::islogged()){
@@ -33,27 +33,14 @@ class CPlaceOrders{
          * Add productId to cart
          * If the product is already in the cart, increase the quantity
          */
-        if(count($cart->getCartItems()) != 0){
-            foreach($cart->getCartItems() as $article => $amount){
-                if($article == $stockId){
-                    $cart->addArticle($stockId, $amount + $quantity);
-                    break;
-                }
-                else {
-                    $cart->addArticle($stockId, $quantity);
-                }
-            }
-        }
-        else{
-            $cart->addArticle($stockId, $quantity);
-        }
+        $cart->addArticle($stockId, $quantity);
 
         /**
          * Save cart in the session
          */
-        USession::getInstance()->setSessionElement('cart', serialize($cart));
+        USession::getInstance()->setSessionElement('cart', $cart);
         foreach($cart->getCartItems() as $item => $amount){
-            echo $item . " ->  " . $amount . "\n";
+            echo $item . " ->  " . $amount . "<br>";
         }
         
         /**
