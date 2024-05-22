@@ -133,7 +133,7 @@ class CPlaceOrders{
         /**
          * Create order
          */
-        $order = new EOrder($cart->getCartItems(), $cart->getTotalPrice(), $cart->getTotalPrice());
+        $order = new EOrder($cart->getCart(), $cart->getTotalPrice(), $cart->getTotalPrice());
 
         /**
          * Save order in the database
