@@ -1,13 +1,11 @@
 <?php
 
-include_once 'Entity\ECart.php';
-
 class CPlaceOrders{
-    public static function selectArticle(int $idArticle){
+    public static function selectArticle(int $articleId){
         /**
         * Retrieve article from idArticle
         */
-        $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $idArticle);
+        $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $articleId);
         
         /**
         * Show article page
@@ -15,58 +13,57 @@ class CPlaceOrders{
         //CALL VIEW, PASS PRODUCT
     }
     public static function addToCart(int $stockId, int $quantity){
-        $cookie	= 'cart';
-    
+
         /**
-        * Retrieve user cart from the session
-        */
-        if(isset($_SESSION[$cookie])){
-            echo "true";
-            $cart = unserialize($_SESSION[$cookie]);
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
         }
         else{
-            $cart = new ECart("email");
+            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
         }
 
         if(count($cart->getCartItems())>0){
-            foreach($cart->getCartItems() as $item){
-                $article = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
-                echo $article->getArticle();
+            foreach($cart->getCartItems() as $item => $amount){
+                echo $item . " ->  " . $amount . "\n";
             }
         }
         else{
             echo 'Cart is empty' . "\n\n";
         }
+        echo "<br><br>";
 
-        /*
-        foreach($cart->getCartItems() as $article){
-            if($article->getProduct()->getId() == $stockId){
-                $article->setQuantity($article->getQuantity() + $quantity);
-                USession::getInstance()->setSessionElement($cookie, $cart);
-                return;
+        /**
+         * Add productId to cart
+         * If the product is already in the cart, increase the quantity
+         */
+        if(count($cart->getCartItems()) != 0){
+            foreach($cart->getCartItems() as $article => $amount){
+                if($article == $stockId){
+                    $cart->addArticle($stockId, $amount + $quantity);
+                    break;
+                }
+                else {
+                    $cart->addArticle($stockId, $quantity);
+                }
             }
         }
-        */
+        else{
+            $cart->addArticle($stockId, $quantity);
+        }
 
         /**
-        * Add productId to cart
-        */
-        $cart->addArticle($stockId, $quantity);
-        
-        /**
-        * Save cart in the session
-        */
-        $c = serialize($cart);
-        $_SESSION[$cookie] = $c;
-        foreach($cart->getCartItems() as $item => $quantity){
-            echo $item . "  " . $quantity;
-            $article = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
-            echo $article->getArticle();
+         * Save cart in the session
+         */
+        USession::getInstance()->setSessionElement('cart', serialize($cart));
+        foreach($cart->getCartItems() as $item => $amount){
+            echo $item . " ->  " . $amount . "\n";
         }
         
         /**
-        * Print confirmation message
-        */
+         * Print confirmation message
+         */
         //CALL VIEW, PASS STOCKID
     }
 
