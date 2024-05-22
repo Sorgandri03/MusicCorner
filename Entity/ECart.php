@@ -25,16 +25,14 @@ class ECart {
     public function setCustomer(string $customer): void {
         $this->customer = $customer;
     }
-    public function addArticle(int $article): void {
-        $this->cartItems[] = $article;
-    }
-    public function setCartItems(array $cartItems): void {
-        $this->cartItems = $cartItems;
+    public function addArticle(int $stockId, int $quantity): void {
+        $this->cartItems[$stockId] = $quantity;
     }
     public function getTotalPrice(): float {
         $price = 0;
-        foreach ($this->cartItems as $item) {
-            $price += $item->getPrice();
+        foreach ($this->cartItems as $item => $quantity) {
+            $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
+            $price += $stock->getPrice();
         }
         return $price;
     }

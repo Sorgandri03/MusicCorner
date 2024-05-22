@@ -2,9 +2,11 @@
 
 class Main {
     public function __construct() {
-        $this->retrieve();
+        CPlaceOrders::addToCart(4, 1);
     }
 
+
+    /*
     public function create() {
         $Message = new EMessage("viniciomaurizio@musiccorner.it", "petricola@petricolastore.it", "ciao");
         FPersistentManager::getInstance()->createObj($Message);
@@ -31,6 +33,7 @@ class Main {
         $Message = FPersistentManager::getInstance()->retrieveObj(EMessage::class, "1");
         FPersistentManager::getInstance()->deleteObj($Message);
     }
+    */
 }
 
 
