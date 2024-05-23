@@ -65,6 +65,24 @@ class FPersistentManager{
         $result = FUser::verify('email', $email);
         return $result;
     }
+
+
+    /**
+     * Check the type of user
+     * null 
+     * customer
+     * seller
+     * admin
+     * @param string $email
+     * @return string
+     */
+    public static function checkUserType($email) : string{
+        if(FCustomer::retrieveObject($email)) {return "customer";}
+        elseif(FSeller::retrieveObject($email)) {return "seller";}
+        elseif(FAdmin::retrieveObject($email)) {return "admin";}
+        else {return null;}
+    }
+
 }
 
 

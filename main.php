@@ -2,10 +2,7 @@
 
 class Main {
     public function __construct() {
-        $cart = USession::getInstance()->getSessionElement('cart');
-        foreach ($cart->getCartItems() as $item => $quantity) {
-            echo $item . " -> " . $quantity . "<br>";
-        }
+        CUser::isLogged();
     }
 
 

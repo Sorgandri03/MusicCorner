@@ -8,7 +8,7 @@ class FDB {
         try{
             self::$db = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST."; charset=utf8;", DB_USER, DB_PASS);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            //echo "Connected successfully";
         }catch(PDOException $e){
             echo "ERROR". $e->getMessage();
             die;
