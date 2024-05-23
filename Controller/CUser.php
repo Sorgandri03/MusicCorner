@@ -10,14 +10,17 @@ class CUser{
         }
         if(USession::isSetSessionElement('seller')){
             echo USession::getSessionElement('seller');
+            return;
             //modifica l'header per andare nella dashboard del seller;
         }
         if(USession::isSetSessionElement('admin')){
             echo USession::getSessionElement('admin');
+            return;
             //modifica l'header per andare nella dashboard dell'admin;
         }
         if(USession::isSetSessionElement('customer')){
             echo USession::getSessionElement('customer');
+            return;
             //modifica l'header per andare nella dashboard del customer;
         }
         //mostra la view del login
@@ -105,8 +108,9 @@ class CUser{
         USession::getInstance();
         USession::unsetSession();
         USession::destroySession();
-        $view = new VUser();
-        $view->showLoginForm();
+        //$view = new VUser();
+        //$view->showLoginForm();
+        echo "logout";
     }
 
 }

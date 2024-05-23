@@ -83,6 +83,15 @@ class FPersistentManager{
         else {return null;}
     }
 
+    public static function searchArticles($query){
+        $results = FDB::getInstance()::searchArticles($query);
+        $articles = array();
+        foreach($results as $result){
+            $article = FArticleDescription::retrieveObject($result['EAN']);
+            $articles[] = $article;
+        }
+        return $articles;
+    }
 }
 
 

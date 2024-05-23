@@ -2,7 +2,7 @@
 
 class Main {
     public function __construct() {
-        CUser::isLogged();
+        CPlaceOrders::search("hip");
     }
 
 

@@ -100,4 +100,26 @@ class FDB {
         }
     }
 
+    public static function searchArticles($search){
+        try{
+            $query = "SELECT * FROM ArticleDescription WHERE name LIKE '%" . $search . "%' OR EAN LIKE '%" . $search . "%' OR Artist LIKE '%" . $search . "%' OR genre LIKE '%" . $search . "%';";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $rowNum = $stmt->rowCount();
+            if($rowNum > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                return $result;
+            }else{
+                return array();
+            }
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }

@@ -1,8 +1,19 @@
 <?php
 
 class CPlaceOrders{
-    public static function searchArticle(string $query){
-
+    public static function search(string $query){
+        /**
+        * Retrieve articles from query
+        */
+        $articles = FPersistentManager::getInstance()->searchArticles($query);
+        foreach($articles as $article){
+            echo $article->getName() . "<br>";
+        }
+        
+        /**
+        * Show search results page
+        */
+        //CALL VIEW, PASS ARTICLES
     }
     public static function selectArticle(int $articleId){
         /**
