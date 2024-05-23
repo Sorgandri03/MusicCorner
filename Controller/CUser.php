@@ -101,4 +101,12 @@ class CUser{
         }
     }
 
+    public static function logout(){
+        USession::getInstance();
+        USession::unsetSession();
+        USession::destroySession();
+        $view = new VUser();
+        $view->showLoginForm();
+    }
+
 }
