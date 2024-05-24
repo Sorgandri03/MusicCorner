@@ -1,31 +1,7 @@
 <?php
 
 class CPlaceOrders{
-    public static function search(string $query){
-        /**
-        * Retrieve articles from query
-        */
-        $articles = FPersistentManager::getInstance()->searchArticles($query);
-        foreach($articles as $article){
-            echo $article->getName() . "<br>";
-        }
-        
-        /**
-        * Show search results page
-        */
-        //CALL VIEW, PASS ARTICLES
-    }
-    public static function selectArticle(int $articleId){
-        /**
-        * Retrieve article from idArticle
-        */
-        $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $articleId);
-        
-        /**
-        * Show article page
-        */
-        //CALL VIEW, PASS PRODUCT
-    }
+    
     public static function addToCart(int $stockId, int $quantity){
 
         /**
@@ -59,7 +35,7 @@ class CPlaceOrders{
          */
         //CALL VIEW, PASS STOCKID
     }
-    public static function openCart(){
+    public static function cart(){
         /**
          * Retrieve user cart from the session
          */
@@ -106,10 +82,32 @@ class CPlaceOrders{
          */
         //CALL VIEW, PASS CART
     }
-    public static function placeOrder(){
+    public static function order(){
+        /**
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
+        }
+        else{
+            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+        }
+        if(count($cart->getCartItems()) == 0){
+            //CANT PLACE ORDER
+            return;
+        }
 
+        /**
+         * Retrieve customer
+         */
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('email'));
+
+        /**
+         * Pass customer to the view
+         */
+        //CALL VIEW, PASS CUSTOMER
     }
-    public static function confirmOrder(string $cardNumber, int $addressId){
+    public static function orderConfirm(string $cardNumber, int $addressId){
         /**
          * Retrieve user cart from the session
          */
