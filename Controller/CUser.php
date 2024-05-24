@@ -40,15 +40,15 @@ class CUser{
                 switch(FPersistentManager::getInstance()->checkUserType($email)){
                     case "customer":
                         USession::setSessionElement('customer', $email);
-                        echo "customer";
+                        CCustomer::dashboard();
                         break;
                     case "seller":
                         USession::setSessionElement('seller', $email);
-                        echo "seller";
+                        CSeller::dashboard();
                         break;
                     case "admin":
                         USession::setSessionElement('admin', $email);
-                        echo "admin";
+                        CAdmin::dashboard();
                         break;
                     default:
                         //$view->loginError();
@@ -57,12 +57,10 @@ class CUser{
             }
             else{
                 //$view->loginError();
-                echo "error";
             }
         }
         else{
             //$view->loginError();
-            echo "error";
         }
     }
 
