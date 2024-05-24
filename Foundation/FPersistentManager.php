@@ -92,6 +92,12 @@ class FPersistentManager{
         }
         return $articles;
     }
+
+    public static function retrieveAll($entity){
+        $class = "F" . substr($entity,1);
+        $result = call_user_func([$class, "retrieveAllObjects"]);
+        return $result;
+    }
 }
 
 

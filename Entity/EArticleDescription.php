@@ -6,6 +6,7 @@ class EArticleDescription {
     private string $artist;
     private string $genre;
     private int $format;
+    private $stocks = array();
 
     public function __construct(string $ean, string $name, string $artist, string $genre, int $format) {
         $this->ean = $ean;
@@ -44,5 +45,11 @@ class EArticleDescription {
     }
     public function setFormat(int $format) {
         $this->format = $format;
+    }
+    public function getStocks(): array {
+        return $this->stocks;
+    }
+    public function setStocks(array $stocks) {
+        $this->stocks = $stocks;
     }
 }

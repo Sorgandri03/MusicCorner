@@ -90,4 +90,13 @@ class FCustomer {
         return $customer;
     }
 
+    public static function retrieveAllObjects(){
+        $queryResult = FDB::getInstance()->retrieveEntries(self::getTable());
+        $customers = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $customer = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $customers[] = $customer;
+        }
+        return $customers;
+    }
 }

@@ -1,8 +1,9 @@
-<?
+<?php
 
 Class CSeller{
 
     public static function dashboard(){
+        
         if(USession::isSetSessionElement('seller')){
             echo USession::getSessionElement('seller');
             return;
@@ -11,8 +12,8 @@ Class CSeller{
         //mostra la view del login
         echo "no";
     }
-    public static function addArticle(){
-
+    public static function addArticle($debug){
+        echo $debug;
     }
     public static function removeArticle(){
 

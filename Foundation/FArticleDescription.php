@@ -14,6 +14,7 @@ class FArticleDescription{
     private static $value = "(:EAN, :name, :artist, :genre, :format)";
     private static $key = "EAN";
     private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, genre = :genre, format = :format";
+    
     public static function getValue(): string {
         return self::$value;
     }
@@ -81,6 +82,7 @@ class FArticleDescription{
 
     public static function createEntity($result){
         $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], $result[0]['genre'], (int) $result[0]['format']);
+        $obj->setStocks(FStock::getStocksByArticle($result[0]['EAN']));
         return $obj;
     }
 }

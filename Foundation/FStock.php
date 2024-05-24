@@ -90,5 +90,14 @@ class FStock{
         return $stocks;
     }
 
+    public static function getStocksByArticle($article){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'article', $article);
+        $stocks = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $stock = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $stocks[] = $stock;
+        }
+        return $stocks;
+    }
     
 }

@@ -2,16 +2,16 @@
 
 class ECustomer extends EUser {
     private $username;
-    private int $suspensionTime=0;
     private array $addresses = array();
     private array $creditCards = array();
     private array $orders = array();
-    
+    private DateTime $suspensionTime;
 
 
     public function __construct(string $username, string $email, string $password) {
         $this->username = $username;
         parent::__construct($email, $password);
+        $this->suspensionTime = new DateTime();
     }
 
     public function setCreditCards(array $creditCards): void {
@@ -49,8 +49,12 @@ class ECustomer extends EUser {
     public function setId(string $id): void {
         parent::setId($id);
     }
-    public function getSuspensionTime(): int {
+    public function getSuspensionTime(): DateTime {
         return $this->suspensionTime;
     }
+    public function setSuspensionTime(int $days): void {
+        $this->suspensionTime = new DateTime();
+        date_add($this->suspensionTime, date_interval_create_from_date_string($days . ' days'));
+    }    
 
 }

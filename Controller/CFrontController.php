@@ -7,13 +7,14 @@ class CFrontController{
         
         array_shift($result);
         array_shift($result);
-
         $controller = "C" . $result[0];
         $directory = "Controller";
         $scanDir = scandir($directory);
 
         if(in_array($controller . ".php", $scanDir)){
+
             if(isset($result[1])){
+
                 $method = $result[1];
 
                 if(method_exists($controller, $method)){
@@ -39,9 +40,9 @@ class CFrontController{
         }else{
             USession::getInstance();
             if(CUser::isLogged()){
-                header('Location: /MusicCorner');
+                header('Location: /MusicCorner/Home');
             }else{
-                header('Location: /MusicCorner');
+                header('Location: /MusicCorner/User/Login');
             }
         }
     }

@@ -8,46 +8,45 @@ class CUser{
                 USession::getInstance();
             }
         }
+        if(USession::isSetSessionElement('customer')){
+            echo USession::getSessionElement('customer');
+            exit();
+            //modifica l'header per andare nella dashboard del customer;
+        }
         if(USession::isSetSessionElement('seller')){
             echo USession::getSessionElement('seller');
-            return;
-            //modifica l'header per andare nella dashboard del seller;
+            exit();
+            //modifica l'header per andare nella dashboard dell'seller;
         }
         if(USession::isSetSessionElement('admin')){
             echo USession::getSessionElement('admin');
-            return;
-            //modifica l'header per andare nella dashboard dell'admin;
-        }
-        if(USession::isSetSessionElement('customer')){
-            echo USession::getSessionElement('customer');
-            return;
-            //modifica l'header per andare nella dashboard del customer;
+            exit();
+            //modifica l'header per andare nella dashboard del admin;
         }
         //mostra la view del login
         echo "no";
     }
 
-    public static function login(){
-        //$view = new VUser();
-        $email = $_GET["email"];                                   
+    public static function login($email, $password){
+        //$view = new VUser();                                 
         if(FPersistentManager::getInstance()->verifyUserEmail($email)){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class,$email);
             //if(password_verify($_GET["password"], $user->getPassword())){
-            if($_GET["password"] == $user->getPassword()){
+            if($password == $user->getPassword()){
                 if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
                 }
                 switch(FPersistentManager::getInstance()->checkUserType($email)){
                     case "customer":
-                        USession::setSessionElement('customer', $email);
+                        USession::setSessionElement('customer', $user);
                         CCustomer::dashboard();
                         break;
                     case "seller":
-                        USession::setSessionElement('seller', $email);
+                        USession::setSessionElement('seller', $user);
                         CSeller::dashboard();
                         break;
                     case "admin":
-                        USession::setSessionElement('admin', $email);
+                        USession::setSessionElement('admin', $user);
                         CAdmin::dashboard();
                         break;
                     default:
@@ -109,6 +108,18 @@ class CUser{
         //$view = new VUser();
         //$view->showLoginForm();
         echo "logout";
+    }
+
+    public static function isBanned(){
+        if(USession::isSetSessionElement('customer')){
+            $customer = USession::getSessionElement('customer');
+            if(new DateTime() < $customer->getSuspensionTime()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
 }

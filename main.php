@@ -2,7 +2,7 @@
 
 class Main {
     public function __construct() {
-        CPlaceOrders::search("hip");
+        CSeller::addArticle("orcodio");
     }
 
 
