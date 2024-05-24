@@ -27,8 +27,10 @@ class CUser{
         echo "no";
     }
 
-    public static function login($email, $password){
-        //$view = new VUser();                                 
+    public static function login(){
+        //$view = new VUser();
+        $email = $_GET["email"];
+        $password = $_GET["password"];
         if(FPersistentManager::getInstance()->verifyUserEmail($email)){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class,$email);
             //if(password_verify($_GET["password"], $user->getPassword())){
@@ -39,6 +41,10 @@ class CUser{
                 switch(FPersistentManager::getInstance()->checkUserType($email)){
                     case "customer":
                         USession::setSessionElement('customer', $user);
+                        if(self::isBanned()){
+                            echo "You are banned";
+                            return;
+                        }
                         CCustomer::dashboard();
                         break;
                     case "seller":

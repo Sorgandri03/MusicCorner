@@ -162,7 +162,4 @@ class CPlaceOrders{
         echo "Order confirmed";
         //CALL VIEW, PASS ORDER
     }
-    public static function orderHistory(){
-        echo "Dio porco";
-    }
 }
