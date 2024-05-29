@@ -6,16 +6,14 @@ class CSearch{
          * Retrieve article from idArticle
          */
         $articles = FPersistentManager::getInstance()->searchArticles(urldecode($query));
-        foreach($articles as $article){
-            echo $article->getName() . "<br>";
-        }
         
         /**
          * Show article page
          */
-        //CALL VIEW, PASS PRODUCTS
+        $view = new VSearch();
+        $view->showSearch($articles);
     }
-    public static function article(int $articleId){
+    public static function article(string $articleId){
         /**
         * Retrieve article from idArticle
         */
@@ -24,6 +22,7 @@ class CSearch{
         /**
         * Show article page
         */
-        //CALL VIEW, PASS PRODUCT
+        $view = new VArticle();
+        $view->showArticle($article);
     }
 }

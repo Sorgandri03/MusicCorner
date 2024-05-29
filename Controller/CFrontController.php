@@ -7,6 +7,12 @@ class CFrontController{
         
         array_shift($result);
         array_shift($result);
+
+        if($result[0]=="" || $result[0]=="index.php"){
+            $view = new VHome();
+            $view->showHome();
+        }
+
         $controller = "C" . $result[0];
         $directory = "Controller";
         $scanDir = scandir($directory);
@@ -28,22 +34,12 @@ class CFrontController{
                         else if ($num == 2) $controller::$method($param[0], $param[1]);
 
                 }else{
-                    USession::getInstance();
-                    if(CUser::isLogged()){
-                        header('Location: /MusicCorner');
-                    }else{
-                        header('Location: /MusicCorner');
-                    }
+                    //PAGE 404
                 }
             }
             
         }else{
-            USession::getInstance();
-            if(CUser::isLogged()){
-                header('Location: /MusicCorner/Home');
-            }else{
-                header('Location: /MusicCorner/User/Login');
-            }
+            //PAGE 404
         }
     }
 }

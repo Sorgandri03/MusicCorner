@@ -1,7 +1,9 @@
 <?php
 
 require_once 'Smarty\libs\Smarty.class.php';
+
 use Smarty\Smarty;
+
 class StartSmarty{
     static function configuration(){
         $smarty=new Smarty();

@@ -49,7 +49,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="Smarty\templates\img\LOGO copy.png" alt="">
+									<img src="Smarty\templates\img\hhh.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -156,22 +156,22 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- Product main img -->
-					<div class="col-md-2 col-md-push-5">
-					</div>
-					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="https://www.ibs.it/images/{$ean}_0_536_0_75.jpg" alt="">
+					<div class="col-md-7">
+						<!-- Product main img -->
+						<div class="col-lg-10">
+							<div id="product-main-img">
+								<div class="product-preview">
+									<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+								</div>
 							</div>
 						</div>
+						<!-- /Product main img -->
 					</div>
-					<!-- /Product main img -->
 
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">{$title}</h2>
+							<h2 class="product-name">{$article->getName()}</h2>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -186,7 +186,7 @@
 								<h3 class="product-price">€15.99</h3>
 								<span class="product-available">In Stock</span>
 							</div>
-							<p>{$artist}</p>
+							<p>{$article->getArtist()}</p>
 
 							<div class="product-options">
 								<label>
@@ -237,6 +237,7 @@
 						</div>
 					</div>
 					<!-- /Product details -->
+					
 
 					<!-- Product tab -->
 					<div class="col-md-12">
@@ -634,7 +635,7 @@
 		<script src="Smarty/templates/js/slick.min.js"></script>
 		<script src="Smarty/templates/js/nouislider.min.js"></script>
 		<script src="Smarty/templates/js/jquery.zoom.min.js"></script>
-		<script src="Smarty/templates/js/main.js"></script>
+		
 
 	</body>
 </html>

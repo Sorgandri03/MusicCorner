@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-28 10:32:55
+/* Smarty version 5.1.0, created on 2024-05-29 10:19:04
   from 'file:article.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665596b714fe44_87864850',
+  'unifunc' => 'content_6656e4f8903ac3_09837184',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbba77b3ff83b59534974c5521e83d41e012b580' => 
     array (
       0 => 'article.tpl',
-      1 => 1716885171,
+      1 => 1716969777,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665596b714fe44_87864850 (\Smarty\Template $_smarty_tpl) {
+function content_6656e4f8903ac3_09837184 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -77,7 +77,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="Smarty\templates\img\LOGO copy.png" alt="">
+									<img src="Smarty\templates\img\hhh.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -185,23 +185,23 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- Product main img -->
-					<div class="col-md-2 col-md-push-5">
-					</div>
-					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="https://www.ibs.it/images/<?php echo $_smarty_tpl->getValue('ean');?>
+					<div class="col-md-7">
+						<!-- Product main img -->
+						<div class="col-lg-10">
+							<div id="product-main-img">
+								<div class="product-preview">
+									<img src="https://www.ibs.it/images/<?php echo $_smarty_tpl->getValue('article')->getId();?>
 _0_536_0_75.jpg" alt="">
+								</div>
 							</div>
 						</div>
+						<!-- /Product main img -->
 					</div>
-					<!-- /Product main img -->
 
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name"><?php echo $_smarty_tpl->getValue('title');?>
+							<h2 class="product-name"><?php echo $_smarty_tpl->getValue('article')->getName();?>
 </h2>
 							<div>
 								<div class="product-rating">
@@ -217,7 +217,7 @@ _0_536_0_75.jpg" alt="">
 								<h3 class="product-price">€15.99</h3>
 								<span class="product-available">In Stock</span>
 							</div>
-							<p><?php echo $_smarty_tpl->getValue('artist');?>
+							<p><?php echo $_smarty_tpl->getValue('article')->getArtist();?>
 </p>
 
 							<div class="product-options">
@@ -269,6 +269,7 @@ _0_536_0_75.jpg" alt="">
 						</div>
 					</div>
 					<!-- /Product details -->
+					
 
 					<!-- Product tab -->
 					<div class="col-md-12">
@@ -678,9 +679,7 @@ _0_536_0_75.jpg" alt="">
 		<?php echo '<script'; ?>
  src="Smarty/templates/js/jquery.zoom.min.js"><?php echo '</script'; ?>
 >
-		<?php echo '<script'; ?>
- src="Smarty/templates/js/main.js"><?php echo '</script'; ?>
->
+		
 
 	</body>
 </html>
