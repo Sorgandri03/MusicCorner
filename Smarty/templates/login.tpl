@@ -38,11 +38,7 @@
 	<body>
 		<!-- HEADER -->
 		<header>
-			
-			
-			
-
-			<!-- MAIN HEADER -->
+		    <!-- MAIN HEADER -->
 			<div id="header">
 				<!-- container -->
 				<div class="container">
@@ -56,15 +52,7 @@
 								</a>
 							</div>
 						</div>
-						<!-- /LOGO -->
-
-						
-						
-						
-
-						
-						
-						
+						<!-- /LOGO -->																						
 					</div>
 					<!-- row -->
 				</div>
@@ -97,11 +85,7 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-
 		
-		
-		
-
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -120,40 +104,17 @@
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="last-name" placeholder="Password">
-							</div>
-							
-							
-							
-							
-							
-							
-							
+                            </div>																				
 						</div>
-						<!-- /Billing Details -->
-
-						
-						
-						
-
-						
-						
-						
-					</div>
-
-					
-					
-					
+						<!-- /Billing Details -->																																			
+					</div>										
 				</div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		
-		
-		
-
+						
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->
@@ -171,8 +132,6 @@
 								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
