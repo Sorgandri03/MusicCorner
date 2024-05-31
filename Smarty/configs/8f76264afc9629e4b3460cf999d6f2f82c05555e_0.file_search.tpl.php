@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 09:59:04
+/* Smarty version 5.1.0, created on 2024-05-29 11:31:31
   from 'file:search.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656e0484ab264_85250116',
+  'unifunc' => 'content_6656f5f3e2aa21_28653789',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f76264afc9629e4b3460cf999d6f2f82c05555e' => 
     array (
       0 => 'search.tpl',
-      1 => 1716969527,
+      1 => 1716975087,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656e0484ab264_85250116 (\Smarty\Template $_smarty_tpl) {
+function content_6656f5f3e2aa21_28653789 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -36,20 +36,20 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
  		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
 
  		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
 
  		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/nouislider.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
  		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="Smarty\templates\css/font-awesome.min.css">
+ 		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
 
  		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/style.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,7 +76,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="Smarty\templates\img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -112,7 +112,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<div class="cart-list">
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty\templates\img/product01.png" alt="">
+													<img src="/MusicCorner/Smarty\templates\img/product01.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -123,7 +123,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty\templates\img/product02.png" alt="">
+													<img src="/MusicCorner/Smarty\templates\img/product02.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -297,22 +297,22 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
 		<!-- jQuery Plugins -->
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/jquery.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/jquery.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/bootstrap.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/bootstrap.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/slick.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/slick.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/nouislider.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/nouislider.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/jquery.zoom.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/jquery.zoom.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty\templates\js/main.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty\templates\js/main.js"><?php echo '</script'; ?>
 >
 
 	</body>

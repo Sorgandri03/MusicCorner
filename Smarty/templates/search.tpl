@@ -12,20 +12,20 @@
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
  		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
 
  		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
 
  		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="Smarty\templates\css/nouislider.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
  		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="Smarty\templates\css/font-awesome.min.css">
+ 		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
 
  		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/style.css"/>
+ 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +48,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="Smarty\templates\img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 										<div class="cart-list">
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty\templates\img/product01.png" alt="">
+													<img src="/MusicCorner/Smarty\templates\img/product01.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -95,7 +95,7 @@
 
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty\templates\img/product02.png" alt="">
+													<img src="/MusicCorner/Smarty\templates\img/product02.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -254,12 +254,12 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="Smarty\templates\js/jquery.min.js"></script>
-		<script src="Smarty\templates\js/bootstrap.min.js"></script>
-		<script src="Smarty\templates\js/slick.min.js"></script>
-		<script src="Smarty\templates\js/nouislider.min.js"></script>
-		<script src="Smarty\templates\js/jquery.zoom.min.js"></script>
-		<script src="Smarty\templates\js/main.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/jquery.min.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/bootstrap.min.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/slick.min.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/nouislider.min.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/jquery.zoom.min.js"></script>
+		<script src="/MusicCorner/Smarty\templates\js/main.js"></script>
 
 	</body>
 </html>
