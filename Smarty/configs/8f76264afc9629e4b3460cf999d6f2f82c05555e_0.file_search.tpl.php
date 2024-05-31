@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 11:31:31
+/* Smarty version 5.1.0, created on 2024-05-31 16:12:31
   from 'file:search.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656f5f3e2aa21_28653789',
+  'unifunc' => 'content_6659dacfdefb08_47297073',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f76264afc9629e4b3460cf999d6f2f82c05555e' => 
     array (
       0 => 'search.tpl',
-      1 => 1716975087,
+      1 => 1717164624,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656f5f3e2aa21_28653789 (\Smarty\Template $_smarty_tpl) {
+function content_6659dacfdefb08_47297073 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -85,13 +85,13 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
+								<form id='search' action="/MusicCorner/Search/search" method="post">
 									<select class="input-select">
 										<option value="0">All Categories</option>
 										<option value="1">Category 01</option>
 										<option value="1">Category 02</option>
 									</select>
-									<input class="input" placeholder="Search here">
+									<input class="input" placeholder="Search here" name="query">
 									<button class="search-btn">Search</button>
 								</form>
 							</div>
