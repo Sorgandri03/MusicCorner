@@ -45,13 +45,9 @@
 					<!-- row -->
 					<div class="row">
 						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty/templates/img/hhh2.png" alt="" class="center"  >
 								</a>
-							</div>
-						</div>
 						<!-- /LOGO -->																						
 					</div>
 					<!-- row -->

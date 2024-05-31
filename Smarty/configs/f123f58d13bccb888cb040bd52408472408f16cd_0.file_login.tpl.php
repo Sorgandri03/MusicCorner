@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-31 17:44:06
+/* Smarty version 5.1.0, created on 2024-05-31 19:16:09
   from 'file:login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6659f0466dcd49_02725162',
+  'unifunc' => 'content_665a05d9b20d77_84045471',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f123f58d13bccb888cb040bd52408472408f16cd' => 
     array (
       0 => 'login.tpl',
-      1 => 1717170243,
+      1 => 1717175765,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6659f0466dcd49_02725162 (\Smarty\Template $_smarty_tpl) {
+function content_665a05d9b20d77_84045471 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -73,13 +73,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 					<!-- row -->
 					<div class="row">
 						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty/templates/img/hhh2.png" alt="" class="center"  >
 								</a>
-							</div>
-						</div>
 						<!-- /LOGO -->																						
 					</div>
 					<!-- row -->
@@ -97,24 +93,26 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
-					<div class="col-md-7">
-						<!-- Billing Details -->
+					<div class="col-md-3"></div>
+					<div class="col-md-5">
+						<!-- Login Form -->
 						<div class="login-form">
-							<div class="section-title">
-								<h3 class="title">Login</h3>
+							<div class="section-title-center">
+								<h1 class="title">Login</h3>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="first-name" placeholder="Email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Password">
-                            </div>																				
+								<input class="input" type="password" name="last-name" placeholder="Password">
+                            </div>
+							<div class="primary-btn-center">Login</div>																		
 						</div>
-						<!-- /Billing Details -->																																			
-					</div>										
+						<!-- /Login Form -->																																
+					</div>
 				</div>
 				<!-- /row -->
+
 			</div>
 			<!-- /container -->
 		</div>
@@ -122,12 +120,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						
 		<!-- FOOTER -->
 		<footer id="footer">
-			<!-- top footer -->
-			
-			<!-- /top footer -->
-
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
+			<!-- fixed footer -->
+			<div id="fixed-footer" class="section">
 				<div class="container">
 					<!-- row -->
 					<div class="row">
@@ -142,7 +136,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright ©<?php echo '<script'; ?>
 >document.write(new Date().getFullYear());<?php echo '</script'; ?>
->2024 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -151,7 +145,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 				</div>
 				<!-- /container -->
 			</div>
-			<!-- /bottom footer -->
+			<!-- /fixed footer -->
 		</footer>
 		<!-- /FOOTER -->
 
