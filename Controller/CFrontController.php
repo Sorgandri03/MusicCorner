@@ -11,6 +11,7 @@ class CFrontController{
         if($result[0]=="" || $result[0]=="index.php"){
             $view = new VHome();
             $view->showHome();
+            return;
         }
 
         $controller = "C" . $result[0];
