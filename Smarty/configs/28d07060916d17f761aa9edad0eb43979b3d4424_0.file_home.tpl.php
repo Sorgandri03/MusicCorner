@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-27 19:23:52
+/* Smarty version 5.1.0, created on 2024-05-31 16:34:53
   from 'file:home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6654c1a8cbc1a1_53266491',
+  'unifunc' => 'content_6659e00d61a0a4_50232414',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '28d07060916d17f761aa9edad0eb43979b3d4424' => 
     array (
       0 => 'home.tpl',
-      1 => 1716830630,
+      1 => 1717166090,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6654c1a8cbc1a1_53266491 (\Smarty\Template $_smarty_tpl) {
+function content_6659e00d61a0a4_50232414 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -36,20 +36,20 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
 		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
 
 		<!-- Slick -->
-		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/slick.css"/>
-		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/slick-theme.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
 
 		<!-- nouislider -->
-		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/nouislider.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
 		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="Smarty/templates/css/font-awesome.min.css">
+		<link rel="stylesheet" href="Smarty\templates\css/font-awesome.min.css">
 
 		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="Smarty/templates/css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,22 +66,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 	<body>
 		<!-- HEADER -->
 		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /TOP HEADER -->
-
 			<!-- MAIN HEADER -->
 			<div id="header">
 				<!-- container -->
@@ -91,8 +75,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="Smarty/templates/img/logo.png" alt="">
+								<a href="/MusicCorner/" class="logo">
+									<img src="/MusicCorner/Smarty/templates/img/hhh.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -101,14 +85,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+								<form id='search' action="/MusicCorner/Search/search" method="post">
+									<input class="input" placeholder="Cerca qui" name="query">
+									<button class="search-btn">Cerca</button>
 								</form>
 							</div>
 						</div>
@@ -117,28 +96,18 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								<!-- Wishlist -->
-								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
-										<div class="qty">2</div>
-									</a>
-								</div>
-								<!-- /Wishlist -->
-
 								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										<span>Carrello</span>
 										<div class="qty">3</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty/templates/img/product01.png" alt="">
+													<img src="/MusicCorner/Smarty/templates/img/product01.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -149,7 +118,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="Smarty/templates/img/product02.png" alt="">
+													<img src="/MusicCorner/Smarty/templates/img/product02.png" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -170,14 +139,19 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								</div>
 								<!-- /Cart -->
 
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
+								<!-- Wishlist -->
+								<div>
+									<a href="./User/login">
+										<i class="fa fa-user-o"></i>
+										<span><?php echo $_smarty_tpl->getValue('username');?>
+</span>
 									</a>
 								</div>
-								<!-- /Menu Toogle -->
+								<!-- /Wishlist -->
+
+							</div>
+							<div>
+								<br><br>
 							</div>
 						</div>
 						<!-- /ACCOUNT -->
@@ -190,29 +164,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		</header>
 		<!-- /HEADER -->
 
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
-					</ul>
-					<!-- /NAV -->
-				</div>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -224,11 +175,11 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="Smarty/templates/img/shop01.png" alt="">
+								<img src="/MusicCorner/Smarty/templates/img/CD.jpg" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Laptop<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>Catalogo<br>CD</h3>
+								<a href="#" class="cta-btn">COMPRA ORA <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -238,11 +189,11 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="Smarty/templates/img/shop03.png" alt="">
+								<img src="/MusicCorner/Smarty/templates/img/Vinile.jpg" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Accessories<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>Catalogo<br>Vinili</h3>
+								<a href="#" class="cta-btn">COMPRA ORA <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -252,11 +203,11 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="Smarty/templates/img/shop02.png" alt="">
+								<img src="/MusicCorner/Smarty/templates/img/Cassetta.jpg" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Cameras<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>Catalogo<br>Cassette</h3>
+								<a href="#" class="cta-btn">COMPRA ORA <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -267,242 +218,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title"><?php echo $_smarty_tpl->getValue('test');?>
-</h3>
-							<div class="section-nav">
-								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /section title -->
-
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="Smarty/templates/img/product01.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="Smarty/templates/img/product02.png" alt="">
-												<div class="product-label">
-													<span class="new">NEW</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="Smarty/templates/img/product03.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="Smarty/templates/img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="Smarty/templates/img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
-								<!-- /tab -->
-							</div>
-						</div>
-					</div>
-					<!-- Products tab & slick -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		<!-- HOT DEAL SECTION -->
-		<div id="hot-deal" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="hot-deal">
-							<ul class="hot-deal-countdown">
-								<li>
-									<div>
-										<h3>02</h3>
-										<span>Days</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>10</h3>
-										<span>Hours</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>34</h3>
-										<span>Mins</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>60</h3>
-										<span>Secs</span>
-									</div>
-								</li>
-							</ul>
-							<h2 class="text-uppercase">hot deal this week</h2>
-							<p>New Collection Up to 50% OFF</p>
-							<a class="primary-btn cta-btn" href="#">Shop now</a>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /HOT DEAL SECTION -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -537,7 +252,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="Smarty/templates/img/product06.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/product06.png" alt="">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 													<span class="new">NEW</span>
@@ -569,7 +284,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="Smarty/templates/img/product07.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/product07.png" alt="">
 												<div class="product-label">
 													<span class="new">NEW</span>
 												</div>
@@ -600,7 +315,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="Smarty/templates/img/product08.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/product08.png" alt="">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 												</div>
@@ -626,7 +341,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="Smarty/templates/img/product09.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/product09.png" alt="">
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>
@@ -654,7 +369,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="Smarty/templates/img/product01.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/product01.png" alt="">
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>
@@ -712,7 +427,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product07.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product07.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -725,7 +440,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product08.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product08.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -738,7 +453,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product09.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product09.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -753,7 +468,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product01.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product01.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -766,7 +481,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product02.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product02.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -779,7 +494,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product03.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product03.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -805,7 +520,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product04.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product04.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -818,7 +533,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product05.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product05.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -831,7 +546,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product06.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product06.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -846,7 +561,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product07.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product07.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -859,7 +574,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product08.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product08.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -872,7 +587,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product09.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product09.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -900,7 +615,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product01.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product01.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -913,7 +628,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product02.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product02.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -926,7 +641,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product03.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product03.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -941,7 +656,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product04.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product04.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -954,7 +669,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product05.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product05.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -967,7 +682,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="Smarty/templates/img/product06.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/product06.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -987,109 +702,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		</div>
 		<!-- /SECTION -->
 
-		<!-- NEWSLETTER -->
-		<div id="newsletter" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="newsletter">
-							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Enter Your Email">
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-							</form>
-							<ul class="newsletter-follow">
-								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-instagram"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /NEWSLETTER -->
-
 		<!-- FOOTER -->
 		<footer id="footer">
-			<!-- top footer -->
-			<div class="section">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
-								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="clearfix visible-xs"></div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Information</h3>
-								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Service</h3>
-								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /top footer -->
-
 			<!-- bottom footer -->
 			<div id="bottom-footer" class="section">
 				<div class="container">
@@ -1099,7 +713,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 							<ul class="footer-payments">
 								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
@@ -1123,22 +736,22 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 
 		<!-- jQuery Plugins -->
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/jquery.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/jquery.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/bootstrap.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/slick.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/slick.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/nouislider.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/nouislider.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/jquery.zoom.min.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/jquery.zoom.min.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="Smarty/templates/js/main.js"><?php echo '</script'; ?>
+ src="/MusicCorner/Smarty/templates/js/main.js"><?php echo '</script'; ?>
 >
 
 	</body>

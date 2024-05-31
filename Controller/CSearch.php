@@ -1,7 +1,8 @@
 <?php
 
 class CSearch{
-    public static function search(string $query){
+    public static function search(){
+        $query = UHTTPMethods::post('query');
         /**
          * Retrieve article from idArticle
          */
