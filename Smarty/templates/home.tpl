@@ -22,7 +22,7 @@
 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
 		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="Smarty\templates\css/font-awesome.min.css">
+		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
