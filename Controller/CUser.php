@@ -28,9 +28,13 @@ class CUser{
     }
 
     public static function login(){
-        //$view = new VUser();
-        $email = $_GET["email"];
-        $password = $_GET["password"];
+        $view = new VLogin();
+        $view->showLogin();
+        
+    }
+    public static function checkLogin(){
+        $email=UHTTPMethods::post('email');
+        $password = UHTTPMethods::post('password'); //DA MIGLIORARE
         if(FPersistentManager::getInstance()->verifyUserEmail($email)){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class,$email);
             //if(password_verify($_GET["password"], $user->getPassword())){
@@ -67,6 +71,7 @@ class CUser{
         else{
             //$view->loginError();
         }
+
     }
 
     public static function register(){
