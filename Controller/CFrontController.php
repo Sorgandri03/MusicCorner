@@ -34,12 +34,14 @@ class CFrontController{
                         else if ($num == 2) $controller::$method($param[0], $param[1]);
 
                 }else{
-                    //PAGE 404
+                    $view = new V404();
+                    $view->show404();
                 }
             }
             
         }else{
-            //PAGE 404
+            $view = new V404();
+            $view->show404();
         }
     }
 }
