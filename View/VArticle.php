@@ -22,4 +22,5 @@ class VArticle
         $this->smarty->assign('article', $article);
         $this->smarty->display('article.tpl');
     }
+    
 }
