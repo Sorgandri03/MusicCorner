@@ -69,24 +69,26 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
-					<div class="col-md-7">
-						<!-- Billing Details -->
+					<div class="col-md-3"></div>
+					<div class="col-md-5">
+						<!-- Login Form -->
 						<div class="login-form">
-							<div class="section-title">
-								<h3 class="title">Login</h3>
+							<div class="section-title-center">
+								<h1 class="title">Login</h3>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="first-name" placeholder="Email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Password">
-                            </div>																				
+								<input class="input" type="password" name="last-name" placeholder="Password">
+                            </div>
+							<div class="primary-btn-center">Login</div>																		
 						</div>
-						<!-- /Billing Details -->																																			
-					</div>										
+						<!-- /Login Form -->																																
+					</div>
 				</div>
 				<!-- /row -->
+
 			</div>
 			<!-- /container -->
 		</div>
@@ -94,12 +96,8 @@
 						
 		<!-- FOOTER -->
 		<footer id="footer">
-			<!-- top footer -->
-			
-			<!-- /top footer -->
-
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
+			<!-- fixed footer -->
+			<div id="fixed-footer" class="section">
 				<div class="container">
 					<!-- row -->
 					<div class="row">
@@ -112,7 +110,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright ©<script>document.write(new Date().getFullYear());</script>2024 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -121,7 +119,7 @@
 				</div>
 				<!-- /container -->
 			</div>
-			<!-- /bottom footer -->
+			<!-- /fixed footer -->
 		</footer>
 		<!-- /FOOTER -->
 

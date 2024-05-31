@@ -59,6 +59,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #333;
+  height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -104,6 +105,21 @@ ul, ol {
   transition: 0.2s all;
 }
 
+.primary-btn-center {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 30px;
+  background-color: #0037b8;
+  border: none;
+  border-radius: 40px;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
 .primary-btn:hover, .primary-btn:focus {
   opacity: 0.9;
   color: #FFF;
@@ -118,7 +134,7 @@ ul, ol {
 .input {
   height: 40px;
   padding: 0px 15px;
-  border: 1px solid #E4E7ED;
+  border: 2px solid #E4E7ED;
   background-color: #FFF;
   width: 100%;
 }
@@ -298,6 +314,13 @@ textarea.input {
 
 .section-title {
   position: relative;
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+
+.section-title-center {
+  position: relative;
+  text-align: center;
   margin-bottom: 30px;
   margin-top: 15px;
 }
@@ -2011,6 +2034,15 @@ textarea.input {
 
 #bottom-footer {
   background: #1E1F29;
+}
+
+#fixed-footer {
+  background: #1E1F29;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 999;
 }
 
 .footer {
