@@ -74,11 +74,15 @@ class CUser{
 
     }
 
-    public static function register(){
-        $email = $_GET["email"];
-        $password = $_GET["password"];
-        $name = $_GET["name"];
-        $userType = $_GET["userType"];
+    public static function registration(){
+        $view = new VRegistration();
+        $view->showRegistration();
+        /*
+        $email = $_GET["email"]; //DA FIXARE
+        $password = $_GET["password"]; //DA FIXARE
+        $name = $_GET["name"]; //DA FIXARE
+        $userType = $_GET["userType"]; //DA FIXARE
+       
         
         if(session_status() == PHP_SESSION_NONE){
             USession::getInstance();
@@ -109,7 +113,7 @@ class CUser{
             echo "Registration successful";
         } else {
             echo "Registration failed";
-        }
+        }*/
     }
 
     public static function logout(){

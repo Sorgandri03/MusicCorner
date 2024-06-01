@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 13:05:25
+/* Smarty version 5.1.0, created on 2024-06-01 19:53:00
   from 'file:login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b007574dd56_66017249',
+  'unifunc' => 'content_665b5ffc93b410_51616744',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f123f58d13bccb888cb040bd52408472408f16cd' => 
     array (
       0 => 'login.tpl',
-      1 => 1717239921,
+      1 => 1717264377,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b007574dd56_66017249 (\Smarty\Template $_smarty_tpl) {
+function content_665b5ffc93b410_51616744 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>MusicCorner Login</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -106,10 +106,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 							<div class="form-group">
 								<input class="input" type="password" name="last-name" placeholder="Password">
                             </div>
-							<div class="primary-btn-center">Login</div>	
-							<div class="section-nav">
-								<a href="/MusicCorner/register">Don't have an account? Register</a>																	
-						</div>
+							<div class="form-group">
+								<button class="primary-btn-center ">Login</button>
+								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
+							</div>
 						<!-- /Login Form -->																																
 					</div>
 				</div>

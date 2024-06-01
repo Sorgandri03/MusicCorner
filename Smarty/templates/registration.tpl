@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner Login</title>
+		<title>MusicCorner Registration</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -68,19 +68,25 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-5">
 						<!-- Login Form -->
-						<div class="login-form">
+						<div class="registration-form">
 							<div class="section-title-center">
-								<h1 class="title">Login</h3>
+								<h1 class="title">Register to our site!</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Email">
+								<input class="input" type="text" name="username" placeholder="Username">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="last-name" placeholder="Password">
-                            </div>
+								<input class="input" type="text" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="passsword" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
+							</div>
 							<div class="form-group">
 								<button class="primary-btn-center ">Login</button>
-								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
+								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
 							</div>
 						<!-- /Login Form -->																																
 					</div>
