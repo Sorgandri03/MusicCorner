@@ -2231,3 +2231,20 @@ textarea.input {
     margin-top: 10px;
   }
 }
+/* aggiunto dopo */
+.container {
+  text-align: center; /* Centra gli elementi orizzontalmente */
+}
+
+.btn {
+  display: block; /* Assicura che il bottone occupi l'intera larghezza disponibile */
+  margin: 0 auto; /* Centra il bottone orizzontalmente */
+  margin-bottom: 20px; /* Spaziatura tra il bottone e il link */
+}
+
+.centered-link {
+  display: inline-block; /* Assicura che il link sia trattato come un blocco per l'eventuale aggiunta di padding o margin */
+  margin-top: 20px; /* Spaziatura tra il link e il bottone */
+  text-align: center; /* Centra il testo all'interno del link */
+}
+

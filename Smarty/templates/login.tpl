@@ -78,10 +78,10 @@
 							<div class="form-group">
 								<input class="input" type="password" name="last-name" placeholder="Password">
                             </div>
-							<div class="primary-btn-center">Login</div>	
-							<div class="section-nav">
-								<a href="/MusicCorner/register">Don't have an account? Register</a>																	
-						</div>
+							<div class="form-group">
+								<button class="primary-btn-center ">Login</button>
+								<p>Don't have an account? <a href="/MusicCorner/register" class="centered-link">Register</a></p>
+							</div>
 						<!-- /Login Form -->																																
 					</div>
 				</div>
