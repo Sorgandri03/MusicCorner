@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-31 19:16:09
+/* Smarty version 5.1.0, created on 2024-06-01 13:05:25
   from 'file:login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665a05d9b20d77_84045471',
+  'unifunc' => 'content_665b007574dd56_66017249',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f123f58d13bccb888cb040bd52408472408f16cd' => 
     array (
       0 => 'login.tpl',
-      1 => 1717175765,
+      1 => 1717239921,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665a05d9b20d77_84045471 (\Smarty\Template $_smarty_tpl) {
+function content_665b007574dd56_66017249 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -106,7 +106,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 							<div class="form-group">
 								<input class="input" type="password" name="last-name" placeholder="Password">
                             </div>
-							<div class="primary-btn-center">Login</div>																		
+							<div class="primary-btn-center">Login</div>	
+							<div class="section-nav">
+								<a href="/MusicCorner/register">Don't have an account? Register</a>																	
 						</div>
 						<!-- /Login Form -->																																
 					</div>
