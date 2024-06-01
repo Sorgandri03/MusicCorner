@@ -80,7 +80,7 @@
                             </div>
 							<div class="form-group">
 								<button class="primary-btn-center ">Login</button>
-								<p>Don't have an account? <a href="/MusicCorner/User/register" class="centered-link">Register</a></p>
+								<div>Don't have an account? <a href="/MusicCorner/User/register" class="centered-link">Register</div></p>
 							</div>
 						<!-- /Login Form -->																																
 					</div>
