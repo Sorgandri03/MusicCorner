@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-31 18:36:09
+/* Smarty version 5.1.0, created on 2024-06-04 16:53:32
   from 'file:home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6659fc796fbdd6_13028709',
+  'unifunc' => 'content_665f2a6cb39654_52440290',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '28d07060916d17f761aa9edad0eb43979b3d4424' => 
     array (
       0 => 'home.tpl',
-      1 => 1717170152,
+      1 => 1717512787,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6659fc796fbdd6_13028709 (\Smarty\Template $_smarty_tpl) {
+function content_665f2a6cb39654_52440290 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>MusicCorner - Music for you</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -453,12 +453,12 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="/MusicCorner/Smarty/templates/img/product09.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/Cassetta.jpg" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<h3 class="product-name"><a href="#">sborratos</a></h3>
+										<h4 class="product-price">$20.00 <del class="product-old-price">$30.00</del></h4>
 									</div>
 								</div>
 								<!-- product widget -->
