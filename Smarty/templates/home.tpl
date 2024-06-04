@@ -229,7 +229,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Utopia/a></h3>
+												<h3 class="product-name"><a href="#">Utopia></h3>
 												<h4 class="product-price">$7.00
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
