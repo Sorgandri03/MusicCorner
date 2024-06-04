@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>MusicCorner - Music for you</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -77,14 +77,14 @@
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
-											{foreach from=$cart->getCartItems() item=article}
+											{foreach from=$cart->getCartItems() item=quantity key=stock}
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+														<img src="https://www.ibs.it/images/{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">$article->getName</a></h3>
-														<h4 class="product-price"><span class="qty">1x</span>€20.00</h4>
+														<h3 class="product-name"><a href="#">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getName()}</a></h3>
+														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getPrice()}</h4>
 													</div>
 													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
@@ -92,7 +92,7 @@
 										</div>
 										<div class="cart-summary">
 											<small>{count($cart->getCartItems())} Item(s) selected</small>
-											<h5>SUBTOTAL: {$cart->getTotalPrice()}</h5>
+											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="#">View Cart</a>

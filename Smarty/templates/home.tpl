@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>MusicCorner - Music for you</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -200,13 +200,12 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">Top selling</h3>
+							<h3 class="title">Ultimi Arrivi</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+									<li class="active"><a data-toggle="tab" href="#tab2">Vinili</a></li>
+									<li><a data-toggle="tab" href="#tab2">CD</a></li>
+									<li><a data-toggle="tab" href="#tab2">Cassette</a></li>
 								</ul>
 							</div>
 						</div>
@@ -223,16 +222,15 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="/MusicCorner/Smarty/templates/img/product06.png" alt="">
+												<img src="/MusicCorner/Smarty/templates/img/CD.jpg" alt="">
 												<div class="product-label">
-													<span class="sale">-30%</span>
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<p class="product-category">CD</p>
+												<h3 class="product-name"><a href="#">Utopia</h3>
+												<h4 class="product-price">$7.00
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -424,12 +422,12 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="/MusicCorner/Smarty/templates/img/product09.png" alt="">
+										<img src="/MusicCorner/Smarty/templates/img/Cassetta.jpg" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<h3 class="product-name"><a href="#">sborratos</a></h3>
+										<h4 class="product-price">$20.00 <del class="product-old-price">$30.00</del></h4>
 									</div>
 								</div>
 								<!-- product widget -->
