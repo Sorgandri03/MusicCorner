@@ -21,16 +21,20 @@ class V404
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('username'));
         }
         else{
-            $this->smarty->assign('username','Accedi/Registrati');}
+            $this->smarty->assign('username','Accedi/Registrati');
+        }
+
 
         if(USession::getInstance()->isSetSessionElement('cart')){
-            $this->smarty->assign('cart',USession::getInstance()->getSessionElement('cart'));
-        
-        }else{
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
             $cart = new ECart('guest');
-            $this->smarty->assign('cart',$cart);
-            }
-            
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+        //$cart->addArticle(3, 1);
+        
+        $this->smarty->assign('cart',$cart);
         $this->smarty->display('Smarty\templates\404.tpl');
     }
 }
