@@ -47,4 +47,11 @@ class ECart {
         }
         return $price;
     }
+    public function getCartQuantity(): int {
+        $total = 0;
+        foreach ($this->cartItems as $item => $quantity) {
+            $total += $quantity;
+        }
+        return $total;
+    }
 }

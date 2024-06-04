@@ -32,7 +32,6 @@ class V404
             $cart = new ECart('guest');
             USession::getInstance()->setSessionElement('cart',$cart);
         }
-        //$cart->addArticle(3, 1);
         
         $this->smarty->assign('cart',$cart);
         $this->smarty->display('Smarty\templates\404.tpl');

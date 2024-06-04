@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-31 17:08:13
+/* Smarty version 5.1.0, created on 2024-06-04 17:45:13
   from 'file:Smarty\templates\404.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6659e7dd9e8b92_24187422',
+  'unifunc' => 'content_665f36898fb8c9_58767690',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0283d9861d1a71a241e260b24a096526b094cb3a' => 
     array (
       0 => 'Smarty\\templates\\404.tpl',
-      1 => 1717168092,
+      1 => 1717515911,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6659e7dd9e8b92_24187422 (\Smarty\Template $_smarty_tpl) {
+function content_665f36898fb8c9_58767690 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>MusicCorner - Music for you</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -101,25 +101,28 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Carrello</span>
-										<div class="qty"><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('cart')->getCartItems());?>
+										<div class="qty"><?php echo $_smarty_tpl->getValue('cart')->getCartQuantity();?>
 </div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											<?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('cart')->getCartItems(), 'article');
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('cart')->getCartItems(), 'quantity', false, 'stock');
 $foreach0DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('article')->value) {
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('stock')->value => $_smarty_tpl->getVariable('quantity')->value) {
 $foreach0DoElse = false;
 ?>
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/<?php echo $_smarty_tpl->getValue('article')->getId();?>
+														<img src="https://www.ibs.it/images/<?php echo FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getArticle())->getId();?>
 _0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">$article->getName</a></h3>
-														<h4 class="product-price"><span class="qty">1x</span>€20.00</h4>
+														<h3 class="product-name"><a href="#"><?php echo FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getArticle())->getName();?>
+</a></h3>
+														<h4 class="product-price"><span class="qty"><?php echo $_smarty_tpl->getValue('quantity');?>
+x</span>€<?php echo FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getPrice();?>
+</h4>
 													</div>
 													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
@@ -128,9 +131,9 @@ _0_536_0_75.jpg" alt="">
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 										</div>
 										<div class="cart-summary">
-											<small><?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('cart')->getCartItems());?>
+											<small><?php echo $_smarty_tpl->getValue('cart')->getCartQuantity();?>
  Item(s) selected</small>
-											<h5>SUBTOTAL: <?php echo $_smarty_tpl->getValue('cart')->getTotalPrice();?>
+											<h5>SUBTOTAL: €<?php echo $_smarty_tpl->getValue('cart')->getTotalPrice();?>
 </h5>
 										</div>
 										<div class="cart-btns">
