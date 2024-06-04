@@ -73,7 +73,7 @@
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Carrello</span>
-										<div class="qty">{count($cart->getCartItems())}</div>
+										<div class="qty">{$cart->getCartQuantity()}</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
@@ -91,7 +91,7 @@
 											{/foreach}
 										</div>
 										<div class="cart-summary">
-											<small>{count($cart->getCartItems())} Item(s) selected</small>
+											<small>{$cart->getCartQuantity()} Item(s) selected</small>
 											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
