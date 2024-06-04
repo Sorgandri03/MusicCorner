@@ -85,7 +85,7 @@
 								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
 							</div>
 							<div class="form-group">
-								<button class="primary-btn-center ">Login</button>
+								<button class="primary-btn-center ">Register</button>
 								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
 							</div>
 						<!-- /Login Form -->																																
