@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-04 17:07:13
+/* Smarty version 5.1.0, created on 2024-06-04 17:08:41
   from 'file:home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665f2da1cc79b7_52425520',
+  'unifunc' => 'content_665f2df9c00365_62793967',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '28d07060916d17f761aa9edad0eb43979b3d4424' => 
     array (
       0 => 'home.tpl',
-      1 => 1717513617,
+      1 => 1717513700,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665f2da1cc79b7_52425520 (\Smarty\Template $_smarty_tpl) {
+function content_665f2df9c00365_62793967 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -257,7 +257,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
+												<p class="product-category">CD</p>
 												<h3 class="product-name"><a href="#">Utopia</h3>
 												<h4 class="product-price">$7.00
 												<div class="product-rating">
