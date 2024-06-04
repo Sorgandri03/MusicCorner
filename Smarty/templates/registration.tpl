@@ -73,7 +73,7 @@
 								<h1 class="title">Register to our site!</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="username" placeholder="Username">
+								<input class="input" type="text" name="name" placeholder="Username/Shopname">
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="email" placeholder="Email">
@@ -83,6 +83,10 @@
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
+							</div>
+							<div class="form-group">
+								<input type="checkbox" name="seller" id="seller-checkbox">
+								<label for="seller-checkbox">Register as a seller</label>
 							</div>
 							<div class="form-group">
 								<button class="primary-btn-center ">Register</button>
