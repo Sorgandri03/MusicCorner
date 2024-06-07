@@ -23,7 +23,7 @@ class CSearch{
         /**
         * Show article page
         */
-        $view = new VArticle();
+        $view = new VSearch();
         $view->showArticle($article);
     }
 }
