@@ -213,6 +213,14 @@ textarea.input {
   height: 40px;
 }
 
+.store-select {
+  padding: 0px 15px;
+  background: #FFF;
+  border: 1px solid #E4E7ED;
+  height: 40px;
+  width: max-content;
+}
+
 /*-- checkbox & radio input --*/
 
 .input-radio, .input-checkbox {
@@ -1536,15 +1544,22 @@ textarea.input {
 }
 
 .product-details .product-available {
-  font-size: 12px;
+  font-size: 20px;
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 30px;
   color: #0037b8;
 }
 
+.product-details .product-unavailable {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #0037b8;
+}
+
 .product-details .product-options {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 

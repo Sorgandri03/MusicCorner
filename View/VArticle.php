@@ -18,7 +18,13 @@ class VArticle
     public function showArticle($article)
     {
         
-        $this->smarty->assign('username','Accedi');
+        if(USession::getInstance()->isSetSessionElement('username')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('username'));
+        }
+        else{
+            $this->smarty->assign('username','Accedi/Registrati');
+        }
+        
         $this->smarty->assign('article', $article);
         $this->smarty->display('article.tpl');
     }

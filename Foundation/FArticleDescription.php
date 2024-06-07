@@ -85,4 +85,14 @@ class FArticleDescription{
         $obj->setStocks(FStock::getStocksByArticle($result[0]['EAN']));
         return $obj;
     }
+
+    public static function getArticlesByArtist($artist){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'artist', $artist);
+        $articles = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $article = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $articles[] = $article;
+        }
+        return $articles;
+    }
 }

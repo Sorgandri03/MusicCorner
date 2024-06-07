@@ -48,8 +48,8 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="Smarty\templates\img\hhh.png" alt="">
+								<a href="/MusicCorner/" class="logo">
+									<img src="/MusicCorner/Smarty/templates/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -58,14 +58,9 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+								<form id='search' action="/MusicCorner/Search/search" method="post">
+									<input class="input" placeholder="Cerca qui" name="query">
+									<button class="search-btn">Cerca</button>
 								</form>
 							</div>
 						</div>
@@ -75,7 +70,7 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 
-                                <!-- Cart -->
+                                <!-- Cart #TODO -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
@@ -121,7 +116,7 @@
                             
 								<!-- Account -->
 								<div>
-									<a href="#">
+									<a href="../../User/login">
 										<i class="fa fa-user-o"></i>
 										<span>{$username}</span>
 									</a>
@@ -171,7 +166,10 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
+							<br>
 							<h2 class="product-name">{$article->getName()}</h2>
+							<p>{$article->getArtist()}</p>
+							
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -180,60 +178,56 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star-o"></i>
 								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+								<a class="review-link" href="#">10 Review(s)</a>
 							</div>
-							<div>
-								<h3 class="product-price">€15.99</h3>
-								<span class="product-available">In Stock</span>
-							</div>
-							<p>{$article->getArtist()}</p>
+							
+							
 
 							<div class="product-options">
+								{if $article->getLowestPrice()==0}
+								<div>
+									<span class="product-unavailable">Non in stock</span>
+								</div>
+							</div>				
+								{else}
+								<div>
+									<h4 class="product-price">€{$article->getLowestPrice()}</h4>
+									<span class="product-available">In Stock</span>
+								</div>
 								<label>
-									Size
-									<select class="input-select">
-										<option value="0">X</option>
-									</select>
-								</label>
-								<label>
-									Color
-									<select class="input-select">
-										<option value="0">Red</option>
+									Negozi&nbsp&nbsp
+									<select class="store-select">
+										{foreach from=$article->getStocks() item=stock}
+										<option value={$smarty.foreach.article.iteration}>{FPersistentManager::getInstance()->retrieveObj(ESeller::class,$stock->getSeller())->getShopName()} : €{$stock->getPrice()}  </option>
+										{/foreach}
 									</select>
 								</label>
 							</div>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
-									Qty
+									Quantità&nbsp&nbsp
 									<div class="input-number">
-										<input type="number">
+										<input type="number" value="1">
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
 								</div>
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 							</div>
-
-							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
-							</ul>
+							{/if}
+							
 
 							<ul class="product-links">
-								<li>Category:</li>
-								<li><a href="#">Headphones</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li>Formato</li>
+								{if $article->getFormat()==1}
+									<li><a href="#">LP</a></li>
+								{elseif $article->getFormat()==1}
+									<li><a href="#">Cassetta</a></li>
+								{else}
+									<li><a href="#">CD</a></li>
+								{/if}								
 							</ul>
-
-							<ul class="product-links">
-								<li>Share:</li>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i></a></li>
-							</ul>
-
 						</div>
 					</div>
 					<!-- /Product details -->
@@ -244,34 +238,9 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
 							</ul>
 							<!-- /product tab nav -->
-
-							<!-- product tab content -->
-							<div class="tab-content">
-								<!-- tab1  -->
-								<div id="tab1" class="tab-pane fade in active">
-									<div class="row">
-										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-										</div>
-									</div>
-								</div>
-								<!-- /tab1  -->
-
-								<!-- tab2  -->
-								<div id="tab2" class="tab-pane fade in">
-									<div class="row">
-										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-										</div>
-									</div>
-								</div>
-								<!-- /tab2  -->
-
 								<!-- tab3  -->
 								<div id="tab3" class="tab-pane fade in">
 									<div class="row">
@@ -360,7 +329,7 @@
 										<!-- /Rating -->
 
 										<!-- Reviews -->
-										<div class="col-md-6">
+										<div class="col-md-9">
 											<div id="reviews">
 												<ul class="reviews">
 													<li>
@@ -412,39 +381,9 @@
 														</div>
 													</li>
 												</ul>
-												<ul class="reviews-pagination">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-												</ul>
 											</div>
 										</div>
 										<!-- /Reviews -->
-
-										<!-- Review Form -->
-										<div class="col-md-3">
-											<div id="review-form">
-												<form class="review-form">
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
-													<div class="input-rating">
-														<span>Your Rating: </span>
-														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
-														</div>
-													</div>
-													<button class="primary-btn">Submit</button>
-												</form>
-											</div>
-										</div>
-										<!-- /Review Form -->
 									</div>
 								</div>
 								<!-- /tab3  -->
@@ -469,29 +408,26 @@
 
 					<div class="col-md-12">
 						<div class="section-title text-center">
-							<h3 class="title">Related Products</h3>
+							<h3 class="title">Altro di {$article->getArtist()}</h3>
 						</div>
 					</div>
 
 					<!-- product -->
+					{foreach from=FArticleDescription::getArticlesByArtist($article->getArtist())   item=product}
 					<div class="col-md-3 col-xs-6">
 						<div class="product">
 							<div class="product-img">
-								<img src="Smarty/templates/img/product01.png" alt="">
-								<div class="product-label">
-									<span class="sale">-30%</span>
-								</div>
+								<img src="https://www.ibs.it/images/{$product->getId()}_0_536_0_75.jpg" alt="">
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								<p class="product-category">{$product->getArtist()}</p>
+								<h3 class="product-name"><a href="../article/{$product->getId()}#">{$product->getName()}</a></h3>
+								{if $product->getLowestPrice()==0}
+								<h4 class="product-price">Non in stock</h4>
+								{else}
+								<h4 class="product-price">€{$product->getLowestPrice()}</h4>
+								{/if}
 								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 								</div>
 							</div>
 							<div class="add-to-cart">
@@ -499,96 +435,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- /product -->
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="Smarty/templates/img/product02.png" alt="">
-								<div class="product-label">
-									<span class="new">NEW</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-					<div class="clearfix visible-sm visible-xs"></div>
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="Smarty/templates/img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="Smarty/templates/img/product04.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
-						</div>
-					</div>
+					{/foreach}
 					<!-- /product -->
 
 				</div>
@@ -609,7 +456,6 @@
 							<ul class="footer-payments">
 								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
@@ -630,11 +476,12 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="Smarty/templates/js/jquery.min.js"></script>
-		<script src="Smarty/templates/js/bootstrap.min.js"></script>
-		<script src="Smarty/templates/js/slick.min.js"></script>
-		<script src="Smarty/templates/js/nouislider.min.js"></script>
-		<script src="Smarty/templates/js/jquery.zoom.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/bootstrap.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/slick.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/nouislider.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/jquery.zoom.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/main.js"></script>
 		
 
 	</body>
