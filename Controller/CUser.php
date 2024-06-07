@@ -3,34 +3,63 @@
 class CUser{
 
     public static function isLogged(){
+
+        $logged = false;
+
         if(UCookie::isSet('PHPSESSID')){
             if(session_status() == PHP_SESSION_NONE){
                 USession::getInstance();
             }
         }
         if(USession::isSetSessionElement('customer')){
-            echo USession::getSessionElement('customer');
-            exit();
-            //modifica l'header per andare nella dashboard del customer;
+            //echo USession::getSessionElement('customer');
+            if(self::isBanned()){
+                $view = new VUser();
+                USession::unsetSession();
+                USession::destroySession();
+                $view->loginBan();}
+            else
+                $logged = true;  
         }
         if(USession::isSetSessionElement('seller')){
-            echo USession::getSessionElement('seller');
-            exit();
-            //modifica l'header per andare nella dashboard dell'seller;
+            //echo USession::getSessionElement('seller');
+            $logged = true;
+            //exit();
         }
         if(USession::isSetSessionElement('admin')){
-            echo USession::getSessionElement('admin');
-            exit();
-            //modifica l'header per andare nella dashboard del admin;
+            //echo USession::getSessionElement('admin');
+            $logged = true;
+            //exit();
         }
         //mostra la view del login
-        echo "no";
+        if(!$logged){
+            self::login();
+            exit;
+        }
+    }
+    public static function isBanned(){
+        if(USession::isSetSessionElement('customer')){
+            $customer = USession::getSessionElement('customer');
+            if(new DateTime() < $customer->getSuspensionTime()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
     public static function login(){
-        $view = new VLogin();
-        $view->showLogin();
-        
+        if(UCookie::isSet('PHPSESSID')){
+            if(session_status() == PHP_SESSION_NONE){
+                USession::getInstance();
+            }
+        }
+        if(USession::isSetSessionElement('user')){
+            header('Location: /Agora/User/home');
+        }
+        $view = new VUser();
+        $view->showLoginForm();
     }
     public static function checkLogin(){
         $email=UHTTPMethods::post('email');
@@ -125,16 +154,6 @@ class CUser{
         echo "logout";
     }
 
-    public static function isBanned(){
-        if(USession::isSetSessionElement('customer')){
-            $customer = USession::getSessionElement('customer');
-            if(new DateTime() < $customer->getSuspensionTime()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
+  
 
 }
