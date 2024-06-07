@@ -68,18 +68,27 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-5">
 						<!-- Login Form -->
-						<div class="login-form">
+						{if $error == true}
+						<p style="color: red; margin-left: 11%">username or password incorrect</p>
+						{/if}
+					  {if $ban == true}
+						<p style="color: red; margin-left: 7%">the user you are trying to access is banned</p>
+						{/if}
+						{if $regErr == true}
+						  <p style="color: red; margin-left: 7%">email or username is already taken</p>
+						  {/if}
+						<div class="login-form" action="/MusicCorner/User/checkLogin" method="post">
 							<div class="section-title-center">
 								<h1 class="title">Login</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Email">
+								<input class="input" type="text"  placeholder="Enter Email" name="email" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="last-name" placeholder="Password">
+								<input class="input" type="password"  placeholder="Enter Password" name="password" required>
                             </div>
 							<div class="form-group">
-								<button class="primary-btn-center ">Login</button>
+								<button type="submit" class="primary-btn-center">Log in</button>
 								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
 							</div>
 						<!-- /Login Form -->																																
@@ -91,6 +100,8 @@
 			<!-- /container  -->
 		</div>
 		<!-- /SECTION -->
+
+		
 						
 		<!-- FOOTER -->
 		<footer id="footer">

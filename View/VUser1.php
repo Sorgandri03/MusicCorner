@@ -20,9 +20,7 @@ class VUser
         if(USession::getInstance()->isSetSessionElement('customer'))
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer'));
         else
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller'));
-
-        
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller'));       
     }
    public function showCustomerDashboard()
     {

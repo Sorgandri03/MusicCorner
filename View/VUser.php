@@ -15,9 +15,9 @@ class VUser{
      * @throws SmartyException
      */
     public function showLoginForm(){
-        //$this->smarty->assign('error', false);
-        //$this->smarty->assign('ban',false);
-        //$this->smarty->assign('regErr',true);
+        $this->smarty->assign('error', false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('login.tpl');
     }
 
@@ -48,25 +48,25 @@ class VUser{
         $this->smarty->assign('regErr',false);
         $this->smarty->display('login.tpl');
     }
-/**
+
+    /**
      * @throws SmartyException
      */
-    public function showUserDashboard()
-    {
-        if(USession::getInstance()->isSetSessionElement('customer'))
+    public function showUserDashboard(){
+        if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer'));
-        else
+            $this->smarty->display('customerDashboard.tpl');
+        }
+        elseif(USession::getInstance()->isSetSessionElement('seller')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller'));
+            $this->smarty->display('sellerDashboard.tpl');
+        }
+        elseif(USession::getInstance()->isSetSessionElement('admin')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('admin'));
+            $this->smarty->display('adminDashboard.tpl');
+        } 
+    }
 
-        
-    }
-   public function showCustomerDashboard()
-    {
-        $this->smarty->display('customerDashboard.tpl');
-    }
-    public function showSellerDashboard()
-    {
-        $this->smarty->display('sellerDashboard.tpl');
-    }
+
 
 }

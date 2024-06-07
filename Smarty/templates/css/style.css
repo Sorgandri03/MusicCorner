@@ -213,14 +213,6 @@ textarea.input {
   height: 40px;
 }
 
-.store-select {
-  padding: 0px 15px;
-  background: #FFF;
-  border: 1px solid #E4E7ED;
-  height: 40px;
-  width: max-content;
-}
-
 /*-- checkbox & radio input --*/
 
 .input-radio, .input-checkbox {
@@ -1544,22 +1536,15 @@ textarea.input {
 }
 
 .product-details .product-available {
-  font-size: 20px;
+  font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 30px;
   color: #0037b8;
 }
 
-.product-details .product-unavailable {
-  font-size: 12px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #0037b8;
-}
-
 .product-details .product-options {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -2051,7 +2036,7 @@ textarea.input {
 ===========================================================*/
 
 #footer {
-  background: #0037b8;
+  background: #1a970f;
   color: #B9BABC;
 }
 
@@ -2110,7 +2095,7 @@ textarea.input {
 }
 
 .footer-payments li a {
-  color: #0037b8;
+  color: #1a970f;
   font-size: 36px;
   display: block;
 }
@@ -2263,3 +2248,102 @@ textarea.input {
   text-align: center; /* Centra il testo all'interno del link */
 }
 
+/*form login 2.0*/
+.box .form-box{
+  width:25rem;
+  height: 41rem;
+  position: relative;
+  margin: 3% auto;
+  background:  var(--color-white);
+  padding:5px;
+  overflow: hidden;
+}
+.box .form-box h3{
+ margin-left:40%;
+}
+.box .button-box{
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 20px 9px var(--color-light);
+  border-radius:30px ;
+}
+
+.toggle-btn{
+  padding:10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+#btn-log{
+  top:0;
+  left:0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.social-photo{
+  margin:30px;
+  text-align: center;
+}
+
+.social-photo img{
+  width: 30px;
+  margin: 0 12px;
+  box-shadow: 0 0 20px 0 #7f7f7f3d;
+  cursor: pointer;
+  border-radius: 15%;
+}
+
+.vip{
+  background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+.input-group{
+  top: 180px;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+}
+
+.input-field{
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+
+.submit-btn{
+  width:85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin:auto;
+  background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+  border:0;
+  outline: none;
+  border-radius: 30px;
+}
+
+#login{
+  left: 50px;
+}
+
+#register{
+  left: 450px;
+}

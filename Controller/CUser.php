@@ -12,12 +12,10 @@ class CUser{
             }
         }
         if(USession::isSetSessionElement('customer')){
-            //echo USession::getSessionElement('customer');
             if(self::isBanned()){
-                $view = new VUser();
                 USession::unsetSession();
                 USession::destroySession();
-                $view->loginBan();}
+                $logged = false;}
             else
                 $logged = true;  
         }
@@ -31,12 +29,17 @@ class CUser{
             $logged = true;
             //exit();
         }
-        //mostra la view del login
-        if(!$logged){
-            $view = new VUser();
-            $view->showLoginForm(); 
+        if(!$logged && !self::isLoginPage()){
+            header('Location: /MusicCorner/User/login');
+            exit();
         }
+        return $logged;
     }
+        // Metodo per verificare se si trova sulla pagina di login
+    private static function isLoginPage() {
+        return isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/User/login') !== false;
+    }
+    
     public static function isBanned(){
         if(USession::isSetSessionElement('customer')){
             $customer = USession::getSessionElement('customer');
@@ -52,7 +55,9 @@ class CUser{
     public static function login(){
 
         if(self::isLogged()){
-            echo "sei loggato dashboard mancante";
+            echo "sei loggato ma manca la view del dashboard";
+            //$view = new VUser();
+            //$view->showUserDashboard(); non è ancora stata implementata
         }
         else
             $view = new VUser();
@@ -61,9 +66,9 @@ class CUser{
 
     public static function checkLogin(){
         $view = new VUser();
-        $email = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('username'));                                            
+        $email = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                            
         if($email){
-            $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('username'));
+            $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
                 if($user->isBanned()){
                     $view->loginBan();
