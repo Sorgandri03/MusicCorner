@@ -48,7 +48,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty/templates/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
