@@ -6,7 +6,7 @@ Colors:
 	Body 		: #333
 	Headers 	: #2B2D42
 	Primary 	: #0037b8
-	Dark 		: #1a970f ##1E1F29
+	Dark 		: #1a970f #1E1F29
 	Grey 		: #E4E7ED #FBFBFC #8D99AE #B9BABC
 
 Fonts: Montserrat
@@ -477,7 +477,7 @@ textarea.input {
 #header {
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #1a970f;
+  background-color: #1E1F29;
 }
 
 .header-logo {
@@ -706,7 +706,7 @@ textarea.input {
     position: fixed;
     left: 0;
     top: 0;
-    background: #1a970f;
+    background: #1E1F29;
     height: 100vh;
     max-width: 250px;
     width: 0%;
