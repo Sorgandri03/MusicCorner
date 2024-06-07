@@ -13,4 +13,4 @@ $articles = FPersistentManager::getInstance()->searchArticles("21");
 $smarty->assign('username','Accedi');
 $smarty->assign('article',$article);
 $smarty->assign('result',$articles);
-$smarty->display('search.tpl');
+$smarty->display('test.tpl');

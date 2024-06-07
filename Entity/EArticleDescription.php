@@ -51,5 +51,19 @@ class EArticleDescription {
     }
     public function setStocks(array $stocks) {
         $this->stocks = $stocks;
+        usort($this->stocks, "EArticleDescription::cmp");
+    }
+    public function getLowestPrice(){
+        $lowestPrice = 0;
+        foreach($this->stocks as $stock){
+            if($lowestPrice == 0 || $stock->getPrice() < $lowestPrice){
+                $lowestPrice = $stock->getPrice();
+                
+            }
+        }
+        return $lowestPrice;   
+    }
+    public static function cmp($a, $b) {
+        return strcmp($a->getPrice(), $b->getPrice());
     }
 }

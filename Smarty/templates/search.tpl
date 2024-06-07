@@ -48,7 +48,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty/templates/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -113,10 +113,9 @@
 
 								<!-- Account -->
 								<div>
-									<a href="#">
+									<a href="../User/login">
 										<i class="fa fa-user-o"></i>
 										<span>{$username}</span>
-										<div class="qty">2</div>
 									</a>
 								</div>
 								<!-- /Account -->
@@ -185,7 +184,18 @@
 										<div class="product-body">
 											<p class="product-category">{$article->getArtist()}</p>
 											<h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
-											<h4 class="product-price">€20.00</h4>
+											{if $article->getFormat()==1}
+												<p class="product-category">LP</p>
+											{elseif $article->getFormat()==1}
+												<p class="product-category">Cassetta</p>
+											{else}
+												<p class="product-category">CD</p>
+											{/if}	
+											{if $article->getLowestPrice() == 0}
+											<h4 class="product-price">Non in stock</h4>
+											{else}
+											<h4 class="product-price">€{$article->getLowestPrice()}</h4>
+											{/if}
 										</div>
 										<div class="add-to-cart">
 											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>

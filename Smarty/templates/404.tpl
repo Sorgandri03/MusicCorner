@@ -102,14 +102,14 @@
 								</div>
 								<!-- /Cart -->
 
-								<!-- Wishlist -->
+								<!-- Account -->
 								<div>
 									<a href="./User/login">
 										<i class="fa fa-user-o"></i>
 										<span>{$username}</span>
 									</a>
 								</div>
-								<!-- /Wishlist -->
+								<!-- /Account -->
 
 							</div>
 							<div>
