@@ -1,5 +1,5 @@
 <?php
-
+require_once 'StartSmarty.php';
 class VUser{
 
     private $smarty;
@@ -11,26 +11,13 @@ class VUser{
     }
 
     /**
-     * @throws SmartyException
-     */
-    public function home(){
-        
-        if(USession::getInstance()->isSetSessionElement('username'))
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('username'));
-        else
-            $this->smarty->assign('username','Accedi/Registrati');
-     
-        $this->smarty->display('home.tpl');
-    }
-
-    /**
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
     public function showLoginForm(){
-        $this->smarty->assign('error', false);
-        $this->smarty->assign('ban',false);
-        $this->smarty->assign('regErr',true);
+        //$this->smarty->assign('error', false);
+        //$this->smarty->assign('ban',false);
+        //$this->smarty->assign('regErr',true);
         $this->smarty->display('login.tpl');
     }
 

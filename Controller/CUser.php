@@ -33,8 +33,8 @@ class CUser{
         }
         //mostra la view del login
         if(!$logged){
-            self::login();
-            exit;
+            $view = new VUser();
+            $view->showLoginForm(); 
         }
     }
     public static function isBanned(){
@@ -50,57 +50,55 @@ class CUser{
     }
 
     public static function login(){
-        if(UCookie::isSet('PHPSESSID')){
-            if(session_status() == PHP_SESSION_NONE){
-                USession::getInstance();
-            }
-        }
-        if(USession::isSetSessionElement('user')){
-            header('Location: /Agora/User/home');
-        }
-        $view = new VUser();
-        $view->showLoginForm();
-    }
-    public static function checkLogin(){
-        $email=UHTTPMethods::post('email');
-        $password = UHTTPMethods::post('password'); //DA MIGLIORARE
-        if(FPersistentManager::getInstance()->verifyUserEmail($email)){
-            $user = FPersistentManager::getInstance()->retrieveObj(EUser::class,$email);
-            //if(password_verify($_GET["password"], $user->getPassword())){
-            if($password == $user->getPassword()){
-                if(USession::getSessionStatus() == PHP_SESSION_NONE){
-                    USession::getInstance();
-                }
-                switch(FPersistentManager::getInstance()->checkUserType($email)){
-                    case "customer":
-                        USession::setSessionElement('customer', $user);
-                        if(self::isBanned()){
-                            echo "You are banned";
-                            return;
-                        }
-                        CCustomer::dashboard();
-                        break;
-                    case "seller":
-                        USession::setSessionElement('seller', $user);
-                        CSeller::dashboard();
-                        break;
-                    case "admin":
-                        USession::setSessionElement('admin', $user);
-                        CAdmin::dashboard();
-                        break;
-                    default:
-                        //$view->loginError();
-                        break;
-                }
-            }
-            else{
-                //$view->loginError();
-            }
-        }
-        else{
-            //$view->loginError();
-        }
 
+        if(self::isLogged()){
+            echo "sei loggato dashboard mancante";
+        }
+        else
+            $view = new VUser();
+            $view->showLoginForm();
+    }
+
+    public static function checkLogin(){
+        $view = new VUser();
+        $email = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('username'));                                            
+        if($email){
+            $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('username'));
+            if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
+                if($user->isBanned()){
+                    $view->loginBan();
+
+                }elseif(USession::getSessionStatus() == PHP_SESSION_NONE){
+                    USession::getInstance();
+                    switch(FPersistentManager::getInstance()->checkUserType($email)){
+                        case "customer":
+                            USession::setSessionElement('customer', $user);
+                            if(self::isBanned()){
+                                $view->loginBan();  
+                            }
+                            else
+                                CCustomer::dashboard();
+                            break;
+                        case "seller":
+                            USession::setSessionElement('seller', $user);
+                            CSeller::dashboard();
+                            break;
+                        case "admin":
+                            USession::setSessionElement('admin', $user);
+                            CAdmin::dashboard();
+                            break;
+                        default:
+                            $view->loginError();
+                            break;
+                    }  
+                    
+                }
+            }else{
+                $view->loginError();
+            }
+        }else{
+            $view->loginError();
+        }
     }
 
     public static function registration(){
@@ -149,9 +147,8 @@ class CUser{
         USession::getInstance();
         USession::unsetSession();
         USession::destroySession();
-        //$view = new VUser();
-        //$view->showLoginForm();
-        echo "logout";
+        $view = new VUser();
+        $view->showLoginForm();
     }
 
   
