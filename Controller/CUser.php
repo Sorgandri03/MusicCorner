@@ -1,5 +1,5 @@
 <?php
-
+//quando loggo come user, non funziona bene il checkLogin a causa del isBanned
 class CUser{
 
     public static function isLogged(){
@@ -15,18 +15,22 @@ class CUser{
             if(self::isBanned()){
                 USession::unsetSession();
                 USession::destroySession();
-                $logged = false;}
+                $logged = false;
+            echo "sei bannato";}
             else
-                $logged = true;  
+                $logged = true;
+                echo "sei loggato come customer";  
         }
         if(USession::isSetSessionElement('seller')){
             //echo USession::getSessionElement('seller');
             $logged = true;
+            echo "sei loggato come seller";
             //exit();
         }
         if(USession::isSetSessionElement('admin')){
             //echo USession::getSessionElement('admin');
             $logged = true;
+            echo "sei loggato come admin";
             //exit();
         }
         if(!$logged && !self::isLoginPage()){
@@ -43,7 +47,7 @@ class CUser{
     public static function isBanned(){
         if(USession::isSetSessionElement('customer')){
             $customer = USession::getSessionElement('customer');
-            if(new DateTime() < $customer->getSuspensionTime()) {
+            if($customer instanceof ECustomer && $customer->getSuspensionTime() > new DateTime()) {
                 return true;
             }
             else {
@@ -66,42 +70,47 @@ class CUser{
 
     public static function checkLogin(){
         $view = new VUser();
-        $email = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                            
-        if($email){
+        $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                           
+        if($validemail){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
+            echo $user->getId();
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
-                if($user->isBanned()){
-                    $view->loginBan();
-
-                }elseif(USession::getSessionStatus() == PHP_SESSION_NONE){
+                if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
-                    switch(FPersistentManager::getInstance()->checkUserType($email)){
+                    switch(FPersistentManager::getInstance()->checkUserType($user->getId())){
                         case "customer":
-                            USession::setSessionElement('customer', $user);
                             if(self::isBanned()){
                                 $view->loginBan();  
                             }
                             else
-                                CCustomer::dashboard();
+                                USession::setSessionElement('customer', $user);
+                               // CCustomer::dashboard();
+                                echo "sei loggato come customer";
+
                             break;
                         case "seller":
                             USession::setSessionElement('seller', $user);
-                            CSeller::dashboard();
+                            //CSeller::dashboard(); 
+                            echo "sei loggato come seller";
                             break;
                         case "admin":
                             USession::setSessionElement('admin', $user);
-                            CAdmin::dashboard();
+                            //CAdmin::dashboard();
+                            echo "sei loggato come admin";
                             break;
                         default:
+                            echo "pippo";
                             $view->loginError();
                             break;
                     }  
                     
                 }
             }else{
+                echo "pippo1";
                 $view->loginError();
             }
         }else{
+            echo "pippo2";
             $view->loginError();
         }
     }

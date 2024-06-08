@@ -63,4 +63,6 @@ Class CCustomer{
         }
         //CALL VIEW LOGIN
     }
+
+
 }
