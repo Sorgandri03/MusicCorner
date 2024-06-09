@@ -19,4 +19,16 @@ class VRegistration
     {
         $this->smarty->display('registration.tpl');
     }
+    public function showRegistrationCustomer()
+    {
+        $this->smarty->display('registrationcustomer.tpl');
+    }
+    public function showRegistrationSeller()
+    {
+        $this->smarty->display('registrationseller.tpl');
+    }
+    public function registrationError() {
+        $this->smarty->assign('regErr',true);
+        $this->smarty->display('registration.tpl');
+    }
 }

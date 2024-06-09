@@ -34,10 +34,7 @@ class CUser{
         }
         return $logged;
     }
-        // Metodo per verificare se si trova sulla pagina di login
-    private static function isLoginPage() {
-        return isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/User/login') !== false;
-    }
+
     
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
@@ -120,7 +117,34 @@ class CUser{
     public static function registration(){
         $view = new VRegistration();
         $view->showRegistration();
-        /*
+        if(FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email')) == false && FPersistentManager::getInstance()->verifyUserUsername(UHTTPMethods::post('username')) == false){
+            $user = new EUser(UHTTPMethods::post('name'), UHTTPMethods::post('surname'),UHTTPMethods::post('age'), UHTTPMethods::post('email'),UHTTPMethods::post('password'),UHTTPMethods::post('username'));
+            FPersistentManager::getInstance()->uploadObj($user);
+            header('Location: /MusicCorner/User/login');
+       }else{
+            $view->registrationError();
+        }
+    }
+    
+
+    public static function registrationCustomer(){
+        $view = new VRegistration();
+        $view->showRegistrationCustomer();
+    }
+    
+    public static function registrationSeller(){
+        $view = new VRegistration();
+        $view->showRegistrationSeller();
+    }
+
+    public static function logout(){
+        USession::getInstance();
+        USession::unsetSession();
+        USession::destroySession();
+        header('Location: /MusicCorner/User/login');
+    }
+}
+ /*
         $email = $_GET["email"]; //DA FIXARE
         $password = $_GET["password"]; //DA FIXARE
         $name = $_GET["name"]; //DA FIXARE
@@ -157,15 +181,3 @@ class CUser{
         } else {
             echo "Registration failed";
         }*/
-    }
-
-    public static function logout(){
-        USession::getInstance();
-        USession::unsetSession();
-        USession::destroySession();
-        header('Location: /MusicCorner/User/login');
-    }
-
-  
-
-}

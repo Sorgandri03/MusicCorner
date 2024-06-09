@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you - Login</title>
+		<title>MusicCorner - Music for you - Registration</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -46,7 +46,7 @@
 					<div class="row">
 						<!-- LOGO -->
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
+									<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center"  >
 								</a>
 						<!-- /LOGO -->																						
 					</div>
@@ -65,41 +65,36 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<div class="container-small">
-						<!-- Login Form -->
-						{if $error == true}
-						<p class="error-message">username or password incorrect</p>
-						{/if}
-					    {if $ban == true}
-						<p class="error-message">the user you are trying to access is banned</p>
-						{/if}
-						
-						<form class="login-form" action="/MusicCorner/User/checkLogin" method="post">
+						<!-- Registration Form -->
+						<div class="container-small">
 							<div class="section-title-center">
-								<h1 class="title">Login</h1>
+								<h1 class="title">Register to our site!</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text"  placeholder="Enter Email" name="email" required>
+								<input class="input" type="text" name="name" placeholder="Shopname">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password"  placeholder="Enter Password" name="password" required>
-                            </div>
-							<div class="form-group">
-								<button type="submit" class="submit-btn-custom">Log in</button>
-								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
+								<input class="input" type="text" name="email" placeholder="Email">
 							</div>
-						<!-- /Login Form -->
-						</form>																																
+							<div class="form-group">
+								<input class="input" type="password" name="passsword" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
+							</div>
+							<div class="form-group">
+								<button class="primary-btn-center ">Register</button>
+								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
+							</div>
+						<!-- /Registration Form -->																																
 					</div>
 				</div>
 				<!-- /row -->
 
 			</div>
-			<!-- /container  -->
+			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		
 						
 		<!-- FOOTER -->
 		<footer id="footer">

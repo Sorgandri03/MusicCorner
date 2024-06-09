@@ -127,6 +127,26 @@ ul, ol {
   transition: 0.2s all;
 }
 
+.choice-btn {
+  display: inline-block;
+  width: 100%; /* Imposta la larghezza automatica per un bottone rettangolare */
+  padding: 12px 30px;
+  background-color: #FFF; /* Sfondo bianco */
+  border: 2px solid #2B2D42; /* Bordo blu */
+  border-radius: 5px; /* Riduci il raggio per angoli rettangolari */
+  color: #2B2D42; /* Testo blu */
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.choice-btn.red {
+  color: #FF0000; /* Testo rosso */
+  border-color: #FF0000; /* Bordo rosso */
+}
+
 .primary-btn:hover, .primary-btn:focus {
   opacity: 0.9;
   color: #FFF;

@@ -46,7 +46,7 @@
 					<div class="row">
 						<!-- LOGO -->
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh2.png" alt="" class="center"  >
+									<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center"  >
 								</a>
 						<!-- /LOGO -->																						
 					</div>
@@ -57,7 +57,6 @@
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
-
 		
 		<!-- SECTION -->
 		<div class="section">
@@ -65,35 +64,26 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<div class="col-md-3"></div>
-					<div class="col-md-5">
+					{if $regErr == true}
+					<p class="error-message">email or username is already taken</p>
+					{/if}
 						<!-- Login Form -->
-						<div class="registration-form">
+						<div class="container-small">
 							<div class="section-title-center">
 								<h1 class="title">Register to our site!</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="name" placeholder="Username/Shopname">
+								<a href="/MusicCorner/User/registrationCustomer" class="choice-btn">Register as a Customer</a>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="email" placeholder="Email">
+								<a href="/MusicCorner/User/registrationSeller" class="choice-btn">Register as a Seller</a>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="passsword" placeholder="Password">
+								<a href="/MusicCorner/User/login" class="choice-btn red">Return to login page</a>
 							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
-							</div>
-							<div class="form-group">
-								<input type="checkbox" name="seller" id="seller-checkbox">
-								<label for="seller-checkbox">Register as a seller</label>
-							</div>
-							<div class="form-group">
-								<button class="primary-btn-center ">Register</button>
-								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
-							</div>
+
 						<!-- /Login Form -->																																
-					</div>
+						</div>
 				</div>
 				<!-- /row -->
 
