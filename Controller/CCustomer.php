@@ -3,18 +3,11 @@
 Class CCustomer{
 
     public static function dashboard(){
-        if(USession::getInstance()::isSetSessionElement('customer')){
             $view = new VUser();
             $view->showUserDashboard();
             return;
             //modifica l'header per andare nella dashboard del customer;
-        }
-        else{
-            $view = new VUser();
-            $view->showLoginForm();
-            return;
-            //mostra la view del login
-        }
+        
         
     }
     public static function orders(){
