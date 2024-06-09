@@ -93,6 +93,26 @@ class FPersistentManager{
         return $articles;
     }
 
+    public static function getRandomArticles($quantity){
+        $results = FDB::getInstance()::getRandomArticles($quantity);
+        $articles = array();
+        foreach($results as $result){
+            $article = FArticleDescription::retrieveObject($result['EAN']);
+            $articles[] = $article;
+        }
+        return $articles;
+    }
+
+    public static function getArticlesByFormat($format){
+        $results = FDB::getInstance()::getArticlesByFormat($format);
+        $articles = array();
+        foreach($results as $result){
+            $article = FArticleDescription::retrieveObject($result['EAN']);
+            $articles[] = $article;
+        }
+        return $articles;
+    }
+
     public static function retrieveAll($entity){
         $class = "F" . substr($entity,1);
         $result = call_user_func([$class, "retrieveAllObjects"]);

@@ -144,4 +144,48 @@ class FDB {
         }
     }
 
+    public static function getRandomArticles($quantity){
+        try{
+            $query = "SELECT * FROM ArticleDescription ORDER BY RAND() LIMIT " . $quantity . ";";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $rowNum = $stmt->rowCount();
+            if($rowNum > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                return $result;
+            }else{
+                return array();
+            }
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function getArticlesByFormat($format){
+        try{
+            $query = "SELECT * FROM ArticleDescription WHERE format=" . $format . ";";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $rowNum = $stmt->rowCount();
+            if($rowNum > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                return $result;
+            }else{
+                return array();
+            }
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }

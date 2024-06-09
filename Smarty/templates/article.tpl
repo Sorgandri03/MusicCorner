@@ -70,40 +70,31 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 
-                                <!-- Cart #TODO -->
+                                <!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">3</div>
+										<span>Carrello</span>
+										<div class="qty">{$cart->getCartQuantity()}</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="Smarty/templates/img/product01.png" alt="">
+											{foreach from=$cart->getCartItems() item=quantity key=stock}
+												<div class="product-widget">
+													<div class="product-img">
+														<img src="https://www.ibs.it/images/{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getId()}_0_536_0_75.jpg" alt="">
+													</div>
+													<div class="product-body">
+														<h3 class="product-name"><a href="#">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getName()}</a></h3>
+														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getPrice()}</h4>
+													</div>
+													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="Smarty/templates/img/product02.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
+											{/foreach}
 										</div>
 										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
+											<small>{$cart->getCartQuantity()} Item(s) selected</small>
+											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="#">View Cart</a>
@@ -196,9 +187,10 @@
 								</div>
 								<label>
 									Negozi&nbsp&nbsp
-									<select class="store-select">
+									<form action="/MusicCorner/PlaceOrders/addToCart/" method="post">
+									<select class="store-select" name="stockId">
 										{foreach from=$article->getStocks() item=stock}
-										<option value={$smarty.foreach.article.iteration}>{FPersistentManager::getInstance()->retrieveObj(ESeller::class,$stock->getSeller())->getShopName()} : €{$stock->getPrice()}  </option>
+										<option value={$stock->getId()}>{FPersistentManager::getInstance()->retrieveObj(ESeller::class,$stock->getSeller())->getShopName()} : €{$stock->getPrice()}  </option>
 										{/foreach}
 									</select>
 								</label>
@@ -213,7 +205,9 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
+								
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								</form>
 							</div>
 							{/if}
 							

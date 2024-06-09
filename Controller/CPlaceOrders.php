@@ -2,8 +2,9 @@
 
 class CPlaceOrders{
     
-    public static function addToCart(int $stockId, int $quantity){
-
+    public static function addToCart(){
+        $stockId = UHTTPMethods::post('stockId');
+        $quantity = 1;
         /**
          * Retrieve user cart from the session
          */
@@ -12,7 +13,7 @@ class CPlaceOrders{
         }
         else{
             if(CUser::islogged()){
-                $cart = new ECart(USession::getInstance()->getSessionElement('email'));
+                $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
             }
         }
 
@@ -33,8 +34,9 @@ class CPlaceOrders{
         /**
          * Print confirmation message
          */
-        //CALL VIEW, PASS STOCKID
+        header('Location: /MusicCorner/');
     }
+    
     public static function cart(){
         /**
          * Retrieve user cart from the session
