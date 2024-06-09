@@ -2236,6 +2236,14 @@ textarea.input {
   text-align: center; /* Centra gli elementi orizzontalmente */
 }
 
+/* aggiunto dopo */
+.container-small {
+  text-align: center; /* Centra gli elementi orizzontalmente */
+  max-width: 500px; /* Limita la larghezza del contenitore */
+  margin: auto;
+  width: 50%;
+}
+
 .btn {
   display: block; /* Assicura che il bottone occupi l'intera larghezza disponibile */
   margin: 0 auto; /* Centra il bottone orizzontalmente */

@@ -46,7 +46,7 @@
 					<div class="row">
 						<!-- LOGO -->
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh2.png" alt="" class="center"  >
+									<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
 								</a>
 						<!-- /LOGO -->																						
 					</div>
@@ -65,8 +65,7 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<div class="col-md-3"></div>
-					<div class="col-md-5">
+					<div class="container-small">
 						<!-- Login Form -->
 						{if $error == true}
 						<p class="error-message">username or password incorrect</p>
