@@ -17,12 +17,12 @@ class V404
      */
     public function show404()
     {
-        if(USession::getInstance()->isSetSessionElement('customer'))
+        if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
-        else
+        }
+        else{
             $this->smarty->assign('username','Accedi/Registrati');
-
-
+        }
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');
         }
