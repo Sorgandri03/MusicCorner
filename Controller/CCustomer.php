@@ -5,6 +5,9 @@ Class CCustomer{
     public static function dashboard(){
         if(USession::getInstance()::isSetSessionElement('customer')){
             echo USession::getInstance()::getSessionElement('customer')->getUsername();
+            $view = new VUser();
+            $view->showUserDashboard();
+            
             return;
             //modifica l'header per andare nella dashboard del customer;
         }
