@@ -3,8 +3,8 @@
 Class CCustomer{
 
     public static function dashboard(){
-        if(USession::isSetSessionElement('customer')){
-            echo USession::getSessionElement('customer');
+        if(USession::getInstance()::isSetSessionElement('customer')){
+            echo USession::getInstance()::getSessionElement('customer')->getUsername();
             return;
             //modifica l'header per andare nella dashboard del customer;
         }

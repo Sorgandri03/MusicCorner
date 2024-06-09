@@ -17,8 +17,8 @@ class VHome
      */
     public function showHome()
     {
-        if(USession::getInstance()->isSetSessionElement('username'))
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('username'));
+        if(USession::getInstance()->isSetSessionElement('customer'))
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
         else
             $this->smarty->assign('username','Accedi/Registrati');
 
@@ -29,7 +29,7 @@ class VHome
         $randomIndex = array_rand($articles);
         $randomArticle = $articles[$randomIndex];
 
-        $this->smarty->assign('username', 'Accedi');
+
         $this->smarty->assign('article', $randomArticle);
         $this->smarty->display('article.tpl');
     }

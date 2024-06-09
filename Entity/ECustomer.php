@@ -52,9 +52,12 @@ class ECustomer extends EUser {
     public function getSuspensionTime(): DateTime {
         return $this->suspensionTime;
     }
-    public function setSuspensionTime(int $days): void {
+    public function setBan(int $days): void {
         $this->suspensionTime = new DateTime();
         date_add($this->suspensionTime, date_interval_create_from_date_string($days . ' days'));
-    }    
+    }   
+    public function setSuspensionTime(DateTime $suspensionTime): void {
+        $this->suspensionTime = $suspensionTime;
+    }
 
 }

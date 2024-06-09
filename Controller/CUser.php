@@ -16,26 +16,21 @@ class CUser{
                 USession::unsetSession();
                 USession::destroySession();
                 $logged = false;
-            echo "sei bannato";}
+            echo "sei bannato";
+            }
             else
                 $logged = true;
-                echo "sei loggato come customer";  
+                echo "sei loggato come customer"; 
         }
         if(USession::isSetSessionElement('seller')){
             //echo USession::getSessionElement('seller');
             $logged = true;
             echo "sei loggato come seller";
-            //exit();
         }
         if(USession::isSetSessionElement('admin')){
             //echo USession::getSessionElement('admin');
             $logged = true;
             echo "sei loggato come admin";
-            //exit();
-        }
-        if(!$logged && !self::isLoginPage()){
-            header('Location: /MusicCorner/User/login');
-            exit();
         }
         return $logged;
     }
@@ -45,23 +40,26 @@ class CUser{
     }
     
     public static function isBanned(){
-        if(USession::isSetSessionElement('customer')){
-            $customer = USession::getSessionElement('customer');
-            if($customer instanceof ECustomer && $customer->getSuspensionTime() > new DateTime()) {
-                return true;
-            }
-            else {
-                return false;
-            }
+        $customer = USession::getSessionElement('customer');
+        if($customer->getSuspensionTime() > new DateTime()) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
     public static function login(){
-
         if(self::isLogged()){
-            echo " manca la view del dashboard";
-            //$view = new VUser();
-            //$view->showUserDashboard(); non è ancora stata implementata
+            if(USession::isSetSessionElement('customer')){
+                CCustomer::dashboard();
+            }
+            if(USession::isSetSessionElement('seller')){
+                CSeller::dashboard();
+            }
+            if(USession::isSetSessionElement('admin')){
+                CAdmin::dashboard();
+            }
         }
         else {
             $view = new VUser();
@@ -79,15 +77,16 @@ class CUser{
                     USession::getInstance();
                     switch(FPersistentManager::getInstance()->checkUserType($user->getId())){
                         case "customer":
+                            $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $user->getId());
+                            USession::setSessionElement('customer', $customer);
                             if(self::isBanned()){
-                                $view->loginBan();  
+                                echo "sei bannato";
+                                break;
                             }
-                            else
-                                USession::setSessionElement('customer', $user);
-                               // CCustomer::dashboard();
-                                echo "sei loggato come customer";
-
-                            break;
+                            else{
+                                CCustomer::dashboard();
+                                break;
+                            }                            
                         case "seller":
                             USession::setSessionElement('seller', $user);
                             //CSeller::dashboard(); 
@@ -164,8 +163,7 @@ class CUser{
         USession::getInstance();
         USession::unsetSession();
         USession::destroySession();
-        $view = new VUser();
-        $view->showLoginForm();
+        header('Location: /MusicCorner/User/login');
     }
 
   

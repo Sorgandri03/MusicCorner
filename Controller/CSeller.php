@@ -5,7 +5,7 @@ Class CSeller{
     public static function dashboard(){
         
         if(USession::isSetSessionElement('seller')){
-            echo USession::getSessionElement('seller');
+            echo USession::getSessionElement('seller')->getShopName();
             return;
             //modifica l'header per andare nella dashboard del seller;
         }
