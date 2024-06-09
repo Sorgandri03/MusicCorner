@@ -59,13 +59,14 @@ class CUser{
     public static function login(){
 
         if(self::isLogged()){
-            echo "sei loggato ma manca la view del dashboard";
+            echo " manca la view del dashboard";
             //$view = new VUser();
             //$view->showUserDashboard(); non è ancora stata implementata
         }
-        else
+        else {
             $view = new VUser();
             $view->showLoginForm();
+        }
     }
 
     public static function checkLogin(){
@@ -73,7 +74,6 @@ class CUser{
         $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                           
         if($validemail){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
-            echo $user->getId();
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
                 if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
@@ -104,9 +104,12 @@ class CUser{
                             break;
                     }  
                     
+                }else{
+                    echo "pippo1";
+                    //$view->loginError();
                 }
             }else{
-                echo "pippo1";
+                echo "pippo2";
                 $view->loginError();
             }
         }else{
