@@ -73,7 +73,6 @@
 					    {if $ban == true}
 						<p class="error-message">the user you are trying to access is banned</p>
 						{/if}
-						
 						<form class="login-form" action="/MusicCorner/User/checkLogin" method="post">
 							<div class="section-title-center">
 								<h1 class="title">Login</h1>

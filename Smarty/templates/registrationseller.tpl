@@ -71,7 +71,7 @@
 								<h1 class="title">Register to our site!</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="name" placeholder="Shopname">
+								<input class="input" type="text" name="shopname" placeholder="Shopname">
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="email" placeholder="Email">
@@ -83,7 +83,7 @@
 								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
 							</div>
 							<div class="form-group">
-								<button class="primary-btn-center ">Register</button>
+								<button type="submit" class="submit-btn-custom">Register</button>
 								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
 							</div>
 						<!-- /Registration Form -->																																

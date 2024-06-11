@@ -66,6 +66,11 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function verifyUserUsername($username){
+        $result = FUser::verify('username', $username);
+        return $result;
+    }
+
 
     /**
      * Check the type of user

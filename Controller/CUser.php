@@ -117,24 +117,52 @@ class CUser{
     public static function registration(){
         $view = new VRegistration();
         $view->showRegistration();
+    }
+    
+    public static function registrationCustomer(){
+        $view = new VRegistration();
+        $view->showRegistrationCustomer();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
+                $email = UHTTPMethods::post('email');
+                $username = UHTTPMethods::post('username');
+                $password = UHTTPMethods::post('password');
         if(FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email')) == false && FPersistentManager::getInstance()->verifyUserUsername(UHTTPMethods::post('username')) == false){
-            $user = new EUser(UHTTPMethods::post('name'), UHTTPMethods::post('surname'),UHTTPMethods::post('age'), UHTTPMethods::post('email'),UHTTPMethods::post('password'),UHTTPMethods::post('username'));
-            FPersistentManager::getInstance()->uploadObj($user);
+            $user = new EUser($email,$password);
+            $customer = new ECustomer($username,$email,$password);
+            FPersistentManager::getInstance()->createObj($user);
+            FPersistentManager::getInstance()->createObj($customer);
             header('Location: /MusicCorner/User/login');
        }else{
             $view->registrationError();
         }
+    } else {
+        $view->registrationError();
     }
-    
-
-    public static function registrationCustomer(){
-        $view = new VRegistration();
-        $view->showRegistrationCustomer();
+        }
     }
     
     public static function registrationSeller(){
         $view = new VRegistration();
         $view->showRegistrationSeller();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
+                $email = UHTTPMethods::post('email');
+                $shopname = UHTTPMethods::post('shopname');
+                $password = UHTTPMethods::post('password');
+        if(FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email')) == false && FPersistentManager::getInstance()->verifyUserUsername(UHTTPMethods::post('username')) == false){
+            $user = new EUser($email,$password);
+            $seller = new ESeller($email,$password,$shopname);
+            FPersistentManager::getInstance()->createObj($user);
+            FPersistentManager::getInstance()->createObj($seller);
+            header('Location: /MusicCorner/User/login');
+       }else{
+            $view->registrationError();
+        }
+    } else {
+        $view->registrationError();
+    }
+        }
     }
 
     public static function logout(){
