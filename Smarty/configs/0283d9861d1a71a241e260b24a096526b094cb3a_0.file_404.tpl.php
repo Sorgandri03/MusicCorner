@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-04 17:45:13
+/* Smarty version 5.1.0, created on 2024-06-13 20:11:40
   from 'file:Smarty\templates\404.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665f36898fb8c9_58767690',
+  'unifunc' => 'content_666b365c6ece95_94962621',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0283d9861d1a71a241e260b24a096526b094cb3a' => 
     array (
       0 => 'Smarty\\templates\\404.tpl',
-      1 => 1717515911,
+      1 => 1717948880,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665f36898fb8c9_58767690 (\Smarty\Template $_smarty_tpl) {
+function content_666b365c6ece95_94962621 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -76,7 +76,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="/MusicCorner/" class="logo">
-									<img src="/MusicCorner/Smarty/templates/img/hhh.png" alt="">
+									<img src="/MusicCorner/Smarty/templates/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
@@ -144,7 +144,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 								</div>
 								<!-- /Cart -->
 
-								<!-- Wishlist -->
+								<!-- Account -->
 								<div>
 									<a href="./User/login">
 										<i class="fa fa-user-o"></i>
@@ -152,7 +152,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 </span>
 									</a>
 								</div>
-								<!-- /Wishlist -->
+								<!-- /Account -->
 
 							</div>
 							<div>

@@ -187,7 +187,7 @@
 								</div>
 								<label>
 									Negozi&nbsp&nbsp
-									<form action="/MusicCorner/PlaceOrders/addToCart/" method="post">
+									<form action="/MusicCorner/Orders/addToCart/" method="post">
 									<select class="store-select" name="stockId">
 										{foreach from=$article->getStocks() item=stock}
 										<option value={$stock->getId()}>{FPersistentManager::getInstance()->retrieveObj(ESeller::class,$stock->getSeller())->getShopName()} : €{$stock->getPrice()}  </option>
@@ -215,11 +215,11 @@
 							<ul class="product-links">
 								<li>Formato</li>
 								{if $article->getFormat()==1}
-									<li><a href="#">LP</a></li>
+									<li><a href="/MusicCorner/Search/format/Vinyl">LP</a></li>
 								{elseif $article->getFormat()==1}
-									<li><a href="#">Cassetta</a></li>
+									<li><a href="/MusicCorner/Search/format/Cassette">Cassetta</a></li>
 								{else}
-									<li><a href="#">CD</a></li>
+									<li><a href="/MusicCorner/Search/format/CD">CD</a></li>
 								{/if}								
 							</ul>
 						</div>

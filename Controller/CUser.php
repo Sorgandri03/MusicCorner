@@ -81,7 +81,7 @@ class CUser{
                                 break;
                             }
                             else{
-                                CCustomer::dashboard();
+                                header('Location: /MusicCorner/');
                                 break;
                             }                            
                         case "seller":
@@ -167,7 +167,6 @@ class CUser{
 
     public static function logout(){
         USession::getInstance();
-        USession::unsetSession();
         USession::destroySession();
         header('Location: /MusicCorner/User/login');
     }
