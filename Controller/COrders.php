@@ -1,6 +1,6 @@
 <?php
 
-class CPlaceOrders{
+class COrders{
     
     public static function addToCart(){
         $stockId = UHTTPMethods::post('stockId');
@@ -58,6 +58,7 @@ class CPlaceOrders{
          */
         //CALL VIEW, PASS CART
     }
+
     public static function removeFromCart(int $stockId){
         /**
          * Retrieve user cart from the session
@@ -84,6 +85,7 @@ class CPlaceOrders{
          */
         //CALL VIEW, PASS CART
     }
+
     public static function order(){
         /**
          * Retrieve user cart from the session
@@ -109,6 +111,7 @@ class CPlaceOrders{
          */
         //CALL VIEW, PASS CUSTOMER
     }
+    
     public static function orderConfirm(string $cardNumber, int $addressId){
         /**
          * Retrieve user cart from the session
