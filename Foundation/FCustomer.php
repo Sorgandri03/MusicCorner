@@ -23,7 +23,7 @@ class FCustomer {
     public static function bind($stmt, $customer){
         $stmt->bindValue(':username', $customer->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $customer->getId(), PDO::PARAM_STR);
-        $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime(), PDO::PARAM_INT);
+        $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime(), PDO::PARAM_STR);
     }
     
     //C

@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you - Registration</title>
+		<title>Seller Registration</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -65,32 +65,33 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-						<!-- Registration Form -->
-						<div class="container-small">
-							<div class="section-title-center">
-								<h1 class="title">Register to our site!</h1>
+					<!-- Registration Form -->
+					<div class="container-small">
+						<div class="section-title-center">
+							<h1 class="title">Register to our site!</h1>
+						</div>
+						<form class="registration-form" action="/MusicCorner/User/registrationSeller" method="post">
+							<div class="form-group">
+								<input class="input" type="text" name="username" placeholder="Username" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="shopname" placeholder="Shopname">
+								<input class="input" type="text" name="email" placeholder="Email" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="email" placeholder="Email">
+								<input class="input" type="password" name="password" placeholder="Password" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="passsword" placeholder="Password">
-							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password">
+								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="submit-btn-custom">Register</button>
 								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
 							</div>
-						<!-- /Registration Form -->																																
+						</form>
+						<!-- /Registration Form -->
 					</div>
 				</div>
 				<!-- /row -->
-
 			</div>
 			<!-- /container -->
 		</div>
