@@ -78,13 +78,15 @@
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											{foreach from=$cart->getCartItems() item=quantity key=stock}
+											{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
+											{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}	
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getId()}_0_536_0_75.jpg" alt="">
+														<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getName()}</a></h3>
-														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getPrice()}</h4>
+														<h3 class="product-name"><a href="#">{$article->getName()}</a></h3>
+														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 													</div>
 													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
@@ -95,7 +97,7 @@
 											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
+											<a href="./Orders/cart">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
@@ -253,7 +255,7 @@
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- bottom footer -->
-			<div id="fixed-footer" class="section">
+			<div id="bottom-footer" class="section">
 				<div class="container">
 					<!-- row -->
 					<div class="row">

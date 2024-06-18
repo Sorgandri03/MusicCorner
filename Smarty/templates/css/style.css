@@ -166,6 +166,14 @@ ul, ol {
   width: 100%;
 }
 
+input.input-small {
+  height: 40px;
+  padding: 0px 15px;
+  border: 2px solid #E4E7ED;
+  background-color: #FFF;
+  width: 20%;
+}
+
 textarea.input {
   padding: 15px;
   min-height: 90px;

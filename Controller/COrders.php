@@ -39,24 +39,10 @@ class COrders{
     
     public static function cart(){
         /**
-         * Retrieve user cart from the session
-         */
-        if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
-        }
-        else{
-            if(USession::getInstance()->isSetSessionElement('email')){
-                $cart = new ECart(USession::getInstance()->getSessionElement('email'));
-            }
-            else{
-                //GOTO LOGIN PAGE
-            }
-        }
-
-        /**
          * Show cart page
          */
-        //CALL VIEW, PASS CART
+        $v = new VOrders();
+        $v->showCart();
     }
 
     public static function removeFromCart(int $stockId){
