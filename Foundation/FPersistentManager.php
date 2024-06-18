@@ -66,8 +66,36 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function getEmailFromUsername($username){
+        // Cerca l'username in ciascuna delle tabelle
+        $tables = ['Customer', 'Seller'];
+        foreach ($tables as $table) {
+                echo "ciao";
+                $queryResult = FDB::getInstance()->retrieve($table, 'username', $username);
+                if(FDB::getInstance()->existInDb($queryResult)){
+                    return $queryResult['email'];
+                }
+                return null;
+            }
+    }
+
     public static function verifyUserUsername($username){
-        $result = FUser::verify('username', $username);
+        //in base all'utente verifico campi diversi xke user non ha il campo username
+        $email=self::getEmailFromUsername($username);
+        switch(self::checkUserType($email)){
+            case "customer":
+                $result = FCustomer::verify('username', $username);
+                echo $result;
+                break;                    
+            case "seller":
+                $result = FSeller::verify('shopName', $username);
+                echo $result;
+                break;
+            case "disponibile":
+                $result = true;
+                break;
+
+        }  
         return $result;
     }
 
@@ -82,10 +110,14 @@ class FPersistentManager{
      * @return string
      */
     public static function checkUserType($email) : string{
-        if(FCustomer::retrieveObject($email)) {return "customer";}
+        if(FCustomer::verify('email', $email)) {return "customer";}
+        elseif(FSeller::verify('email', $email)) {return "seller";}
+        elseif(FAdmin::verify('email', $email)) {return "admin";}
+        else {return "disponibile";}
+        /*if(FCustomer::retrieveObject($email)) {return "customer";}
         elseif(FSeller::retrieveObject($email)) {return "seller";}
         elseif(FAdmin::retrieveObject($email)) {return "admin";}
-        else {return null;}
+        else {return null;}*/
     }
 
     public static function searchArticles($query){

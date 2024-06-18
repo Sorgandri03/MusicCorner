@@ -23,9 +23,8 @@ class FCustomer {
     public static function bind($stmt, $customer){
         $stmt->bindValue(':username', $customer->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $customer->getId(), PDO::PARAM_STR);
-        $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime(), PDO::PARAM_STR);
+        $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
     }
-    
     //C
     public static function createObject($obj){
         $saveCustomer = FDB::getInstance()->create(self::class, $obj);
@@ -99,5 +98,10 @@ class FCustomer {
             $customers[] = $customer;
         }
         return $customers;
+    }
+
+    public static function verify($field, $id){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
+        return FDB::getInstance()->existInDb($queryResult);
     }
 }

@@ -84,4 +84,9 @@ class FAdmin{
         return $obj;
     }
 
+    public static function verify($field, $id){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
+        return FDB::getInstance()->existInDb($queryResult);
+    }
+
 }

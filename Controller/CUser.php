@@ -118,27 +118,33 @@ class CUser{
         $view = new VRegistration();
         $view->showRegistration();
     }
-    
-    public static function registrationCustomer(){
-        $view = new VRegistration();
-        $view->showRegistrationCustomer();
+    //senza il check dell'username funziona bene ma se lo metto non funziona. metto un username nuovo comunque me lo da come gia preso quindi va fxato quello
+    public static function registrationCustomer() {
+        $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
                 $email = UHTTPMethods::post('email');
                 $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
-        if(FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email')) == false && FPersistentManager::getInstance()->verifyUserUsername(UHTTPMethods::post('username')) == false){
-            $user = new EUser($email,$password);
-            $customer = new ECustomer($username,$email,$password);
-            FPersistentManager::getInstance()->createObj($user);
-            FPersistentManager::getInstance()->createObj($customer);
-            header('Location: /MusicCorner/User/login');
-       }else{
-            $view->registrationError();
-        }
-    } else {
-        $view->registrationError();
-    }
+                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false /*&& FPersistentManager::getInstance()->verifyUserUsername($username)==false*/) {
+                    $user = new EUser($email, $password);
+                    $customer = new ECustomer($username, $email, $password);
+                    FPersistentManager::getInstance()->createObj($user);
+                    FPersistentManager::getInstance()->createObj($customer);
+                    // Redirect after successful registration
+                    header('Location: /MusicCorner/User/login');
+                    exit;
+                } else {
+                    echo("Email or username already exists.");
+                    $view->registrationError(); 
+                    return;
+                }
+            } else {
+                $view->registrationError();
+                return;
+            }
+        } else {
+            $view->showRegistrationCustomer();
         }
     }
     
