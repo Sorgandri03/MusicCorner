@@ -4,7 +4,12 @@ class COrders{
     
     public static function addToCart(){
         $stockId = UHTTPMethods::post('stockId');
-        $quantity = 1;
+        if(UHTTPMethods::post('quantity')){
+            $quantity = UHTTPMethods::post('quantity');
+        }
+        else{
+            $quantity = 1;
+        }
         /**
          * Retrieve user cart from the session
          */
@@ -32,9 +37,9 @@ class COrders{
         }
         
         /**
-         * Print confirmation message
+         * Go to cart page
          */
-        header('Location: /MusicCorner/');
+        header('Location: /MusicCorner/Orders/cart');
     }
     
     public static function cart(){
@@ -45,12 +50,17 @@ class COrders{
         $v->showCart();
     }
 
-    public static function removeFromCart(int $stockId){
+    public static function removeFromCart(){
+        /**
+         * Retrieve stockId from the post request
+         */
+        $stockId = UHTTPMethods::post('stockId');
+
         /**
          * Retrieve user cart from the session
          */
         if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
+            $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
             $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
@@ -64,12 +74,74 @@ class COrders{
         /**
          * Save cart in the session
          */
-        USession::getInstance()->setSessionElement('cart', serialize($cart));
+        USession::getInstance()->setSessionElement('cart', $cart);
 
         /**
-         * Show cart page
+         * Go to cart page
          */
-        //CALL VIEW, PASS CART
+        header('Location: /MusicCorner/Orders/cart');
+    }
+
+    public static function updateCart(){
+        /**
+         * Retrieve stockId and quantity from the post request
+         */
+        $stockId = UHTTPMethods::post('stockId');
+        $quantity = UHTTPMethods::post('quantity');
+
+        /**
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+        }
+
+        /**
+         * Update quantity of productId in the cart
+         */
+        $cart->updateArticle($stockId, $quantity);
+
+        /**
+         * Save cart in the session
+         */
+        USession::getInstance()->setSessionElement('cart', $cart);
+
+        /**
+         * Go to cart page
+         */
+
+        header('Location: /MusicCorner/Orders/cart');
+    }
+
+    public static function clearCart(){
+        /**
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+        }
+
+        /**
+         * Update quantity of productId in the cart
+         */
+        $cart->clearCart();
+
+        /**
+         * Save cart in the session
+         */
+        USession::getInstance()->setSessionElement('cart', $cart);
+
+        /**
+         * Go to cart page
+         */
+
+        header('Location: /MusicCorner/Orders/cart');
     }
 
     public static function order(){
@@ -77,7 +149,7 @@ class COrders{
          * Retrieve user cart from the session
          */
         if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
+            $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
             $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));

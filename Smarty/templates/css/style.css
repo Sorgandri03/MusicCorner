@@ -94,6 +94,19 @@ ul, ol {
   list-style: none
 }
 
+smallbr {
+  display: block;
+  margin: 10px 0;
+}
+
+#right {
+  text-align: right;
+}
+
+#center {
+  text-align: center;
+}
+
 /*----------------------------*\
 	Buttons
 \*----------------------------*/
