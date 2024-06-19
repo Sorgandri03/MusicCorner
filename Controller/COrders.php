@@ -4,7 +4,12 @@ class COrders{
     
     public static function addToCart(){
         $stockId = UHTTPMethods::post('stockId');
-        $quantity = 1;
+        if(UHTTPMethods::post('quantity')){
+            $quantity = UHTTPMethods::post('quantity');
+        }
+        else{
+            $quantity = 1;
+        }
         /**
          * Retrieve user cart from the session
          */

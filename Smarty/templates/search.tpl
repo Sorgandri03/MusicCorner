@@ -166,6 +166,7 @@
 						<!-- store products -->
 						<div class="row">
 							{foreach from=$result item=article}
+							{assign var="stocks" value=$article->getStocks()}
 								<!-- product -->
 								<div class="col-md-4 col-xs-6">
 									<div class="product">
@@ -188,9 +189,13 @@
 											<h4 class="product-price">€{$article->getLowestPrice()}</h4>
 											{/if}
 										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+										{if $article->getLowestPrice() != 0}
+											<form action="/MusicCorner/Orders/addToCart/" method="post">
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>
+												</div>
+											</form>
+										{/if}
 									</div>
 								</div>
 								<!-- /product -->

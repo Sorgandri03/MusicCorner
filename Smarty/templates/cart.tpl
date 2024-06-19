@@ -128,22 +128,29 @@
                                     <p class="product-category">CD</p>
                                 {/if}	
                                 <h4 class="product-price">€{$stock->getPrice()}</h4>
-								<div class="col-md-4">
-									<h4 class="product-qty">Quantità:</h4>
-								</div>
-								<div class="col-md-3">
-									<div class="input-number">
-										<input type="number" value="1">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+								<br>
+								<div class="row">
+									<div class="col-md-5">
+										<smallbr></smallbr>
+										<h4 id="right" class="product-qty">Quantità:</h4>
+									</div>
+									<div class="col-md-3">
+										<div class="input-number">
+											<input type="number" value={$quantity}>
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+										<smallbr></smallbr>
 									</div>
 								</div>
-									
-								<div class="col-md-6">
-									<button class="primary-btn-center btn-block">Aggiorna</button>
-								</div>
-								<div class="col-md-6">
-									<button class="primary-btn-center btn-block">Rimuovi</button>
+								
+								<div class="row">
+									<div class="col-md-6">
+										<button class="primary-btn-center btn-block">Aggiorna</button>
+									</div>
+									<div class="col-md-6">
+										<button class="primary-btn-center btn-block">Rimuovi</button>
+									</div>
 								</div>
                             </div>
 						</div>
