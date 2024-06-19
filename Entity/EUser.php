@@ -2,7 +2,6 @@
 
 class EUser{
     private String $email;
-
     private String $password;
     
     public function __construct(string $email, string $password) {

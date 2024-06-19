@@ -67,12 +67,11 @@ class CUser{
 
     public static function checkLogin(){
         $view = new VUser();
-        $emailinserita = UHTTPMethods::post('email');
-        $validemail = FPersistentManager::getInstance()->verifyUserEmail($emailinserita);
-        echo $emailinserita;    
-        echo "Valid email: " . ($validemail ? 'true' : 'false') . "<br>";                                   
+        $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                 
         if($validemail){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
+            echo $user->getPassword();
+            echo UHTTPMethods::post('password');
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
                 if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
@@ -99,19 +98,15 @@ class CUser{
                         default:
                             $view->loginError();
                             break;
-                    }  
-                    
+                    }                      
                 }else{
                     echo "pippo1";
                     //$view->loginError();
                 }
             }else{
-                echo "ciao";
                 $view->loginError();
             }
         }else{
-            echo "dipre";
-            $view->loginError();
         }
     }
 
@@ -119,7 +114,7 @@ class CUser{
         $view = new VRegistration();
         $view->showRegistration();
     }
-    //senza il check dell'username funziona bene ma se lo metto non funziona. metto un username nuovo comunque me lo da come gia preso quindi va fxato quello
+
     public static function registrationCustomer() {
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -180,4 +175,3 @@ class CUser{
         header('Location: /MusicCorner/User/login');
     }
 }
- ///
