@@ -8,3 +8,16 @@ Aggiungi rapidamente al carrello
 Ingrandire database
 Reviews
 Tutti i link una volta su altervista
+Scritte tutte in italiano
+
+ANDREA:
+Carrello
+Ordine
+
+LEONARDO:
+Registrazione
+Reviews
+
+GIANMARCO:
+Dashboard venditore
+Dashboard cliente
