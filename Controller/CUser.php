@@ -67,7 +67,10 @@ class CUser{
 
     public static function checkLogin(){
         $view = new VUser();
-        $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                           
+        $emailinserita = UHTTPMethods::post('email');
+        $validemail = FPersistentManager::getInstance()->verifyUserEmail($emailinserita);
+        echo $emailinserita;    
+        echo "Valid email: " . ($validemail ? 'true' : 'false') . "<br>";                                   
         if($validemail){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
@@ -103,9 +106,11 @@ class CUser{
                     //$view->loginError();
                 }
             }else{
+                echo "ciao";
                 $view->loginError();
             }
         }else{
+            echo "dipre";
             $view->loginError();
         }
     }
