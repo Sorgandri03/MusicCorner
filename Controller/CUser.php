@@ -70,8 +70,8 @@ class CUser{
         $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                 
         if($validemail){
             $user = FPersistentManager::getInstance()->retrieveObj(EUser::class, UHTTPMethods::post('email'));
-            echo $user->getPassword();
-            echo UHTTPMethods::post('password');
+            $passworddb = FPersistentManager::getInstance()->retrievePassword(UHTTPMethods::post('email'));
+            if(password_verify($password, $passworddb)){
             if(password_verify(UHTTPMethods::post('password'), $user->getPassword())){
                 if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
