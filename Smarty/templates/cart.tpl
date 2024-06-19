@@ -128,7 +128,17 @@
                                     <p class="product-category">CD</p>
                                 {/if}	
                                 <h4 class="product-price">€{$stock->getPrice()}</h4>
-                                <h4 class="product-qty">Quantità: <input class="input-small" type="number" value={$quantity}></h4>
+								<div class="col-md-4">
+									<h4 class="product-qty">Quantità:</h4>
+								</div>
+								<div class="col-md-3">
+									<div class="input-number">
+										<input type="number" value="1">
+										<span class="qty-up">+</span>
+										<span class="qty-down">-</span>
+									</div>
+								</div>
+									
 								<div class="col-md-6">
 									<button class="primary-btn-center btn-block">Aggiorna</button>
 								</div>
@@ -157,34 +167,12 @@
             </div>
         </div>
 
-        <!-- FOOTER -->
-		<footer id="footer">
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
-								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website was made by Andrea Sorge, Leonardo Pinterpe and Gianmarco Cavuoto</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
-						</div>
-					</div>
-						<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /bottom footer -->
-		</footer>
-		<!-- /FOOTER -->
+		<!-- jQuery Plugins -->
+		<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/bootstrap.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/slick.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/nouislider.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/jquery.zoom.min.js"></script>
+		<script src="/MusicCorner/Smarty/templates/js/main.js"></script>
 	</body>
 </html>
