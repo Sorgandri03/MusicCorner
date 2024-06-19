@@ -145,6 +145,11 @@ class COrders{
     }
 
     public static function order(){
+        if(!CUser::islogged()){
+            header('Location: /MusicCorner/User/login');
+            return;            
+        }
+        
         /**
          * Retrieve user cart from the session
          */
@@ -155,19 +160,17 @@ class COrders{
             $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
         }
         if(count($cart->getCartItems()) == 0){
-            //CANT PLACE ORDER
+            echo "Cart is empty";
             return;
         }
-
-        /**
-         * Retrieve customer
-         */
-        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('email'));
+    
+        
 
         /**
          * Pass customer to the view
          */
-        //CALL VIEW, PASS CUSTOMER
+        $v = new VOrders();
+        $v->showOrderAddress();
     }
     
     public static function orderConfirm(string $cardNumber, int $addressId){

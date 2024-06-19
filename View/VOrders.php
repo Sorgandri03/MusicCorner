@@ -34,4 +34,9 @@ class VOrders
         $this->smarty->assign('cart', $cart);
         $this->smarty->display('cart.tpl');
     }
+
+    public function showOrderAddress()
+    {
+        $this->smarty->display('cart.tpl');
+    }
 }

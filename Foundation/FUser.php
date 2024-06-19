@@ -48,7 +48,6 @@ class FUser{
         }else{
             return null;
         }
-
     }
 
     //U

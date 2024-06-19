@@ -73,7 +73,7 @@
                                 </div>
 								<!-- Wishlist -->
 								<div>
-									<a href="./User/login">
+									<a href="/MusicCorner/User/login">
 										<i class="fa fa-user-o"></i>
 										<span>{$username}</span>
 									</a>

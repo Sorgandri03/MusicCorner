@@ -1,17 +1,14 @@
 Pagine:
-    Carrello
     Aree dashboard
     Ordine
 
 Sistema ordini
-Aggiungi rapidamente al carrello
 Ingrandire database
 Reviews
 Tutti i link una volta su altervista
 Scritte tutte in italiano
 
 ANDREA:
-Carrello
 Ordine
 
 LEONARDO:
