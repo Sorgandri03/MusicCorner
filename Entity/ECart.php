@@ -36,6 +36,14 @@ class ECart {
     public function removeArticle(int $stockId): void {
         unset($this->cartItems[$stockId]);
     }
+    public function updateArticle(int $stockId, int $quantity): void {
+        if($quantity == 0){
+            $this->removeArticle($stockId);
+        }
+        else{
+            $this->cartItems[$stockId] = $quantity;
+        }
+    }
     public function clearCart(): void {
         $this->cartItems = array();
     }
