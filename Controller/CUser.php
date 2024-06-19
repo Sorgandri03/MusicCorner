@@ -113,15 +113,23 @@ class CUser{
         $view = new VRegistration();
         $view->showRegistration();
     }
-
+    //devo creare due view di errore diverse una quando non hai riempito tutti i campi e una uqndo le pw non coincidono
     public static function registrationCustomer() {
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
+            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm-password'])) {
                 $email = UHTTPMethods::post('email');
                 $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
-                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false && FPersistentManager::getInstance()->verifyUserUsername($username)==false) {
+                $confirmPassword = UHTTPMethods::post('confirm-password');
+                
+                if ($password !== $confirmPassword) {
+                    $view->registrationError();
+                    echo "Le password non coincidono"; 
+                    return;
+                }
+                
+                if (FPersistentManager::getInstance()->verifyUserEmail($email) == false && FPersistentManager::getInstance()->verifyUserUsername($username) == false) {
                     $user = new EUser($email, $password);
                     $customer = new ECustomer($username, $email, $password);
                     FPersistentManager::getInstance()->createObj($user);
@@ -134,6 +142,7 @@ class CUser{
                 }
             } else {
                 $view->registrationError();
+                echo "Compila tutti i campi"; 
                 return;
             }
         } else {
@@ -144,10 +153,18 @@ class CUser{
     public static function registrationSeller(){
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
+            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm-password'])) {
                 $email = UHTTPMethods::post('email');
                 $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
+                $confirmPassword = UHTTPMethods::post('confirm-password');
+
+                if ($password !== $confirmPassword) {
+                    $view->registrationError();
+                    echo "Le password non coincidono"; 
+                    return;
+                }
+                
                 if (FPersistentManager::getInstance()->verifyUserEmail($email)==false && FPersistentManager::getInstance()->verifyUserUsername($username)==false) {
                     $user = new EUser($email, $password);
                     $seller = new ESeller($email, $password, $username);
@@ -161,6 +178,7 @@ class CUser{
                 }
             } else {
                 $view->registrationError();
+                echo "Compila tutti i campi"; 
                 return;
             }
         } else {
