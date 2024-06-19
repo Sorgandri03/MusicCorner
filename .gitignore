@@ -1,4 +1,4 @@
 Smarty/configs/*
 Smarty/templates_c/*
 Smarty/cache/*
-config/config.php
+config\config.php

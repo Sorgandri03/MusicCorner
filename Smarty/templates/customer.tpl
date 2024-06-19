@@ -8,24 +8,24 @@
 
 		<title>MusicCorner - Music for you</title>
 
- 		<!-- Google font -->
- 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
- 		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
 
- 		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
 
- 		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
- 		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
 
- 		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,34 +34,65 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-    </head>
+	</head>
 	<body>
 		<!-- HEADER -->
 		<header>
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
-								</a>
-							</div>
+		</header>
+		
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo">
+								<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
+							</a>
 						</div>
-						<!-- /LOGO -->
+					</div>
+					<!-- /LOGO -->
 
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form id='search' action="/MusicCorner/Search/search" method="post">
-									<input class="input" placeholder="Search here" name="query">
-									<button class="search-btn">Search</button>
-								</form>
-							</div>
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form id='search' action="/MusicCorner/Search/search" method="post">
+								<input class="input" placeholder="Search here" name="query">
+								<button class="search-btn">Search</button>
+							</form>
 						</div>
-						<!-- /SEARCH BAR -->
-						
+					</div>
+					<!-- /SEARCH BAR -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+	 <!-- CUSTOMER DASHBOARD -->
+	<div class="customer-dashboard">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Customer Dashboard</h4>
+					<ul>
+						<ul>
+							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Home</strong></a></li>
+							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My articles</strong></a></li>
+							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My orders</strong></a></li>
+							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My reviews</strong></a></li>
+							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Logout</strong></a></li>
+			</div>
+		</div>
+	</div>
+	<!-- /CUSTOMER DASHBOARD -->
+
+	<!-- Your remaining HTML code goes here -->
+
+</body>
+</html>
