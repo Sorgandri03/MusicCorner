@@ -47,19 +47,20 @@ class CUser{
     }
 
     public static function login(){
+        $view = new VUser();
         if(self::isLogged()){
             if(USession::isSetSessionElement('customer')){
-                CCustomer::dashboard();
+                $view->showUserDashboard();
             }
             if(USession::isSetSessionElement('seller')){
-                CSeller::dashboard();
+                $view->showUserDashboard();
+                
             }
             if(USession::isSetSessionElement('admin')){
-                CAdmin::dashboard();
+                $view->showUserDashboard();
             }
         }
         else {
-            $view = new VUser();
             $view->showLoginForm();
         }
     }
@@ -81,18 +82,16 @@ class CUser{
                                 break;
                             }
                             else{
-                                header('Location: /MusicCorner/');
+                                $view->showUserDashboard();
                                 break;
                             }                            
                         case "seller":
                             USession::setSessionElement('seller', $user);
-                            //CSeller::dashboard(); 
-                            echo "sei loggato come seller";
+                            $view->showUserDashboard();
                             break;
                         case "admin":
                             USession::setSessionElement('admin', $user);
-                            //CAdmin::dashboard();
-                            echo "sei loggato come admin";
+                            $view->showUserDashboard();
                             break;
                         default:
                             $view->loginError();

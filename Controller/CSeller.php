@@ -1,24 +1,25 @@
 <?php
-
+/*
 Class CSeller{
 
-    public static function dashboard(){
+   // public static function dashboard(){
         
-        if(USession::isSetSessionElement('seller')){
-            echo USession::getSessionElement('seller')->getShopName();
-            return;
+       // if(USession::isSetSessionElement('seller')){
+           // echo USession::getSessionElement('seller')->getShopName();
+           // return;
             //modifica l'header per andare nella dashboard del seller;
-        }
+      //  }
         //mostra la view del login
-        echo "no";
-    }
-    public static function addArticle($debug){
-        echo $debug;
-    }
-    public static function removeArticle(){
+       // echo "no";//
 
     }
-    public static function modifyArticle(){
+   // public static function addArticle($debug){
+        echo $debug;
+    }
+   // public static function removeArticle(){
+
+    }
+   // public static function modifyArticle(){
 
     }
     public static function soldProducts(){
@@ -36,4 +37,4 @@ Class CSeller{
     public static function contact(){
 
     }
-}
+//
