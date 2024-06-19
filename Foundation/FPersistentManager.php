@@ -163,6 +163,11 @@ class FPersistentManager{
         $result = call_user_func([$class, "retrieveAllObjects"]);
         return $result;
     }
+
+    public static function retrievePassword($email){
+        $result = FDB::retrieve('user', 'email' ,$email);
+        return $result[0]['password'];
+    }
 }
 
 
