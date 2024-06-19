@@ -67,40 +67,52 @@ class FPersistentManager{
     }
 
     public static function getEmailFromUsername($username){
-        // Cerca l'username in ciascuna delle tabelle
+        // Cerca l'username nei Customer e lo shopName nei Seller
         $tables = ['Customer', 'Seller'];
         foreach ($tables as $table) {
-                echo "ciao";
+            if ($table == 'Customer') {
                 $queryResult = FDB::getInstance()->retrieve($table, 'username', $username);
-                if(FDB::getInstance()->existInDb($queryResult)){
-                    return $queryResult['email'];
-                }
-                return null;
+            } else if ($table == 'Seller') {
+                $queryResult = FDB::getInstance()->retrieve($table, 'shopName', $username);
             }
+            if (FDB::getInstance()->existInDb($queryResult)) {
+                return $queryResult['email'];
+            }
+        }
+        return null;
     }
 
     public static function verifyUserUsername($username){
         //in base all'utente verifico campi diversi xke user non ha il campo username
         $email=self::getEmailFromUsername($username);
-        switch(self::checkUserType($email)){
+        switch(self::checkUserTypeRegistration($email)){
             case "customer":
-                $result = FCustomer::verify('username', $username);
-                echo $result;
-                break;                    
+                return FCustomer::verify('username', $username);                   
             case "seller":
-                $result = FSeller::verify('shopName', $username);
-                echo $result;
-                break;
+                return FSeller::verify('shopName', $username);
             case "disponibile":
-                $result = true;
-                break;
-
+                return false;
         }  
-        return $result;
+        return false;
     }
 
 
     /**
+     * Check the type of user and if no email is matched it means that the email is available
+     * null 
+     * customer
+     * seller
+     * admin
+     * @param string $email
+     * @return string
+     */
+    public static function checkUserTypeRegistration($email) : string{
+        if(FCustomer::verify('email', $email)) {return "customer";}
+        elseif(FSeller::verify('email', $email)) {return "seller";}
+        else {return "disponibile";}
+    }
+
+        /**
      * Check the type of user
      * null 
      * customer
@@ -110,14 +122,10 @@ class FPersistentManager{
      * @return string
      */
     public static function checkUserType($email) : string{
-        if(FCustomer::verify('email', $email)) {return "customer";}
-        elseif(FSeller::verify('email', $email)) {return "seller";}
-        elseif(FAdmin::verify('email', $email)) {return "admin";}
-        else {return "disponibile";}
-        /*if(FCustomer::retrieveObject($email)) {return "customer";}
+        if(FCustomer::retrieveObject($email)) {return "customer";}
         elseif(FSeller::retrieveObject($email)) {return "seller";}
         elseif(FAdmin::retrieveObject($email)) {return "admin";}
-        else {return null;}*/
+        else {return null;}
     }
 
     public static function searchArticles($query){

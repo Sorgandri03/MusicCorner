@@ -95,7 +95,6 @@ class CUser{
                             echo "sei loggato come admin";
                             break;
                         default:
-                            echo "pippo";
                             $view->loginError();
                             break;
                     }  
@@ -105,11 +104,9 @@ class CUser{
                     //$view->loginError();
                 }
             }else{
-                echo "pippo2";
                 $view->loginError();
             }
         }else{
-            echo "pippo2";
             $view->loginError();
         }
     }
@@ -126,16 +123,14 @@ class CUser{
                 $email = UHTTPMethods::post('email');
                 $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
-                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false /*&& FPersistentManager::getInstance()->verifyUserUsername($username)==false*/) {
+                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false && FPersistentManager::getInstance()->verifyUserUsername($username)==false) {
                     $user = new EUser($email, $password);
                     $customer = new ECustomer($username, $email, $password);
                     FPersistentManager::getInstance()->createObj($user);
                     FPersistentManager::getInstance()->createObj($customer);
-                    // Redirect after successful registration
                     header('Location: /MusicCorner/User/login');
                     exit;
                 } else {
-                    echo("Email or username already exists.");
                     $view->registrationError(); 
                     return;
                 }
@@ -149,25 +144,29 @@ class CUser{
     }
     
     public static function registrationSeller(){
-        $view = new VRegistration();
-        $view->showRegistrationSeller();
+        $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
                 $email = UHTTPMethods::post('email');
-                $shopname = UHTTPMethods::post('shopname');
+                $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
-        if(FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email')) == false && FPersistentManager::getInstance()->verifyUserUsername(UHTTPMethods::post('username')) == false){
-            $user = new EUser($email,$password);
-            $seller = new ESeller($email,$password,$shopname);
-            FPersistentManager::getInstance()->createObj($user);
-            FPersistentManager::getInstance()->createObj($seller);
-            header('Location: /MusicCorner/User/login');
-       }else{
-            $view->registrationError();
-        }
-    } else {
-        $view->registrationError();
-    }
+                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false && FPersistentManager::getInstance()->verifyUserUsername($username)==false) {
+                    $user = new EUser($email, $password);
+                    $seller = new ESeller($email, $password, $username);
+                    FPersistentManager::getInstance()->createObj($user);
+                    FPersistentManager::getInstance()->createObj($seller);
+                    header('Location: /MusicCorner/User/login');
+                    exit;
+                } else {
+                    $view->registrationError(); 
+                    return;
+                }
+            } else {
+                $view->registrationError();
+                return;
+            }
+        } else {
+            $view->showRegistrationSeller();
         }
     }
 
@@ -177,40 +176,4 @@ class CUser{
         header('Location: /MusicCorner/User/login');
     }
 }
- /*
-        $email = $_GET["email"]; //DA FIXARE
-        $password = $_GET["password"]; //DA FIXARE
-        $name = $_GET["name"]; //DA FIXARE
-        $userType = $_GET["userType"]; //DA FIXARE
-       
-        
-        if(session_status() == PHP_SESSION_NONE){
-            USession::getInstance();
-        }
-
-        if(FPersistentManager::getInstance()->verifyUserEmail($email)){
-            echo "Email already exists";
-            return;
-        }
-
-        switch($userType){
-            case "customer":
-                $customer = new ECustomer($name, $email, $password);
-                USession::setSessionElement('customer', $email);
-                $obj = $customer;
-                break;
-            case "seller":
-                $seller = new ESeller($email, $password, $name);
-                USession::setSessionElement('seller', $email);
-                $obj = $seller;
-                break;
-            default:
-                echo "Invalid user type";
-                return;
-        }
-
-        if(FPersistentManager::getInstance()->createObj($obj)){
-            echo "Registration successful";
-        } else {
-            echo "Registration failed";
-        }*/
+ 
