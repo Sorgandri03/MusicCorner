@@ -102,7 +102,11 @@
                     <!-- Cart Items -->
                     <div class="col-md-8">
                         <div class="section-title">
+							{if $cart->getCartQuantity()==0}
+								<h3 class="title">Il carrello è vuoto</h3>
+							{else}
                             <h3 class="title">Carrello</h3>
+							{/if}
                         </div>
                         {foreach from=$cart->getCartItems() item=quantity key=stock}
                         {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
@@ -128,28 +132,44 @@
                                     <p class="product-category">CD</p>
                                 {/if}	
                                 <h4 class="product-price">€{$stock->getPrice()}</h4>
-								<div class="col-md-4">
-									<h4 class="product-qty">Quantità:</h4>
-								</div>
-								<div class="col-md-3">
-									<div class="input-number">
-										<input type="number" value="1">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+								<br>
+								<div class="row">
+									<div class="col-md-5">
+										<smallbr></smallbr>
+										<h4 id="right" class="product-qty">Quantità:</h4>
+									</div>
+									<div class="col-md-3">
+										<div class="input-number">
+											<form action="/MusicCorner/Orders/updateCart/" method="post">
+											<input type="number" name="quantity" value={$quantity}>
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+										<smallbr></smallbr>
 									</div>
 								</div>
-									
-								<div class="col-md-6">
-									<button class="primary-btn-center btn-block">Aggiorna</button>
-								</div>
-								<div class="col-md-6">
-									<button class="primary-btn-center btn-block">Rimuovi</button>
+								
+								<div class="row">
+									<div class="col-md-6">
+											<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Aggiorna</button>
+										</form>
+									</div>
+									<div class="col-md-6">
+										<form action="/MusicCorner/Orders/removeFromCart/" method="post">
+											<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Rimuovi</button>
+										</form>
+									</div>
 								</div>
                             </div>
 						</div>
 						<br>
                         <!-- /product -->
                         {/foreach}
+						{if $cart->getCartQuantity()!=0}
+							<form action="/MusicCorner/Orders/clearCart/" method="post">
+								<button class="primary-btn-center btn-block">Svuota carrello</button>
+							</form>
+						{/if}
                     </div>
 
                     <!-- Cart Summary -->

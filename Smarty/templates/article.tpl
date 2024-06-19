@@ -80,13 +80,15 @@
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											{foreach from=$cart->getCartItems() item=quantity key=stock}
+											{assign var="cartarticle" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
+											{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}	
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getId()}_0_536_0_75.jpg" alt="">
+														<img src="https://www.ibs.it/images/{$cartarticle->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getName()}</a></h3>
-														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getPrice()}</h4>
+														<h3 class="product-name"><a href="#">{$cartarticle->getName()}</a></h3>
+														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 													</div>
 													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
@@ -97,7 +99,7 @@
 											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
+											<a href="/MusicCorner/Orders/cart">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
@@ -200,7 +202,7 @@
 								<div class="qty-label">
 									Quantità&nbsp&nbsp
 									<div class="input-number">
-										<input type="number" value="1">
+										<input type="number" name="quantity" value="1">
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
@@ -407,7 +409,8 @@
 					</div>
 
 					<!-- product -->
-					{foreach from=FArticleDescription::getArticlesByArtist($article->getArtist())   item=product}
+					{foreach from=FArticleDescription::getArticlesByArtist($article->getArtist()) item=product}
+					{assign var="stocks" value=$product->getStocks()}
 					<div class="col-md-3 col-xs-6">
 						<div class="product">
 							<div class="product-img">
@@ -424,9 +427,13 @@
 								<div class="product-rating">
 								</div>
 							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
+							{if $product->getLowestPrice() != 0}
+								<form action="/MusicCorner/Orders/addToCart/" method="post">
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</form>
+							{/if}
 						</div>
 					</div>
 					{/foreach}
