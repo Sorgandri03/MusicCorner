@@ -20,7 +20,6 @@ class CUser{
             }
             else
                 $logged = true;
-                echo "sei loggato come customer"; 
         }
         if(USession::isSetSessionElement('seller')){
             //echo USession::getSessionElement('seller');
@@ -83,7 +82,8 @@ class CUser{
                                 break;
                             }
                             else{
-                                $view->showUserDashboard();
+                                header('Location: /MusicCorner/');
+                                //$view->showUserDashboard();
                                 break;
                             }                            
                         case "seller":
@@ -103,9 +103,11 @@ class CUser{
                     //$view->loginError();
                 }
             }else{
+                echo "pippo2";
                 $view->loginError();
             }
-        }else{
+        }else{echo "pippo3";
+
         }
     }
 
@@ -149,7 +151,7 @@ class CUser{
             $view->showRegistrationCustomer();
         }
     }
-    
+
     public static function registrationSeller(){
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -185,10 +187,24 @@ class CUser{
             $view->showRegistrationSeller();
         }
     }
-
+    /*
+    //da fixare 
+    public static function logout(){
+        if(USession::isSetSessionElement('customer')){
+            USession::unsetSessionElement('customer');
+        }
+        elseif(USession::isSetSessionElement('seller')){
+            USession::unsetSessionElement('seller');
+        }
+        elseif(USession::isSetSessionElement('admin')){
+            USession::unsetSessionElement('admin');
+        }
+        header('Location: /MusicCorner/User/login');
+    }
+    */
     public static function logout(){
         USession::getInstance();
         USession::destroySession();
-        header('Location: /MusicCorner/User/login');
+        header('Location: /MusicCorner/');
     }
 }
