@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>MusicCorner - Music for you</title>
+		<title>MusicCorner - Music for you</title>
 
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/bootstrap.min.css"/>
 
-	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
-	<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/slick-theme.css"/>
 
-	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/nouislider.min.css"/>
 
-	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="/MusicCorner/Smarty/templates/css/font-awesome.min.css">
 
-	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
-	<link type="text/css" rel="stylesheet" href="C:\xampp\htdocs\MusicCorner\Smarty\templates\css\style.css"/>
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-</head>
-<body>
-	<!-- HEADER -->
-	<header>
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+	<body>
+		
+		<!-- HEADER -->
+		<header>
+		</header>
+		
 		<!-- MAIN HEADER -->
 		<div id="header">
 			<!-- container -->
@@ -45,27 +48,12 @@
 				<!-- row -->
 				<div class="row">
 					<!-- LOGO -->
-					<div class="col-md-3">
-						<div class="header-logo">
-							<a href="#" class="logo">
-								<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
+							<a href="/MusicCorner/" class="logo">
+								<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
 							</a>
-						</div>
-					</div>
-					<!-- /LOGO -->
-
-					<!-- SEARCH BAR -->
-					<div class="col-md-6">
-						<div class="header-search">
-							<form id='search' action="/MusicCorner/Search/search" method="post">
-								<input class="input" placeholder="Search here" name="query">
-								<button class="search-btn">Search</button>
-							</form>
-						</div>
-					</div>
-					<!-- /SEARCH BAR -->
+					<!-- /LOGO -->																						
 				</div>
-				<!-- /row -->
+				<!-- row -->
 			</div>
 			<!-- /container -->
 		</div>
@@ -74,24 +62,22 @@
 	<!-- /HEADER -->
 
 	<!-- SELLER DASHBOARD -->
-	<div class="seller-dashboard">
+	<div class="seller-dashboard section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4>Seller Dashboard</h4>
+					<h1>Benvenuto {$shopname}</h1>
 					<ul>
-						<ul>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Home</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Products</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Orders</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Payments</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Logout</strong></a></li>
+						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Home</strong></a></li>
+						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Articoli Venduti</strong></a></li>
+						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Carica Articolo</strong></a></li>
+						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Visualizza Recensioni</strong></a></li>
+						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-red" ><strong>Logout</strong></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- /SELLER DASHBOARD -->
-
-	<!-- Your remaining HTML code goes here -->
+	</div>	
 
 </body>
 </html>

@@ -58,8 +58,25 @@ class VRegistration
     {
         $this->smarty->display('registrationseller.tpl');
     }
+    
     public function registrationError() {
         $this->smarty->assign('regErr',true);
+        $this->smarty->assign('emptyFields',false);
+        $this->smarty->assign('passwordError',false);
+        $this->smarty->display('registration.tpl');
+    }
+
+    public function emptyFields(){
+        $this->smarty->assign('regErr',false);
+        $this->smarty->assign('emptyFields',true);
+        $this->smarty->assign('passwordError',false);
+        $this->smarty->display('registration.tpl');
+    }
+
+    public function passwordError(){
+        $this->smarty->assign('regErr',false);
+        $this->smarty->assign('emptyFields',false);
+        $this->smarty->assign('passwordError',true);
         $this->smarty->display('registration.tpl');
     }
 }

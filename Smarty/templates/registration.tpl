@@ -64,8 +64,14 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					{if $regErr == true}
-					<p class="error-message">email or username is already taken</p>
+					{if $regErr==true}
+					<p class="error-message">L'email o lo username desiderati non sono disponibili </p>
+					{/if}
+					{if $emptyFields == true}
+					<p class="error-message">Devi riempire tutti i campi</p>
+					{/if}
+					{if $passwordError == true}
+					<p class="error-message">La password non coincide!</p>
 					{/if}
 						<!-- Login Form -->
 						<div class="container-small">

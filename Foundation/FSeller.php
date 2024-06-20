@@ -1,14 +1,7 @@
 <?php
 
 class FSeller{
-    private static $instance = null;
-    public static function getInstance(){
-        if (!self::$instance){
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-    //END SINGLETON
+
     private static $table = "Seller";
     private static $value = "(:email, :shopName, :shopRating)";
     private static $key = "email";

@@ -83,30 +83,30 @@ class CUser{
                             }
                             else{
                                 header('Location: /MusicCorner/');
-                                //$view->showUserDashboard();
                                 break;
                             }                            
                         case "seller":
-                            USession::setSessionElement('seller', $user);
-                            $view->showUserDashboard();
+                            $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $user->getId());
+                            USession::setSessionElement('seller', $seller);
+                            header('Location: /MusicCorner/');
                             break;
                         case "admin":
-                            USession::setSessionElement('admin', $user);
-                            $view->showUserDashboard();
+                            $admin = FPersistentManager::getInstance()->retrieveObj(EAdmin::class, $user->getId());
+                            USession::setSessionElement('admin', $admin);
+                            header('Location: /MusicCorner/');
                             break;
                         default:
                             $view->loginError();
                             break;
                     }                      
                 }else{
-                    echo "pippo1";
-                    //$view->loginError();
+                    $view->loginError();
                 }
             }else{
-                echo "pippo2";
                 $view->loginError();
             }
-        }else{echo "pippo3";
+        }else{
+            $view->loginError();
 
         }
     }
@@ -126,11 +126,10 @@ class CUser{
                 $confirmPassword = UHTTPMethods::post('confirm-password');
                 
                 if ($password !== $confirmPassword) {
-                    $view->registrationError();
-                    echo "Le password non coincidono"; 
+                    $view->passwordError();
                     return;
                 }
-                
+               
                 if (FPersistentManager::getInstance()->verifyUserEmail($email) == false && FPersistentManager::getInstance()->verifyUserUsername($username) == false) {
                     $user = new EUser($email, $password);
                     $customer = new ECustomer($username, $email, $password);
@@ -143,8 +142,7 @@ class CUser{
                     return;
                 }
             } else {
-                $view->registrationError();
-                echo "Compila tutti i campi"; 
+                $view->emptyFields(); 
                 return;
             }
         } else {
@@ -155,9 +153,9 @@ class CUser{
     public static function registrationSeller(){
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm-password'])) {
+            if (isset($_POST['email']) && isset($_POST['shopname']) && isset($_POST['password']) && isset($_POST['confirm-password'])) {
                 $email = UHTTPMethods::post('email');
-                $username = UHTTPMethods::post('username');
+                $username = UHTTPMethods::post('shopname');
                 $password = UHTTPMethods::post('password');
                 $confirmPassword = UHTTPMethods::post('confirm-password');
 
@@ -187,9 +185,10 @@ class CUser{
             $view->showRegistrationSeller();
         }
     }
-    /*
+    
     //da fixare 
     public static function logout(){
+        USession::getInstance();
         if(USession::isSetSessionElement('customer')){
             USession::unsetSessionElement('customer');
         }
@@ -201,8 +200,8 @@ class CUser{
         }
         header('Location: /MusicCorner/User/login');
     }
-    */
-    public static function logout(){
+    
+    public static function destroySession(){
         USession::getInstance();
         USession::destroySession();
         header('Location: /MusicCorner/');

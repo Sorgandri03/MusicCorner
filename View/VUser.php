@@ -46,10 +46,12 @@ class VUser{
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
             $this->smarty->display('customer.tpl');
+            exit;
         }
         elseif(USession::getInstance()->isSetSessionElement('seller')){
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getUsername());
+            $this->smarty->assign('shopname',USession::getInstance()->getSessionElement('seller')->getShopName());
             $this->smarty->display('seller.tpl');
+            exit;
         }
         elseif(USession::getInstance()->isSetSessionElement('admin')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('admin'));

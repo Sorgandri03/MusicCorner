@@ -1,15 +1,15 @@
 <?php
 
 class ESeller extends EUser {    
-    private String $shopName;
+    private $shopName;
     private float $shopRating=0;
     public array $catalogue = array();
     private $sentMessages = array();
     private $receivedMessages = array();
     
     public function __construct(string $email, string $password, string $shopName) {
-        parent::__construct($email, $password);
         $this->shopName = $shopName;
+        parent::__construct($email, $password);
     }
     
     public function setStocks(array $stocks): void {

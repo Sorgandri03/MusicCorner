@@ -66,7 +66,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1>Benvenuto {$username} </h1>
-					<div></div>
 					<ul>
 						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Home</strong></a></li>
 						<li><a href="#" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
@@ -74,11 +73,10 @@
 						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-red" ><strong>Logout</strong></a></li>
 					</ul>
 				</div>
+			</div>
 		</div>
 	</div>
 	<!-- /CUSTOMER DASHBOARD -->
-
-	<!-- Your remaining HTML code goes here -->
 
 </body>
 </html>
