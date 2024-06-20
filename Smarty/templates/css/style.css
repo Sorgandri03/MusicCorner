@@ -190,6 +190,8 @@ input.input-small {
 textarea.input {
   padding: 15px;
   min-height: 90px;
+  min-width: calc(100%);
+  max-width: calc(100%);
 }
 
 /*-- Number input --*/
