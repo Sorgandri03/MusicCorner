@@ -56,6 +56,7 @@ class COrders{
          */
         $stockId = UHTTPMethods::post('stockId');
 
+        echo $stockId;
         /**
          * Retrieve user cart from the session
          */
@@ -144,7 +145,7 @@ class COrders{
         header('Location: /MusicCorner/Orders/cart');
     }
 
-    public static function order(){
+    public static function checkout(){
         if(!CUser::islogged()){
             header('Location: /MusicCorner/User/login');
             return;            
@@ -157,12 +158,10 @@ class COrders{
             $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
         }
-        if(count($cart->getCartItems()) == 0){
-            echo "Cart is empty";
-            return;
-        }
+        
     
         
 
@@ -171,6 +170,37 @@ class COrders{
          */
         $v = new VOrders();
         $v->showOrderAddress();
+    }
+
+    public static function payment(){
+        if(!CUser::islogged()){
+            header('Location: /MusicCorner/User/login');
+            return;            
+        }
+        
+        /**
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
+        }
+
+        /**
+         * Check if the cart is empty
+         */
+        if(count($cart->getCartItems()) == 0){
+            header('Location: /MusicCorner/Orders/cart');
+            return;
+        }
+
+        $address = new EAddress(UHTTPMethods::post('address'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
+        echo $address->getStreet() . "<br>" . $address->getCity() . "<br>" . $address->getCap() . "<br>" . $address->getName() . "<br>" . $address->getCustomer() . "<br>";
+            
+        $v = new VOrders();
+        $v->showOrderPayment();
     }
     
     public static function orderConfirm(string $cardNumber, int $addressId){

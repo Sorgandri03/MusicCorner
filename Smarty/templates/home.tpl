@@ -85,10 +85,9 @@
 														<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">{$article->getName()}</a></h3>
+														<h3 class="product-name"><a href="/MusicCorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
 														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 													</div>
-													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
 											{/foreach}
 										</div>
@@ -97,8 +96,8 @@
 											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="./Orders/cart">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/MusicCorner/Orders/cart">View Cart</a>
+											<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>

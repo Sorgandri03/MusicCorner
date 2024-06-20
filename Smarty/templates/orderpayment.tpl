@@ -66,29 +66,69 @@
 				<div class="row">
 
 					<div class="col-md-7">
-						<!-- Shipping Details -->
-						<div class="shipping-details">
+						<!-- Card Details -->
+						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Shipping address</h3>
-							</div>
-							<form action="/MusicCorner/Orders/payment/" method="post">
-							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name" required>
+								<h3 class="title">Card Details</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name" required>
+								<input class="input" type="text" name="first-name" placeholder="First Name">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address" required>
+								<input class="input" type="text" name="last-name" placeholder="Last Name">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="City" required>
+								<input class="input" type="text" name="card-number" placeholder="Card Number">
 							</div>
 							<div class="form-group">
-								<input class="input" type="number" name="zip-code" placeholder="ZIP Code" required>
+								<input class="input" type="text" name="expiration-date" placeholder="Expiration Date">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="cvv" placeholder="CVV">
 							</div>
 						</div>
-						<!-- /Shipping Details -->
+						<!-- /Card Details -->
+
+						<!-- Shiping Details -->
+						<div class="shiping-details">
+							<div class="section-title">
+								<h3 class="title">Billing address</h3>
+							</div>
+							<div class="input-checkbox">
+								<input type="checkbox" id="shiping-address">
+								<label for="shiping-address">
+									<span></span>
+									Bill to a different address?
+								</label>
+								<div class="caption">
+									<div class="form-group">
+										<input class="input" type="text" name="first-name" placeholder="First Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="last-name" placeholder="Last Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="email" name="email" placeholder="Email">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="address" placeholder="Address">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="city" placeholder="City">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="country" placeholder="Country">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
+									</div>
+									<div class="form-group">
+										<input class="input" type="tel" name="tel" placeholder="Telephone">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Shiping Details -->
 					</div>
 
 					<!-- Order Details -->
@@ -121,23 +161,14 @@
 								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
 							</div>
 						</div>
-						{if $error}
-							<div class="error-message">
-								You have to accept the terms and conditions to make an order
-							</div>
-						{/if}
-							<div class="input-checkbox">
-								<div class="form-group">
-									<input type="checkbox" id="terms" name="termsValue" value="true" required>
-									<label for="terms">
-										<span></span>
-										I've read and accept the <a href="#">terms & conditions</a>
-									</label>
-								</div>
-							</div>
-							<br>
-							<button class="primary-btn btn-block">Continue to Payment</button>
-						</form>
+						<div class="input-checkbox">
+							<input type="checkbox" id="terms">
+							<label for="terms">
+								<span></span>
+								I've read and accept the <a href="#">terms & conditions</a>
+							</label>
+						</div>
+						<a href="#" class="primary-btn order-submit">Continue to Payment</a>
 					</div>
 					<!-- /Order Details -->
 				</div>

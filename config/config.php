@@ -18,7 +18,7 @@ define('SQL_FILE_PATH', 'musiccorner.sql');
 
 define('Format', array(
     'CD',
-    'Vynil',
+    'LP',
     'Cassette'
     ));
 

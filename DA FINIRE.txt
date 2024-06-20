@@ -12,9 +12,8 @@ ANDREA:
 Ordine
 
 LEONARDO:
-Registrazione
+Dashboard cliente
 Reviews
 
 GIANMARCO:
 Dashboard venditore
-Dashboard cliente

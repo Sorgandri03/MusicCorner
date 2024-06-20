@@ -180,7 +180,9 @@
                         <div class="cart-summary">
                             <h4>Articoli: {$cart->getCartQuantity()}</h4>
                             <h3>TOTALE: €{$cart->getTotalPrice()}</h3>
-                            <button class="primary-btn btn-block">Procedi al checkout</button>
+							<form action="/MusicCorner/Orders/checkout" method="post">
+                            	<button class="primary-btn btn-block">Procedi al checkout</button>
+							</form>
                         </div>
                     </div>
                 </div>

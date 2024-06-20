@@ -35,8 +35,59 @@ class VOrders
         $this->smarty->display('cart.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showOrderAddress()
     {
-        $this->smarty->display('cart.tpl');
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+
+        $this->smarty->assign('Format', Format);
+        $this->smarty->assign('cart', $cart);
+        $this->smarty->display('orderaddress.tpl');
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function showOrderAddressErrorTerms()
+    {
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+
+        $this->smarty->assign('Format', Format);
+        $this->smarty->assign('cart', $cart);
+        $this->smarty->assign('error', true);
+        $this->smarty->display('orderaddress.tpl');
+    }
+
+    
+    /**
+     * @throws SmartyException
+     */
+    public function showOrderPayment()
+    {
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+
+        $this->smarty->assign('Format', Format);
+        $this->smarty->assign('cart', $cart);
+        $this->smarty->display('orderpayment.tpl');
     }
 }
