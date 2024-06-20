@@ -44,10 +44,11 @@ class VUser{
      */
     public function showUserDashboard(){
         if(USession::getInstance()->isSetSessionElement('customer')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
             $this->smarty->display('customer.tpl');
         }
         elseif(USession::getInstance()->isSetSessionElement('seller')){
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller'));
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getUsername());
             $this->smarty->display('seller.tpl');
         }
         elseif(USession::getInstance()->isSetSessionElement('admin')){

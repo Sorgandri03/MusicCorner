@@ -36,6 +36,7 @@
 
 	</head>
 	<body>
+		
 		<!-- HEADER -->
 		<header>
 		</header>
@@ -47,27 +48,12 @@
 				<!-- row -->
 				<div class="row">
 					<!-- LOGO -->
-					<div class="col-md-3">
-						<div class="header-logo">
-							<a href="#" class="logo">
-								<img src="/MusicCorner/Smarty\templates\img/hhh.png" alt="">
+							<a href="/MusicCorner/" class="logo">
+								<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
 							</a>
-						</div>
-					</div>
-					<!-- /LOGO -->
-
-					<!-- SEARCH BAR -->
-					<div class="col-md-6">
-						<div class="header-search">
-							<form id='search' action="/MusicCorner/Search/search" method="post">
-								<input class="input" placeholder="Search here" name="query">
-								<button class="search-btn">Search</button>
-							</form>
-						</div>
-					</div>
-					<!-- /SEARCH BAR -->
+					<!-- /LOGO -->																						
 				</div>
-				<!-- /row -->
+				<!-- row -->
 			</div>
 			<!-- /container -->
 		</div>
@@ -75,19 +61,19 @@
 	</header>
 	<!-- /HEADER -->
 	 <!-- CUSTOMER DASHBOARD -->
-	<div class="customer-dashboard">
+	<div class="customer-dashboard section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4>Customer Dashboard</h4>
+					<h1>Benvenuto {$username} </h1>
+					<div></div>
 					<ul>
-						<ul>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Home</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My articles</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My orders</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>My reviews</strong></a></li>
-							<li><a href="#" class="btn btn-outline-primary btn-lg" style="color: black; background-color: white; border: 2px solid navy; width: 50%;"><strong>Logout</strong></a></li>
-			</div>
+						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Home</strong></a></li>
+						<li><a href="#" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
+						<li><a href="#" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
+						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-red" ><strong>Logout</strong></a></li>
+					</ul>
+				</div>
 		</div>
 	</div>
 	<!-- /CUSTOMER DASHBOARD -->

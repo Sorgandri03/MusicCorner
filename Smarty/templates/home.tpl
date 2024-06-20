@@ -258,7 +258,7 @@
 
 
 		<!-- FOOTER -->
-		<footer id="footer">
+		<footer id="fixed-footer">
 			<!-- bottom footer -->
 			<div id="bottom-footer" class="section">
 				<div class="container">
