@@ -59,7 +59,7 @@ class VOrders
     /**
      * @throws SmartyException
      */
-    public function showOrderAddressErrorTerms()
+    public function showOrderAddressError()
     {
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');
@@ -69,6 +69,9 @@ class VOrders
             USession::getInstance()->setSessionElement('cart',$cart);
         }
 
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
+
+        $this->smarty->assign('customer', $customer);
         $this->smarty->assign('Format', Format);
         $this->smarty->assign('cart', $cart);
         $this->smarty->assign('error', true);
@@ -89,6 +92,53 @@ class VOrders
             USession::getInstance()->setSessionElement('cart',$cart);
         }
 
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
+
+        $this->smarty->assign('customer', $customer);
+        $this->smarty->assign('Format', Format);
+        $this->smarty->assign('cart', $cart);
+        $this->smarty->display('orderpayment.tpl');
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function showOrderPaymentError()
+    {
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
+
+        $this->smarty->assign('error', true);
+        $this->smarty->assign('customer', $customer);
+        $this->smarty->assign('Format', Format);
+        $this->smarty->assign('cart', $cart);
+        $this->smarty->display('orderpayment.tpl');
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function showOrderPaymentErrorTerms()
+    {
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
+
+        $this->smarty->assign('errorTerms', true);
+        $this->smarty->assign('customer', $customer);
         $this->smarty->assign('Format', Format);
         $this->smarty->assign('cart', $cart);
         $this->smarty->display('orderpayment.tpl');
