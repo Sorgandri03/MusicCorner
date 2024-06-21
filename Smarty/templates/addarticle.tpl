@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		 <!-- The above </div>3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<title>MusicCorner - Music for you</title>
 
@@ -26,8 +26,8 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="/MusicCorner/Smarty/templates/css/style.css"/>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+</div>
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media querie</div>s -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -71,7 +71,7 @@
 							<div class="section-title">
 								<h3 class="title">Shipping address</h3>
 							</div>
-							<form action="/MusicCorner/Orders/payment/" method="post">
+							<form action="" method="post">
 							<div class="form-group">
 								<input class="input" type="text" name="first-name" placeholder="First Name" required>
 							</div>
@@ -89,11 +89,37 @@
 							</div>
 						</div>
 						<!-- /Shipping Details -->
+
+						<br>
+							<!-- Saved Addresses -->
+								
+							<!-- /Saved Addresses -->
 					</div>
 
-		
-
-
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your Order</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div><strong>PRODUCT</strong></div>
+								<div><strong>TOTAL</strong></div>
+							</div>
+							<div class="order-col">
+								<div>Shipping</div>
+								<div><strong>FREE</strong></div>
+							</div>
+							<div class="order-col">
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">ao</strong></div>
+							</div>
+						</div>
+							<br>
+							<button class="primary-btn btn-block">Continue to Payment</button>
+						</form>
+					</div>
+					<!-- /Order Details -->
 				</div>
 				<!-- /row -->
 			</div>
