@@ -49,7 +49,7 @@ class VUser{
             exit;
         }
         elseif(USession::getInstance()->isSetSessionElement('seller')){
-            $this->smarty->assign('shopname',USession::getInstance()->getSessionElement('seller')->getShopName());
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
             $this->smarty->display('seller.tpl');
             exit;
         }
@@ -59,6 +59,9 @@ class VUser{
         } 
     }
 
+    public function showAddArticle(){
+        $this->smarty->display('addArticle.tpl');
+    }
 
 
 }

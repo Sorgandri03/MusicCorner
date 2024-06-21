@@ -66,12 +66,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Benvenuto {$shopname}</h1>
+					<h1>Benvenuto {$username}</h1>
 					<ul>
 						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Home</strong></a></li>
 						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Articoli Venduti</strong></a></li>
-						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Carica Articolo</strong></a></li>
-						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Aggiorna Stock</strong></a></li>
+						<li><a href="/MusicCorner/Seller/addArticle" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Carica Articolo</strong></a></li>
+						<li><a href="/MusicCorner/Seller/modifyStock" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Aggiorna Stock</strong></a></li>
 						<li><a href="https://i.makeagif.com/media/1-02-2017/aIAgrp.gif" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Visualizza Recensioni</strong></a></li>
 						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-red" ><strong>Logout</strong></a></li>
 					</ul>
