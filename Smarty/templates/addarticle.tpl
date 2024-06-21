@@ -89,69 +89,11 @@
 							</div>
 						</div>
 						<!-- /Shipping Details -->
-						<div class="input-checkbox">
-							<div class="form-group">
-								<input type='hidden' value='false' name='saveAddress'>
-								<input type="checkbox" id="terms" name="saveAddress" value="true">
-								<label for="terms">
-									<span></span>
-									Save this address for next time
-								</label>
-							</div>
-						</div>
-						{if count($customer->getAddresses())>0}
-						<br>
-							<!-- Saved Addresses -->
-								<div class="shiping-details">
-									<div class="section-title">
-										<h3 class="title">Saved Addresses</h3>
-									</div>
-									{foreach from=$customer->getAddresses() item=address}
-										<div class="form-group">
-											<input type="radio" name="address" value="{$address->getId()}">
-											<label for="address">{$address->getStreet()}, {$address->getCity()}, {$address->getCap()}</label>
-										</div>
-									{/foreach}
-								</div>
-							<!-- /Saved Addresses -->
-						{/if}
 					</div>
 
-					<!-- Order Details -->
-					<div class="col-md-5 order-details">
-						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
-						</div>
-						<div class="order-summary">
-							<div class="order-col">
-								<div><strong>PRODUCT</strong></div>
-								<div><strong>TOTAL</strong></div>
-							</div>
-							<div class="order-products">
-								{foreach from=$cart->getCartItems() item=quantity key=stock}
-                        		{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
-                        		{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}
-								{assign var="format" value=$Format[$article->getFormat()]}
-									<div class="order-col">
-										<div>{$quantity}x {$article->getName()} {$format}</div>
-										<div>€{$stock->getPrice()}</div>
-									</div>
-								{/foreach}
-							</div>
-							<div class="order-col">
-								<div>Shipping</div>
-								<div><strong>FREE</strong></div>
-							</div>
-							<div class="order-col">
-								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
-							</div>
-						</div>
-							<br>
-							<button class="primary-btn btn-block">Continue to Payment</button>
-						</form>
-					</div>
-					<!-- /Order Details -->
+		
+
+
 				</div>
 				<!-- /row -->
 			</div>
