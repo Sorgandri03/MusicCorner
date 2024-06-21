@@ -11,9 +11,9 @@ class FArticleDescription{
     //END SINGLETON
 
     private static $table = "ArticleDescription";
-    private static $value = "(:EAN, :name, :artist, :genre, :format)";
+    private static $value = "(:EAN, :name, :artist, :format)";
     private static $key = "EAN";
-    private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, genre = :genre, format = :format";
+    private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, format = :format";
     
     public static function getValue(): string {
         return self::$value;
@@ -32,7 +32,6 @@ class FArticleDescription{
         $stmt->bindValue(':EAN', $articleDescription->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':name', $articleDescription->getName(), PDO::PARAM_STR);
         $stmt->bindValue(':artist', $articleDescription->getArtist(), PDO::PARAM_STR);
-        $stmt->bindValue(':genre', $articleDescription->getGenre(),PDO::PARAM_STR);
         $stmt->bindValue(':format', $articleDescription->getFormat(),PDO::PARAM_INT);
     }
     
@@ -81,7 +80,7 @@ class FArticleDescription{
 
 
     public static function createEntity($result){
-        $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], $result[0]['genre'], (int) $result[0]['format']);
+        $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], (int) $result[0]['format']);
         $obj->setStocks(FStock::getStocksByArticle($result[0]['EAN']));
         return $obj;
     }
@@ -94,5 +93,10 @@ class FArticleDescription{
             $articles[] = $article;
         }
         return $articles;
+    }
+
+    public static function verify($field, $id){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
+        return FDB::getInstance()->existInDb($queryResult);
     }
 }

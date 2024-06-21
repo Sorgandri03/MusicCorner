@@ -60,11 +60,26 @@ class VUser{
     }
 
     public function showAddArticle(){
+        $this->smarty->assign('found',"");
         $this->smarty->display('addArticle.tpl');
     }
     public function showModifyStock(){
         $this->smarty->display('modifystock.tpl');
     }
+
+    public function addArticleSuccess() {
+        $this->smarty->assign('found',"true");
+        $this->smarty->display('addarticle.tpl');
+    }
+
+    public function addArticleFail() {
+        $this->smarty->assign('found',"false");
+        $this->smarty->display('addarticle.tpl');
+    }
+
+
+
+
 
 
 }
