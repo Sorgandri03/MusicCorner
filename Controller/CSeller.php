@@ -16,16 +16,23 @@ Class CSeller{
         FPersistentManager::getInstance()->createObj($article);
    }
 
-    public static function searchEAN(){
+
+    public static function searchEAN() {
         $view = new VUser();
         $ean = UHTTPMethods::post('EAN');
-        $article = FPersistentManager::getInstance()->verifyEAN($ean);
-        if ($article) {
-            $view->addArticleSuccess();
+        $exists = FPersistentManager::getInstance()->verifyEAN($ean);
+        
+        if ($exists) {
+            $article = FPersistentManager::getInstance()->getArticleDetailsByEAN($ean);
+            if ($article) {
+                $view->addArticleSuccess($article['EAN'], $article['name'], $article['artist']); //dovro metterci il formato
+            } else {
+                $view->addArticleFail();
+            }
         } else {
             $view->addArticleFail();
-    }}
-
+        }
+    }
     
     public static function soldProducts(){
 

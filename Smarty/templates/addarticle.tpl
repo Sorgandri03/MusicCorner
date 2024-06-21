@@ -74,7 +74,7 @@
 								<h3 class="title">Dettagli Prodotto</h3>
 							</div>
 							<form action="/MusicCorner/Seller/addArticle" method="post"></form>
-							<div class="form-group">
+							<div class="form-group" id="ean-section" {if $found == "true"}style="display:none;"{/if}>
 								<form action="/MusicCorner/Seller/searchEAN" method="post">
 									<input class="input" type="text" name="EAN" placeholder="Inserisci EAN" required>
 									<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
@@ -83,27 +83,81 @@
 						
 								{if $found=="true"}
 									<p style="color: green;">EAN verificato con successo!</p>
+									<!-- manca il formato e prima che inserisco l'ean non mi mostra alcuni campi
+									 ma devo aggiunge il caso "" in cui mostro tutto vuoto-->
+									<div class="form-group">
+										<input class="input" type="text" name="EAN"  value= "{$EAN}" required>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="product-name"  value= "{$productName}" required>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="artist-name"  value="{$artistName}" required>
+									</div>
+									<div class="form-group">
+										<select class="input" name="format" required>
+											<option value="">Seleziona il formato</option>
+											<option value="CD">CD</option>
+											<option value="LP">LP</option>
+											<option value="Cassette">Cassette</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
+									</div>
+								</form>
 								{else if $found=="false"}
 									<p style="color: red;">EAN non valido!</p>
+									<div class="form-group">
+										<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
+									</div>
+									<div class="form-group">
+										<select class="input" name="format" required>
+											<option value="">Seleziona il formato</option>
+											<option value="CD">CD</option>
+											<option value="LP">LP</option>
+											<option value="Cassette">Cassette</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
+									</div>
+								</form>
+								{else if $found==""}
+								<div class="form-group">
+									<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
+								</div>
+								<div class="form-group">
+									<select class="input" name="format" required>
+										<option value="">Seleziona il formato</option>
+										<option value="CD">CD</option>
+										<option value="LP">LP</option>
+										<option value="Cassette">Cassette</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
+								</div>
+								</form>
 								{/if}
 							
-							<div class="form-group">
-								<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
-							</div>
-							<div class="form-group">
-								<select class="input" name="format" required>
-									<option value="">Seleziona il formato</option>
-									<option value="CD">CD</option>
-									<option value="LP">LP</option>
-									<option value="Cassette">Cassette</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
-							</div>
+							
+
 						</form>
 						</div>
 						<!-- /Billing Details -->
@@ -144,6 +198,7 @@
 	
 
 		<!-- jQuery Plugins -->
+		<script src="Smarty\templates\js\hide.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/slick.min.js"></script>

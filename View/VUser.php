@@ -60,6 +60,8 @@ class VUser{
     }
 
     public function showAddArticle(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
         $this->smarty->assign('found',"");
         $this->smarty->display('addArticle.tpl');
     }
@@ -70,8 +72,11 @@ class VUser{
         $this->smarty->display('modifystock.tpl');
     }
 
-    public function addArticleSuccess() {
+    public function addArticleSuccess($EAN, $productName, $artistName) {
         $this->smarty->assign('found',"true");
+        $this->smarty->assign('EAN', $EAN);
+        $this->smarty->assign('productName', $productName);
+        $this->smarty->assign('artistName', $artistName);
         $this->smarty->display('addarticle.tpl');
     }
 

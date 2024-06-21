@@ -99,4 +99,13 @@ class FArticleDescription{
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);
     }
+
+    public static function getDetailsByEAN($ean) {
+        $result = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
+        if (count($result) > 0) {
+            return $result[0]; 
+        } else {
+            return null;
+        }
+    }
 }

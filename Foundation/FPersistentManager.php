@@ -64,6 +64,10 @@ class FPersistentManager{
         $result = FArticleDescription::verify('EAN', $ean);
         return $result;
     }
+
+    public function getArticleDetailsByEAN($ean) {
+        return FArticleDescription::getDetailsByEAN($ean);
+    }
     
     public static function verifyUserEmail($email){
         $result = FUser::verify('email', $email);
