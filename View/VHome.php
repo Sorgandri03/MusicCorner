@@ -20,6 +20,9 @@ class VHome
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
         }
+        elseif(USession::getInstance()->isSetSessionElement('seller')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
+        }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
         }
