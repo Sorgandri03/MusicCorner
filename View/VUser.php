@@ -62,6 +62,9 @@ class VUser{
     public function showAddArticle(){
         $this->smarty->display('addArticle.tpl');
     }
+    public function showModifyStock(){
+        $this->smarty->display('modifystock.tpl');
+    }
 
 
 }

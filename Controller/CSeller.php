@@ -8,7 +8,9 @@ Class CSeller{
         $view->showAddArticle();
     }
 
-   public static function modifyArticle(){
+   public static function modifyStock(){
+        $view = new VUser();
+        $view->showModifyStock();
 
     }
     public static function soldProducts(){
