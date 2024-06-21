@@ -11,9 +11,9 @@ class FCreditCard{
     //END SINGLETON
 
     private static $table = "CreditCard";
-    private static $value = "(:cardNumber, :billingAddress, :owner, :expiringDate, :cvv)";
-    private static $key = "cardNumber";
-    private static $updatequery = "cardNumber = :cardNumber, billingAddress = :billingAddress, owner = :owner, expiringDate = :expiringDate, cvv = :cvv";
+    private static $value = "(NULL, :cardNumber, :billingAddress, :owner, :customerId, :expiringDate, :cvv)";
+    private static $key = "id";
+    private static $updatequery = "cardNumber = :cardNumber, billingAddress = :billingAddress, owner = :owner, customerId = :customerId, expiringDate = :expiringDate, cvv = :cvv";
     public static function getTable(): string {
         return self::$table;
     }
@@ -28,9 +28,10 @@ class FCreditCard{
     }
 
     public static function bind($stmt, $creditCard){
-        $stmt->bindValue(':cardNumber', $creditCard->getId(), PDO::PARAM_STR);
+        $stmt->bindValue(':cardNumber', $creditCard->getNumber(), PDO::PARAM_STR);
         $stmt->bindValue(':billingAddress', $creditCard->getBillingAddress(), PDO::PARAM_INT);
         $stmt->bindValue(':owner', $creditCard->getOwner(), PDO::PARAM_STR);
+        $stmt->bindValue(':customerId', $creditCard->getCustomerId(), PDO::PARAM_STR);
         $stmt->bindValue(':expiringDate', $creditCard->getExpirationDate(), PDO::PARAM_STR);
         $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_STR);
     }
@@ -39,6 +40,7 @@ class FCreditCard{
     public static function createObject($obj){
         $create = FDB::getInstance()->create(self::class, $obj);
         if($create !== null){
+            $obj->setId($create);
             return true;
         }else{
             return false;
@@ -80,12 +82,13 @@ class FCreditCard{
 
 
     public static function createEntity($result){
-        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $result[0]['owner'], $result[0]['billingAddress']);
+        $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $result[0]['owner'], $result[0]['customerId'], $result[0]['billingAddress']);
+        $card->setId($result[0][self::getKey()]);
         return $card;
     }
 
-    public static function getCardsByOwner($owner){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'owner', $owner);
+    public static function getCardsByCustomer($customerId){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customerId', $customerId);
         $cards = array();
         for($i = 0; $i < count($queryResult); $i++){
             $card = self::retrieveObject($queryResult[$i][self::getKey()]);

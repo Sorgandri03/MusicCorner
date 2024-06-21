@@ -69,23 +69,23 @@
 						<!-- Shipping Details -->
 						<div class="shipping-details">
 							<div class="section-title">
-								<h3 class="title">Shipping address</h3>
+								<h3 class="title">Indirizzo di spedizione</h3>
 							</div>
 							<form action="/MusicCorner/Orders/payment/" method="post">
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name" required>
+								<input class="input" type="text" name="first-name" placeholder="Nome">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name" required>
+								<input class="input" type="text" name="last-name" placeholder="Cognome">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address" required>
+								<input class="input" type="text" name="street" placeholder="Indirizzo">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="City" required>
+								<input class="input" type="text" name="city" placeholder="Città">
 							</div>
 							<div class="form-group">
-								<input class="input" type="number" name="zip-code" placeholder="ZIP Code" required>
+								<input class="input" type="number" name="zip-code" placeholder="CAP">
 							</div>
 						</div>
 						<!-- /Shipping Details -->
@@ -95,7 +95,7 @@
 								<input type="checkbox" id="terms" name="saveAddress" value="true">
 								<label for="terms">
 									<span></span>
-									Save this address for next time
+									Salva questo indirizzo per la prossima volta
 								</label>
 							</div>
 						</div>
@@ -104,11 +104,12 @@
 							<!-- Saved Addresses -->
 								<div class="shiping-details">
 									<div class="section-title">
-										<h3 class="title">Saved Addresses</h3>
+										<h3 class="title">Indirizzi salvati</h3>
 									</div>
+									<input type="hidden" name="useSavedAddress" value="0">
 									{foreach from=$customer->getAddresses() item=address}
-										<div class="form-group">
-											<input type="radio" name="address" value="{$address->getId()}">
+										<div class="form-group">											
+											<input type="radio" name="useSavedAddress" value="{$address->getId()}">
 											<label for="address">{$address->getStreet()}, {$address->getCity()}, {$address->getCap()}</label>
 										</div>
 									{/foreach}
@@ -120,12 +121,12 @@
 					<!-- Order Details -->
 					<div class="col-md-5 order-details">
 						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
+							<h3 class="title">Il tuo ordine</h3>
 						</div>
 						<div class="order-summary">
 							<div class="order-col">
-								<div><strong>PRODUCT</strong></div>
-								<div><strong>TOTAL</strong></div>
+								<div><strong>PRODOTTI</strong></div>
+								<div><strong>TOTALE</strong></div>
 							</div>
 							<div class="order-products">
 								{foreach from=$cart->getCartItems() item=quantity key=stock}
@@ -139,16 +140,21 @@
 								{/foreach}
 							</div>
 							<div class="order-col">
-								<div>Shipping</div>
-								<div><strong>FREE</strong></div>
+								<div>SPEDIZIONE</div>
+								<div><strong>GRATIS</strong></div>
 							</div>
 							<div class="order-col">
-								<div><strong>TOTAL</strong></div>
+								<div><strong>TOTALE</strong></div>
 								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
 							</div>
 						</div>
 							<br>
-							<button class="primary-btn btn-block">Continue to Payment</button>
+							{if $error}
+								<div class="error-message">
+									Devi riempire tutti i campi!
+								</div>
+							{/if}
+							<button class="primary-btn btn-block">Vai al pagamento</button>
 						</form>
 					</div>
 					<!-- /Order Details -->
