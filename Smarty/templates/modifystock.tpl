@@ -94,5 +94,36 @@
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
-
-        
+		<!-- MODIFY STOCK -->
+		<section id="modify-stock">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Aggiorna Stock</h2>
+						<form action="/MusicCorner/Stock/modify" method="post">
+							<div class="form-group">
+								<label for="product-name">Product Name</label>
+								<select class="form-control" id="product-name" name="product-name" required>
+									<option value="">Select a product</option>
+									<!-- Add options for each product in the stock -->
+									<option value="product1">Product 1</option>
+									<option value="product2">Product 2</option>
+									<option value="product3">Product 3</option>
+									<!-- Add more options as needed -->
+								</select>
+							</div>
+							</div>
+							<div class="form-group">
+								<label for="quantity">Quantity</label>
+								<input type="number" class="form-control" id="quantity" name="quantity" required>
+							</div>
+							<div class="form-group">
+								<label for="price">Price</label>
+								<input type="number" class="form-control" id="price" name="price" required>
+							</div>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
