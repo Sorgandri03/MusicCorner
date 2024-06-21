@@ -83,7 +83,7 @@ class FCustomer {
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $customer = new ECustomer($result[0]['username'], $result[0]['email'], $user->getPassword());
-        $customer->setCreditCards(FCreditCard::getCardsByOwner($customer->getId()));
+        $customer->setCreditCards(FCreditCard::getCardsByCustomer($customer->getId()));
         $customer->setAddresses(FAddress::getAddressesByCustomer($customer->getId()));
         $customer->setOrders(FOrder::getOrdersByCustomer($customer->getId()));
         $customer->setSuspensionTime(date_create_from_format('Y-m-d H:i:s', $result[0]['suspensionTime']));

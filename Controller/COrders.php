@@ -56,7 +56,6 @@ class COrders{
          */
         $stockId = UHTTPMethods::post('stockId');
 
-        echo $stockId;
         /**
          * Retrieve user cart from the session
          */
@@ -193,8 +192,32 @@ class COrders{
             return;
         }
 
-        $address = new EAddress(UHTTPMethods::post('address'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
-        FPersistentManager::getInstance()->createObj($address);
+        /**
+         * Check if the user used a saved address
+         */
+        if(UHTTPMethods::post('useSavedAddress') != 0){
+            $address = FPersistentManager::getInstance()->retrieveObj(EAddress::class, UHTTPMethods::post('useSavedAddress'));
+        }
+        else {
+            if(UHTTPMethods::post('street') && UHTTPMethods::post('city') && UHTTPMethods::post('zip-code') && UHTTPMethods::post('first-name') && UHTTPMethods::post('last-name')){
+                /**
+                 * Check wether the user wants to save the address
+                 */
+                if(UHTTPMethods::post('saveAddress') == 'true'){
+                    $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
+                }
+                else{
+                    $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), '');
+                }
+                FPersistentManager::getInstance()->createObj($address);
+            }
+            else{
+                $v = new VOrders();
+                $v->showOrderAddressError();
+                return;
+            }
+        }
+
         USession::getInstance()->setSessionElement('address', $address);
 
         $v = new VOrders();
@@ -233,18 +256,69 @@ class COrders{
          * Retrieve address
          */
         $address = USession::getInstance()->getSessionElement('address');
-        USession::getInstance()->unsetSessionElement('address');
 
         /**
-         * Create card
+         * Check if the card has a different address
          */
-        $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), USession::getInstance()->getSessionElement('customer')->getId(), $address->getId());
-        FPersistentManager::getInstance()->createObj($card);
+        if(UHTTPMethods::post('otherAddress') == 'true'){
+            if(UHTTPMethods::post('street') && UHTTPMethods::post('city') && UHTTPMethods::post('zip-code') && UHTTPMethods::post('first-name') && UHTTPMethods::post('last-name')){
+                $billingAddress = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), '');
+                FPersistentManager::getInstance()->createObj($billingAddress);
+            }
+            else{
+                $v = new VOrders();
+                $v->showOrderPaymentError();
+                return;
+            }
+        }
+        else{
+            $billingAddress = $address;
+        }
+
+        /**
+         * Check if the user used a saved card
+         */
+        if(UHTTPMethods::post('useSavedCard') != 0){
+            $card = FPersistentManager::getInstance()->retrieveObj(EAddress::class, UHTTPMethods::post('useSavedCard'));
+        }
+        else {
+            if(UHTTPMethods::post('card-number') && UHTTPMethods::post('card-owner') && UHTTPMethods::post('cvv') && UHTTPMethods::post('expiration-date')){
+                /**
+                 * Check wether the user wants to save the card
+                 */
+                if(UHTTPMethods::post('saveCard') == 'true'){
+                    $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), UHTTPMethods::post('card-owner'), USession::getInstance()->getSessionElement('customer')->getId(), $billingAddress->getId());
+                }
+                else{
+                    $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), UHTTPMethods::post('card-owner'), '', $billingAddress->getId());
+                }
+                FPersistentManager::getInstance()->createObj($card);
+            }
+            else{
+                $v = new VOrders();
+                $v->showOrderPaymentError();
+                return;
+            }
+        }
+
+        /**
+         * Check wether the user checked the terms and conditions
+         */
+        if(UHTTPMethods::post('terms') == 'false'){
+            $v = new VOrders();
+            $v->showOrderPaymentErrorTerms();
+            return;
+        }
 
         /**
          * Create order
          */
-        $order = new EOrder(USession::getInstance()->getSessionElement('customer')->getId(), $address->getId(), UHTTPMethods::post('card-number'), $cart->getTotalPrice());
+        $order = new EOrder(USession::getInstance()->getSessionElement('customer')->getId(), $address->getId(), $card->getId(), $cart->getTotalPrice());
+
+        /**
+         * Unset address
+         */
+        USession::getInstance()->unsetSessionElement('address');
 
         /**
          * Save order in the database

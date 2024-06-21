@@ -70,62 +70,96 @@
 						<div class="billing-details">
 							<form action="/MusicCorner/Orders/orderConfirm/" method="post">
 							<div class="section-title">
-								<h3 class="title">Card Details</h3>
+								<h3 class="title">Dettagli della carta</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="card-number" placeholder="Card Number" required>
+								<input class="input" type="text" name="card-number" placeholder="Numero della carta">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="expiration-date" placeholder="Expiration Date" required>
+								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="cvv" placeholder="CVV" required>
+								<input class="input" type="text" name="expiration-date" placeholder="Data di scadenza">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="cvv" placeholder="CVV">
 							</div>
 						</div>
 						<!-- /Card Details -->
 
-						<!-- Shiping Details -->
+						<!-- Billing Address -->
 						<div class="shiping-details">
 							<div class="section-title">
-								<h3 class="title">Billing address</h3>
+								<h3 class="title">indirizzo di fatturazione</h3>
 							</div>
 							<div class="input-checkbox">
-								<input type="checkbox" id="shiping-address">
+								<input type='hidden' value='false' name='otherAddress'>
+								<input type="checkbox" id="shiping-address" name="otherAddress" value="true">
 								<label for="shiping-address">
 									<span></span>
-									Bill to a different address?
+									L'indirizzo di fatturazione è diverso?
 								</label>
 								<div class="caption">
 									<div class="form-group">
-										<input class="input" type="text" name="first-name" placeholder="First Name">
+										<input class="input" type="text" name="first-name" placeholder="Nome">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="last-name" placeholder="Last Name">
+										<input class="input" type="text" name="last-name" placeholder="Cognome">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="address" placeholder="Address">
+										<input class="input" type="text" name="street" placeholder="Indirizzo">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="city" placeholder="City">
+										<input class="input" type="text" name="city" placeholder="Città">
 									</div>
 									<div class="form-group">
-										<input class="input" type="number" name="zip-code" placeholder="ZIP Code">
+										<input class="input" type="number" name="zip-code" placeholder="CAP">
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- /Shiping Details -->
+						<!-- /Billing Address -->
+
+						<!-- Save Card -->
+						<div class="input-checkbox">
+							<div class="form-group">
+								<input type='hidden' value='false' name='saveCard'>
+								<input type="checkbox" id="save" name="saveCard" value="true">
+								<label for="save">
+									<span></span>
+									Salva questa carta per la prossima volta
+								</label>
+							</div>
+						</div>
+						<!-- /Save Card -->
+
+						{if count($customer->getCreditCards()) > 0}
+						<!-- Saved Cards -->
+							<div class="shiping-details">
+								<div class="section-title">
+									<h3 class="title">Carte salvate</h3>
+								</div>
+								<input type="hidden" name="useSavedCard" value="0">
+								{foreach from=$customer->getCreditCards() item=card}
+									<div class="form-group">				
+										<input type="radio" name="useSavedCard" value="{$card->getId()}">
+										<label for="card">****-****-****-{substr($card->getNumber(),12,4)} {$card->getOwner()}</label>
+									</div>
+								{/foreach}
+							</div>
+						<!-- Saved Cards -->
+						{/if}
 					</div>
 
 					<!-- Order Details -->
 					<div class="col-md-5 order-details">
 						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
+							<h3 class="title">Il tuo ordine</h3>
 						</div>
 						<div class="order-summary">
 							<div class="order-col">
-								<div><strong>PRODUCT</strong></div>
-								<div><strong>TOTAL</strong></div>
+								<div><strong>PRODOTTI</strong></div>
+								<div><strong>TOTALE</strong></div>
 							</div>
 							<div class="order-products">
 								{foreach from=$cart->getCartItems() item=quantity key=stock}
@@ -139,30 +173,35 @@
 								{/foreach}
 							</div>
 							<div class="order-col">
-								<div>Shipping</div>
-								<div><strong>FREE</strong></div>
+								<div>SPEDIZIONE</div>
+								<div><strong>GRATIS</strong></div>
 							</div>
 							<div class="order-col">
-								<div><strong>TOTAL</strong></div>
+								<div><strong>TOTALE</strong></div>
 								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
 							</div>
 						</div>
-						{if $error}
+						{if $errorTerms}
 							<div class="error-message">
-								You have to accept the terms and conditions to make an order
+								Devi accettare i termini e le condizioni per fare un ordine
+							</div>
+						{else if $error}
+							<div class="error-message">
+								Compila tutti i campi
 							</div>
 						{/if}
 							<div class="input-checkbox">
 								<div class="form-group">
-									<input type="checkbox" id="terms" name="termsValue" value="true" required>
-									<label for="terms">
+									<input type="hidden" name="terms" value="false">
+									<input type="checkbox" id="termsandco" name="terms" value="true">
+									<label for="termsandco">
 										<span></span>
-										I've read and accept the <a href="#">terms & conditions</a>
+										Ho letto e accetto i <a href="#">termini e le condizioni</a>
 									</label>
 								</div>
 							</div>
 						<br>
-						<button class="primary-btn btn-block">Send Order</button>
+						<button class="primary-btn btn-block">Invia ordine</button>
 						</form>
 					</div>
 					<!-- /Order Details -->

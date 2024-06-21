@@ -32,7 +32,7 @@ class FDB {
             $foundClass::bind($stmt, $obj);
             $stmt->execute();
             $id = self::$db->lastInsertId();
-            echo $id;
+            //echo $id;
             return $id;
         }catch(Exception $e){
             echo "ERROR: " . $e->getMessage();
