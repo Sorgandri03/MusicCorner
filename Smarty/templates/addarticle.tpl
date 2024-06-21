@@ -77,7 +77,7 @@
 							<div class="form-group">
 								<form action="/MusicCorner/Seller/searchEAN" method="post">
 									<input class="input" type="text" name="EAN" placeholder="Inserisci EAN" required>
-									<button class="btn btn-sm btn-primary" type="submit">Verifica Esistenza</button>
+									<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
 								</form>
 							</div>
 						
