@@ -68,23 +68,18 @@
 					<div class="col-md-7">
 						<!-- Card Details -->
 						<div class="billing-details">
+							<form action="/MusicCorner/Orders/orderConfirm/" method="post">
 							<div class="section-title">
 								<h3 class="title">Card Details</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name">
+								<input class="input" type="text" name="card-number" placeholder="Card Number" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name">
+								<input class="input" type="text" name="expiration-date" placeholder="Expiration Date" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="card-number" placeholder="Card Number">
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="expiration-date" placeholder="Expiration Date">
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="cvv" placeholder="CVV">
+								<input class="input" type="text" name="cvv" placeholder="CVV" required>
 							</div>
 						</div>
 						<!-- /Card Details -->
@@ -108,22 +103,13 @@
 										<input class="input" type="text" name="last-name" placeholder="Last Name">
 									</div>
 									<div class="form-group">
-										<input class="input" type="email" name="email" placeholder="Email">
-									</div>
-									<div class="form-group">
 										<input class="input" type="text" name="address" placeholder="Address">
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="city" placeholder="City">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="country" placeholder="Country">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-									</div>
-									<div class="form-group">
-										<input class="input" type="tel" name="tel" placeholder="Telephone">
+										<input class="input" type="number" name="zip-code" placeholder="ZIP Code">
 									</div>
 								</div>
 							</div>
@@ -161,14 +147,23 @@
 								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
 							</div>
 						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="terms">
-							<label for="terms">
-								<span></span>
-								I've read and accept the <a href="#">terms & conditions</a>
-							</label>
-						</div>
-						<a href="#" class="primary-btn order-submit">Continue to Payment</a>
+						{if $error}
+							<div class="error-message">
+								You have to accept the terms and conditions to make an order
+							</div>
+						{/if}
+							<div class="input-checkbox">
+								<div class="form-group">
+									<input type="checkbox" id="terms" name="termsValue" value="true" required>
+									<label for="terms">
+										<span></span>
+										I've read and accept the <a href="#">terms & conditions</a>
+									</label>
+								</div>
+							</div>
+						<br>
+						<button class="primary-btn btn-block">Send Order</button>
+						</form>
 					</div>
 					<!-- /Order Details -->
 				</div>

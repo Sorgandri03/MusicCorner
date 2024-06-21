@@ -162,9 +162,6 @@ class COrders{
             USession::getInstance()->setSessionElement('cart',$cart);
         }
         
-    
-        
-
         /**
          * Pass customer to the view
          */
@@ -197,35 +194,57 @@ class COrders{
         }
 
         $address = new EAddress(UHTTPMethods::post('address'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
-        echo $address->getStreet() . "<br>" . $address->getCity() . "<br>" . $address->getCap() . "<br>" . $address->getName() . "<br>" . $address->getCustomer() . "<br>";
-            
+        FPersistentManager::getInstance()->createObj($address);
+        USession::getInstance()->setSessionElement('address', $address);
+
         $v = new VOrders();
         $v->showOrderPayment();
     }
     
-    public static function orderConfirm(string $cardNumber, int $addressId){
+    public static function orderConfirm(){
+        if(!CUser::islogged()){
+            header('Location: /MusicCorner/User/login');
+            return;            
+        }
+        if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
+            CUser::logout();
+            return;
+        }
+        
         /**
          * Retrieve user cart from the session
          */
         if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = unserialize(USession::getInstance()->getSessionElement('cart'));
+            $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+            $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
         }
 
         /**
          * Check if the cart is empty
          */
         if(count($cart->getCartItems()) == 0){
-            //GOTO CART PAGE
+            header('Location: /MusicCorner/Orders/cart');
             return;
         }
 
         /**
+         * Retrieve address
+         */
+        $address = USession::getInstance()->getSessionElement('address');
+        USession::getInstance()->unsetSessionElement('address');
+
+        /**
+         * Create card
+         */
+        $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), USession::getInstance()->getSessionElement('customer')->getId(), $address->getId());
+        FPersistentManager::getInstance()->createObj($card);
+
+        /**
          * Create order
          */
-        $order = new EOrder(USession::getInstance()->getSessionElement('email'), $addressId, $cardNumber, $cart->getTotalPrice());
+        $order = new EOrder(USession::getInstance()->getSessionElement('customer')->getId(), $address->getId(), UHTTPMethods::post('card-number'), $cart->getTotalPrice());
 
         /**
          * Save order in the database
@@ -250,7 +269,7 @@ class COrders{
         /**
          * Save cart in the session
          */
-        USession::getInstance()->setSessionElement('cart', serialize($cart));
+        USession::getInstance()->setSessionElement('cart', $cart);
 
         /**
          * Show order confirmation page

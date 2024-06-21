@@ -89,6 +89,32 @@
 							</div>
 						</div>
 						<!-- /Shipping Details -->
+						<div class="input-checkbox">
+							<div class="form-group">
+								<input type='hidden' value='false' name='saveAddress'>
+								<input type="checkbox" id="terms" name="saveAddress" value="true">
+								<label for="terms">
+									<span></span>
+									Save this address for next time
+								</label>
+							</div>
+						</div>
+						{if count($customer->getAddresses())>0}
+						<br>
+							<!-- Saved Addresses -->
+								<div class="shiping-details">
+									<div class="section-title">
+										<h3 class="title">Saved Addresses</h3>
+									</div>
+									{foreach from=$customer->getAddresses() item=address}
+										<div class="form-group">
+											<input type="radio" name="address" value="{$address->getId()}">
+											<label for="address">{$address->getStreet()}, {$address->getCity()}, {$address->getCap()}</label>
+										</div>
+									{/foreach}
+								</div>
+							<!-- /Saved Addresses -->
+						{/if}
 					</div>
 
 					<!-- Order Details -->
@@ -121,20 +147,6 @@
 								<div><strong class="order-total">€{$cart->getTotalPrice()}</strong></div>
 							</div>
 						</div>
-						{if $error}
-							<div class="error-message">
-								You have to accept the terms and conditions to make an order
-							</div>
-						{/if}
-							<div class="input-checkbox">
-								<div class="form-group">
-									<input type="checkbox" id="terms" name="termsValue" value="true" required>
-									<label for="terms">
-										<span></span>
-										I've read and accept the <a href="#">terms & conditions</a>
-									</label>
-								</div>
-							</div>
 							<br>
 							<button class="primary-btn btn-block">Continue to Payment</button>
 						</form>

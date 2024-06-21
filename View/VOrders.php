@@ -48,6 +48,9 @@ class VOrders
             USession::getInstance()->setSessionElement('cart',$cart);
         }
 
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
+
+        $this->smarty->assign('customer', $customer);
         $this->smarty->assign('Format', Format);
         $this->smarty->assign('cart', $cart);
         $this->smarty->display('orderaddress.tpl');
