@@ -24,12 +24,10 @@ class CUser{
         if(USession::isSetSessionElement('seller')){
             //echo USession::getSessionElement('seller');
             $logged = true;
-            echo "sei loggato come seller";
         }
         if(USession::isSetSessionElement('admin')){
             //echo USession::getSessionElement('admin');
             $logged = true;
-            echo "sei loggato come admin";
         }
         return $logged;
     }
