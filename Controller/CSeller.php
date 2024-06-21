@@ -13,6 +13,10 @@ Class CSeller{
         $view->showModifyStock();
 
     }
+    public static function removeArticle(){
+       
+
+    }
     public static function soldProducts(){
 
     }

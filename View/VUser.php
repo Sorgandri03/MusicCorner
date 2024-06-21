@@ -63,6 +63,9 @@ class VUser{
         $this->smarty->display('addArticle.tpl');
     }
     public function showModifyStock(){
+        USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,'petricola@petricolastore.it'));
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
         $this->smarty->display('modifystock.tpl');
     }
 
