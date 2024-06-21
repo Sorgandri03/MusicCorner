@@ -113,9 +113,6 @@
 								</select>
 							</div>
 							</div>
-							<div class="form-group">
-								<label for="quantity">Quantity</label>
-								<input type="number" class="form-control" id="quantity" name="quantity" required>
 							</div>
 							<div class="form-group">
 								<label for="price">Price</label>
