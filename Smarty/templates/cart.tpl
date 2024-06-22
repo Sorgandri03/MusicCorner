@@ -126,7 +126,7 @@
                                 <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
                                 {if $article->getFormat()==1}
                                     <p class="product-category">LP</p>
-                                {elseif $article->getFormat()==1}
+                                {elseif $article->getFormat()==2}
                                     <p class="product-category">Cassetta</p>
                                 {else}
                                     <p class="product-category">CD</p>
@@ -188,6 +188,7 @@
                 </div>
             </div>
         </div>
+		<!-- /Shopping Cart Section -->
 
 		<!-- jQuery Plugins -->
 		<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>

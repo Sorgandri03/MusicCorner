@@ -98,5 +98,10 @@ class VUser{
         $this->smarty->assign('order',$order);
         $this->smarty->display('order.tpl');
     }
+    public function showOrderNotAllowed($order){
+        $this->smarty->assign('notAllowed',true);
+        $this->smarty->assign('order',$order);
+        $this->smarty->display('order.tpl');
+    }
 
 }

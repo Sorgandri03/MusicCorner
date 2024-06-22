@@ -93,66 +93,98 @@
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-<!-- MODIFY STOCK -->
-<section id="modify-stock">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
+	
+	<!-- MODIFY STOCK -->
+	<section id="modify-stock">
+		<div class="container">
+			<div class="row">
 				<div class="col-md-12">
-					<br>
-					<h2>Aggiorna Stock</h2>
-					<br>
-					{foreach from=$seller->getStocks() item=stock}
-					{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
-					<div class="row">
-						<div class="col-md-4">
-							<div class="product">
-								<div class="product-img">
-									<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+					<div class="col-md-12">
+						<br>
+						<h2>Aggiorna Stock</h2>
+						<br>
+						{foreach from=$seller->getStocks() item=stock}
+						{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
+						<div class="row">
+							<div class="col-md-4">
+								<div class="product">
+									<div class="product-img">
+										<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-8">
-							<div class="product-details"></div>
-								<p class="product-category">{$article->getArtist()}</p>
-								<h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
-								{if $article->getFormat()==1}
-									<p class="product-category">LP</p>
-								{elseif $article->getFormat()==1}
-									<p class="product-category">Cassetta</p>
-								{else}
-									<p class="product-category">CD</p>
-								{/if}    
-								<h4 class="product-price">€{$stock->getPrice()}</h4>
-								<br>
-								<div class="row">
-									<div class="col-md-5">
-										<smallbr></smallbr>
-										<h4 id="right" class="product-qty">Quantità:</h4>
-									</div>
-									<div class="col-md-3">
-										<div class="input-number">
-											<form action="/MusicCorner/Orders/updateCart/" method="post">
-												<input type="number" name="quantity" value={$quantity}>
-												<span class="qty-up">+</span>
-												<span class="qty-down">-</span>
+							<div class="col-md-8">
+								<div class="product-details"></div>
+									<br>
+									<p class="product-category">{$article->getArtist()}</p>
+									<h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+									{if $article->getFormat()==1}
+										<p class="product-category">LP</p>
+									{elseif $article->getFormat()==1}
+										<p class="product-category">Cassetta</p>
+									{else}
+										<p class="product-category">CD</p>
+									{/if}
+									<div class="row">
+										<div class="col-md-5">
+											<smallbr></smallbr>
+											<h4 id="right" class="product-qty">Prezzo: €</h4>
 										</div>
-										<smallbr></smallbr>
+										<div class="col-md-3">
+											<div class="input-number">
+												<form action="/MusicCorner/Orders/updateCart/" method="post">
+													<input type="number" step="0.01" name="price" value={$stock->getPrice()}>
+													<span class="qty-up">+</span>
+													<span class="qty-down">-</span>
+											</div>
+											<smallbr></smallbr>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-5">
+											<smallbr></smallbr>
+											<h4 id="right" class="product-qty">Quantità:</h4>
+										</div>
+										<div class="col-md-3">
+											<div class="input-number">
+												<form action="/MusicCorner/Seller/updateStock/" method="post">
+													<input type="number" name="quantity" value={$stock->getQuantity()}>
+													<span class="qty-up">+</span>
+													<span class="qty-down">-</span>
+											</div>
+											<smallbr></smallbr>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+												<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Aggiorna</button>
+											</form>
+										</div>
+										<div class="col-md-6">
+											<form action="/MusicCorner/Seller/removeFromStock/" method="post">
+												<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Rimuovi</button>
+											</form>
+										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-											<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Aggiorna</button>
-										</form>
-									</div>
-									<div class="col-md-6">
-										<form action="/MusicCorner/Orders/removeFromCart/" method="post">
-											<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Rimuovi</button>
-										</form>
-									</div>
-								</div>
-                            </div>
-						</div>
-						<br>
-					{/foreach}
-					
+							</div>
+							<br>
+						{/foreach}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /MODIFY STOCK -->
+
+	<!-- jQuery Plugins -->
+	<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>
+	<script src="/MusicCorner/Smarty/templates/js/bootstrap.min.js"></script>
+	<script src="/MusicCorner/Smarty/templates/js/slick.min.js"></script>
+	<script src="/MusicCorner/Smarty/templates/js/nouislider.min.js"></script>
+	<script src="/MusicCorner/Smarty/templates/js/jquery.zoom.min.js"></script>
+	<script src="/MusicCorner/Smarty/templates/js/main.js"></script>
+
+</body>
+</html>
+						
