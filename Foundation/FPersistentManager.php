@@ -65,8 +65,8 @@ class FPersistentManager{
         return $result;
     }
 
-    public function getArticleDetailsByEAN($ean) {
-        return FArticleDescription::getDetailsByEAN($ean);
+    public function getArticleByEAN($ean) {
+        return FArticleDescription::getByEAN($ean);
     }
     
     public static function verifyUserEmail($email){

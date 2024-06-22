@@ -83,8 +83,6 @@
 						
 								{if $found=="true"}
 									<p style="color: green;">EAN verificato con successo!</p>
-									<!-- manca il formato e prima che inserisco l'ean non mi mostra alcuni campi
-									 ma devo aggiunge il caso "" in cui mostro tutto vuoto-->
 									<div class="form-group">
 										<input class="input" type="text" name="EAN"  value= "{$EAN}" required>
 									</div>
@@ -95,12 +93,7 @@
 										<input class="input" type="text" name="artist-name"  value="{$artistName}" required>
 									</div>
 									<div class="form-group">
-										<select class="input" name="format" required>
-											<option value="">Seleziona il formato</option>
-											<option value="CD">CD</option>
-											<option value="LP">LP</option>
-											<option value="Cassette">Cassette</option>
-										</select>
+										<input class="input" type="text" name="artist-name"  value="{$format}" required>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
@@ -142,9 +135,9 @@
 								<div class="form-group">
 									<select class="input" name="format" required>
 										<option value="">Seleziona il formato</option>
-										<option value="CD">CD</option>
-										<option value="LP">LP</option>
-										<option value="Cassette">Cassette</option>
+										<option value="CD" {if $format = "CD"}selected{/if}>CD</option>
+										<option value="LP" {if $format = "LP"}selected{/if}>LP</option>
+										<option value="Cassette" {if $format = "Cassette"}selected{/if}>Cassette</option>
 									</select>
 								</div>
 								<div class="form-group">

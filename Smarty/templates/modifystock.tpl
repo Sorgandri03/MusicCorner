@@ -122,9 +122,8 @@
 									<p class="product-category">Cassetta</p>
 								{else}
 									<p class="product-category">CD</p>
-								{/if}
-								<form action="/MusicCorner/Seller/updateStock/" method="post"></form>    
-								<h4 class="product-price">€<input type="number" name="price" value="{$stock->getPrice()}"></h4>
+								{/if}    
+								<h4 class="product-price">€{$stock->getPrice()}</h4>
 								<br>
 								<div class="row">
 									<div class="col-md-5">
@@ -133,7 +132,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="input-number">
-											<form action="/MusicCorner/Seller/updateStock/" method="post">
+											<form action="/MusicCorner/Orders/updateCart/" method="post">
 												<input type="number" name="quantity" value={$quantity}>
 												<span class="qty-up">+</span>
 												<span class="qty-down">-</span>
@@ -147,7 +146,7 @@
 										</form>
 									</div>
 									<div class="col-md-6">
-										<form action="/MusicCorner/Seller/removeFromStock/" method="post">
+										<form action="/MusicCorner/Orders/removeFromCart/" method="post">
 											<button class="primary-btn-center btn-block" name="stockId" value={$stock->getId()}>Rimuovi</button>
 										</form>
 									</div>

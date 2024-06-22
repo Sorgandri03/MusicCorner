@@ -160,6 +160,14 @@ class COrders{
             $cart = new ECart('guest');
             USession::getInstance()->setSessionElement('cart',$cart);
         }
+
+        /**
+         * Check if the cart is empty
+         */
+        if(count($cart->getCartItems()) == 0){
+            header('Location: /MusicCorner/Orders/cart');
+            return;
+        }
         
         /**
          * Pass customer to the view

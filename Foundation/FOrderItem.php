@@ -12,9 +12,9 @@ class FOrderItem{
     //END SINGLETON
     
     private static $table = "OrderItem";
-    private static $value = "(NULL, :article, :seller, :quantity, :price, :orderId)";
+    private static $value = "(NULL, :article, :seller, :quantity, :price, :orderID)";
     private static $key = "id";
-    private static $updatequery = "article = :article, seller = :seller, quantity = :quantity, price = :price, orderId = :orderId";
+    private static $updatequery = "article = :article, seller = :seller, quantity = :quantity, price = :price, orderID = :orderID";
     public static function getValue(): string {
         return self::$value;
     }
@@ -83,13 +83,13 @@ class FOrderItem{
 
 
     public static function createEntity($result){
-        $obj = new EOrderItem($result[0]['article'], $result[0]['seller'], $result[0]['quantity'], $result[0]['price'], $result[0]['orderId']);
+        $obj = new EOrderItem($result[0]['article'], $result[0]['seller'], $result[0]['quantity'], $result[0]['price'], $result[0]['orderID']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
 
     public static function getItemsbyOrder($order){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderId', $order);
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderID', $order);
         $items = array();
         for($i = 0; $i < count($queryResult); $i++){
             $item = self::retrieveObject($queryResult[$i][self::getKey()]);

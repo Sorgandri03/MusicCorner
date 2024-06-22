@@ -61,22 +61,77 @@
 	</header>
 	<!-- /HEADER -->
     
-	<!-- ORDER LIST -->
-	<div class="customer-dashboard section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
+    {if $allowed}
+    <!-- ORDER DETAILS -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Cart Items -->
+                <div class="col-md-8">
                     <h1>Ordine del {$order->getOrderDateTime()}</h1>
-                    <ul>
-                        {foreach from=$order->getOrderItems() item=article}
-                            <li class="btn btn-outline-primary btn-lg dashboard-button" ><strong>{$article->getName()}</strong></li>
-                        {/foreach}
-                    </ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /ORDER LIST -->
+                    {foreach from=$order->getOrderItems() item=orderItem}
+                    {assign var=article value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$orderItem->getArticle())}    
+                    {assign var=seller value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$orderItem->getSeller())}
+                    <!-- product -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <p></p>
+                            <h4 class="product-category">{$article->getArtist()}</h4>
+                            <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                            {if $article->getFormat()==1}
+                                <h4 class="product-category">LP</h4>
+                            {elseif $article->getFormat()==2}
+                                <h4 class="product-category">Cassetta</h4>
+                            {else}
+                                <h4 class="product-category">CD</h4>
+                            {/if}	
+                            <h4 class="product-price">€{$orderItem->getPrice()}</h4>
+                            <h4 class="product-price">Quantità: {$orderItem->getQuantity()}</h4>
+                            <h4 class="product-price">Venduto da: {$seller->getShopName()}</h4>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    {/foreach}
+                    <br>
+                    <a href="/MusicCorner/Customer/orders" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna agli ordini</strong></a>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="col-md-4">
+                    <div class="section-title">
+                        <h3 class="title">RIEPILOGO ORDINE</h3>
+                    </div>
+                    <div class="cart-summary">
+                        <h4>Articoli: {count($order->getOrderItems())}</h4>
+                        <h3>TOTALE: €{$order->getPrice()}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ORDER DETAILS -->
+    {else}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Non hai i permessi per visualizzare questa pagina</h1>
+                    <br><br>
+                    <a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla Home</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/if}
+
+    
 
 </body>
 </html>

@@ -89,6 +89,7 @@ class FOrder{
         $obj = new EOrder($result[0]['customer'],$result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price']);
         $obj->setId($result[0]['id']);
         $obj->setOrderDateTime(date_create_from_format('Y-m-d H:i:s', $result[0]['orderDateTime']));
+        $obj->setOrderItems(FOrderItem::getItemsbyOrder($result[0]['id']));
         return $obj;
     }
     

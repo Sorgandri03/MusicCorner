@@ -3,13 +3,16 @@
 Class CAdmin{
 
     public static function dashboard(){
-        if(USession::isSetSessionElement('admin')){
-            echo USession::getSessionElement('admin');
+        if(CUser::isLogged()){
+            $view = new VUser();
+            $view->showUserDashboard();
             return;
-            //modifica l'header per andare nella dashboard del admin;
         }
-        //mostra la view del login
-        echo "no";
+        else{
+            $view = new VUser();
+            $view->showLoginForm();
+            return;
+        }
     }
     public static function customers(){
         $customers = FPersistentManager::getInstance()->retrieveAll(ECustomer::class);
@@ -24,10 +27,9 @@ Class CAdmin{
     public static function reviews($customer){
 
     }
+    /*
     public static function ban(ECustomer $customer, int $days){
-        /**
-         * 
-         */
+
         $customer->setSuspensionTime($days);
-    }
+    }*/
 }

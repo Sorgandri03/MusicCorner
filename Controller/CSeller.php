@@ -2,18 +2,35 @@
 
 Class CSeller{
 
+    public static function dashboard(){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showUserDashboard();
+            return;
+        }
+        else{
+            header('Location: MusicCorner/User/Login');
+        }
+    }
 
    public static function addArticle(){
-        $view = new VUser();
-        $view->showAddArticle();
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showAddArticle();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
 
    public static function modifyStock(){
-        $view = new VUser();
-        $view->showModifyStock();
-
-        $article = new EArticleDescription(UHTTPMethods::post('EAN'), UHTTPMethods::post('article-name'), UHTTPMethods::post('artist-name'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
-        FPersistentManager::getInstance()->createObj($article);
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showModifyStock();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
    }
 
 
@@ -23,9 +40,9 @@ Class CSeller{
         $exists = FPersistentManager::getInstance()->verifyEAN($ean);
         
         if ($exists) {
-            $article = FPersistentManager::getInstance()->getArticleDetailsByEAN($ean);
+            $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
             if ($article) {
-                $view->addArticleSuccess($article['EAN'], $article['name'], $article['artist']); //dovro metterci il formato
+                $view->addArticleSuccess($article);
             } else {
                 $view->addArticleFail();
             }

@@ -2,6 +2,10 @@
 //quando loggo come user, non funziona bene il checkLogin a causa del isBanned
 class CUser{
 
+    public static function userType($user){
+        return FPersistentManager::getInstance()->checkUserType($user->getId());
+    }
+
     public static function isLogged(){
 
         $logged = false;
@@ -31,7 +35,6 @@ class CUser{
         }
         return $logged;
     }
-
     
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
@@ -49,13 +52,11 @@ class CUser{
                 header('Location: /MusicCorner/Customer/dashboard');
             }
             if(USession::isSetSessionElement('seller')){
-                $view = new VUser();
-                $view->showUserDashboard();
-                
+                header('Location: /MusicCorner/Seller/dashboard');              
             }
             if(USession::isSetSessionElement('admin')){
-                $view = new VUser();
-                $view->showUserDashboard();
+                header('Location: /MusicCorner/Admin/dashboard');
+
             }
         }
         else {
