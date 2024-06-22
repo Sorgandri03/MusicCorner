@@ -60,23 +60,23 @@
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-	 <!-- CUSTOMER DASHBOARD -->
+    
+	<!-- ORDER LIST -->
 	<div class="customer-dashboard section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Benvenuto {$username} </h1>
-					<ul>
-						<li><a href="/MusicCorner/Customer/orders" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
-						<li><a href="#" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
-						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a></li>
-						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-inverse-red" ><strong>Logout</strong></a></li>
-					</ul>
+                    <h1>Ordine del {$order->getOrderDateTime()}</h1>
+                    <ul>
+                        {foreach from=$order->getOrderItems() item=article}
+                            <li class="btn btn-outline-primary btn-lg dashboard-button" ><strong>{$article->getName()}</strong></li>
+                        {/foreach}
+                    </ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /CUSTOMER DASHBOARD -->
+	<!-- /ORDER LIST -->
 
 </body>
 </html>

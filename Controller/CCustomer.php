@@ -3,42 +3,32 @@
 Class CCustomer{
 
     public static function dashboard(){
-        if(USession::isSetSessionElement('customer')){
+        if(CUser::isLogged()){
             $view = new VUser();
             $view->showUserDashboard();
-            return;
-            //modifica l'header per andare nella dashboard del customer;
         }
-        else{
-            $view = new VUser();
-            $view->showLoginForm();
-            return;
+        else {
+            header('Location: MusicCorner/User/Login');
         }
     }
     public static function orders(){
-        if(USession::isSetSessionElement('customer')){
-            if(CUser::isBanned()){
-                echo "You are banned";
-                return;
-            }
-            
-            $customer = USession::getSessionElement('customer');
-
-            //CHIAMA VIEW ORDINI E PASSA CUSTOMER
+        if(CUser::isLogged()){
+            $v = new VUser();
+            $v->showOrderList();
         }
-        //CHIAMA VIEW LOGIN
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
     public static function order($orderId){
-        if(USession::isSetSessionElement('customer')){
-            if(CUser::isBanned()){
-                echo "You are banned";
-                return;
-            }
+        if(CUser::isLogged()){
+            $v = new VUser();
             $order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderId);
-            
-            //CALL VIEW, PASS CUSTOMER
+            $v->showOrder($order);
         }
-        //CALL VIEW LOGIN
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
     public static function reviewArticle($orderItem){
         if(USession::isSetSessionElement('customer')){

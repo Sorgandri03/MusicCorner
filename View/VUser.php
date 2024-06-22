@@ -65,12 +65,7 @@ class VUser{
         $this->smarty->assign('found',"");
         $this->smarty->display('addArticle.tpl');
     }
-    public function showModifyStock(){
-        USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,'petricola@petricolastore.it'));
-        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
-        $this->smarty->assign('seller',$seller);
-        $this->smarty->display('modifystock.tpl');
-    }
+    
 
     public function addArticleSuccess($EAN, $productName, $artistName) {
         $this->smarty->assign('found',"true");
@@ -85,9 +80,22 @@ class VUser{
         $this->smarty->display('addarticle.tpl');
     }
 
+    public function showModifyStock(){
+        USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,'petricola@petricolastore.it'));
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->display('modifystock.tpl');
+    }
 
+    public function showOrderList(){
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,USession::getInstance()->getSessionElement('customer')->getId());
+        $this->smarty->assign('customer',$customer);
+        $this->smarty->display('orderlist.tpl');
+    }
 
-
-
+    public function showOrder($order){
+        $this->smarty->assign('order',$order);
+        $this->smarty->display('order.tpl');
+    }
 
 }
