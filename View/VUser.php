@@ -86,6 +86,18 @@ class VUser{
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('modifystock.tpl');
     }
+    public function showModifyStockError(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->assign('error',true);
+        $this->smarty->display('modifystock.tpl');
+    }
+    public function showModifyStockSuccess(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->assign('success',true);
+        $this->smarty->display('modifystock.tpl');
+    }
 
     public function showOrderList(){
         $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,USession::getInstance()->getSessionElement('customer')->getId());
