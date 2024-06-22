@@ -84,7 +84,13 @@ Class CSeller{
     }
     
     public static function soldProducts(){
-
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showSoldProducts();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
 
     public static function review(){

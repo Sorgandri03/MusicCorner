@@ -120,4 +120,9 @@ class VUser{
         $this->smarty->display('order.tpl');
     }
 
+    public function showSoldProducts(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->display('soldproducts.tpl');
+    }
 }

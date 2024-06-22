@@ -185,6 +185,7 @@
 							</form>
                         </div>
                     </div>
+					<!-- /Cart Summary -->
                 </div>
             </div>
         </div>

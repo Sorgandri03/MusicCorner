@@ -1,19 +1,7 @@
-Pagine:
-    Aree dashboard
-    Ordine
-
-Sistema ordini
-Ingrandire database
-Reviews
-Tutti i link una volta su altervista
-Scritte tutte in italiano
-
 ANDREA:
-Ordine
+Lista ordini
 
 LEONARDO:
-aggiungi articolo
-
 Reviews
 
 GIANMARCO:
@@ -21,3 +9,9 @@ aggiorna stock
 
 il seller non può comprare e quindi non può visualizzare il cart 
 il logout mantiene correttamente il carrello, ma il carrello te lo deve far rivedere quando rilogghi invece adesso te lo mostra anche dopo il logout
+Ingrandire database
+Reviews
+Tutti i link una volta su altervista
+Scritte tutte in italiano
+Togliere messaggi
+Documentazione
