@@ -2,6 +2,18 @@
 
 Class CSeller{
 
+    public static function dashboard(){
+        if(USession::isSetSessionElement('seller')){
+            $view = new VUser();
+            $view->showUserDashboard();
+            return;
+        }
+        else{
+            $view = new VUser();
+            $view->showLoginForm();
+            return;
+        }
+    }
 
    public static function addArticle(){
         $view = new VUser();
