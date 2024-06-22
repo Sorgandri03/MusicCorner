@@ -44,20 +44,22 @@ class CUser{
     }
 
     public static function login(){
-        $view = new VUser();
         if(self::isLogged()){
             if(USession::isSetSessionElement('customer')){
-                $view->showUserDashboard();
+                header('Location: /MusicCorner/Customer/dashboard');
             }
             if(USession::isSetSessionElement('seller')){
+                $view = new VUser();
                 $view->showUserDashboard();
                 
             }
             if(USession::isSetSessionElement('admin')){
+                $view = new VUser();
                 $view->showUserDashboard();
             }
         }
         else {
+            $view = new VUser();
             $view->showLoginForm();
         }
     }

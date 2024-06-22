@@ -60,23 +60,29 @@
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-	 <!-- CUSTOMER DASHBOARD -->
+    
+	<!-- ORDER LIST -->
 	<div class="customer-dashboard section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Benvenuto {$username} </h1>
-					<ul>
-						<li><a href="/MusicCorner/Customer/orders" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
-						<li><a href="#" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
-						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a></li>
-						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-inverse-red" ><strong>Logout</strong></a></li>
-					</ul>
+                    {if count($customer->getOrders())>0}
+                        <h1>Lista degli ordini</h1>
+                        <ul>
+                            {foreach from=$customer->getOrders() item=order}
+                                <li><a href="/MusicCorner/order/{$order->getId()}" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del {$order->getOrderDateTime()}</strong></a></li>
+                            {/foreach}
+                            <li><a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a></li>
+                        </ul>
+                    {else}
+                        <br><br>
+                        <h1>Non hai ancora effettuato ordini</h1>
+                    {/if}
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /CUSTOMER DASHBOARD -->
+	<!-- /ORDER LIST -->
 
 </body>
 </html>
