@@ -12,7 +12,7 @@ Class CCustomer{
         }
     }
     public static function orders(){
-        if(CUser::isLogged()){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $v = new VUser();
             $v->showOrderList();
         }
@@ -21,7 +21,7 @@ Class CCustomer{
         }
     }
     public static function order($orderId){
-        if(CUser::isLogged()){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderId);
             $v = new VUser();
             if($order->getCustomer() != USession::getInstance()::getSessionElement('customer')->getId()){
@@ -36,11 +36,8 @@ Class CCustomer{
         }
     }
     public static function reviewArticle($orderItem){
-        if(USession::isSetSessionElement('customer')){
-            if(CUser::isBanned()){
-                echo "You are banned";
-                return;
-            }
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+
             $article = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItem);
             
             //CALL VIEW, PASS STOCK
@@ -48,11 +45,7 @@ Class CCustomer{
         //CALL VIEW LOGIN
     }
     public static function sendReview($text, $orderItem, $articleRating, $sellerRating){
-        if(USession::isSetSessionElement('customer')){
-            if(CUser::isBanned()){
-                echo "You are banned";
-                return;
-            }
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $product = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItem);
             $article = $product->getArticle();
             $seller = $article->getSeller();

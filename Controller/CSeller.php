@@ -3,29 +3,34 @@
 Class CSeller{
 
     public static function dashboard(){
-        if(USession::isSetSessionElement('seller')){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VUser();
             $view->showUserDashboard();
             return;
         }
         else{
-            $view = new VUser();
-            $view->showLoginForm();
-            return;
+            header('Location: MusicCorner/User/Login');
         }
     }
 
    public static function addArticle(){
-        $view = new VUser();
-        $view->showAddArticle();
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showAddArticle();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
 
    public static function modifyStock(){
-        $view = new VUser();
-        $view->showModifyStock();
-
-        $article = new EArticleDescription(UHTTPMethods::post('EAN'), UHTTPMethods::post('article-name'), UHTTPMethods::post('artist-name'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
-        FPersistentManager::getInstance()->createObj($article);
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showModifyStock();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
    }
 
 
