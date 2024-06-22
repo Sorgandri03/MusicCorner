@@ -68,6 +68,8 @@ class VUser{
     
 
     public function addArticleSuccess($article) {
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
         $this->smarty->assign('found',"true");
         $this->smarty->assign('EAN', $article->getId());
         $this->smarty->assign('productName', $article->getName());
@@ -77,6 +79,8 @@ class VUser{
     }
 
     public function addArticleFail() {
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
         $this->smarty->assign('found',"false");
         $this->smarty->display('addarticle.tpl');
     }
@@ -116,4 +120,9 @@ class VUser{
         $this->smarty->display('order.tpl');
     }
 
+    public function showSoldProducts(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->display('soldproducts.tpl');
+    }
 }

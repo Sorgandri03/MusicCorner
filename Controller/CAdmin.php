@@ -3,7 +3,7 @@
 Class CAdmin{
 
     public static function dashboard(){
-        if(CUser::isLogged()){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
             $view = new VUser();
             $view->showUserDashboard();
             return;

@@ -105,4 +105,8 @@ class FArticleDescription{
         $article = self::retrieveObject($queryResult[0][self::getKey()]);     
         return $article;
     }
+    public static function existEAN($ean){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
+        return FDB::getInstance()->existInDb($queryResult);
+    }
 }

@@ -68,6 +68,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
+								{if $customer}
 								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -101,6 +102,7 @@
 										</div>
 									</div>
 								</div>
+								{/if}
 								<!-- /Cart -->
 
 								<!-- Wishlist -->
