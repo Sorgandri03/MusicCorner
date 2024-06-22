@@ -26,6 +26,7 @@ class VHome
         }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
+            $this->smarty->assign('customer', true);
         }
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');

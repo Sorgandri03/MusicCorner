@@ -24,11 +24,11 @@ Class CCustomer{
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderId);
             $v = new VUser();
-            if($order->getCustomer() != USession::getInstance()::getSessionElement('customer')->getId()){
-                $v->showOrderNotAllowed($order);
+            if($order->getCustomer() == USession::getInstance()::getSessionElement('customer')->getId()){
+                $v->showOrder($order);                
             }
             else {
-                $v->showOrder($order);
+                $v->showOrderNotAllowed($order);                
             }
         }
         else {
