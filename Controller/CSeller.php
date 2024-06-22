@@ -3,7 +3,7 @@
 Class CSeller{
 
     public static function dashboard(){
-        if(USession::isSetSessionElement('seller')){
+        if(CUser::isLogged()){
             $view = new VUser();
             $view->showUserDashboard();
             return;
@@ -35,9 +35,9 @@ Class CSeller{
         $exists = FPersistentManager::getInstance()->verifyEAN($ean);
         
         if ($exists) {
-            $article = FPersistentManager::getInstance()->getArticleDetailsByEAN($ean);
+            $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
             if ($article) {
-                $view->addArticleSuccess($article['EAN'], $article['name'], $article['artist']); //dovro metterci il formato
+                $view->addArticleSuccess($article);
             } else {
                 $view->addArticleFail();
             }

@@ -49,13 +49,11 @@ class CUser{
                 header('Location: /MusicCorner/Customer/dashboard');
             }
             if(USession::isSetSessionElement('seller')){
-                $view = new VUser();
-                $view->showUserDashboard();
-                
+                header('Location: /MusicCorner/Seller/dashboard');              
             }
             if(USession::isSetSessionElement('admin')){
-                $view = new VUser();
-                $view->showUserDashboard();
+                header('Location: /MusicCorner/Admin/dashboard');
+
             }
         }
         else {

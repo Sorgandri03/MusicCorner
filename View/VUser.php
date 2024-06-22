@@ -67,11 +67,12 @@ class VUser{
     }
     
 
-    public function addArticleSuccess($EAN, $productName, $artistName) {
+    public function addArticleSuccess($article) {
         $this->smarty->assign('found',"true");
-        $this->smarty->assign('EAN', $EAN);
-        $this->smarty->assign('productName', $productName);
-        $this->smarty->assign('artistName', $artistName);
+        $this->smarty->assign('EAN', $article->getId());
+        $this->smarty->assign('productName', $article->getName());
+        $this->smarty->assign('artistName', $article->getArtist());
+        $this->smarty->assign('format', Format[$article->getFormat()]);
         $this->smarty->display('addarticle.tpl');
     }
 
