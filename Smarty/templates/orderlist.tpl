@@ -70,7 +70,7 @@
                         <h1>Lista degli ordini</h1>
                         <ul>
                             {foreach from=$customer->getOrders() item=order}
-                                <li><a href="/MusicCorner/order/{$order->getId()}" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del {$order->getOrderDateTime()}</strong></a></li>
+                                <li><a href="/MusicCorner/Customer/order/{$order->getId()}" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del {$order->getOrderDateTime()}</strong></a></li>
                             {/foreach}
                             <li><a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a></li>
                         </ul>

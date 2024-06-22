@@ -22,9 +22,14 @@ Class CCustomer{
     }
     public static function order($orderId){
         if(CUser::isLogged()){
-            $v = new VUser();
             $order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderId);
-            $v->showOrder($order);
+            $v = new VUser();
+            if($order->getCustomer() != USession::getInstance()::getSessionElement('customer')->getId()){
+                $v->showOrderNotAllowed($order);
+            }
+            else {
+                $v->showOrder($order);
+            }
         }
         else {
             header('Location: MusicCorner/User/Login');
