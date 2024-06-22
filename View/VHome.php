@@ -19,6 +19,7 @@ class VHome
     {        
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+            $this->smarty->assign('customer', true);
         }
         elseif(USession::getInstance()->isSetSessionElement('seller')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
@@ -35,7 +36,7 @@ class VHome
         }
             
         $result = FPersistentManager::getInstance()->getRandomArticles(5);
-        $this->smarty->assign('cart',$cart);
+        $this->smarty->assign('cart', $cart);
         $this->smarty->assign('result', $result);
         $this->smarty->display('home.tpl');
     }
