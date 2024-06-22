@@ -3,7 +3,7 @@
 Class CCustomer{
 
     public static function dashboard(){
-        if(CUser::isLogged()){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $view = new VUser();
             $view->showUserDashboard();
         }

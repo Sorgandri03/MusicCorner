@@ -12,6 +12,7 @@ class ESeller extends EUser {
         parent::__construct($email, $password);
     }
     
+    
     public function setStocks(array $stocks): void {
         $this->catalogue = $stocks;
     }

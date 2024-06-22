@@ -66,34 +66,39 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
-					<div class="col-md-7">
-						<!-- Billing Details -->
-						<div class="billing-details">
-							<div class="section-title">
-								<h3 class="title">Dettagli Prodotto</h3>
+						<!-- Inserisci Prodotto -->
+							<!-- Verifica EAN - Sempre visibile -->
+						{if $found == ""}
+							<div class="col-md-12">
+								<div class="billing-details">
+									<div class="section-title">
+										<h3 class="title">Inserisci Prodotto</h3>
+									</div>
+									<form action="/MusicCorner/Seller/searchEAN" method="post" class="text-center">
+										<div class="form-group">
+											<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+										</div>
+										<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
+									</form>
 							</div>
-							<form action="/MusicCorner/Seller/addArticle" method="post"></form>
-							<div class="form-group" id="ean-section" {if $found == "true"}style="display:none;"{/if}>
-								<form action="/MusicCorner/Seller/searchEAN" method="post">
-									<input class="input" type="text" name="EAN" placeholder="Inserisci EAN" required>
-									<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
-								</form>
-							</div>
-						
-								{if $found=="true"}
-									<p style="color: green;">EAN verificato con successo!</p>
+						{/if}
+		
+							<!-- Form Inserimento Prodotto -->
+						{if $found == "true"}
+							<div class="col-md-7">
+								<p style="color: green;">EAN già utilizzato alcuni campi sono stati riempiti!</p>
+								<form action="/MusicCorner/Seller/pullArticle" method="post">
 									<div class="form-group">
-										<input class="input" type="text" name="EAN"  value= "{$EAN}" required>
+										<input class="input" type="text" name="EAN" value="{$EAN}" required readonly>
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="product-name"  value= "{$productName}" required>
+										<input class="input" type="text" name="product-name" value="{$productName}" required readonly>
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="artist-name"  value="{$artistName}" required>
+										<input class="input" type="text" name="artist-name" value="{$artistName}" required readonly>
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="artist-name"  value="{$format}" required>
+										<input class="input" type="text" name="format" value="{$format}" required readonly>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
@@ -101,86 +106,100 @@
 									<div class="form-group">
 										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
 									</div>
+									<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
 								</form>
-								{else if $found=="false"}
-									<p style="color: red;">EAN non valido!</p>
+							</div>
+							<!-- /Form Inserimento Prodotto -->
+							<br>
+							<br>
+							<!-- Dettagli Inserimento -->
+							<div class="col-md-5 order-details" >
+								<div class="section-title text-center">
+									<h3 class="title">Resoconto Inserimento</h3>
+								</div>
+								<div class="order-summary">
+									<div class="order-col">
+										<div><strong>Prodotto</strong></div>
+										<div><strong>Quantità</strong></div>
+									</div>
+									<div class="order-products">
+										<div class="order-col">
+											<div>Nome Articolo</div>
+											<div>0,1,2</div>
+										</div>
+									</div>
+								</div>
+								<a href="#" class="primary-btn order-submit">Inserisci nel Catalogo</a>
+							</div>
+							<!-- /Dettagli Inserimento -->
+							{else if $found == "false"}
+							<div class="col-md-7">
+								<p style="color: red;">Questo EAN non è mai stato usato!</p>
+								<form action="/MusicCorner/Seller/pullArticle" method="post">
+									<div class="form-group">
+										<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
 									</div>
+									
 									<div class="form-group">
-										<select class="input" name="format" required>
-											<option value="">Seleziona il formato</option>
-											<option value="CD">CD</option>
-											<option value="LP">LP</option>
-											<option value="Cassette">Cassette</option>
-										</select>
+										<input class="input" type="text" name="format" value="CD" required readonly>
 									</div>
+								
+									<!-- DA FIXARE
+									<div class="form-group">
+									<select class="input" name="format" required>
+										<option value="">Seleziona il formato</option> 
+										<option value="CD">CD</option>
+										<option value="LP">LP</option>
+										<option value="Cassette">Cassette</option>
+									</select>
+									</div>
+									-->
+									
 									<div class="form-group">
 										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
 									</div>
+									<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
 								</form>
-								{else if $found==""}
-								<div class="form-group">
-									<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
+							</div>
+							<br>
+							<br>
+							<div class="col-md-5 order-details" >
+								<div class="section-title text-center">
+									<h3 class="title">Resoconto Inserimento</h3>
 								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
+								<div class="order-summary">
+									<div class="order-col">
+										<div><strong>Prodotto</strong></div>
+										<div><strong>Quantità</strong></div>
+									</div>
+									<div class="order-products">
+										<div class="order-col">
+											<div>Nome Articolo</div>
+											<div>0,1,2</div>
+										</div>
+									</div>
 								</div>
-								<div class="form-group">
-									<select class="input" name="format" required>
-										<option value="">Seleziona il formato</option>
-										<option value="CD" {if $format = "CD"}selected{/if}>CD</option>
-										<option value="LP" {if $format = "LP"}selected{/if}>LP</option>
-										<option value="Cassette" {if $format = "Cassette"}selected{/if}>Cassette</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
-								</div>
-								<div class="form-group">
-									<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
-								</div>
-								</form>
-								{/if}
-							
-							
-
-						</form>
-						</div>
-						<!-- /Billing Details -->
+								<a href="#" class="primary-btn order-submit">Inserisci nel Catalogo</a>
+							</div>
+						{/if}
+						
+						<!-- /Form Inserimento Prodotto -->
 					</div>
 					<div><br></div>
 					<div><br></div>
 					<div><br></div>
 					<div><br></div>
 
-					<!-- Order Details -->
-					<div class="col-md-5 order-details">
-						<div class="section-title text-center">
-							<h3 class="title">Resoconto Inserimento</h3>
-						</div>
-						<div class="order-summary">
-							<div class="order-col">
-								<div><strong>Prodotto</strong></div>
-								<div><strong>Quantità</strong></div>
-							</div>
-							<div class="order-products">
-								<div class="order-col">
-									<div>Nome Articolo</div>
-									<div>0,1,2</div>
-								</div>
-							</div>
-						</div>
-
-						<a href="#" class="primary-btn order-submit">Inserisci nel Catalogo</a>
-					</div>
-					<!-- /Order Details -->
+					
 				</div>
 				<!-- /row -->
 			</div>
@@ -191,7 +210,6 @@
 	
 
 		<!-- jQuery Plugins -->
-		<script src="Smarty\templates\js\hide.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/slick.min.js"></script>
