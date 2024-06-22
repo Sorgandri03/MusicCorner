@@ -44,5 +44,17 @@ class EStock {
     public function setPrice(float $price): void {
         $this->price = $price;
     }
+    public function removeArticle(string $article): void {
+        unset($this->quantity);
+    }
+    public function updateArticle(int $quantity,float $price): void {
+        if($quantity == 0){
+            $this->removeArticle($article);
+        }
+        else{
+            $this->quantity = $quantity;
+            $this->price = $price;
+        }
+    }
     
 }
