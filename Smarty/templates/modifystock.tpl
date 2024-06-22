@@ -89,8 +89,9 @@
 								{else}
 									<p class="product-category">CD</p>
 								{/if}
-								<form action="/MusicCorner/Seller/updateStock/" method="post"></form>    
-								<h4 class="product-price">€<input type="number" name="price" value="{$stock->getPrice()}"></h4>
+								<form action="/MusicCorner/Seller/updateStock/" method="post">    
+								<h4 class="product-price">€ <input type="number" id="price" name="price" step="0.01" value="{$stock->getPrice()}"></h4>
+							    </form> 
 								<br>
 								<div class="row">
 									<div class="col-md-5">

@@ -32,6 +32,61 @@ Class CSeller{
             header('Location: MusicCorner/User/Login');
         }
    }
+   public static function updateStock() {
+    // Recupera i dati POST
+    $stockId = UHTTPMethods::post('stockId');
+    $price = UHTTPMethods::post('price');
+    $quantity = UHTTPMethods::post('quantity');
+
+    if (!is_numeric($price) || !is_numeric($quantity)) {
+        echo "Errore: Price e Quantity devono essere valori numerici.";
+        return;
+    }
+
+    $price = floatval($price);
+    $quantity = intval($quantity);
+
+    // Recupera lo stock dal database
+    $persistentManager = FPersistentManager::getInstance();
+    $stock = $persistentManager->retrieveObj('EStock', $stockId);
+
+    // Verifica che lo stock esista
+    if ($stock) {
+        // Aggiorna i dettagli dello stock
+        $stock->setPrice($price);
+        $stock->setQuantity($quantity);
+
+        // Salva le modifiche nel database
+        $persistentManager->updateObj($stock);
+
+        // Redirige alla pagina di gestione dello stock
+        header('Location: /MusicCorner/Seller/modifyStock');
+    } else {
+        echo "Stock non trovato.";
+    }
+}
+
+public static function removeFromStock() {
+    // Recupera stockId dal POST
+    $stockId = UHTTPMethods::post('stockId');
+
+    // Recupera lo stock dal database
+    $persistentManager = FPersistentManager::getInstance();
+    $stock = $persistentManager->retrieveObj('EStock', $stockId);
+
+    // Verifica che lo stock esista
+    if ($stock) {
+        // Rimuove lo stock dal database
+        $persistentManager->deleteObj($stock);
+
+        // Redirige alla pagina di gestione dello stock
+        header('Location: /MusicCorner/Seller/modifyStock');
+    } else {
+        echo "Stock non trovato.";
+    }
+}
+
+
 
 
     public static function searchEAN() {
