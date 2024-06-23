@@ -136,7 +136,7 @@
 											<option value="{$format}">{$format}</option>
 											{/foreach}
 										</select>
-									</div>		
+									</div>	
 									<div class="form-group">
 										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
 									</div>

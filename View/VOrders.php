@@ -38,6 +38,14 @@ class VOrders
     /**
      * @throws SmartyException
      */
+    public function showCartQuantityError(){
+        $this->smarty->assign('error', true);
+        $this->showCart();
+    }
+
+    /**
+     * @throws SmartyException
+     */
     public function showOrderAddress()
     {
         if(USession::getInstance()->isSetSessionElement('cart')){
@@ -77,7 +85,6 @@ class VOrders
         $this->smarty->assign('error', true);
         $this->smarty->display('orderaddress.tpl');
     }
-
     
     /**
      * @throws SmartyException
@@ -105,21 +112,8 @@ class VOrders
      */
     public function showOrderPaymentError()
     {
-        if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = USession::getInstance()->getSessionElement('cart');
-        }
-        else{
-            $cart = new ECart('guest');
-            USession::getInstance()->setSessionElement('cart',$cart);
-        }
-
-        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, USession::getInstance()->getSessionElement('customer')->getId());
-
         $this->smarty->assign('error', true);
-        $this->smarty->assign('customer', $customer);
-        $this->smarty->assign('Format', Format);
-        $this->smarty->assign('cart', $cart);
-        $this->smarty->display('orderpayment.tpl');
+        $this->showOrderPayment();
     }
 
     /**

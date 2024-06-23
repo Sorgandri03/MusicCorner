@@ -43,11 +43,17 @@ class COrders{
     }
     
     public static function cart(){
-        /**
-         * Show cart page
-         */
-        $v = new VOrders();
-        $v->showCart();
+        if(UHTTPMethods::isPostSet('stockId') && UHTTPMethods::isPostSet('quantity')){
+            self::updateCart();
+            return;
+        }
+        else{
+            /**
+             * Show cart page
+             */
+            $v = new VOrders();
+            $v->showCart();
+        }        
     }
 
     public static function removeFromCart(){
@@ -100,6 +106,16 @@ class COrders{
         }
 
         /**
+         * Check if the quantity is greater than available
+         */
+        $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
+        $error = false;
+        if($quantity > $stock->getQuantity()){
+            $quantity = $stock->getQuantity();
+            $error = true;
+        }
+
+        /**
          * Update quantity of productId in the cart
          */
         $cart->updateArticle($stockId, $quantity);
@@ -112,8 +128,13 @@ class COrders{
         /**
          * Go to cart page
          */
-
-        header('Location: /MusicCorner/Orders/cart');
+        $v = new VOrders();
+        if($error){
+            $v->showCartQuantityError();
+        }
+        else{
+            $v->showCart();
+        }
     }
 
     public static function clearCart(){
@@ -145,7 +166,7 @@ class COrders{
     }
 
     public static function checkout(){
-        if(!CUser::islogged()){
+        if(!CUser::islogged() && CUser::userType(USession::getInstance()->getSessionElement('customer')) == 'customer'){
             header('Location: /MusicCorner/User/login');
             return;            
         }
@@ -177,7 +198,7 @@ class COrders{
     }
 
     public static function payment(){
-        if(!CUser::islogged()){
+        if(!CUser::islogged() && CUser::userType(USession::getInstance()->getSessionElement('customer')) == 'customer'){
             header('Location: /MusicCorner/User/login');
             return;            
         }

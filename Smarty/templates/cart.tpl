@@ -105,7 +105,10 @@
 							{if $cart->getCartQuantity()==0}
 								<h3 class="title">Il carrello è vuoto</h3>
 							{else}
-                            <h3 class="title">Carrello</h3>
+                            	<h3 class="title">Carrello</h3>
+								{if $error}
+									<h4 class="error-message">Non puoi acquistarne così tanti!</h4>
+								{/if}
 							{/if}
                         </div>
                         {foreach from=$cart->getCartItems() item=quantity key=stock}
@@ -140,7 +143,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="input-number">
-											<form action="/MusicCorner/Orders/updateCart/" method="post">
+											<form action="" method="post">
 											<input type="number" name="quantity" value={$quantity}>
 											<span class="qty-up">+</span>
 											<span class="qty-down">-</span>
