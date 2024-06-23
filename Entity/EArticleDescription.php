@@ -6,6 +6,7 @@ class EArticleDescription {
     private string $artist;
     private int $format;
     private $stocks = array();
+    private $reviews = array();
 
     public function __construct(string $ean, string $name, string $artist, int $format) {
         $this->ean = $ean;
@@ -59,5 +60,13 @@ class EArticleDescription {
     }
     public static function cmp($a, $b) {
         return strcmp($a->getPrice(), $b->getPrice());
+    }
+
+    public function getReviews(): array {
+        return $this->reviews;
+    }
+
+    public function setReviews(array $reviews) {
+        $this->reviews = $reviews;
     }
 }

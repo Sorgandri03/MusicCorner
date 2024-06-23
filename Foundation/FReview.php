@@ -85,4 +85,14 @@ class FReview {
         $obj->setId($result[0]['id']);
         return $obj;
     }
+
+    public static function getReviewsByArticle($article){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'article', $article);
+        $reviews = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $review = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $reviews[] = $review;
+        }
+        return $reviews;
+    }
 }

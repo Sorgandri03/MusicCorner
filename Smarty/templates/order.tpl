@@ -74,7 +74,7 @@
                     {assign var=seller value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$orderItem->getSeller())}
                     <!-- product -->
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="product">
                                 <div class="product-img">
                                     <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
@@ -95,6 +95,9 @@
                             <h4 class="product-price">€{$orderItem->getPrice()}</h4>
                             <h4 class="product-price">Quantità: {$orderItem->getQuantity()}</h4>
                             <h4 class="product-price">Venduto da: {$seller->getShopName()}</h4>
+                            <form action="/MusicCorner/Customer/reviewArticle/" method="post">
+                                <button class="primary-btn-center btn-block" name="orderItemId" value={$orderItem->getId()}>Recensisci articolo</button>
+                            </form>
                         </div>
                     </div>
                     <!-- /product -->

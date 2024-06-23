@@ -82,6 +82,7 @@ class FArticleDescription{
     public static function createEntity($result){
         $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], (int) $result[0]['format']);
         $obj->setStocks(FStock::getStocksByArticle($result[0]['EAN']));
+        $obj->setReviews(FReview::getReviewsByArticle($result[0]['EAN']));
         return $obj;
     }
 

@@ -35,25 +35,38 @@ Class CCustomer{
             header('Location: MusicCorner/User/Login');
         }
     }
-    public static function reviewArticle($orderItem){
+    public static function reviewArticle(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
-
-            $article = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItem);
-            
-            //CALL VIEW, PASS STOCK
+            $orderItemId = UHTTPMethods::post('orderItemId');
+            $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
+            $v = new VUser();
+            $v->showReviewArticle($orderItem);
         }
-        //CALL VIEW LOGIN
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
-    public static function sendReview($text, $orderItem, $articleRating, $sellerRating){
+    public static function sendReview(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
-            $product = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItem);
-            $article = $product->getArticle();
-            $seller = $article->getSeller();
-            $review = new EReview(USession::getInstance()::getSessionElement('customer'), $text, $articleRating, $sellerRating, $article, $seller);
+            $reviewText = UHTTPMethods::post('reviewText');
+            $orderItemId = UHTTPMethods::post('orderItemId');
+            $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
+            if(UHTTPMethods::post('ratinga')!=null && UHTTPMethods::post('ratings')!=null){
+                $ratinga = UHTTPMethods::post('ratinga');
+                $ratings = UHTTPMethods::post('ratings');
+            }
+            else {
+                $v = new VUser();
+                $v->showReviewArticleError($orderItem);
+            }
+            $review = new EReview(USession::getInstance()->getSessionElement('customer')->getId(), $reviewText, $ratinga, $ratings, $orderItem->getArticle(), $orderItem->getSeller());
             FPersistentManager::getInstance()->createObj($review);
-            //CALL VIEW, PASS ORDER
+            $v = new VUser();
+            $v->showReviewSuccess();
         }
-        //CALL VIEW LOGIN
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
     }
 
 

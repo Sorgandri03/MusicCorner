@@ -59,6 +59,67 @@ class VUser{
         } 
     }
 
+    /**
+     * Funzione che si occupa di visualizzare la lista degli ordini dell'utente
+     * @throws SmartyException
+     */
+    public function showOrderList(){
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,USession::getInstance()->getSessionElement('customer')->getId());
+        $this->smarty->assign('customer',$customer);
+        $this->smarty->display('orderlist.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di visualizzare l'ordine dell'utente
+     * @throws SmartyException
+     */
+    public function showOrder($order){
+        $this->smarty->assign('allowed',true);
+        $this->smarty->assign('order',$order);
+        $this->smarty->display('order.tpl');
+    }
+
+    /**
+     * Funzione che avvisa l'utente che non può visualizzare l'ordine
+     * @throws SmartyException
+     */
+    public function showOrderNotAllowed($order){
+        $this->smarty->assign('order',$order);
+        $this->smarty->display('order.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di visualizzare la pagina per la recensione di un articolo
+     * @throws SmartyException
+     */
+    public function showReviewArticle($orderItem){
+        $this->smarty->assign('success', false);
+        $this->smarty->assign('customer', USession::getInstance()->getSessionElement('customer'));
+        $this->smarty->assign('orderItem', $orderItem);
+        $this->smarty->display('reviewarticle.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di visualizzare la pagina per la recensione di un articolo
+     * @throws SmartyException
+     */
+    public function showReviewArticleError($orderItem){
+        $this->smarty->assign('success', false);
+        $this->smarty->assign('error', true);
+        $this->smarty->assign('customer', USession::getInstance()->getSessionElement('customer'));
+        $this->smarty->assign('orderItem', $orderItem);
+        $this->smarty->display('reviewarticle.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di indicare all'utente che la recensione è stata inviata con successo
+     * @throws SmartyException
+     */
+    public function showReviewSuccess(){
+        $this->smarty->assign('success', true);
+        $this->smarty->display('reviewarticle.tpl');
+    }
+
     public function showAddArticle(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
@@ -104,21 +165,7 @@ class VUser{
         $this->smarty->display('modifystock.tpl');
     }
 
-    public function showOrderList(){
-        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,USession::getInstance()->getSessionElement('customer')->getId());
-        $this->smarty->assign('customer',$customer);
-        $this->smarty->display('orderlist.tpl');
-    }
-
-    public function showOrder($order){
-        $this->smarty->assign('allowed',true);
-        $this->smarty->assign('order',$order);
-        $this->smarty->display('order.tpl');
-    }
-    public function showOrderNotAllowed($order){
-        $this->smarty->assign('order',$order);
-        $this->smarty->display('order.tpl');
-    }
+    
 
     public function showSoldProducts(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
