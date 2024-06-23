@@ -28,12 +28,12 @@ class FOrderItem{
         return self::$updatequery;
     }
 
-    public static function bind($stmt, $cartItem){
-        $stmt->bindValue(':article', $cartItem->getArticle(), PDO::PARAM_STR);
-        $stmt->bindValue(':seller', $cartItem->getSeller(), PDO::PARAM_STR);
-        $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
-        $stmt->bindValue(':price', $cartItem->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':orderID', $cartItem->getOrderId(), PDO::PARAM_INT);
+    public static function bind($stmt, $orderItem){
+        $stmt->bindValue(':article', $orderItem->getArticle(), PDO::PARAM_STR);
+        $stmt->bindValue(':seller', $orderItem->getSeller(), PDO::PARAM_STR);
+        $stmt->bindValue(':quantity', $orderItem->getQuantity(), PDO::PARAM_INT);
+        $stmt->bindValue(':price', $orderItem->getPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(':orderID', $orderItem->getOrderId(), PDO::PARAM_INT);
     }
 
     //C

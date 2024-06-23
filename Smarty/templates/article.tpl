@@ -165,13 +165,21 @@
 							
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+									{for $i=0 to $article->averageRatingInt()-1}
+										<i class="fa fa-star"></i>
+									{/for}
+									{if $article->averageRatingDecimal() >=0.5}
+										<i class="fa fa-star-half-o"></i>
+										{for $i=$article->averageRatingInt() to 3}
+											<i class="fa fa-star-o empty"></i>
+										{/for}
+									{else}
+										{for $i=$article->averageRatingInt() to 4}
+											<i class="fa fa-star-o empty"></i>
+										{/for}
+									{/if}
 								</div>
-								<a class="review-link" href="#">10 Review(s)</a>
+								<a class="review-link">{count($article->getReviews())} Review(s)</p>
 							</div>
 							
 							
@@ -234,8 +242,7 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								{assign $reviews value=$article->getReviews}
-								<li class="active"><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab3">Reviews ({count($article->getReviews())})</a></li>
 							</ul>
 							<!-- /product tab nav -->
 								<!-- tab3  -->
@@ -245,13 +252,21 @@
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
-													<span>4.5</span>
+													<span>{number_format($article->averageRatingInt() + $article->averageRatingDecimal(),1)}</span>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
+														{for $i=0 to $article->averageRatingInt()-1}
+															<i class="fa fa-star"></i>
+														{/for}
+														{if $article->averageRatingDecimal() >=0.5}
+															<i class="fa fa-star-half-o"></i>
+															{for $i=$article->averageRatingInt() to 3}
+																<i class="fa fa-star-o empty"></i>
+															{/for}
+														{else}
+															{for $i=$article->averageRatingInt() to 4}
+																<i class="fa fa-star-o empty"></i>
+															{/for}
+														{/if}
 													</div>
 												</div>
 												<ul class="rating">
@@ -264,9 +279,9 @@
 															<i class="fa fa-star"></i>
 														</div>
 														<div class="rating-progress">
-															<div style="width: 80%;"></div>
+															<div style="width: {100 * $article->fivestars() / count($article->getReviews())}%;"></div>
 														</div>
-														<span class="sum">3</span>
+														<span class="sum">{$article->fivestars()}</span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -277,9 +292,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div style="width: 60%;"></div>
+															<div style="width: {100 * $article->fourstars() / count($article->getReviews())}%;"></div>
 														</div>
-														<span class="sum">2</span>
+														<span class="sum">{$article->fourstars()}</span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -290,9 +305,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: {100 * $article->threestars() / count($article->getReviews())}%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum">{$article->threestars()}</span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -303,9 +318,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: {100 * $article->twostars() / count($article->getReviews())}%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum">{$article->twostars()}</span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -316,9 +331,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: {100 * $article->onestar() / count($article->getReviews())}%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum">{$article->onestar()}</span>
 													</li>
 												</ul>
 											</div>
@@ -326,24 +341,24 @@
 										<!-- /Rating -->
 
 										<!-- Reviews -->
-										<div class="col-md-9">
+										<div class="col-md-7">
 											<div id="reviews">
 												<ul class="reviews">
-													{foreach $reviews as $review}
+													{foreach $article->getReviews() as $review}
 														<li>
 															<div class="review-heading">
 																<h5 class="name">{$review->getCustomer()}</h5>
 																<div class="review-rating">
-																	
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star-o empty"></i>
+																	{for $i=0 to $review->getArticleRating()-1}
+																		<i class="fa fa-star"></i>
+																	{/for}
+																	{for $i=$review->getarticleRating() to 4}
+																		<i class="fa fa-star-o empty"></i>
+																	{/for}																	
 																</div>
 															</div>
 															<div class="review-body">
-																<p>{$review->getText()}</p>
+																<p>{$review->getReviewText()}</p>
 															</div>
 														</li>
 													{/foreach}

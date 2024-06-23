@@ -11,6 +11,13 @@ class UHTTPMethods{
     public static function post($param){
         return $_POST[$param];
     }
+
+    /**
+     * checks if a post parameter is set
+     */
+    public static function isPostSet($param){
+        return isset($_POST[$param]);
+    }
     
     /**
      * can access to $_GET superglobal

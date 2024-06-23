@@ -1045,7 +1045,7 @@ img.small {
   z-index: 10;
 }
 
-.product .product-body .product-rating>i.fa-star {
+.product .product-body .product-rating>i.fa-star .product-rating>i.fa-star-half-o {
   color: #0037b8;
 }
 
@@ -1577,6 +1577,10 @@ img.small {
   color: #0037b8;
 }
 
+.product-rating>i.fa-star-half-o {
+  color: #0037b8;
+}
+
 .product-details .review-link {
   font-size: 12px;
 }
@@ -1780,7 +1784,7 @@ img.small {
   color: #E4E7ED;
 }
 
-.rating-avg .rating-stars>i.fa-star, .rating .rating-stars>i.fa-star {
+.rating-avg .rating-stars>i.fa-star, .rating .rating-stars>i.fa-star, .rating-avg .rating-stars>i.fa-star-half-o {
   color: #0037b8;
 }
 
@@ -1830,7 +1834,7 @@ img.small {
 }
 
 .reviews .review-body {
-  min-height: 70px;
+  min-height: 20px;
 }
 
 .reviews .review-heading .name {

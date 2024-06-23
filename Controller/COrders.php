@@ -340,7 +340,6 @@ class COrders{
             $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
             $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
             $stock->setQuantity($stock->getQuantity() - $quantity);
-            echo "tutto bene";
             FPersistentManager::getInstance()->createObj($orderItem);
         }
 

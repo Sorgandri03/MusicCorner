@@ -69,4 +69,81 @@ class EArticleDescription {
     public function setReviews(array $reviews) {
         $this->reviews = $reviews;
     }
+
+    public function averageRatingInt(): int {
+        $sum = 0;
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            $sum += $review->getArticleRating();
+            $count++;
+        }
+        if ($count == 0) {
+            return 0;
+        }
+        return floor($sum / $count);
+    }
+
+    public function averageRatingDecimal(): float {
+        $sum = 0;
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            $sum += $review->getArticleRating();
+            $count++;
+        }
+        if ($count == 0) {
+            return 0;
+        }
+        return $sum/$count - floor($sum / $count);
+    }
+
+    public function fivestars(): int {
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            if ($review->getArticleRating() == 5) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function fourstars(): int {
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            if ($review->getArticleRating() == 4) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function threestars(): int {
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            if ($review->getArticleRating() == 3) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function twostars(): int {
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            if ($review->getArticleRating() == 2) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function onestar(): int {
+        $count = 0;
+        foreach ($this->reviews as $review) {
+            if ($review->getArticleRating() == 1) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
 }
