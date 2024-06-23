@@ -39,6 +39,23 @@ Class CCustomer{
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $orderItemId = UHTTPMethods::post('orderItemId');
             $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
+            if(UHTTPMethods::post('reviewText') != 0) {
+                $reviewText = UHTTPMethods::post('reviewText');
+                if(UHTTPMethods::post('ratinga') != 0 && UHTTPMethods::post('ratings') != 0){
+                    $ratinga = UHTTPMethods::post('ratinga');
+                    $ratings = UHTTPMethods::post('ratings');
+                }
+                else {
+                    $v = new VUser();
+                    $v->showReviewArticleError($orderItem);
+                    return;
+                }
+                $review = new EReview(USession::getInstance()->getSessionElement('customer')->getId(), $reviewText, $ratinga, $ratings, $orderItem->getArticle(), $orderItem->getSeller());
+                FPersistentManager::getInstance()->createObj($review);
+                $v = new VUser();
+                $v->showReviewSuccess();
+                return;
+            }
             $v = new VUser();
             $v->showReviewArticle($orderItem);
         }
@@ -46,28 +63,5 @@ Class CCustomer{
             header('Location: MusicCorner/User/Login');
         }
     }
-    public static function sendReview(){
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
-            $reviewText = UHTTPMethods::post('reviewText');
-            $orderItemId = UHTTPMethods::post('orderItemId');
-            $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
-            if(UHTTPMethods::post('ratinga')!=null && UHTTPMethods::post('ratings')!=null){
-                $ratinga = UHTTPMethods::post('ratinga');
-                $ratings = UHTTPMethods::post('ratings');
-            }
-            else {
-                $v = new VUser();
-                $v->showReviewArticleError($orderItem);
-            }
-            $review = new EReview(USession::getInstance()->getSessionElement('customer')->getId(), $reviewText, $ratinga, $ratings, $orderItem->getArticle(), $orderItem->getSeller());
-            FPersistentManager::getInstance()->createObj($review);
-            $v = new VUser();
-            $v->showReviewSuccess();
-        }
-        else {
-            header('Location: MusicCorner/User/Login');
-        }
-    }
-
 
 }
