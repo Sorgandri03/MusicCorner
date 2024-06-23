@@ -287,7 +287,7 @@ class COrders{
          * Check if the user used a saved card
          */
         if(UHTTPMethods::post('useSavedCard') != 0){
-            $card = FPersistentManager::getInstance()->retrieveObj(EAddress::class, UHTTPMethods::post('useSavedCard'));
+            $card = FPersistentManager::getInstance()->retrieveObj(ECreditCard::class, UHTTPMethods::post('useSavedCard'));
         }
         else {
             if(UHTTPMethods::post('card-number') && UHTTPMethods::post('card-owner') && UHTTPMethods::post('cvv') && UHTTPMethods::post('expiration-date')){
@@ -340,6 +340,7 @@ class COrders{
             $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
             $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
             $stock->setQuantity($stock->getQuantity() - $quantity);
+            echo "tutto bene";
             FPersistentManager::getInstance()->createObj($orderItem);
         }
 

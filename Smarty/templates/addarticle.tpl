@@ -60,32 +60,39 @@
 		<!-- /HEADER -->
 
 
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-						<!-- Inserisci Prodotto -->
-							<!-- Verifica EAN - Sempre visibile -->
-						{if $found == ""}
-							<div class="col-md-12">
-								<div class="billing-details">
-									<div class="section-title">
-										<h3 class="title">Inserisci Prodotto</h3>
-									</div>
-									<form action="/MusicCorner/Seller/searchEAN" method="post" class="text-center">
-										<div class="form-group">
-											<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
-										</div>
-										<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
-									</form>
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+					<!-- Inserisci Prodotto -->
+					<div class="col-md-12">
+						<!-- Verifica EAN - Sempre visibile -->
+						{if $success=="true"}
+							<div class="section-title">
+								<h3 class="title" style="color: green;">Articolo inserito con successo!</h3>
+								<p>Il tuo articolo è stato aggiunto con successo.</p>
+								<a href="/MusicCorner/Seller/addArticle" class="primary-btn order-submit">Aggiungi un altro articolo</a>
+								<a href="/MusicCorner/Seller/dashboard" class="primary-btn order-submit">Torna alla dashboard</a>
 							</div>
-						{/if}
-		
+						{else}
+							{if $found == ""}
+								<div class="col-md-12">
+									<div class="billing-details">
+										<div class="section-title">
+											<h3 class="title">Inserisci Prodotto</h3>
+										</div>
+										<form action="/MusicCorner/Seller/searchEAN" method="post" class="text-center">
+											<div class="form-group">
+												<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+											</div>
+											<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
+										</form>
+								</div>
+							{/if}
 							<!-- Form Inserimento Prodotto -->
-						{if $found == "true"}
-							<div class="col-md-7">
+							{if $found == "true"}
 								<p style="color: green;">EAN già utilizzato alcuni campi sono stati riempiti!</p>
 								<form action="/MusicCorner/Seller/pullArticle" method="post">
 									<div class="form-group">
@@ -106,34 +113,11 @@
 									<div class="form-group">
 										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
 									</div>
-									<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
-								</form>
-							</div>
-							<!-- /Form Inserimento Prodotto -->
-							<br>
-							<br>
-							<!-- Dettagli Inserimento -->
-							<div class="col-md-5 order-details" >
-								<div class="section-title text-center">
-									<h3 class="title">Resoconto Inserimento</h3>
-								</div>
-								<div class="order-summary">
-									<div class="order-col">
-										<div><strong>Prodotto</strong></div>
-										<div><strong>Quantità</strong></div>
-									</div>
-									<div class="order-products">
-										<div class="order-col">
-											<div>Nome Articolo</div>
-											<div>0,1,2</div>
-										</div>
-									</div>
-								</div>
-								<a href="#" class="primary-btn order-submit">Inserisci nel Catalogo</a>
-							</div>
-							<!-- /Dettagli Inserimento -->
-							{else if $found == "false"}
-							<div class="col-md-7">
+										<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
+									</form>
+							{/if}	
+								<!-- /Form Inserimento Prodotto -->
+							{if $found == "false"}
 								<p style="color: red;">Questo EAN non è mai stato usato!</p>
 								<form action="/MusicCorner/Seller/pullArticle" method="post">
 									<div class="form-group">
@@ -145,61 +129,27 @@
 									<div class="form-group">
 										<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
 									</div>
-									
 									<div class="form-group">
-										<input class="input" type="text" name="format" value="CD" required readonly>
-									</div>
-								
-									<!-- DA FIXARE
-									<div class="form-group">
-									<select class="input" name="format" required>
-										<option value="">Seleziona il formato</option> 
-										<option value="CD">CD</option>
-										<option value="LP">LP</option>
-										<option value="Cassette">Cassette</option>
-									</select>
-									</div>
-									-->
-									
+										<select class="input form-control" name="format" required>
+											<option value="" disabled selected>Seleziona formato</option>
+											{foreach from=$formats item=format}
+											<option value="{$format}">{$format}</option>
+											{/foreach}
+										</select>
+									</div>		
 									<div class="form-group">
 										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
 									</div>
-									<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
-								</form>
-							</div>
-							<br>
-							<br>
-							<div class="col-md-5 order-details" >
-								<div class="section-title text-center">
-									<h3 class="title">Resoconto Inserimento</h3>
-								</div>
-								<div class="order-summary">
-									<div class="order-col">
-										<div><strong>Prodotto</strong></div>
-										<div><strong>Quantità</strong></div>
-									</div>
-									<div class="order-products">
-										<div class="order-col">
-											<div>Nome Articolo</div>
-											<div>0,1,2</div>
-										</div>
-									</div>
-								</div>
-								<a href="#" class="primary-btn order-submit">Inserisci nel Catalogo</a>
-							</div>
+										<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
+									</form>							
+							{/if}
 						{/if}
-						
+						</div>
 						<!-- /Form Inserimento Prodotto -->
 					</div>
-					<div><br></div>
-					<div><br></div>
-					<div><br></div>
-					<div><br></div>
-
-					
 				</div>
 				<!-- /row -->
 			</div>

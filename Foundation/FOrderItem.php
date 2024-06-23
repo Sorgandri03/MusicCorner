@@ -33,7 +33,7 @@ class FOrderItem{
         $stmt->bindValue(':seller', $cartItem->getSeller(), PDO::PARAM_STR);
         $stmt->bindValue(':quantity', $cartItem->getQuantity(), PDO::PARAM_INT);
         $stmt->bindValue(':price', $cartItem->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':orderId', $cartItem->getOrderId(), PDO::PARAM_INT);
+        $stmt->bindValue(':orderID', $cartItem->getOrderId(), PDO::PARAM_INT);
     }
 
     //C

@@ -15,8 +15,19 @@ Class CSeller{
 
     public static function addArticle(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
-            $view->showAddArticle();
+            if(UHTTPMethods::isPostSet('EAN') && UHTTPMethods::isPostSet('product-name')){
+                self::pullArticle();
+            }
+            else if(UHTTPMethods::isPostSet('EAN')){
+                self::searchEAN();
+            }
+            else if(UHTTPMethods::isPostSet('price') && UHTTPMethods::isPostSet('quantity')){
+                self::showSuccessArticle();
+            }
+            else{
+                $view = new VUser();
+                $view->showAddArticle();
+            }
         }
         else {
             header('Location: MusicCorner/User/Login');
@@ -30,7 +41,18 @@ Class CSeller{
                 $EAN = UHTTPMethods::post('EAN');
                 $name = UHTTPMethods::post('product-name');
                 $artist = UHTTPMethods::post('artist-name');
-                $format = 0 /*UHTTPMethods::post('format') DA FIXARE*/;
+                $formattext = UHTTPMethods::post('format');
+                switch($formattext){
+                    case 'CD':
+                        $format = 0;
+                        break;
+                    case 'LP':
+                        $format = 1;
+                        break;
+                    case 'Cassette':
+                        $format = 2;
+                        break;
+                }
                 $price = UHTTPMethods::post('price');
                 $quantity = UHTTPMethods::post('quantity');
             if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){  
@@ -41,6 +63,7 @@ Class CSeller{
                 if (!$exists) {
                     FPersistentManager::getInstance()->createObj($article);
                 }
+
             }else{
                 header('Location: /MusicCorner/User/login');
                 return;
@@ -54,6 +77,34 @@ Class CSeller{
             
         }
     }
+
+    public static function searchEAN() {
+        $view = new VUser();
+        $ean = UHTTPMethods::post('EAN');
+        $exists = FPersistentManager::getInstance()->verifyEAN($ean);
+        
+        if ($exists) {
+            $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
+            if ($article) {
+                $view->addArticleSuccess($article);
+            } else {
+                $view->addArticleFail();
+            }
+        } else {
+            $view->addArticleFail();
+        }
+    }
+
+    public static function showSuccessArticle(){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showSuccessMessage();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
+    }
+    
 
    public static function modifyStock(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
@@ -119,25 +170,6 @@ public static function removeFromStock() {
 }
 
 
-
-
-    public static function searchEAN() {
-        $view = new VUser();
-        $ean = UHTTPMethods::post('EAN');
-        $exists = FPersistentManager::getInstance()->verifyEAN($ean);
-        
-        if ($exists) {
-            $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
-            if ($article) {
-                $view->addArticleSuccess($article);
-            } else {
-                $view->addArticleFail();
-            }
-        } else {
-            $view->addArticleFail();
-        }
-    }
-    
     public static function soldProducts(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VUser();
