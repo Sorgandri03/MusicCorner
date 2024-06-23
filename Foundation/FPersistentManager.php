@@ -147,11 +147,17 @@ class FPersistentManager{
     }
 
     public static function getRandomArticles($quantity){
-        $results = FDB::getInstance()::getRandomArticles($quantity);
+        $results = FDB::getInstance()::getRandomArticles();
         $articles = array();
         foreach($results as $result){
             $article = FArticleDescription::retrieveObject($result['EAN']);
+            if($article->getLowestPrice() == 0){
+                continue;
+            }
             $articles[] = $article;
+            if(count($articles) == $quantity){
+                break;
+            }
         }
         return $articles;
     }

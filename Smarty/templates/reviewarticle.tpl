@@ -106,7 +106,6 @@
                             <div class="input-rating">
                                 <span><h4>Voto dell'articolo: </h4></span>
                                 <div class="stars">
-                                    <input class="hidden" name="ratinga" value="0">
                                     <input id="star5a" name="ratinga" value="5" type="radio"><label for="star5a"></label>
                                     <input id="star4a" name="ratinga" value="4" type="radio"><label for="star4a"></label>
                                     <input id="star3a" name="ratinga" value="3" type="radio"><label for="star3a"></label>
@@ -117,7 +116,6 @@
                             <div class="input-rating">
                                 <span><h4>Voto del venditore: </h4></span>
                                 <div class="stars">
-                                    <input class="hidden" name="ratings" value="0">
                                     <input id="star5s" name="ratings" value="5" type="radio"><label for="star5s"></label>
                                     <input id="star4s" name="ratings" value="4" type="radio"><label for="star4s"></label>
                                     <input id="star3s" name="ratings" value="3" type="radio"><label for="star3s"></label>

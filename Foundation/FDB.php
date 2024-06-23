@@ -144,9 +144,9 @@ class FDB {
         }
     }
 
-    public static function getRandomArticles($quantity){
+    public static function getRandomArticles(){
         try{
-            $query = "SELECT * FROM ArticleDescription ORDER BY RAND() LIMIT " . $quantity . ";";
+            $query = "SELECT * FROM ArticleDescription ORDER BY RAND() ;";
             $stmt = self::$db->prepare($query);
             $stmt->execute();
             $rowNum = $stmt->rowCount();
