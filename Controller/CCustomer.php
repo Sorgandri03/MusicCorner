@@ -39,9 +39,9 @@ Class CCustomer{
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
             $orderItemId = UHTTPMethods::post('orderItemId');
             $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
-            if(UHTTPMethods::post('reviewText') != 0) {
+            if(UHTTPMethods::isPostSet('reviewText')) {
                 $reviewText = UHTTPMethods::post('reviewText');
-                if(UHTTPMethods::post('ratinga') != 0 && UHTTPMethods::post('ratings') != 0){
+                if(UHTTPMethods::isPostSet('ratinga') && UHTTPMethods::isPostSet('ratings')){
                     $ratinga = UHTTPMethods::post('ratinga');
                     $ratings = UHTTPMethods::post('ratings');
                 }
