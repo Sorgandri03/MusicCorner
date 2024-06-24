@@ -45,10 +45,30 @@ class ESeller extends EUser {
         $this->reviews = $reviews;
     }
     public function getShopRating(): float {
+        $this->calculateShopRating();
         return $this->shopRating;
     }
     public function setShopRating(float $shopRating): void {
         $this->shopRating = $shopRating;
+    }
+    public function calculateShopRating(): void {
+        $this->getReviews();
+        $count=0;
+        $rating=0;
+        foreach($this->reviews as $review) {
+            $rating += $review->getSellerRating();
+            $count++;
+        }
+        if($count!=0) {
+            $rating = $rating/$count;
+        }
+        $this->shopRating = $rating;        
+    }
+    public function averageRatingInt() : int {
+        return floor($this->shopRating);
+    }
+    public function averageRatingDecimal() : float {
+        return $this->shopRating - floor($this->shopRating);
     }
     /*
     public function setSentMessages(array $sentMessages): void {
@@ -64,4 +84,5 @@ class ESeller extends EUser {
         return $this->receivedMessages;
     }
     */
+
 }

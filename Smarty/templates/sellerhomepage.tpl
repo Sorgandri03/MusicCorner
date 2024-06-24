@@ -62,41 +62,61 @@
     <section id="seller-homepage-for-customers">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <br>
-                    <h2>$seller->getShopName()</h2>
-                    <br>
-                    {foreach from=$seller->getStocks() item=stock}
-                    {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
-                                </div>
-                            </div>
+                <br>
+                <br>
+                <h2>{$seller->getShopName()}</h2>
+                <br>
+                {if $seller->getShopRating() != 0}
+                    <div class="rating-avg">
+                        <span>Voto: {number_format($seller->averageRatingInt() + $seller->averageRatingDecimal(),1)}</span>
+                        <div class="rating-stars">
+                            {for $i=0 to $seller->averageRatingInt()-1}
+                                <i class="fa fa-star"></i>
+                            {/for}
+                            {if $seller->averageRatingDecimal() >=0.5}
+                                <i class="fa fa-star-half-o"></i>
+                                {for $i=$seller->averageRatingInt() to 3}
+                                    <i class="fa fa-star-o empty"></i>
+                                {/for}
+                            {else}
+                                {for $i=$seller->averageRatingInt() to 4}
+                                    <i class="fa fa-star-o empty"></i>
+                                {/for}
+                            {/if}
                         </div>
-                        <div class="col-md-7">
-                            <br><br>
-                            <div class="product-details">
-                                <p class="product-category">{$article->getArtist()}</p>
-                                <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
-                                {if $article->getFormat()==1}
-                                    <p class="product-category">LP</p>
-                                {elseif $article->getFormat()==1}
-                                    <p class="product-category">Cassetta</p>
-                                {else}
-                                    <p class="product-category">CD</p>
-                                {/if}
-                                <h4 class="product-category">Prezzo: €{$stock->getPrice()}</h4>
-                                <h4 class="product-category">Quantità: {$stock->getQuantity()}</h4>
+                    </div>                    
+                {/if}
+                <br>
+                {foreach from=$seller->getStocks() item=stock}
+                {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
                             </div>
                         </div>
                     </div>
-                    <br>
-                    {/foreach}
-                    <a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna indietro</strong></a>
+                    <div class="col-md-6">
+                        <br><br>
+                        <div class="product-details">
+                            <p class="product-category">{$article->getArtist()}</p>
+                            <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                            {if $article->getFormat()==1}
+                                <p class="product-category">LP</p>
+                            {elseif $article->getFormat()==1}
+                                <p class="product-category">Cassetta</p>
+                            {else}
+                                <p class="product-category">CD</p>
+                            {/if}
+                            <h4 class="product-category">Prezzo: €{$stock->getPrice()}</h4>
+                            <h4 class="product-category">Quantità: {$stock->getQuantity()}</h4>
+                        </div>
+                    </div>
                 </div>
+                <br>
+                {/foreach}
+                <a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
             </div>
         </div>
     </section>

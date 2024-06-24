@@ -198,9 +198,5 @@ class VUser{
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('soldproducts.tpl');
     }
-    public function showSellerHomepageFromCustomer(){
-        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,USession::getInstance()->getSessionElement('customer')->getId());
-        $this->smarty->assign('customer',$customer);
-        $this->smarty->display('sellerhomepage.tpl');
-    }
+    
 }

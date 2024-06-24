@@ -61,4 +61,22 @@ class VSearch
         $this->smarty->assign('article', $article);
         $this->smarty->display('article.tpl');
     }
+
+    public function showSellerHomepageFromCustomer($seller){
+        if(USession::getInstance()->isSetSessionElement('customer')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+        }
+        else{
+            $this->smarty->assign('username','Accedi/Registrati');
+        }
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart('guest');
+            USession::getInstance()->setSessionElement('cart',$cart);
+        }
+        $this->smarty->assign('seller', $seller);
+        $this->smarty->display('sellerhomepage.tpl');
+    }
 }

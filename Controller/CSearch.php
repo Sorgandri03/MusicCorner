@@ -54,4 +54,12 @@ class CSearch{
         $view = new VSearch();
         $view->showSearch($articles);
     }
+
+    public static function store(){
+        $stockId = UHTTPMethods::post('stockId');
+        $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $stock->getSeller());
+        $v = new VSearch();
+        $v->showSellerHomepageFromCustomer($seller);
+    }
 }
