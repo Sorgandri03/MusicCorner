@@ -5,6 +5,7 @@ class ECustomer extends EUser {
     private array $addresses = array();
     private array $creditCards = array();
     private array $orders = array();
+    private $reviews = array();
     private DateTime $suspensionTime;
 
 
@@ -58,6 +59,14 @@ class ECustomer extends EUser {
     }   
     public function setSuspensionTime(DateTime $suspensionTime): void {
         $this->suspensionTime = $suspensionTime;
+    }
+
+    public function getReviews(): array {
+        return $this->reviews;
+    }
+
+    public function setReviews(array $reviews) {
+        $this->reviews = $reviews;
     }
 
 }

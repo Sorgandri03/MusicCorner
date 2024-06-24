@@ -2568,8 +2568,28 @@ img.small {
   font-size: 16px;
 }
 
+.seller-valutation  {
+  color:#000000;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.review-text{
+  color: #000000;
+  word-wrap: break-word;
+  font-size: 20px;
+  line-height: 1.5; 
+}
+
+.product-valutation  {
+  color:#000000;
+  font-size: 17px;
+  font-weight: bold;
+}
+
 .review-body .album-name {
-  font-size: 18px;
+  color:#0037b8;
+  font-size: 22px;
   font-weight: bold;
 }
 

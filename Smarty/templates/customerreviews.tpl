@@ -54,21 +54,22 @@
 	<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-
+    <br>
 	<!-- SHOW SELLER REVIEW -->
-	<section id="show-seller-reviews">
+	<section id="show-customer-reviews">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="text-center">Tutte le recensioni</h2>
+					<h1 class="text-center"><span style="color: #0037b8;">{$customer->getUsername()}</span> ecco le tue recensioni: </h1>
 					<br>
 					<ul class="list-unstyled">
-						{foreach from=$seller->getReviews() item=review}
+						{foreach from=$customer->getReviews() item=review}
 						<li class="review-item mb-4">
 							<div class="row">
 								<div class="col-md-3">
 									<div class="review-heading">
-										<h5 class="name">{FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())->getShopName()}</h5>
+										<div class="seller-valutation">Valutazione {FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())->getShopName()} </div>
+                                        <br>
 											<div class="review-rating">
 												{for $i=0 to $review->getSellerRating()-1}
 													<i class="fa fa-star"></i>
@@ -78,11 +79,24 @@
 												{/for}																	
 											</div>																																										
 									</div>
+                                    <br>
+                                    <div class="review-heading">
+										<div class="product-valutation">Valutazione <br> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</div>
+                                        <br>
+											<div class="review-rating">
+												{for $i=0 to $review->getArticleRating()-1}
+													<i class="fa fa-star"></i>
+												{/for}
+												{for $i=$review->getArticleRating() to 4}
+													<i class="fa fa-star-o empty"></i>
+												{/for}																	
+											</div>																																										
+									</div>
 								</div>
 								<div class="col-md-9">
 									<div class="review-body">
-										<h4 id="center">Recensione relativa a: <span class="album-name"> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</span> Formato: <span>{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getFormatString()}</span></h4>
-										<p><span class="review-text">class="review-text">{$review->getReviewText()}</span></p>	
+										<h4 id="center">Recensione di: <span class="album-name"> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</span> Formato: <span class="album-name">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getFormatString()}</span></h4>
+										<p><span class="review-text">{$review->getReviewText()}</span></p>	
 									</div>
 								</div>
 							</div>

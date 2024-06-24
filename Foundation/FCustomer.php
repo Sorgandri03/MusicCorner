@@ -87,6 +87,7 @@ class FCustomer {
         $customer->setAddresses(FAddress::getAddressesByCustomer($customer->getId()));
         $customer->setOrders(FOrder::getOrdersByCustomer($customer->getId()));
         $customer->setSuspensionTime(date_create_from_format('Y-m-d H:i:s', $result[0]['suspensionTime']));
+        $customer->setReviews(FReview::getReviewsByCustomer($result[0]['email']));
         return $customer;
     }
 

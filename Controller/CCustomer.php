@@ -64,4 +64,14 @@ Class CCustomer{
         }
     }
 
+    public static function CustomerReviews(){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+            $view = new VUser();
+            $view->showCustomerReviews();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
+    }
+
 }

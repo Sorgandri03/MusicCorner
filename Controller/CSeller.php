@@ -22,7 +22,7 @@ Class CSeller{
                 self::searchEAN();
             }
             else{
-                $view = new VUser();
+                $view = new VSeller();
                 $view->showAddArticle();
             }
         }
@@ -32,7 +32,7 @@ Class CSeller{
     }
    
     public static function pullArticle(){
-        $view = new VUser();
+        $view = new VSeller();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['EAN']) && isset($_POST['product-name']) && isset($_POST['artist-name']) && isset($_POST['format'])  && isset($_POST['price']) && isset($_POST['quantity'])) {
                 $EAN = UHTTPMethods::post('EAN');
@@ -76,7 +76,7 @@ Class CSeller{
     }
 
     public static function searchEAN() {
-        $view = new VUser();
+        $view = new VSeller();
         $ean = UHTTPMethods::post('EAN');
         $exists = FPersistentManager::getInstance()->verifyEAN($ean);
         
@@ -94,7 +94,7 @@ Class CSeller{
 
     public static function showSuccessArticle(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
+            $view = new VSeller();
             $view->showSuccessMessage();
         }
         else {
@@ -104,7 +104,7 @@ Class CSeller{
     
     public static function showReviews(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
+            $view = new VSeller();
             $view->showSellerReviews();
         }
         else {
@@ -114,7 +114,7 @@ Class CSeller{
 
    public static function modifyStock(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
+            $view = new VSeller();
             $view->showModifyStock();
         }
         else {
@@ -178,7 +178,7 @@ public static function removeFromStock() {
 
     public static function soldProducts(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
+            $view = new VSeller();
             $view->showSoldProducts();
         }
         else {

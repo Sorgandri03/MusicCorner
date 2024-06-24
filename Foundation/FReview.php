@@ -107,6 +107,16 @@ class FReview {
         return $reviews;
     }
 
+    public static function getReviewsByCustomer($customer){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
+        $reviews = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $review = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $reviews[] = $review;
+        }
+        return $reviews;
+    }
+
     public static function getReviewsByOrderItem($orderItem){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItem);
         $reviews = array();
