@@ -2496,6 +2496,7 @@ img.small {
   border-radius: 5px;
   padding: 20px;
   box-shadow: -2px -2px 7px rgba(0, 0, 0, 0.1), 2px 2px 7px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .review-heading .name {
@@ -2511,7 +2512,12 @@ img.small {
   color: #ccc;
 }
 
+.review-body {
+  text-align: left;  
+}
+
 .review-body p {
   margin: 0;
   color: #555;
+  word-wrap: break-word;
 }

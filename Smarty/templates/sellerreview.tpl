@@ -59,33 +59,34 @@
 	<section id="show-seller-reviews">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-15">
+				<div class="col-md-12">
 					<h2 class="text-center">Tutte le recensioni</h2>
 					<br>
 					<ul class="list-unstyled">
 						{foreach from=$seller->getReviews() item=review}
-						<li class="review-item mb-7">
+						<li class="review-item mb-4">
 							<div class="row">
-								<div class="col-md-5">
+								<div class="col-md-3">
 									<div class="review-heading">
 										<h5 class="name">{$review->getCustomer()}</h5>
 											<div class="review-rating">
-												{for $i=0 to $review->getArticleRating()-1}
+												{for $i=0 to $review->getSellerRating()-1}
 													<i class="fa fa-star"></i>
 												{/for}
-												{for $i=$review->getarticleRating() to 4}
+												{for $i=$review->getSellerRating() to 4}
 													<i class="fa fa-star-o empty"></i>
 												{/for}																	
 											</div>																																										
 									</div>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-9">
 									<div class="review-body">
-										<p>{$review->getReviewText()}</p>
-										<p>{$review->getArticle()}</p>
+										<h4 id="center">Recensione relativa a: {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</h4>
+										<p><strong>{$review->getReviewText()}</strong></p>	
 									</div>
 								</div>
 							</div>
+							<br>
 						</li>
 						{/foreach}
 				</div>
