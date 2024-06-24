@@ -186,6 +186,11 @@ class VUser{
         $this->smarty->display('modifystock.tpl');
     }
 
+    public function showSellerRecensions(){
+        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
+        $this->smarty->assign('seller',$seller);
+        $this->smarty->display('sellerrecension.tpl');
+    }
     
 
     public function showSoldProducts(){

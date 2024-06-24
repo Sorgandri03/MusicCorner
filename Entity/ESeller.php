@@ -4,8 +4,10 @@ class ESeller extends EUser {
     private $shopName;
     private float $shopRating=0;
     public array $catalogue = array();
-    private $sentMessages = array();
-    private $receivedMessages = array();
+    //private $sentMessages = array();
+    //private $receivedMessages = array();
+
+    private $reviews = array();
     
     public function __construct(string $email, string $password, string $shopName) {
         $this->shopName = $shopName;
@@ -33,13 +35,22 @@ class ESeller extends EUser {
     }    
     public function setShopName(string $shopName): void {
         $this->shopName = $shopName;
-    }    
+    } 
+    
+    public function getReviews(): array {
+        return $this->reviews;
+    }
+
+    public function setReviews(array $reviews) {
+        $this->reviews = $reviews;
+    }
     public function getShopRating(): float {
         return $this->shopRating;
     }
     public function setShopRating(float $shopRating): void {
         $this->shopRating = $shopRating;
     }
+    /*
     public function setSentMessages(array $sentMessages): void {
         $this->sentMessages = $sentMessages;
     }
@@ -52,5 +63,5 @@ class ESeller extends EUser {
     public function getReceivedMessages(): array {
         return $this->receivedMessages;
     }
-
+    */
 }

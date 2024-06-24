@@ -21,9 +21,6 @@ Class CSeller{
             else if(UHTTPMethods::isPostSet('EAN')){
                 self::searchEAN();
             }
-            else if(UHTTPMethods::isPostSet('price') && UHTTPMethods::isPostSet('quantity')){
-                self::showSuccessArticle();
-            }
             else{
                 $view = new VUser();
                 $view->showAddArticle();
@@ -63,7 +60,7 @@ Class CSeller{
                 if (!$exists) {
                     FPersistentManager::getInstance()->createObj($article);
                 }
-
+                self::showSuccessArticle();
             }else{
                 header('Location: /MusicCorner/User/login');
                 return;
@@ -105,6 +102,15 @@ Class CSeller{
         }
     }
     
+    public static function showReviews(){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VUser();
+            $view->showSellerRecensions();
+        }
+        else {
+            header('Location: MusicCorner/User/Login');
+        }
+    }
 
    public static function modifyStock(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){

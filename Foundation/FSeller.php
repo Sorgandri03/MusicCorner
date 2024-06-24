@@ -85,8 +85,9 @@ class FSeller{
         $user = FUser::retrieveObject($result[0]['email']);
         $seller = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
         $seller->setStocks(FStock::getStocksBySeller($seller->getId()));
-        $seller->setSentMessages(FMessage::getSentMessages($seller->getId()));
-        $seller->setReceivedMessages(FMessage::getReceivedMessages($seller->getId()));
+        $seller->setReviews(FReview::getReviewsBySeller($result[0]['email']));
+        //$seller->setSentMessages(FMessage::getSentMessages($seller->getId()));
+        //$seller->setReceivedMessages(FMessage::getReceivedMessages($seller->getId()));
         return $seller;
     }
 

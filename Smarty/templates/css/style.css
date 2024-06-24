@@ -2478,3 +2478,40 @@ img.small {
 .text-center {
   text-align: center;
 }
+
+/*-- Rating --*/
+#show-seller-reviews {
+  padding: 20px 0;
+  background-color: #ffffff;
+}
+
+#show-seller-reviews h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.review-item {
+  background-color: #fff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: -2px -2px 7px rgba(0, 0, 0, 0.1), 2px 2px 7px rgba(0, 0, 0, 0.1);
+}
+
+.review-heading .name {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.review-rating i {
+  color: #ffcc00;
+}
+
+.review-rating .empty {
+  color: #ccc;
+}
+
+.review-body p {
+  margin: 0;
+  color: #555;
+}

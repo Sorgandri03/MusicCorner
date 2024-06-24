@@ -95,4 +95,14 @@ class FReview {
         }
         return $reviews;
     }
+
+    public static function getReviewsBySeller($seller){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
+        $reviews = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $review = self::retrieveObject($queryResult[$i][self::getKey()]);
+            $reviews[] = $review;
+        }
+        return $reviews;
+    }
 }
