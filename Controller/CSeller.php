@@ -105,7 +105,7 @@ Class CSeller{
     public static function showReviews(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VUser();
-            $view->showSellerRecensions();
+            $view->showSellerReviews();
         }
         else {
             header('Location: MusicCorner/User/Login');
