@@ -37,7 +37,7 @@ Class CCustomer{
     }
     public static function reviewArticle(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
-            $orderItemId = UHTTPMethods::post('orderItemId');
+            $orderItemId = UHTTPMethods::post('orderItemID');
             $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
             if(UHTTPMethods::isPostSet('reviewText')) {
                 $reviewText = UHTTPMethods::post('reviewText');
@@ -50,7 +50,7 @@ Class CCustomer{
                     $v->showReviewArticleError($orderItem);
                     return;
                 }
-                $review = new EReview(USession::getInstance()->getSessionElement('customer')->getId(), $reviewText, $ratinga, $ratings, $orderItem->getArticle(), $orderItem->getSeller());
+                $review = new EReview(USession::getInstance()->getSessionElement('customer')->getId(), $reviewText, $ratinga, $ratings, $orderItem->getArticle(), $orderItem->getSeller(), $orderItem->getId());
                 FPersistentManager::getInstance()->createObj($review);
                 $v = new VUser();
                 $v->showReviewSuccess();
