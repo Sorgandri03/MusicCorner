@@ -2491,21 +2491,31 @@ img.small {
 }
 
 .review-item {
-  background-color: #fff;
-  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
-  box-shadow: -2px -2px 7px rgba(0, 0, 0, 0.1), 2px 2px 7px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .review-heading .name {
   font-weight: bold;
   color: #007bff;
+  font-size: 18px; 
+  margin-right: 10px;
+  
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
 }
 
 .review-rating i {
   color: #ffcc00;
+  font-size: 20px;
+  margin-left: 16px;
 }
 
 .review-rating .empty {
@@ -2513,11 +2523,22 @@ img.small {
 }
 
 .review-body {
-  text-align: left;  
+  text-align: left;
+}
+
+.review-body h4 {
+  font-size: 16px;
+}
+
+.review-body .album-name {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .review-body p {
   margin: 0;
   color: #555;
   word-wrap: break-word;
+  font-size: 16px;
+  line-height: 1.5; 
 }
