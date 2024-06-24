@@ -2482,6 +2482,12 @@ img.small {
   margin-bottom: 15px;
 }
 
+.success-message {
+  color: rgb(37, 224, 20);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
 .dashboard-button{
   color: black; 
   background-color: white; 
@@ -2551,6 +2557,12 @@ img.small {
 }
 
 .review-rating i {
+  color: #ffcc00;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.review-rating-wide i {
   color: #ffcc00;
   font-size: 20px;
   margin-left: 16px;

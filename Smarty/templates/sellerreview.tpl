@@ -69,7 +69,7 @@
 								<div class="col-md-3">
 									<div class="review-heading">
 										<h5 class="name">{FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())->getShopName()}</h5>
-											<div class="review-rating">
+											<div class="review-rating-wide">
 												{for $i=0 to $review->getSellerRating()-1}
 													<i class="fa fa-star"></i>
 												{/for}

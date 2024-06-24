@@ -15,16 +15,20 @@ class VUser{
      * @throws SmartyException
      */
     public function showLoginForm(){
+        $this->smarty->assign('success', false);
         $this->smarty->assign('error', false);
         $this->smarty->assign('ban',false);
         $this->smarty->display('login.tpl');
     }
+
+ 
 
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException
      */
     public function loginError() {
+        $this->smarty->assign('success', false);
         $this->smarty->assign('error',true);
         $this->smarty->assign('ban',false);
         $this->smarty->display('login.tpl');

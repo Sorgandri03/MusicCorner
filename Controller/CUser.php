@@ -2,6 +2,7 @@
 //quando loggo come user, non funziona bene il checkLogin a causa del isBanned
 class CUser{
 
+    private static bool $justRegistered = false;
     public static function userType($user){
         return FPersistentManager::getInstance()->checkUserType($user->getId());
     }
@@ -59,8 +60,17 @@ class CUser{
             }
         }
         else {
-            $view = new VUser();
-            $view->showLoginForm();
+            
+            if(self::$justRegistered){
+                self::$justRegistered = false;
+                echo "Registrazione avvenuta con successo";
+                $view1 = new VRegistration();
+                $view1->showRegistrationSuccess();
+            }else{
+                echo "Login";
+                $view = new VUser();
+                $view->showLoginForm();
+            }        
         }
     }
 
@@ -110,12 +120,10 @@ class CUser{
 
         }
     }
-
     public static function registration(){
         $view = new VRegistration();
         $view->showRegistration();
     }
-    //devo creare due view di errore diverse una quando non hai riempito tutti i campi e una uqndo le pw non coincidono
     public static function registrationCustomer() {
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -135,6 +143,7 @@ class CUser{
                     $customer = new ECustomer($username, $email, $password);
                     FPersistentManager::getInstance()->createObj($user);
                     FPersistentManager::getInstance()->createObj($customer);
+
                     header('Location: /MusicCorner/User/login');
                     exit;
                 } else {

@@ -70,7 +70,7 @@
 									<div class="review-heading">
 										<div class="seller-valutation">Valutazione {FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())->getShopName()} </div>
                                         <br>
-											<div class="review-rating">
+											<div class="review-rating-wide">
 												{for $i=0 to $review->getSellerRating()-1}
 													<i class="fa fa-star"></i>
 												{/for}
@@ -83,7 +83,7 @@
                                     <div class="review-heading">
 										<div class="product-valutation">Valutazione <br> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</div>
                                         <br>
-											<div class="review-rating">
+											<div class="review-rating-wide">
 												{for $i=0 to $review->getArticleRating()-1}
 													<i class="fa fa-star"></i>
 												{/for}
