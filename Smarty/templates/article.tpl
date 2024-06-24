@@ -164,6 +164,7 @@
 							<p>{$article->getArtist()}</p>
 							
 							<div>
+								{if count($article->getReviews())>0}
 								<div class="product-rating">
 									{for $i=0 to $article->averageRatingInt()-1}
 										<i class="fa fa-star"></i>
@@ -179,6 +180,7 @@
 										{/for}
 									{/if}
 								</div>
+								{/if}
 								<a class="review-link">{count($article->getReviews())} Review(s)</p>
 							</div>
 							
@@ -248,6 +250,9 @@
 								<!-- tab3  -->
 								<div id="tab3" class="tab-pane fade in">
 									<div class="row">
+										{if count($article->getReviews()) == 0}
+											<title class="title">Non ci sono recensioni per questo prodotto</title>
+										{else}
 										<!-- Rating -->
 										<div class="col-md-3">
 											<div id="rating">
@@ -366,6 +371,7 @@
 											</div>
 										</div>
 										<!-- /Reviews -->
+										{/if}
 									</div>
 								</div>
 								<!-- /tab3  -->
@@ -404,7 +410,9 @@
 							</div>
 							<div class="product-body">
 								<p class="product-category">{$product->getArtist()}</p>
-								<h3 class="product-name"><a href="../article/{$product->getId()}#">{$product->getName()}</a></h3>
+								<h3 class="product-name"><a href="/MusicCorner/Search/article/{$product->getId()}#">{$product->getName()}</a></h3>
+								<p class="product-category">{$Format[$product->getFormat()]}</p>
+								<br>
 								{if $product->getLowestPrice()==0}
 								<h4 class="product-price">Non in stock</h4>
 								{else}

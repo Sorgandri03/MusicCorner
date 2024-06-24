@@ -56,7 +56,6 @@ class CUser{
             }
             if(USession::isSetSessionElement('admin')){
                 header('Location: /MusicCorner/Admin/dashboard');
-
             }
         }
         else {

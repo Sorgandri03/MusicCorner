@@ -56,6 +56,7 @@ class VSearch
             USession::getInstance()->setSessionElement('cart',$cart);
         }
         
+        $this->smarty->assign('Format', Format);
         $this->smarty->assign('cart', $cart);
         $this->smarty->assign('article', $article);
         $this->smarty->display('article.tpl');

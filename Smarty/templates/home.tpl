@@ -231,7 +231,7 @@
 													<h4 class="product-price">€{$article->getLowestPrice()}</h4>
 													{/if}
 												</div>
-												{if $article->getLowestPrice() != 0}
+												{if $article->getLowestPrice() != 0 && $customer}
 												<form action="/MusicCorner/Orders/addToCart/" method="post">
 													<div class="add-to-cart">
 														<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>
