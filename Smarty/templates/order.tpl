@@ -95,9 +95,13 @@
                             <h4 class="product-price">€{$orderItem->getPrice()}</h4>
                             <h4 class="product-price">Quantità: {$orderItem->getQuantity()}</h4>
                             <h4 class="product-price">Venduto da: {$seller->getShopName()}</h4>
-                            <form action="/MusicCorner/Customer/reviewArticle/" method="post">
-                                <button class="primary-btn-center btn-block" name="orderItemId" value={$orderItem->getId()}>Recensisci articolo</button>
-                            </form>
+                            {if FPersistentManager::getInstance()->isOrderItemReviewed($orderItem->getId()) == false}
+                                <form action="/MusicCorner/Customer/reviewArticle/" method="post">
+                                    <button class="primary-btn-center btn-block" name="orderItemID" value={$orderItem->getId()}>Recensisci articolo</button>
+                                </form>
+                            {else}
+                                <button class="primary-btn-center btn-block" disabled>Articolo già recensito</button>
+                            {/if}
                         </div>
                     </div>
                     <!-- /product -->

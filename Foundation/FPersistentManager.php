@@ -120,7 +120,7 @@ class FPersistentManager{
         else {return "disponibile";}
     }
 
-        /**
+    /**
      * Check the type of user
      * null 
      * customer
@@ -181,6 +181,11 @@ class FPersistentManager{
     public static function retrievePassword($email){
         $result = FDB::retrieve('user', 'email' ,$email);
         return $result[0]['password'];
+    }
+
+    public static function isOrderItemReviewed($orderItem){
+        $reviews = FReview::getReviewsByOrderItem($orderItem);
+        return FDB::getInstance()::existInDb($reviews);
     }
 }
 

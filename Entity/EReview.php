@@ -8,14 +8,16 @@ class EReview {
     private string $reviewText;
     private int $articleRating;
     private int $sellerRating;
+    private int $orderItemID;
 
-    public function __construct(string $customer, string $reviewText, int $articleRating, int $sellerRating, string $article, string $seller) {
-    $this->article = $article;
-    $this->customer = $customer;
-    $this->seller = $seller;
-    $this->reviewText = $reviewText;
-    $this->articleRating = $articleRating;
-    $this->sellerRating = $sellerRating;
+    public function __construct(string $customer, string $reviewText, int $articleRating, int $sellerRating, string $article, string $seller, int $orderItemID) {
+        $this->article = $article;
+        $this->customer = $customer;
+        $this->seller = $seller;
+        $this->reviewText = $reviewText;
+        $this->articleRating = $articleRating;
+        $this->sellerRating = $sellerRating;
+        $this->orderItemID = $orderItemID;
     }
 
     public function getArticle(): string {
@@ -71,5 +73,13 @@ class EReview {
     
     public function setSellerRating(int $sellerRating): void {
         $this->sellerRating = $sellerRating;
+    }
+    
+    public function getOrderItemID(): int {
+        return $this->orderItemID;
+    }
+
+    public function setOrderItemID(int $orderItemID): void {
+        $this->orderItemID = $orderItemID;
     }
 }

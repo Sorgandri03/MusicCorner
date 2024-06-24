@@ -100,9 +100,8 @@
                         </div>
                         <h3>Sarà pubblicata a nome: {$customer->getUsername()}</h3>
                         <form class="review-form" action="" method="post">
-                            <input class="hidden" type="text" name="reviewText" value="0">
                             <textarea class="input" placeholder="Scrivi qui la recensione" name="reviewText" required></textarea>
-                            <input class="hidden" type="text" name="orderItemId" value="{$orderItem->getId()}">
+                            <input class="hidden" type="text" name="orderItemID" value="{$orderItem->getId()}">
                             <div class="input-rating">
                                 <span><h4>Voto dell'articolo: </h4></span>
                                 <div class="stars">

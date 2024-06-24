@@ -350,7 +350,7 @@
 											<div id="reviews">
 												<ul class="reviews">
 													{foreach $article->getReviews() as $review}
-														<li>
+														<li class="review-item mb-7">
 															<div class="review-heading">
 																<h5 class="name">{$review->getCustomer()}</h5>
 																<div class="review-rating">
