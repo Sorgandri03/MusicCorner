@@ -103,21 +103,21 @@
 										<div class="col-md-6">
 											<button class="primary-btn-center btn-block" name="stockId" value="{$stock->getId()}">Aggiorna</button>
 										</div>
+								</form>
 										<div class="col-md-6">
 											<form action="/MusicCorner/Seller/removeFromStock/" method="post">
 												<button class="primary-btn-center btn-block" name="stockId" value="{$stock->getId()}">Rimuovi</button>
 											</form>
 										</div>
 									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					{/foreach}
-				</div>
-			</div>
-		</div>
-	</section>
+							 </div>
+						 </div>
+					 </div>
+					 {/foreach}
+				 </div>
+			 </div>
+		 </div>
+	 </section>
 
 	<!-- jQuery Plugins -->
 	<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>
