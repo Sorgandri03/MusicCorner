@@ -70,9 +70,6 @@
 						{if $error == true}
 						<p class="error-message">username or password incorrect</p>
 						{/if}
-						{if $success == true}
-						<p class="success-message">registrazione riuscita ora puoi procedere con il login</p>
-						{/if}
 					    {if $ban == true}
 						<p class="error-message">the user you are trying to access is banned</p>
 						{/if}

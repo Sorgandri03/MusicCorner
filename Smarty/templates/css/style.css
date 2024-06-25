@@ -111,6 +111,10 @@ smallbr {
   text-align: center;
 }
 
+#justified {
+  text-align: justify;
+}
+
 /*----------------------------*\
 	Buttons
 \*----------------------------*/

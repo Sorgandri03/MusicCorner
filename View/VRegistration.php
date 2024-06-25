@@ -66,13 +66,6 @@ class VRegistration
         $this->smarty->display('registration.tpl');
     }
 
-    public function showRegistrationSuccess(){
-        $this->smarty->assign('success', true);
-        $this->smarty->assign('error', false);
-        $this->smarty->assign('ban',false);
-        $this->smarty->display('login.tpl');
-    }  
-
     public function emptyFields(){
         $this->smarty->assign('regErr',false);
         $this->smarty->assign('emptyFields',true);

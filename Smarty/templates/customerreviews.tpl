@@ -64,11 +64,13 @@
 					<br>
 					<ul class="list-unstyled">
 						{foreach from=$customer->getReviews() item=review}
+						{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())}
+						{assign var="seller" value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())}
 						<li class="review-item mb-4">
 							<div class="row">
 								<div class="col-md-3">
 									<div class="review-heading">
-										<div class="seller-valutation">Valutazione {FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())->getShopName()} </div>
+										<div class="seller-valutation">Valutazione {$seller->getShopName()} </div>
                                         <br>
 											<div class="review-rating-wide">
 												{for $i=0 to $review->getSellerRating()-1}
@@ -81,7 +83,7 @@
 									</div>
                                     <br>
                                     <div class="review-heading">
-										<div class="product-valutation">Valutazione <br> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</div>
+										<div class="product-valutation">Valutazione <br> {$article->getName()}</div>
                                         <br>
 											<div class="review-rating-wide">
 												{for $i=0 to $review->getArticleRating()-1}
@@ -95,14 +97,16 @@
 								</div>
 								<div class="col-md-9">
 									<div class="review-body">
-										<h4 id="center">Recensione di: <span class="album-name"> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</span> Formato: <span class="album-name">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getFormatString()}</span></h4>
-										<p><span class="review-text">{$review->getReviewText()}</span></p>	
+										<h4 id="center">Recensione di: <span class="album-name"><a href="/MusicCorner/Search/article/{$article->getId()}"> {$article->getName()}</a></span> Formato: <span class="album-name">{$article->getFormatString()}</span></h4>
+										<p id="justified"><span class="review-text">{$review->getReviewText()}</span></p>	
 									</div>
 								</div>
 							</div>
 						</li>
 						<br>
 						{/foreach}
+					</ul>
+					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
 			</div>
 		</div>

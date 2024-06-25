@@ -2,13 +2,11 @@
 //quando loggo come user, non funziona bene il checkLogin a causa del isBanned
 class CUser{
 
-    private static bool $justRegistered = false;
     public static function userType($user){
         return FPersistentManager::getInstance()->checkUserType($user->getId());
     }
 
     public static function isLogged(){
-
         $logged = false;
 
         if(UCookie::isSet('PHPSESSID')){
@@ -60,17 +58,8 @@ class CUser{
             }
         }
         else {
-            
-            if(self::$justRegistered){
-                self::$justRegistered = false;
-                echo "Registrazione avvenuta con successo";
-                $view1 = new VRegistration();
-                $view1->showRegistrationSuccess();
-            }else{
-                echo "Login";
-                $view = new VUser();
-                $view->showLoginForm();
-            }        
+            $view = new VUser();
+            $view->showLoginForm();      
         }
     }
 
@@ -132,7 +121,6 @@ class CUser{
                 $username = UHTTPMethods::post('username');
                 $password = UHTTPMethods::post('password');
                 $confirmPassword = UHTTPMethods::post('confirm-password');
-                
                 if ($password !== $confirmPassword) {
                     $view->passwordError();
                     return;
@@ -143,7 +131,6 @@ class CUser{
                     $customer = new ECustomer($username, $email, $password);
                     FPersistentManager::getInstance()->createObj($user);
                     FPersistentManager::getInstance()->createObj($customer);
-
                     header('Location: /MusicCorner/User/login');
                     exit;
                 } else {
@@ -167,7 +154,7 @@ class CUser{
                 $username = UHTTPMethods::post('shopname');
                 $password = UHTTPMethods::post('password');
                 $confirmPassword = UHTTPMethods::post('confirm-password');
-
+                $GLOBALS['justRegistered'] = true;
                 if ($password !== $confirmPassword) {
                     $view->registrationError();
                     echo "Le password non coincidono"; 

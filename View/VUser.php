@@ -15,7 +15,6 @@ class VUser{
      * @throws SmartyException
      */
     public function showLoginForm(){
-        $this->smarty->assign('success', false);
         $this->smarty->assign('error', false);
         $this->smarty->assign('ban',false);
         $this->smarty->display('login.tpl');
@@ -28,7 +27,6 @@ class VUser{
      * @throws SmartyException
      */
     public function loginError() {
-        $this->smarty->assign('success', false);
         $this->smarty->assign('error',true);
         $this->smarty->assign('ban',false);
         $this->smarty->display('login.tpl');
@@ -97,7 +95,6 @@ class VUser{
      * @throws SmartyException
      */
     public function showReviewArticle($orderItem){
-        $this->smarty->assign('success', false);
         $this->smarty->assign('customer', USession::getInstance()->getSessionElement('customer'));
         $this->smarty->assign('orderItem', $orderItem);
         $this->smarty->display('reviewarticle.tpl');
@@ -108,7 +105,6 @@ class VUser{
      * @throws SmartyException
      */
     public function showReviewArticleError($orderItem){
-        $this->smarty->assign('success', false);
         $this->smarty->assign('error', true);
         $this->smarty->assign('customer', USession::getInstance()->getSessionElement('customer'));
         $this->smarty->assign('orderItem', $orderItem);
