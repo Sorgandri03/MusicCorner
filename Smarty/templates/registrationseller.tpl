@@ -72,10 +72,10 @@
 						</div>
 						<form class="registration-form" action="/MusicCorner/User/registrationSeller" method="post">
 							<div class="form-group">
-								<input class="input" type="text" name="shopname" placeholder="Shopname" required>
+								<input class="input" type="text" name="username" placeholder="Username" maxlength="20" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="email" placeholder="Email" required>
+								<input class="input" type="email" name="email" placeholder="Email" maxlength="50" required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="password" placeholder="Password" required>
