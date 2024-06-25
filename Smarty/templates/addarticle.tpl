@@ -93,59 +93,61 @@
 							{/if}
 							<!-- Form Inserimento Prodotto -->
 							{if $found == "true"}
-								<p style="color: green;">EAN già utilizzato alcuni campi sono stati riempiti!</p>
-								<form action="/MusicCorner/Seller/pullArticle" method="post">
-									<div class="form-group">
-										<input class="input" type="text" name="EAN" value="{$EAN}" required readonly>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="product-name" value="{$productName}" required readonly>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="artist-name" value="{$artistName}" required readonly>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="format" value="{$format}" required readonly>
-									</div>
-									<div class="form-group">
-										<input class="input" type="number" name="price" placeholder="Inserisci prezzo articolo" required>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
-									</div>
-										<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
-									</form>
-							{/if}	
-								<!-- /Form Inserimento Prodotto -->
-							{if $found == "false"}
-								<p style="color: red;">Questo EAN non è mai stato usato!</p>
-								<form action="/MusicCorner/Seller/pullArticle" method="post">
-									<div class="form-group">
-										<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
-									</div>
-									<div class="form-group">
-										<select class="input form-control" name="format" required>
-											<option value="" disabled selected>Seleziona formato</option>
-											{foreach from=$formats item=format}
-											<option value="{$format}">{$format}</option>
-											{/foreach}
-										</select>
-									</div>	
-									<div class="form-group">
-										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
-									</div>
-										<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
-									</form>							
-							{/if}
+							<p style="color: green;">EAN già utilizzato alcuni campi sono stati riempiti!</p>
+							<form action="/MusicCorner/Seller/pullArticle" method="post">
+								<div class="form-group">
+									<input class="input" type="text" name="EAN" value="{$EAN}" required readonly>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="product-name" value="{$productName}" required readonly>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="artist-name" value="{$artistName}" required readonly>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="format" value="{$format}" required readonly>
+								</div>
+								<div class="form-group price-group">
+									<input class="input" type="number" name="price" placeholder="Inserisci prezzo articolo" step="0.01" required>
+									<span class="euro-input-symbol">€</span>
+								</div>
+								<div class="form-group">
+									<input class="input" type="number" name="quantity" placeholder="Inserisci numero articoli in vendita" required pattern="[0-9]" maxlenght="11" required>
+								</div>
+								<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
+							</form>
+						{/if}
+						
+						{if $found == "false"}
+							<p style="color: red;">Questo EAN non è mai stato usato!</p>
+							<form action="/MusicCorner/Seller/pullArticle" method="post">
+								<div class="form-group">
+									<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="artist-name" placeholder="Inserisci nome/i artista/i" required>
+								</div>
+								<div class="form-group">
+									<select class="input form-control" name="format" required>
+										<option value="" disabled selected>Seleziona formato</option>
+										{foreach from=$formats item=format}
+										<option value="{$format}">{$format}</option>
+										{/foreach}
+									</select>
+								</div>
+								<div class="form-group price-group">
+									<input class="input" type="number" name="price" placeholder="Inserisci prezzo articolo" step="0.01" required>
+									<span class="euro-input-symbol">€</span>
+								</div>
+								<div class="form-group">
+									<input class="input" type="number" name="quantity" placeholder="Inserisci numero articoli in vendita" required pattern="[0-9]" maxlenght="11" required>
+								</div>
+								<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
+							</form>
+						{/if}
 						{/if}
 						</div>
 						<!-- /Form Inserimento Prodotto -->

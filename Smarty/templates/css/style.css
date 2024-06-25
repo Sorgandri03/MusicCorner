@@ -2616,3 +2616,21 @@ img.small {
   font-size: 16px;
   line-height: 1.5; 
 }
+/*-- prezzo --*/
+.price-group {
+  position: relative;
+}
+
+.price-group .input {
+  padding-left: 30px; 
+}
+
+.price-group .euro-input-symbol {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px; 
+  font-weight: bold; 
+  pointer-events: none;
+}
