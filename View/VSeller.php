@@ -57,7 +57,7 @@ public function __construct(){
 
 
     public function showModifyStock(){
-        USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,'petricola@petricolastore.it'));
+        USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId()));
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('modifystock.tpl');

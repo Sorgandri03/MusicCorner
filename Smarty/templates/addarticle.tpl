@@ -108,7 +108,7 @@
 										<input class="input" type="text" name="format" value="{$format}" required readonly>
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="price" placeholder="Inserisci prezzo articolo" required>
+										<input class="input" type="number" name="price" placeholder="Inserisci prezzo articolo" required>
 									</div>
 									<div class="form-group">
 										<input class="input" type="text" name="quantity" placeholder="Inserisci numero articoli in vendita" required>
