@@ -50,7 +50,7 @@ class VHome
         }
         
             
-        $result = FPersistentManager::getInstance()->getRandomArticles(5);
+        $result = FPersistentManager::getInstance()->getRandomArticles(10);
         $this->smarty->assign('cart', $cart);
         $this->smarty->assign('result', $result);
         $this->smarty->display('home.tpl');
