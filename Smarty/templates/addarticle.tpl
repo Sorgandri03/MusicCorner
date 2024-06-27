@@ -83,7 +83,7 @@
 										<div class="section-title">
 											<h3 class="title">Inserisci Prodotto</h3>
 										</div>
-										<form action="/MusicCorner/Seller/searchEAN" method="post" class="text-center">
+										<form action="/MusicCorner/Seller/addArticle" method="post" class="text-center">
 											<div class="form-group">
 												<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
 											</div>
