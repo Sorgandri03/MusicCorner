@@ -38,7 +38,6 @@
 	<body>
 		<!-- HEADER -->
 		<header>
-
 			<!-- MAIN HEADER -->
 			<div id="header">
 				<!-- container -->
@@ -69,8 +68,8 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-
-                                <!-- Cart -->
+								{if $customer}
+								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
@@ -80,17 +79,16 @@
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											{foreach from=$cart->getCartItems() item=quantity key=stock}
-											{assign var="cartarticle" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
+											{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
 											{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}	
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/{$cartarticle->getId()}_0_536_0_75.jpg" alt="">
+														<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#">{$cartarticle->getName()}</a></h3>
+														<h3 class="product-name"><a href="/MusicCorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
 														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 													</div>
-													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
 											{/foreach}
 										</div>
@@ -100,32 +98,25 @@
 										</div>
 										<div class="cart-btns">
 											<a href="/MusicCorner/Orders/cart">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
+								{/if}
 								<!-- /Cart -->
 
-                            
-								<!-- Account -->
+								<!-- Wishlist -->
 								<div>
-									<a href="../../User/login">
+									<a href="/MusicCorner/User/login">
 										<i class="fa fa-user-o"></i>
 										<span>{$username}</span>
 									</a>
 								</div>
-								<!-- /Account -->
+								<!-- /Wishlist -->
 
-								
-
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
-								<!-- /Menu Toogle -->
+							</div>
+							<div>
+								<br><br>
 							</div>
 						</div>
 						<!-- /ACCOUNT -->
@@ -210,20 +201,21 @@
 								
 							</div>
 							
-
-							<div class="add-to-cart">
-								<div class="qty-label">
-									Quantità&nbsp&nbsp
-									<div class="input-number">
-										<input type="number" name="quantity" value="1">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+							{if $customer}
+								<div class="add-to-cart">
+									<div class="qty-label">
+										Quantità&nbsp&nbsp
+										<div class="input-number">
+											<input type="number" name="quantity" value="1">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
 									</div>
+									
+									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Aggiungi al carrello</button>
+									</form>
 								</div>
-								
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Aggiungi al carrello</button>
-								</form>
-							</div>
+							{/if}
 							{/if}
 							
 

@@ -58,8 +58,8 @@
 					<div class="col-md-6">
 						<div class="header-search">
 							<form id='search' action="/MusicCorner/Search/search" method="post">
-								<input class="input" placeholder="Search here" name="query">
-								<button class="search-btn">Search</button>
+								<input class="input" placeholder="Cerca qui" name="query">
+								<button class="search-btn">Cerca</button>
 							</form>
 						</div>
 					</div>
@@ -68,6 +68,7 @@
 					<!-- ACCOUNT -->
 					<div class="col-md-3 clearfix">
 						<div class="header-ctn">
+							{if $customer}
 							<!-- Cart -->
 							<div class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -78,15 +79,16 @@
 								<div class="cart-dropdown">
 									<div class="cart-list">
 										{foreach from=$cart->getCartItems() item=quantity key=stock}
+										{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
+										{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}	
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="https://www.ibs.it/images/{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getId()}_0_536_0_75.jpg" alt="">
+													<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
 												</div>
 												<div class="product-body">
-													<h3 class="product-name"><a href="#">{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())->getName()}</a></h3>
-													<h4 class="product-price"><span class="qty">{$quantity}x</span>€{FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getPrice()}</h4>
+													<h3 class="product-name"><a href="/MusicCorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+													<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
 											</div>
 										{/foreach}
 									</div>
@@ -95,30 +97,26 @@
 										<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
 									</div>
 									<div class="cart-btns">
-										<a href="#">View Cart</a>
-										<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+										<a href="/MusicCorner/Orders/cart">View Cart</a>
+										<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
+							{/if}
 							<!-- /Cart -->
 
-							<!-- Account -->
+							<!-- Wishlist -->
 							<div>
 								<a href="/MusicCorner/User/login">
 									<i class="fa fa-user-o"></i>
 									<span>{$username}</span>
 								</a>
 							</div>
-							<!-- /Account -->
+							<!-- /Wishlist -->
 
-							<!-- Menu Toogle -->
-							<div class="menu-toggle">
-								<a href="#">
-									<i class="fa fa-bars"></i>
-									<span>Menu</span>
-								</a>
-							</div>
-							<!-- /Menu Toogle -->
+						</div>
+						<div>
+							<br><br>
 						</div>
 					</div>
 					<!-- /ACCOUNT -->
@@ -157,12 +155,12 @@
 											<p class="product-category">CD</p>
 										{/if}	
 										{if $article->getLowestPrice() == 0}
-										<h4 class="product-price">Non in stock</h4>
+											<h4 class="product-price">Non in stock</h4>
 										{else}
-										<h4 class="product-price">€{$article->getLowestPrice()}</h4>
+											<h4 class="product-price">€{$article->getLowestPrice()}</h4>
 										{/if}
 									</div>
-									{if $article->getLowestPrice() != 0}
+									{if $article->getLowestPrice() != 0 && $customer}
 										<form action="/MusicCorner/Orders/addToCart/" method="post">
 											<div class="add-to-cart">
 												<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>

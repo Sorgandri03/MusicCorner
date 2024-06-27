@@ -19,9 +19,14 @@ class VSearch
     {
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+            $this->smarty->assign('customer', true);
+        }
+        elseif(USession::getInstance()->isSetSessionElement('seller')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
         }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
+            $this->smarty->assign('customer', true);
         }
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');
@@ -44,9 +49,14 @@ class VSearch
         
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+            $this->smarty->assign('customer', true);
+        }
+        elseif(USession::getInstance()->isSetSessionElement('seller')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
         }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
+            $this->smarty->assign('customer', true);
         }
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');
@@ -65,9 +75,14 @@ class VSearch
     public function showSellerHomepageFromCustomer($seller){
         if(USession::getInstance()->isSetSessionElement('customer')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+            $this->smarty->assign('customer', true);
+        }
+        elseif(USession::getInstance()->isSetSessionElement('seller')){
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
         }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
+            $this->smarty->assign('customer', true);
         }
         if(USession::getInstance()->isSetSessionElement('cart')){
             $cart = USession::getInstance()->getSessionElement('cart');
@@ -76,6 +91,7 @@ class VSearch
             $cart = new ECart('guest');
             USession::getInstance()->setSessionElement('cart',$cart);
         }
+        
         $this->smarty->assign('seller', $seller);
         $this->smarty->display('sellerhomepage.tpl');
     }

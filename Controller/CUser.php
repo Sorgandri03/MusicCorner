@@ -81,6 +81,16 @@ class CUser{
                                 break;
                             }
                             else{
+                                if(USession::getInstance()::isSetSessionElement('cartguest')){
+                                    if(!USession::getInstance()::isSetSessionElement($customer->getUsername())){
+                                        $cart = new ECart($customer->getId());
+                                        USession::getInstance()::setSessionElement($customer->getUsername(),$cart);
+                                    }
+                                    foreach(USession::getSessionElement('cartguest')->getCartItems() as $stockId => $quantity){
+                                        COrders::cartAdd($stockId, $quantity);
+                                    }
+                                    USession::getInstance()::unsetSessionElement('cartguest');
+                                }
                                 header('Location: /MusicCorner/');
                                 break;
                             }                            

@@ -4,21 +4,41 @@ class COrders{
     
     public static function addToCart(){
         $stockId = UHTTPMethods::post('stockId');
-        if(UHTTPMethods::post('quantity')){
+        if(UHTTPMethods::isPostSet('quantity')){
             $quantity = UHTTPMethods::post('quantity');
         }
         else{
             $quantity = 1;
         }
+        self::cartAdd($stockId, $quantity);
+        
+        /**
+         * Go to cart page
+         */
+        header('Location: /MusicCorner/Orders/cart');
+    }
+
+    public static function cartAdd($stockId, $quantity){
         /**
          * Retrieve user cart from the session
          */
-        if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = USession::getInstance()->getSessionElement('cart');
+        if(CUser::islogged()){
+            $customer = USession::getInstance()->getSessionElement('customer');
+            if(USession::getInstance()->isSetSessionElement($customer->getUsername())){
+                $cart = USession::getInstance()->getSessionElement($customer->getUsername());
+            }
+            else{
+                $cart = new ECart($customer->getId());
+                USession::getInstance()->setSessionElement($customer->getUsername(),$cart);
+            }
         }
-        else{
-            if(CUser::islogged()){
-                $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
+        else {
+            if(USession::getInstance()->isSetSessionElement('cartguest')){
+                $cart = USession::getInstance()->getSessionElement('cartguest');
+            }
+            else{
+                $cart = new ECart('guest');
+                USession::getInstance()->setSessionElement('cartguest',$cart);
             }
         }
 
@@ -43,11 +63,6 @@ class COrders{
         foreach($cart->getCartItems() as $item => $amount){
             echo $item . " ->  " . $amount . "<br>";
         }
-        
-        /**
-         * Go to cart page
-         */
-        header('Location: /MusicCorner/Orders/cart');
     }
     
     public static function cart(){
@@ -174,9 +189,13 @@ class COrders{
     }
 
     public static function checkout(){
-        if(!CUser::islogged() && CUser::userType(USession::getInstance()->getSessionElement('customer')) == 'customer'){
+        if(!CUser::islogged()){
             header('Location: /MusicCorner/User/login');
             return;            
+        }
+        if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
+            header('Location: /MusicCorner/404');
+            return;
         }
         
         /**

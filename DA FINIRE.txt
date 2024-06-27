@@ -3,11 +3,9 @@ MANCANO:
     Ban
     Responsive design
 
-Il seller non può comprare e quindi non può visualizzare il cart né aggiungi al carrello
-Il logout mantiene correttamente il carrello, ma il carrello te lo deve far rivedere quando rilogghi invece adesso te lo mostra anche dopo il logout
-Ingrandire database
 Tutti i link una volta su altervista
 Togliere messaggi
 Documentazione
 Decremento Stock con ordini
 Controlli input ordini
+Post ordini
