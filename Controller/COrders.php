@@ -23,6 +23,14 @@ class COrders{
         }
 
         /**
+         * Check if the quantity is greater than available
+         */
+        $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
+        if($quantity > $stock->getQuantity()){
+            $quantity = $stock->getQuantity();
+        }
+
+        /**
          * Add productId to cart
          * If the product is already in the cart, increase the quantity
          */
@@ -328,15 +336,6 @@ class COrders{
                 $v->showOrderPaymentError();
                 return;
             }
-        }
-
-        /**
-         * Check wether the user checked the terms and conditions
-         */
-        if(UHTTPMethods::post('terms') == 'false'){
-            $v = new VOrders();
-            $v->showOrderPaymentErrorTerms();
-            return;
         }
 
         /**

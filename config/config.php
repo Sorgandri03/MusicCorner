@@ -18,8 +18,7 @@ define('SQL_FILE_PATH', 'musiccorner.sql');
 
 define('Format', array(
     'CD',
-    'LP',
-    'Cassette'
+    'LP'
     ));
 
 define('Status', array(

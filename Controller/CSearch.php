@@ -35,9 +35,6 @@ class CSearch{
             case 'CD':
                 $format = 0;
                 break;
-            case 'Cassette':
-                $format = 2;
-                break;
             case 'Vinyl':
                 $format = 1;
                 break;
