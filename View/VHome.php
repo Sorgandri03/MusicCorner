@@ -18,23 +18,33 @@ class VHome
     public function showHome()
     {        
         if(USession::getInstance()->isSetSessionElement('customer')){
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('customer')->getUsername());
+            $customer = USession::getInstance()->getSessionElement('customer');
+            $this->smarty->assign('username', $customer->getUsername());
             $this->smarty->assign('customer', true);
+            if(USession::getInstance()->isSetSessionElement($customer->getUsername())){
+                $cart = USession::getInstance()->getSessionElement($customer->getUsername());
+            }
+            else{
+                $cart = new ECart($customer->getId());
+                USession::getInstance()->setSessionElement($customer->getUsername(),$cart);
+            }
         }
         elseif(USession::getInstance()->isSetSessionElement('seller')){
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
+            $cart = new ECart('guest');
         }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
             $this->smarty->assign('customer', true);
+            if(USession::getInstance()->isSetSessionElement('cartguest')){
+                $cart = USession::getInstance()->getSessionElement('cartguest');
+            }
+            else{
+                $cart = new ECart('guest');
+                USession::getInstance()->setSessionElement('cartguest',$cart);
+            }
         }
-        if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = USession::getInstance()->getSessionElement('cart');
-        }
-        else{
-            $cart = new ECart('guest');
-            USession::getInstance()->setSessionElement('cart',$cart);
-        }
+        
             
         $result = FPersistentManager::getInstance()->getRandomArticles(5);
         $this->smarty->assign('cart', $cart);

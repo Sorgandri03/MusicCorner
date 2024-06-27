@@ -190,16 +190,6 @@
 								Compila tutti i campi
 							</div>
 						{/if}
-							<div class="input-checkbox">
-								<div class="form-group">
-									<input type="hidden" name="terms" value="false">
-									<input type="checkbox" id="termsandco" name="terms" value="true">
-									<label for="termsandco">
-										<span></span>
-										Ho letto e accetto i <a href="#">termini e le condizioni</a>
-									</label>
-								</div>
-							</div>
 						<br>
 						<button class="primary-btn btn-block">Invia ordine</button>
 						</form>

@@ -46,9 +46,6 @@ Class CSeller{
                     case 'LP':
                         $format = 1;
                         break;
-                    case 'Cassette':
-                        $format = 2;
-                        break;
                 }
                 $price = UHTTPMethods::post('price');
                 $quantity = UHTTPMethods::post('quantity');

@@ -137,7 +137,7 @@
 				<!-- row -->
 				<div class="row">
 					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
+					<div class="col-md-6 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="/MusicCorner/Smarty/templates/img/CD.jpg" alt="">
@@ -151,9 +151,9 @@
 					<!-- /shop -->
 
 					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
+					<div class="col-md-6 col-xs-6">
 						<div class="shop">
-							<div class="shop-img">
+							<div class="shop-img" id="right">
 								<img src="/MusicCorner/Smarty/templates/img/Vinile.jpg" alt="">
 							</div>
 							<div class="shop-body">
@@ -164,19 +164,7 @@
 					</div>
 					<!-- /shop -->
 
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="/MusicCorner/Smarty/templates/img/Cassetta.jpg" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Catalogo<br>Cassette</h3>
-								<a href="/MusicCorner/Search/format/Cassette" class="cta-btn">COMPRA ORA <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
+					
 				</div>
 				<!-- /row -->
 			</div>

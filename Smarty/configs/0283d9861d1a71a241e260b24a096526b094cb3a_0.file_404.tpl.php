@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-19 12:25:32
+/* Smarty version 5.1.0, created on 2024-06-27 12:51:34
   from 'file:Smarty\templates\404.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6672b21c948199_61793271',
+  'unifunc' => 'content_667d4436350359_01466910',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0283d9861d1a71a241e260b24a096526b094cb3a' => 
     array (
       0 => 'Smarty\\templates\\404.tpl',
-      1 => 1718304687,
+      1 => 1719485492,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6672b21c948199_61793271 (\Smarty\Template $_smarty_tpl) {
+function content_667d4436350359_01466910 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -96,6 +96,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
+								<?php if ($_smarty_tpl->getValue('customer')) {?>
 								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -112,19 +113,21 @@ $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('stock')->value => $_smarty_tpl->getVariable('quantity')->value) {
 $foreach0DoElse = false;
 ?>
+											<?php $_smarty_tpl->assign('article', FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getArticle()), false, NULL);?>
+											<?php $_smarty_tpl->assign('stock', FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock')), false, NULL);?>	
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/<?php echo FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getArticle())->getId();?>
+														<img src="https://www.ibs.it/images/<?php echo $_smarty_tpl->getValue('article')->getId();?>
 _0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="#"><?php echo FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getArticle())->getName();?>
+														<h3 class="product-name"><a href="/MusicCorner/Search/article/<?php echo $_smarty_tpl->getValue('article')->getId();?>
+"><?php echo $_smarty_tpl->getValue('article')->getName();?>
 </a></h3>
 														<h4 class="product-price"><span class="qty"><?php echo $_smarty_tpl->getValue('quantity');?>
-x</span>€<?php echo FPersistentManager::getInstance()->retrieveObj(EStock::class,$_smarty_tpl->getValue('stock'))->getPrice();?>
+x</span>€<?php echo $_smarty_tpl->getValue('stock')->getPrice();?>
 </h4>
 													</div>
-													<button class="delete"><i class="fa fa-close"></i></button>
 												</div>
 											<?php
 }
@@ -137,22 +140,23 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 </h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/MusicCorner/Orders/cart">View Cart</a>
+											<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
+								<?php }?>
 								<!-- /Cart -->
 
-								<!-- Account -->
+								<!-- Wishlist -->
 								<div>
-									<a href="./User/login">
+									<a href="/MusicCorner/User/login">
 										<i class="fa fa-user-o"></i>
 										<span><?php echo $_smarty_tpl->getValue('username');?>
 </span>
 									</a>
 								</div>
-								<!-- /Account -->
+								<!-- /Wishlist -->
 
 							</div>
 							<div>
