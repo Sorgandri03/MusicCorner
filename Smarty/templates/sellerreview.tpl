@@ -60,6 +60,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
+					{if count($seller->getReviews()) == 0}
+						<h2 class="text-center">Non hai ancora ricevuto recensioni</h2>
+					{else}
 					<h2 class="text-center">Tutte le recensioni</h2>
 					<br>
 					<ul class="list-unstyled">
@@ -89,6 +92,9 @@
 						</li>
 						<br>
 						{/foreach}
+					</ul>
+					{/if}
+					<a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
 			</div>
 		</div>

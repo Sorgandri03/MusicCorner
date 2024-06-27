@@ -1,11 +1,9 @@
 MANCANO:
     Admin
     Ban
-    Responsive design
 
 Tutti i link una volta su altervista
-Togliere messaggi
 Documentazione
-Decremento Stock con ordini
+Decremento Stock con ordini - Transaction Lock
 Controlli input ordini
 Post ordini

@@ -93,8 +93,8 @@
 											{/foreach}
 										</div>
 										<div class="cart-summary">
-											<small>{$cart->getCartQuantity()} Item(s) selected</small>
-											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
+											<small>{$cart->getCartQuantity()} Oggetti nel carrello</small>
+											<h5>SUBTOTALE: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="/MusicCorner/Orders/cart">View Cart</a>

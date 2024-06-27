@@ -79,22 +79,22 @@
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											{foreach from=$cart->getCartItems() item=quantity key=stock}
-											{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
+											{assign var="product" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)->getArticle())}
 											{assign var="stock" value=FPersistentManager::getInstance()->retrieveObj(EStock::class,$stock)}	
 												<div class="product-widget">
 													<div class="product-img">
-														<img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+														<img src="https://www.ibs.it/images/{$product->getId()}_0_536_0_75.jpg" alt="">
 													</div>
 													<div class="product-body">
-														<h3 class="product-name"><a href="/MusicCorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+														<h3 class="product-name"><a href="/MusicCorner/Search/article/{$product->getId()}">{$product->getName()}</a></h3>
 														<h4 class="product-price"><span class="qty">{$quantity}x</span>€{$stock->getPrice()}</h4>
 													</div>
 												</div>
 											{/foreach}
 										</div>
 										<div class="cart-summary">
-											<small>{$cart->getCartQuantity()} Item(s) selected</small>
-											<h5>SUBTOTAL: €{$cart->getTotalPrice()}</h5>
+											<small>{$cart->getCartQuantity()} Oggetti nel carrello</small>
+											<h5>SUBTOTALE: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="/MusicCorner/Orders/cart">View Cart</a>

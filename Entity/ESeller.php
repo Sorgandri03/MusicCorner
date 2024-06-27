@@ -4,8 +4,6 @@ class ESeller extends EUser {
     private $shopName;
     private float $shopRating=0;
     public array $catalogue = array();
-    //private $sentMessages = array();
-    //private $receivedMessages = array();
 
     private $reviews = array();
     
@@ -70,19 +68,5 @@ class ESeller extends EUser {
     public function averageRatingDecimal() : float {
         return $this->shopRating - floor($this->shopRating);
     }
-    /*
-    public function setSentMessages(array $sentMessages): void {
-        $this->sentMessages = $sentMessages;
-    }
-    public function getSentMessages(): array {
-        return $this->sentMessages;
-    }
-    public function setReceivedMessages(array $receivedMessages): void {
-        $this->receivedMessages = $receivedMessages;
-    }
-    public function getReceivedMessages(): array {
-        return $this->receivedMessages;
-    }
-    */
 
 }

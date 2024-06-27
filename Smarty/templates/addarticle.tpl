@@ -85,7 +85,7 @@
 										</div>
 										<form action="/MusicCorner/Seller/addArticle" method="post" class="text-center">
 											<div class="form-group">
-												<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+												<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="13" maxlength="13" title="EAN deve essere un numero di 13 cifre">
 											</div>
 											<button class="primary-btn order-submit" type="submit">Verifica Esistenza</button>
 										</form>
@@ -116,6 +116,7 @@
 								</div>
 								<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
 							</form>
+							<br>
 						{/if}
 						
 						{if $found == "false"}
@@ -147,11 +148,13 @@
 								</div>
 								<button class="primary-btn order-submit" type="submit">Aggiungi Articolo</button>
 							</form>
+							<br>
 						{/if}
 						{/if}
-						</div>
-						<!-- /Form Inserimento Prodotto -->
+						<a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 					</div>
+						
+						<!-- /Form Inserimento Prodotto -->					
 				</div>
 				<!-- /row -->
 			</div>

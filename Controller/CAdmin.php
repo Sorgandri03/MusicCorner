@@ -9,8 +9,7 @@ Class CAdmin{
             return;
         }
         else{
-            $view = new VUser();
-            $view->showLoginForm();
+            header('Location: /MusicCorner/User/login');
             return;
         }
     }

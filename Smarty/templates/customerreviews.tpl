@@ -60,52 +60,57 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-center"><span style="color: #0037b8;">{$customer->getUsername()}</span> ecco le tue recensioni: </h1>
-					<br>
-					<ul class="list-unstyled">
-						{foreach from=$customer->getReviews() item=review}
-						{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())}
-						{assign var="seller" value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())}
-						<li class="review-item mb-4">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="review-heading">
-										<div class="seller-valutation">Valutazione {$seller->getShopName()} </div>
-                                        <br>
-											<div class="review-rating-wide">
-												{for $i=0 to $review->getSellerRating()-1}
-													<i class="fa fa-star"></i>
-												{/for}
-												{for $i=$review->getSellerRating() to 4}
-													<i class="fa fa-star-o empty"></i>
-												{/for}																	
-											</div>																																										
-									</div>
-                                    <br>
-                                    <div class="review-heading">
-										<div class="product-valutation">Valutazione <br> {$article->getName()}</div>
-                                        <br>
-											<div class="review-rating-wide">
-												{for $i=0 to $review->getArticleRating()-1}
-													<i class="fa fa-star"></i>
-												{/for}
-												{for $i=$review->getArticleRating() to 4}
-													<i class="fa fa-star-o empty"></i>
-												{/for}																	
-											</div>																																										
-									</div>
-								</div>
-								<div class="col-md-9">
-									<div class="review-body">
-										<h4 id="center">Recensione di: <span class="album-name"><a href="/MusicCorner/Search/article/{$article->getId()}"> {$article->getName()}</a></span> Formato: <span class="album-name">{$article->getFormatString()}</span></h4>
-										<p id="justified"><span class="review-text">{$review->getReviewText()}</span></p>	
-									</div>
-								</div>
-							</div>
-						</li>
+					{if count($customer->getReviews())>0}
+						<h1 class="text-center"><span style="color: #0037b8;">{$customer->getUsername()}</span> ecco le tue recensioni: </h1>
 						<br>
-						{/foreach}
-					</ul>
+						<ul class="list-unstyled">
+							{foreach from=$customer->getReviews() item=review}
+							{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())}
+							{assign var="seller" value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())}
+							<li class="review-item mb-4">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="review-heading">
+											<div class="seller-valutation">Valutazione {$seller->getShopName()} </div>
+											<br>
+												<div class="review-rating-wide">
+													{for $i=0 to $review->getSellerRating()-1}
+														<i class="fa fa-star"></i>
+													{/for}
+													{for $i=$review->getSellerRating() to 4}
+														<i class="fa fa-star-o empty"></i>
+													{/for}																	
+												</div>																																										
+										</div>
+										<br>
+										<div class="review-heading">
+											<div class="product-valutation">Valutazione <br> {$article->getName()}</div>
+											<br>
+												<div class="review-rating-wide">
+													{for $i=0 to $review->getArticleRating()-1}
+														<i class="fa fa-star"></i>
+													{/for}
+													{for $i=$review->getArticleRating() to 4}
+														<i class="fa fa-star-o empty"></i>
+													{/for}																	
+												</div>																																										
+										</div>
+									</div>
+									<div class="col-md-9">
+										<div class="review-body">
+											<h4 id="center">Recensione di: <span class="album-name"><a href="/MusicCorner/Search/article/{$article->getId()}"> {$article->getName()}</a></span> Formato: <span class="album-name">{$article->getFormatString()}</span></h4>
+											<p id="justified"><span class="review-text">{$review->getReviewText()}</span></p>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<br>
+							{/foreach}
+						</ul>
+                    {else}
+                        <br>
+                        <h1>Non hai ancora lasciato recensioni</h1>
+                    {/if}
 					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
 			</div>

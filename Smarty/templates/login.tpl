@@ -68,24 +68,24 @@
 					<div class="container-small">
 						<!-- Login Form -->
 						{if $error == true}
-						<p class="error-message">username or password incorrect</p>
+						<p class="error-message">lo username o la password è sbagliata</p>
 						{/if}
 					    {if $ban == true}
-						<p class="error-message">the user you are trying to access is banned</p>
+						<p class="error-message">l'utente a cui stai cercando di loggare è bannato</p>
 						{/if}
 						<form class="login-form" action="/MusicCorner/User/checkLogin" method="post">
 							<div class="section-title-center">
 								<h1 class="title">Login</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text"  placeholder="Enter Email" name="email" required>
+								<input class="input" type="text"  placeholder="Inserisci qui la tua Email" name="email" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password"  placeholder="Enter Password" name="password" required>
+								<input class="input" type="password"  placeholder="Inserisci qui la tua Password" name="password" required>
                             </div>
 							<div class="form-group">
-								<button type="submit" class="submit-btn-custom">Log in</button>
-								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
+								<button type="submit" class="submit-btn-custom">Entra</button>
+								<div>Non hai un account? <a href="/MusicCorner/User/registration" class="centered-link">Registrati</a></div>
 							</div>
 						<!-- /Login Form -->
 						</form>																																

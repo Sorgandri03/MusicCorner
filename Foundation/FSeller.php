@@ -3,10 +3,10 @@
 class FSeller{
 
     private static $table = "Seller";
-    private static $value = "(:email, :shopName, :shopRating)";
+    private static $value = "(:email, :shopName)";
     private static $key = "email";
 
-    private static $updatequery = "email = :email, shopName = :shopName, shopRating = :shopRating";
+    private static $updatequery = "email = :email, shopName = :shopName";
 
     public static function getValue(): string {
 
@@ -26,7 +26,6 @@ class FSeller{
     public static function bind($stmt, $Seller){
         $stmt->bindValue(':email', $Seller->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
-        $stmt->bindValue(':shopRating',(String) $Seller->getShopRating(), PDO::PARAM_STR);
     }
 
     //C
@@ -45,7 +44,6 @@ class FSeller{
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
             $obj = self::createEntity($result);
-            $obj->setShopRating($result[0]['shopRating']);
             return $obj;
         }else{
             return null;
@@ -86,8 +84,6 @@ class FSeller{
         $seller = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
         $seller->setStocks(FStock::getStocksBySeller($seller->getId()));
         $seller->setReviews(FReview::getReviewsBySeller($result[0]['email']));
-        //$seller->setSentMessages(FMessage::getSentMessages($seller->getId()));
-        //$seller->setReceivedMessages(FMessage::getReceivedMessages($seller->getId()));
         return $seller;
     }
 

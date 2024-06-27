@@ -33,6 +33,10 @@ class V404
             $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
             $cart = new ECart('guest');
         }
+        elseif(USession::getInstance()->isSetSessionElement('admin')){
+            $this->smarty->assign('username', explode("@", USession::getInstance()->getSessionElement('admin')->getId())[0]);
+            $cart = new ECart('guest');
+        }
         else{
             $this->smarty->assign('username','Accedi/Registrati');
             $this->smarty->assign('customer', true);

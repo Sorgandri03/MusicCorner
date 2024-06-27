@@ -71,21 +71,21 @@
 					<p class="error-message">Devi riempire tutti i campi</p>
 					{/if}
 					{if $passwordError == true}
-					<p class="error-message">La password non coincide!</p>
+					<p class="error-message">Le password non coincidono</p>
 					{/if}
 						<!-- Login Form -->
 						<div class="container-small">
 							<div class="section-title-center">
-								<h1 class="title">Register to our site!</h1>
+								<h1 class="title">Registrati al nostro sito!</h1>
 							</div>
 							<div class="form-group">
-								<a href="/MusicCorner/User/registrationCustomer" class="choice-btn">Register as a Customer</a>
+								<a href="/MusicCorner/User/registrationCustomer" class="choice-btn">Registrati come cliente</a>
 							</div>
 							<div class="form-group">
-								<a href="/MusicCorner/User/registrationSeller" class="choice-btn">Register as a Seller</a>
+								<a href="/MusicCorner/User/registrationSeller" class="choice-btn">Registrati come venditore</a>
 							</div>
 							<div class="form-group">
-								<a href="/MusicCorner/User/login" class="choice-btn red">Return to login page</a>
+								<a href="/MusicCorner/User/login" class="choice-btn red">Torna al login</a>
 							</div>
 
 						<!-- /Login Form -->																																

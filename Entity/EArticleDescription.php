@@ -53,7 +53,6 @@ class EArticleDescription {
         foreach($this->stocks as $stock){
             if($lowestPrice == 0 || $stock->getPrice() < $lowestPrice){
                 $lowestPrice = $stock->getPrice();
-                
             }
         }
         return $lowestPrice;   

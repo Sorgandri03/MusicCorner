@@ -68,24 +68,24 @@
 					<!-- Registration Form -->
 					<div class="container-small">
 						<div class="section-title-center">
-							<h1 class="title">Register to our site!</h1>
+							<h1 class="title">Registrati al nostro sito!</h1>
 						</div>
 						<form class="registration-form" action="/MusicCorner/User/registrationCustomer" method="post">
 							<div class="form-group">
-								<input class="input" type="text" name="username" placeholder="Username" maxlength="20" required>
+								<input class="input" type="text" name="username" placeholder="Il tuo username" maxlength="20" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email" required>
+								<input class="input" type="email" name="email" placeholder="La tua mail" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Password" required>
+								<input class="input" type="password" name="password" placeholder="La tua Password" minlength="8" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="confirm-password" placeholder="Confirm Password" required>
+								<input class="input" type="password" name="confirm-password" placeholder="Conferma la Password" minlength="8" required>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="submit-btn-custom">Register</button>
-								<a href="/MusicCorner/User/login" class="centered-link">Return to login page</a>
+								<button type="submit" class="submit-btn-custom">Registrati</button>
+								<a href="/MusicCorner/User/login" class="centered-link">Torna alla pagina di Login</a>
 							</div>
 						</form>
 						<!-- /Registration Form -->

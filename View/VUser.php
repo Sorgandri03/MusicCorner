@@ -56,7 +56,7 @@ class VUser{
             exit;
         }
         elseif(USession::getInstance()->isSetSessionElement('admin')){
-            $this->smarty->assign('username',USession::getInstance()->getSessionElement('admin'));
+            $this->smarty->assign('username',USession::getInstance()->getSessionElement('admin')->getId());
             $this->smarty->display('admin.tpl');
         } 
     }

@@ -8,7 +8,7 @@ Class CCustomer{
             $view->showUserDashboard();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
     public static function orders(){
@@ -17,7 +17,7 @@ Class CCustomer{
             $v->showOrderList();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
     public static function order($orderId){
@@ -32,7 +32,7 @@ Class CCustomer{
             }
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
     public static function reviewArticle(){
@@ -60,7 +60,7 @@ Class CCustomer{
             $v->showReviewArticle($orderItem);
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
 
@@ -70,7 +70,7 @@ Class CCustomer{
             $view->showCustomerReviews();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
 

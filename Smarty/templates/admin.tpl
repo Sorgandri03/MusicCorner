@@ -35,12 +35,10 @@
 		<![endif]-->
 
 	</head>
-	<body>
-		
-		<!-- HEADER -->
-		<header>
-		</header>
-		
+<body>
+			
+	<!-- HEADER -->
+	<header>
 		<!-- MAIN HEADER -->
 		<div id="header">
 			<!-- container -->
@@ -60,29 +58,23 @@
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-    
-	<!-- ORDER LIST -->
-	<div class="customer-dashboard section">
+
+	<!-- ADMIN DASHBOARD -->
+	<div class="seller-dashboard section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-                    {if count($customer->getOrders())>0}
-                        <h1>Lista degli ordini</h1>
-                        <ul>
-                            {foreach from=$customer->getOrders() item=order}
-                                <li><a href="/MusicCorner/Customer/order/{$order->getId()}" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del {$order->getOrderDateTime()}</strong></a></li>
-                            {/foreach}
-                        </ul>
-                    {else}
-                        <br>
-                        <h1>Non hai ancora effettuato ordini</h1>
-                    {/if}
-					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
+					<h1>Benvenuto {$username}</h1>
+					<ul>
+						<li><a href="/MusicCorner/Admin/moderateReviews" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Modera recensioni</strong></a></li>
+						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Home</strong></a></li>
+						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-inverse-red" ><strong>Logout</strong></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /ORDER LIST -->
+    <!-- /ADMIN DASHBOARD -->
 
 </body>
 </html>

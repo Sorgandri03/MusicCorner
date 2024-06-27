@@ -13,16 +13,5 @@ class EAdmin extends EUser {
     public function setId(string $id) :void{
         parent::setId($id);
     }
-    public function setSentMessages(array $sentMessages): void {
-        $this->sentMessages = $sentMessages;
-    }
-    public function getSentMessages(): array {
-        return $this->sentMessages;
-    }
-    public function setReceivedMessages(array $receivedMessages): void {
-        $this->receivedMessages = $receivedMessages;
-    }
-    public function getReceivedMessages(): array {
-        return $this->receivedMessages;
-    }
+    
 }

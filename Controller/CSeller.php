@@ -9,7 +9,7 @@ Class CSeller{
             return;
         }
         else{
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
 
@@ -27,7 +27,7 @@ Class CSeller{
             }
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
    
@@ -95,7 +95,7 @@ Class CSeller{
             $view->showSuccessMessage();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
     
@@ -105,7 +105,7 @@ Class CSeller{
             $view->showSellerReviews();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
 
@@ -115,7 +115,7 @@ Class CSeller{
             $view->showModifyStock();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
    }
    public static function updateStock() {
@@ -179,7 +179,7 @@ public static function removeFromStock() {
             $view->showSoldProducts();
         }
         else {
-            header('Location: MusicCorner/User/Login');
+            header('Location: /MusicCorner/User/Login');
         }
     }
 
