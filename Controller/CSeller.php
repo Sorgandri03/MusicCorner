@@ -109,35 +109,33 @@ Class CSeller{
         }
     }
 
-   public static function modifyStock(){
+    public static function modifyCatalogue(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
-            $view->showModifyStock();
+            $view->showModifyCatalogue();
         }
         else {
             header('Location: /MusicCorner/User/Login');
         }
-   }
-   public static function updateStock() {
-    // Recupera i dati POST
-    $stockId = UHTTPMethods::post('stockId');
-    $price = UHTTPMethods::post('price');
-    $quantity = UHTTPMethods::post('quantity');
-
-    if (!is_numeric($price) || !is_numeric($quantity)) {
-        echo "Errore: Price e Quantity devono essere valori numerici.";
-        return;
     }
+    public static function updateStock() {
+        // Recupera i dati POST
+        $stockId = UHTTPMethods::post('stockId');
+        $price = UHTTPMethods::post('price');
+        $quantity = UHTTPMethods::post('quantity');
 
-    $price = floatval($price);
-    $quantity = intval($quantity);
+        if (!is_numeric($price) || !is_numeric($quantity)) {
+            echo "Errore: Price e Quantity devono essere valori numerici.";
+            return;
+        }
 
-    // Recupera lo stock dal database
-    $persistentManager = FPersistentManager::getInstance();
-    $stock = $persistentManager->retrieveObj('EStock', $stockId);
+        $price = floatval($price);
+        $quantity = intval($quantity);
 
-    // Verifica che lo stock esista
-    if ($stock) {
+        // Recupera lo stock dal database
+        $persistentManager = FPersistentManager::getInstance();
+        $stock = $persistentManager->retrieveObj('EStock', $stockId);
+
         // Aggiorna i dettagli dello stock
         $stock->setPrice($price);
         $stock->setQuantity($quantity);
@@ -146,31 +144,24 @@ Class CSeller{
         $persistentManager->updateObj($stock);
 
         // Redirige alla pagina di gestione dello stock
-        header('Location: /MusicCorner/Seller/modifyStock');
-    } else {
-        echo "Stock non trovato.";
+        header('Location: /MusicCorner/Seller/modifyCatalogue');
     }
-}
 
-public static function removeFromStock() {
-    // Recupera stockId dal POST
-    $stockId = UHTTPMethods::post('stockId');
+    public static function removeFromStock() {
+        // Recupera stockId dal POST
+        $stockId = UHTTPMethods::post('stockId');
 
-    // Recupera lo stock dal database
-    $persistentManager = FPersistentManager::getInstance();
-    $stock = $persistentManager->retrieveObj('EStock', $stockId);
+        // Recupera lo stock dal database
+        $persistentManager = FPersistentManager::getInstance();
+        $stock = $persistentManager->retrieveObj('EStock', $stockId);
 
-    // Verifica che lo stock esista
-    if ($stock) {
         // Rimuove lo stock dal database
         $persistentManager->deleteObj($stock);
 
         // Redirige alla pagina di gestione dello stock
-        header('Location: /MusicCorner/Seller/modifyStock');
-    } else {
-        echo "Stock non trovato.";
+        header('Location: /MusicCorner/Seller/modifyCatalogue');
+        
     }
-}
 
 
     public static function soldProducts(){

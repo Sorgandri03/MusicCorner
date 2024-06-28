@@ -56,23 +56,23 @@ public function __construct(){
     }   
 
 
-    public function showModifyStock(){
+    public function showModifyCatalogue(){
         USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId()));
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
-        $this->smarty->display('modifystock.tpl');
+        $this->smarty->display('modifycatalogue.tpl');
     }
-    public function showModifyStockError(){
+    public function showModifyCatalogueError(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->assign('error',true);
-        $this->smarty->display('modifystock.tpl');
+        $this->smarty->display('modifycatalogue.tpl');
     }
-    public function showModifyStockSuccess(){
+    public function showModifyCatalogueSuccess(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->assign('success',true);
-        $this->smarty->display('modifystock.tpl');
+        $this->smarty->display('modifycatalogue.tpl');
     }
 
     public function showSellerReviews(){

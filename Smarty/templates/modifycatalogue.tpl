@@ -65,7 +65,7 @@
 						<h2>Non hai nessun articolo in vendita</h2>
 					{else}
 						<br>
-						<h2>Aggiorna Stock</h2>
+						<h2>Aggiorna Catalogo</h2>
 						<br>
 						{foreach from=$seller->getStocks() item=stock}
 						{assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
