@@ -59,16 +59,20 @@
 		<!-- /HEADER -->
 
 		{if $success}			
-			<div class="col-md-12">
-				<br>
-				<br>
-				<div class="title">
-					Ordine effettuato con successo!
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<br>
+					<h1 class="text-center">
+						Ordine effettuato con successo!
+					</h1>
+					<br>
+					<br>
+					<a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
 				</div>
-				<br>
-				<br>
-				<a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
 			</div>
+		</div>
 		{else}
 		<!-- SECTION -->
 		<div class="section">
@@ -91,7 +95,7 @@
 								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare" maxlength="16">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="expiration-date" placeholder="Data di scadenza (formato dd/yy)" pattern="(0[1-9]|1[0-2])/([0-9]{2})" maxlength="5" minlength="5">
+								<input class="input" type="month" name="expiration-date">
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="cvv" placeholder="CVV" pattern="[0-9]+" maxlength="3" minlength="3">

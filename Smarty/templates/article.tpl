@@ -178,11 +178,11 @@
 							
 
 							<div class="product-options">
-								{if $article->getLowestPrice()==0}
+								{if $article->isInStock()==false}
 								<div>
-									<span class="product-unavailable">Non in stock</span>
+									<span class="product-price">Non in stock</span>
 								</div>
-							</div>				
+								</div>				
 								{else}
 								<div>
 									<h4 class="product-price">€{$article->getLowestPrice()}</h4>
@@ -408,7 +408,7 @@
 								<h3 class="product-name"><a href="/MusicCorner/Search/article/{$product->getId()}#">{$product->getName()}</a></h3>
 								<p class="product-category">{$Format[$product->getFormat()]}</p>
 								<br>
-								{if $product->getLowestPrice()==0}
+								{if $product->isInStock()==false}
 								<h4 class="product-price">Non in stock</h4>
 								{else}
 								<h4 class="product-price">€{$product->getLowestPrice()}</h4>
@@ -416,7 +416,7 @@
 								<div class="product-rating">
 								</div>
 							</div>
-							{if $product->getLowestPrice() != 0}
+							{if $product->isInStock()}
 								<form action="/MusicCorner/Orders/addToCart/" method="post">
 									<div class="add-to-cart">
 										<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>

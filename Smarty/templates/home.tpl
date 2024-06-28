@@ -213,7 +213,7 @@
 													{else}
 														<p class="product-category">CD</p>
 													{/if}	
-													{if $article->getLowestPrice() == 0}
+													{if $article->isInStock()==false}
 													<h4 class="product-price">Non in stock</h4>
 													{else}
 													<h4 class="product-price">€{$article->getLowestPrice()}</h4>

@@ -21,10 +21,3 @@ define('Format', array(
     'CD',
     'LP'
     ));
-
-define('Status', array(
-    'In preparation',
-    'Shipped',
-    'In delivery',
-    'Delivered'
-    ));

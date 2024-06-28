@@ -312,7 +312,6 @@ class COrders{
             }
             else {
                 if(UHTTPMethods::post('card-number') && UHTTPMethods::post('card-owner') && UHTTPMethods::post('cvv') && UHTTPMethods::post('expiration-date')){
-                    echo UHTTPMethods::post('card-number');
                     /**
                      * Check wether the user wants to save the card
                      */
@@ -323,14 +322,16 @@ class COrders{
                         $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), UHTTPMethods::post('card-owner'), '', $billingAddress->getId());
                     }
                     FPersistentManager::getInstance()->createObj($card);
-                    USession::getInstance()->setSessionElement('card', $card);
                 }
                 else{
                     $v = new VOrders();
                     $v->showOrderPaymentError();
                     return;
                 }
-            }        
+            }
+            
+            USession::getInstance()->setSessionElement('card', $card);
+            header('Location: /MusicCorner/Orders/orderConfirm');
         }
 
         $v = new VOrders();
@@ -402,6 +403,7 @@ class COrders{
             $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
             $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
             $stock->setQuantity($stock->getQuantity() - $quantity);
+            FPersistentManager::getInstance()->updateObj($stock);
             FPersistentManager::getInstance()->createObj($orderItem);
         }
 

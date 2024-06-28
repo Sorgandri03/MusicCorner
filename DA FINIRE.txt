@@ -4,6 +4,4 @@ MANCANO:
 
 Tutti i link una volta su altervista
 Documentazione
-Decremento Stock con ordini - Transaction Lock
-Controlli input ordini
-Post ordini
+Decremento Stock con ordini (fatto) - Transaction Lock

@@ -145,4 +145,15 @@ class EArticleDescription {
         return $count;
     }
 
+    public function isInStock() :bool {
+        if(count($this->stocks) > 0){
+            foreach($this->stocks as $stock){
+                if($stock->getQuantity() > 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

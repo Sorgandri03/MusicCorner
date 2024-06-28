@@ -151,7 +151,7 @@ class FPersistentManager{
         $articles = array();
         foreach($results as $result){
             $article = FArticleDescription::retrieveObject($result['EAN']);
-            if($article->getLowestPrice() == 0){
+            if($article->isInStock() == false){
                 continue;
             }
             $articles[] = $article;
