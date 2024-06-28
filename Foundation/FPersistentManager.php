@@ -174,7 +174,7 @@ class FPersistentManager{
 
     public static function retrieveAll($entity){
         $class = "F" . substr($entity,1);
-        $result = call_user_func([$class, "retrieveAllObjects"]);
+        $result = FDB::getInstance()->retrieve($class::getTable(),1,1);
         return $result;
     }
 

@@ -92,7 +92,7 @@
 								<input class="input" type="text" name="card-number" placeholder="Numero della carta" pattern="[0-9]+" maxlength="16" minlength="16">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare" maxlength="16">
+								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare" maxlength="50">
 							</div>
 							<div class="form-group">
 								<input class="input" type="month" name="expiration-date">

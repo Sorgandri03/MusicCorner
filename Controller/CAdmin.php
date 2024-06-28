@@ -22,22 +22,15 @@ Class CAdmin{
         /**
          * Pass customers to view
          */
-    }
-    public static function reviews($customer){
-
-    }
+    } 
     public static function moderateReviews(){
-        $view = new VAdmin();
-        $view->showAllReviews();
-
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
+            $view = new VAdmin();
+            $view->showAllReviews();
+        }
+        else {
+            header('Location: /MusicCorner/User/Login');
+        }
     }
-    
-    
-    
-    
-    /*
-    public static function ban(ECustomer $customer, int $days){
 
-        $customer->setSuspensionTime($days);
-    }*/
 }

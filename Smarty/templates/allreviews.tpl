@@ -55,6 +55,19 @@
 	</header>
 	<!-- /HEADER -->
 
+	<!-- SHOW SELLER AND CUSTOMER REVIEW -->
+	<section id="show-customer-reviews">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+						<h1 class="text-center"><span style="color: #0037b8;">{$reviews->getReviewText()}</span> ecco le tue recensioni: </h1>
+				</div>
+						
+			</div>
+		</div>
+	</section>
+
+
 	
  
      
