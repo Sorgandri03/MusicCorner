@@ -9,6 +9,7 @@ class EReview {
     private int $articleRating;
     private int $sellerRating;
     private int $orderItemID;
+    private bool $answered = false;
 
     public function __construct(string $customer, string $reviewText, int $articleRating, int $sellerRating, string $article, string $seller, int $orderItemID) {
         $this->article = $article;
@@ -81,5 +82,13 @@ class EReview {
 
     public function setOrderItemID(int $orderItemID): void {
         $this->orderItemID = $orderItemID;
+    }
+
+    public function isAnswered(): bool {
+        return $this->answered;
+    }
+
+    public function setAnswered(bool $answered): void {
+        $this->answered = $answered;
     }
 }
