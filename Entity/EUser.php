@@ -13,23 +13,14 @@ class EUser{
     public function getId(): string {
         return $this->email;
     }
-
     public function setId(string $email): void {
         $this->email = $email;
     }
-
     public function getPassword(): string {
         return $this->password;
     }
-
     public function setPassword(string $password): void {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $this->password = $hashedPassword;
     }
-
-    public function setHashedPassword($hashedPassword)
-    {
-        $this->password = $hashedPassword;
-    }
-
 }

@@ -1,9 +1,6 @@
 <?php
 
 class EAdmin extends EUser {
-    private $sentMessages = array();
-    private $receivedMessages = array();
-
     public function __construct(string $email, string $password) {
         parent::__construct($email, $password);
     }

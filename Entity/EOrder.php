@@ -5,11 +5,11 @@ class EOrder {
     private string $customer;
     private DateTime $orderDateTime;
     private float $price;
-    private string $payment;
+    private int $payment;
     private int $shippingAddress;
     private array $orderItems = array();
 
-    public function __construct(string $customer, int $shippingAddress, string $payment, float $price) {
+    public function __construct(string $customer, int $shippingAddress, int $payment, float $price) {
         $this->customer = $customer;
         $this->shippingAddress = $shippingAddress;
         $this->payment = $payment;
@@ -26,7 +26,7 @@ class EOrder {
     public function getShippingAddress(): int {
         return $this->shippingAddress;
     }
-    public function getPayment(): string {
+    public function getPayment(): int {
         return $this->payment;
     }
     public function getPrice(): float {
@@ -50,7 +50,7 @@ class EOrder {
     public function setShippingAddress(int $shippingAddress): void {
         $this->shippingAddress = $shippingAddress;
     }
-    public function setPayment(string $payment): void {
+    public function setPayment(int $payment): void {
         $this->payment = $payment;
     }
     public function setPrice(float $price): void {

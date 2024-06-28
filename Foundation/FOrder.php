@@ -12,9 +12,8 @@ class FOrder{
     //END SINGLETON
 
     private static $table = "Orders";
-    public static $value = "(NULL, :customer, :orderDateTime, NULL, :price, :payment, :shippingAddress)";
+    public static $value = "(NULL, :customer, :orderDateTime, :price, :payment, :shippingAddress)";
     private static $key = "id";
-
     private static $updatequery = "customer = :customer, orderDateTime = :orderDateTime, price = :price, payment = :payment, shippingAddress = :shippingAddress";
 
     public static function getTable(): string {
@@ -38,7 +37,7 @@ class FOrder{
         $stmt->bindValue(':customer', $order->getCustomer(), PDO::PARAM_STR);
         $stmt->bindValue(':orderDateTime', $order->getOrderDateTime(), PDO::PARAM_STR);
         $stmt->bindValue(':price', (string) $order->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(':payment', $order->getPayment(), PDO::PARAM_STR);
+        $stmt->bindValue(':payment', $order->getPayment(), PDO::PARAM_INT);
         $stmt->bindValue(':shippingAddress', $order->getShippingAddress(), PDO::PARAM_INT);
     }
 

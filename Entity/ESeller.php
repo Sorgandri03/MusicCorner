@@ -1,7 +1,7 @@
 <?php
 
 class ESeller extends EUser {    
-    private $shopName;
+    private string $shopName;
     private float $shopRating=0;
     public array $catalogue = array();
 
@@ -30,15 +30,13 @@ class ESeller extends EUser {
     }
     public function setId(string $email): void {
         parent::setId( $email); 
-    }    
+    }
     public function setShopName(string $shopName): void {
         $this->shopName = $shopName;
     } 
-    
     public function getReviews(): array {
         return $this->reviews;
     }
-
     public function setReviews(array $reviews) {
         $this->reviews = $reviews;
     }
@@ -46,10 +44,7 @@ class ESeller extends EUser {
         $this->calculateShopRating();
         return $this->shopRating;
     }
-    public function setShopRating(float $shopRating): void {
-        $this->shopRating = $shopRating;
-    }
-    public function calculateShopRating(): void {
+    private function calculateShopRating(): void {
         $this->getReviews();
         $count=0;
         $rating=0;
@@ -68,5 +63,4 @@ class ESeller extends EUser {
     public function averageRatingDecimal() : float {
         return $this->shopRating - floor($this->shopRating);
     }
-
 }
