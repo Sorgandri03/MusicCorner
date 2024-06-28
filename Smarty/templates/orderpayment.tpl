@@ -73,16 +73,16 @@
 								<h3 class="title">Dettagli della carta</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="card-number" placeholder="Numero della carta">
+								<input class="input" type="text" name="card-number" placeholder="Numero della carta" pattern="[0-9]+" maxlength="16" minlength="16">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare">
+								<input class="input" type="text" name="card-owner" placeholder="Nome e cognome del titolare" maxlength="16">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="expiration-date" placeholder="Data di scadenza">
+								<input class="input" type="text" name="expiration-date" placeholder="Data di scadenza (formato dd/yy)"  maxlength="5" minlength="5">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="cvv" placeholder="CVV">
+								<input class="input" type="text" name="cvv" placeholder="CVV" pattern="[0-9]+" maxlength="3" minlength="3">
 							</div>
 						</div>
 						<!-- /Card Details -->
