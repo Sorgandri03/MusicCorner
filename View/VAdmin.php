@@ -14,12 +14,8 @@ public function __construct(){
      * @throws SmartyException
      */
     public function showAllReviews(){
-        $reviews = FPersistentManager::getInstance()->retrieveAll(EReview::class);
-        foreach($reviews as $review){
-            echo $review->getReviewText();
-            
-        }
-        $this->smarty->assign('reviews',$reviews);
+        $admin = FPersistentManager::getInstance()->retrieveObj(EAdmin::class,USession::getInstance()->getSessionElement('admin')->getId());
+        $this->smarty->assign('admin',$admin);
         $this->smarty->display('allreviews.tpl');
     }
     /* da VSeller

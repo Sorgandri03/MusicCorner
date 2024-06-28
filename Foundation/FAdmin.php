@@ -78,8 +78,9 @@ class FAdmin{
 
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
-        $obj = new EAdmin($result[0]['email'], $user->getPassword());
-        return $obj;
+        $admin = new EAdmin($result[0]['email'], $user->getPassword());
+        $admin->setReviews(FPersistentManager::getInstance()->retrieveAll(EReview::class));
+        return $admin;
     }
 
     public static function verify($field, $id){

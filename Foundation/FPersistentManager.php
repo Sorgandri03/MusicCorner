@@ -174,8 +174,13 @@ class FPersistentManager{
 
     public static function retrieveAll($entity){
         $class = "F" . substr($entity,1);
-        $result = FDB::getInstance()->retrieve($class::getTable(),1,1);
-        return $result;
+        $queryResult = FDB::getInstance()->retrieve($class::getTable(),1,1);
+        $items = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $item = call_user_func([$class, "retrieveObject"], $queryResult[$i][$class::getKey()]);
+            $items[] = $item;
+        }
+        return $items;
     }
 
     public static function retrievePassword($email){

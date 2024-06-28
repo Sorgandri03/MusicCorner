@@ -60,9 +60,28 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-						<h1 class="text-center"><span style="color: #0037b8;">{$reviews->getReviewText()}</span> ecco le tue recensioni: </h1>
+						<h1 class="text-center"> Ecco tutte le tue recensioni: </h1>
+						<br>
+						<ul class="list-unstyled">
+							{foreach from=$admin->getReviews() item=review}
+							<li class="review-item mb-4">
+								<div class="row">
+									<div class="col-md-9">
+										<div class="review-body">
+											<p id="justified"><span class="review-text">{$review->getReviewText()}</span></p>	
+										</div>
+									</div>
+								</div>
+							</li>
+							<br>
+							{/foreach}
+						</ul>
+                    {else}
+                        <br>
+                        <h1>Non hai ancora lasciato recensioni</h1>
+                    {/if}
+					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
-						
 			</div>
 		</div>
 	</section>
