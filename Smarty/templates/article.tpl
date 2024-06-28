@@ -345,9 +345,10 @@
 											<div id="reviews">
 												<ul class="reviews">
 													{foreach $article->getReviews() as $review}
+													{assign var="customer" value=FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())}
 														<li class="review-item mb-7">
 															<div class="review-heading">
-																<h5 class="name">{$review->getCustomer()}</h5>
+																<h5 class="name">{$customer->getUsername()}</h5>
 																<div class="review-rating">
 																	{for $i=0 to $review->getArticleRating()-1}
 																		<i class="fa fa-star"></i>

@@ -71,7 +71,7 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="review-heading">
-										<h5 class="name">{FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())->getShopName()}</h5>
+										<h5 class="name">{FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())->getUsername()}</h5>
 											<div class="review-rating-wide">
 												{for $i=0 to $review->getSellerRating()-1}
 													<i class="fa fa-star"></i>
@@ -85,10 +85,19 @@
 								<div class="col-md-9">
 									<div class="review-body">
 										<h4 id="center">Recensione relativa a: <span class="album-name"> {FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getName()}</span> Formato: <span>{FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$review->getArticle())->getFormatString()}</span></h4>
-										<p><span class="review-text">class="review-text">{$review->getReviewText()}</span></p>	
+										<p id="center"><span class="review-text">{$review->getReviewText()}</span></p>	
 									</div>
 								</div>
 							</div>
+							<br>
+							<br>
+							{if $review->isAnswered() == false}
+							<form action="/MusicCorner/Seller/answerReview" method="post">			
+							<button class="btn btn-outline-primary btn-lg dashboard-button" name="answer" value={$review->getId()}><strong>Rispondi alla review</strong></button>
+							</form>
+							{else}
+							<h4><strong>Hai già risposto</strong></h4>
+							{/if}
 						</li>
 						<br>
 						{/foreach}

@@ -80,7 +80,19 @@ public function __construct(){
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('sellerreview.tpl');
     }
-    
+
+    public function showAnswerReview($reviewId){
+        $review = FPersistentManager::getInstance()->retrieveObj(EReview::class,$reviewId);
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer());
+        $this->smarty->assign('review',$review);
+        $this->smarty->assign('customer',$customer);
+        $this->smarty->display('answerreview.tpl');
+    }
+
+    public function showAnswerReviewSuccess($reviewId){
+        $this->smarty->assign('success',true);
+        $this->showAnswerReview($reviewId);
+    }
 
     public function showSoldProducts(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());

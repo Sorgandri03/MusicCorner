@@ -109,6 +109,31 @@ Class CSeller{
         }
     }
 
+    public static function answerReview(){
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            if(UHTTPMethods::isPostSet('text')){
+                $review = FPersistentManager::getInstance()->retrieveObj('EReview', UHTTPMethods::post('reviewId'));
+                $oldtext = $review->getReviewText();
+                $review->setReviewText($oldtext . "<br><br>RISPOSTA DEL VENDITORE<br>" . UHTTPMethods::post('text'));
+                $review->setAnswered(true);
+                FPersistentManager::getInstance()->updateObj($review);
+                $view = new VSeller();
+                $view->showAnswerReviewSuccess(UHTTPMethods::post('reviewId'));
+            }
+            else if(UHTTPMethods::isPostSet('answer')){
+                $view = new VSeller();
+                $view->showAnswerReview(UHTTPMethods::post('answer'));
+            }
+            else{
+                $view = new V404();
+                $view->show404();
+            }            
+        }
+        else {
+            header('Location: /MusicCorner/User/Login');
+        }
+    }
+
     public static function modifyCatalogue(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
