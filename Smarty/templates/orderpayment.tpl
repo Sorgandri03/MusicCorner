@@ -105,7 +105,6 @@
 								<h3 class="title">indirizzo di fatturazione</h3>
 							</div>
 							<div class="input-checkbox">
-								<input type='hidden' value='false' name='otherAddress'>
 								<input type="checkbox" id="shiping-address" name="otherAddress" value="true">
 								<label for="shiping-address">
 									<span></span>
@@ -125,7 +124,7 @@
 										<input class="input" type="text" name="city" placeholder="Città">
 									</div>
 									<div class="form-group">
-										<input class="input" type="number" name="zip-code" placeholder="CAP">
+										<input class="input" type="number" name="zip-code" placeholder="CAP" pattern="[0-9]+" maxlength="5" minlength="5">
 									</div>
 								</div>
 							</div>
@@ -135,7 +134,6 @@
 						<!-- Save Card -->
 						<div class="input-checkbox">
 							<div class="form-group">
-								<input type='hidden' value='false' name='saveCard'>
 								<input type="checkbox" id="save" name="saveCard" value="true">
 								<label for="save">
 									<span></span>
@@ -151,7 +149,6 @@
 								<div class="section-title">
 									<h3 class="title">Carte salvate</h3>
 								</div>
-								<input type="hidden" name="useSavedCard" value="0">
 								{foreach from=$customer->getCreditCards() item=card}
 									<div class="form-group">				
 										<input type="radio" name="useSavedCard" value="{$card->getId()}">
