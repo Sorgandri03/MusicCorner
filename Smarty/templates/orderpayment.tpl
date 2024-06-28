@@ -58,6 +58,18 @@
 		</header>
 		<!-- /HEADER -->
 
+		{if $success}			
+			<div class="col-md-12">
+				<br>
+				<br>
+				<div class="title">
+					Ordine effettuato con successo!
+				</div>
+				<br>
+				<br>
+				<a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
+			</div>
+		{else}
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -68,7 +80,7 @@
 					<div class="col-md-7">
 						<!-- Card Details -->
 						<div class="billing-details">
-							<form action="/MusicCorner/Orders/orderConfirm/" method="post">
+							<form action="" method="post">
 							<div class="section-title">
 								<h3 class="title">Dettagli della carta</h3>
 							</div>
@@ -201,6 +213,7 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+		{/if}
 
 
 		<!-- jQuery Plugins -->

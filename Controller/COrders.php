@@ -216,6 +216,38 @@ class COrders{
             header('Location: /MusicCorner/Orders/cart');
             return;
         }
+
+        if(UHTTPMethods::isPostSet('useSavedAddress') || UHTTPMethods::isPostSet('street') || UHTTPMethods::isPostSet('city') || UHTTPMethods::isPostSet('zip-code') || UHTTPMethods::isPostSet('first-name') || UHTTPMethods::isPostSet('last-name') || UHTTPMethods::isPostSet('saveAddress')){
+            if(UHTTPMethods::isPostSet('useSavedAddress')){
+                $address = FPersistentManager::getInstance()->retrieveObj(EAddress::class, UHTTPMethods::post('useSavedAddress'));
+            }
+            else {
+                if(UHTTPMethods::post('street') && UHTTPMethods::post('city') && UHTTPMethods::post('zip-code') && UHTTPMethods::post('first-name') && UHTTPMethods::post('last-name')){
+                    /**
+                     * Check wether the user wants to save the address
+                     */
+                    if(UHTTPMethods::post('saveAddress') == 'true'){
+                        $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
+                    }
+                    else{
+                        $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), '');
+                    }
+                    FPersistentManager::getInstance()->createObj($address);
+                }
+                else{
+                    $v = new VOrders();
+                    $v->showOrderAddressError();
+                    return;
+                }
+            }
+            USession::getInstance()->setSessionElement('address', $address);
+            header('Location: /MusicCorner/Orders/payment');
+        }
+        else{
+            $v = new VOrders();
+            $v->showOrderAddress();
+            return;
+        }
         
         /**
          * Pass customer to the view
@@ -228,66 +260,6 @@ class COrders{
         if(!CUser::islogged() && CUser::userType(USession::getInstance()->getSessionElement('customer')) == 'customer'){
             header('Location: /MusicCorner/User/login');
             return;            
-        }
-        
-        /**
-         * Retrieve user cart from the session
-         */
-        if(USession::getInstance()->isSetSessionElement('cart')){
-            $cart = USession::getInstance()->getSessionElement('cart');
-        }
-        else{
-            $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
-        }
-
-        /**
-         * Check if the cart is empty
-         */
-        if(count($cart->getCartItems()) == 0){
-            header('Location: /MusicCorner/Orders/cart');
-            return;
-        }
-
-        /**
-         * Check if the user used a saved address
-         */
-        if(UHTTPMethods::post('useSavedAddress') != 0){
-            $address = FPersistentManager::getInstance()->retrieveObj(EAddress::class, UHTTPMethods::post('useSavedAddress'));
-        }
-        else {
-            if(UHTTPMethods::post('street') && UHTTPMethods::post('city') && UHTTPMethods::post('zip-code') && UHTTPMethods::post('first-name') && UHTTPMethods::post('last-name')){
-                /**
-                 * Check wether the user wants to save the address
-                 */
-                if(UHTTPMethods::post('saveAddress') == 'true'){
-                    $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), USession::getInstance()->getSessionElement('customer')->getId());
-                }
-                else{
-                    $address = new EAddress(UHTTPMethods::post('street'), UHTTPMethods::post('city'), UHTTPMethods::post('zip-code'), UHTTPMethods::post('first-name')." ".UHTTPMethods::post('last-name'), '');
-                }
-                FPersistentManager::getInstance()->createObj($address);
-            }
-            else{
-                $v = new VOrders();
-                $v->showOrderAddressError();
-                return;
-            }
-        }
-
-        USession::getInstance()->setSessionElement('address', $address);
-
-        $v = new VOrders();
-        $v->showOrderPayment();
-    }
-    
-    public static function orderConfirm(){
-        if(!CUser::islogged()){
-            header('Location: /MusicCorner/User/login');
-            return;            
-        }
-        if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
-            CUser::logout();
-            return;
         }
         
         /**
@@ -349,13 +321,56 @@ class COrders{
                     $card = new ECreditCard(UHTTPMethods::post('card-number'), UHTTPMethods::post('expiration-date'), UHTTPMethods::post('cvv'), UHTTPMethods::post('card-owner'), '', $billingAddress->getId());
                 }
                 FPersistentManager::getInstance()->createObj($card);
+                USession::getInstance()->setSessionElement('card', $card);
             }
             else{
                 $v = new VOrders();
                 $v->showOrderPaymentError();
                 return;
             }
+        }        
+
+        $v = new VOrders();
+        $v->showOrderPayment();
+    }
+    
+    public static function orderConfirm(){
+        if(!CUser::islogged()){
+            header('Location: /MusicCorner/User/login');
+            return;            
         }
+        if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
+            CUser::logout();
+            return;
+        }
+        
+        /**
+         * Retrieve user cart from the session
+         */
+        if(USession::getInstance()->isSetSessionElement('cart')){
+            $cart = USession::getInstance()->getSessionElement('cart');
+        }
+        else{
+            $cart = new ECart(USession::getInstance()->getSessionElement('customer'));
+        }
+
+        /**
+         * Check if the cart is empty
+         */
+        if(count($cart->getCartItems()) == 0){
+            header('Location: /MusicCorner/Orders/cart');
+            return;
+        }
+        
+        /**
+         * Retrieve address
+         */
+        $address = USession::getInstance()->getSessionElement('address');
+
+        /**
+         * Retrieve card
+         */
+        $card = USession::getInstance()->getSessionElement('card');
 
         /**
          * Create order
@@ -366,6 +381,11 @@ class COrders{
          * Unset address
          */
         USession::getInstance()->unsetSessionElement('address');
+
+        /**
+         * Unset card
+         */
+        USession::getInstance()->unsetSessionElement('card');
 
         /**
          * Save order in the database
@@ -395,7 +415,7 @@ class COrders{
         /**
          * Show order confirmation page
          */
-        echo "Order confirmed";
-        //CALL VIEW, PASS ORDER
+        $v = new VOrders();
+        $v->showOrderConfirm();
     }
 }
