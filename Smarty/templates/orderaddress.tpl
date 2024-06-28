@@ -73,19 +73,19 @@
 							</div>
 							<form action="/MusicCorner/Orders/payment/" method="post">
 							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="Nome">
+								<input class="input" type="text" name="first-name" placeholder="Nome" maxlength="25">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Cognome">
+								<input class="input" type="text" name="last-name" placeholder="Cognome" maxlength="25">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="street" placeholder="Indirizzo">
+								<input class="input" type="text" name="street" placeholder="Indirizzo" maxlength="50">
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="Città">
+								<input class="input" type="text" name="city" placeholder="Città" maxlength="50">
 							</div>
 							<div class="form-group">
-								<input class="input" type="number" name="zip-code" placeholder="CAP">
+								<input class="input" type="text" name="zip-code" placeholder="CAP" pattern="[0-9]+" maxlength="5" minlength="5">
 							</div>
 						</div>
 						<!-- /Shipping Details -->
