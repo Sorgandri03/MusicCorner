@@ -11,9 +11,9 @@ class FReview {
     //END SINGLETON
 
     private static $table = "Review";
-    private static $value = "(NULL, :customer, :reviewText, :articleRating, :sellerRating, :article, :seller, :orderItemID, :answered)";
+    private static $value = "(NULL, :customer, :reviewText, :articleRating, :sellerRating, :article, :seller, :orderItemID)";
     private static $key = "id";
-    private static $updatequery = "customer = :customer, reviewText = :reviewText, articleRating = :articleRating, sellerRating = :sellerRating, article = :article, seller = :seller, orderItemID = :orderItemID, answered = :answered";
+    private static $updatequery = "customer = :customer, reviewText = :reviewText, articleRating = :articleRating, sellerRating = :sellerRating, article = :article, seller = :seller, orderItemID = :orderItemID";
     public static function getValue(): string {
         return self::$value;
     }
@@ -35,7 +35,6 @@ class FReview {
         $stmt->bindValue(':article', $Review->getArticle(), PDO::PARAM_STR);
         $stmt->bindValue(':seller', $Review->getSeller(), PDO::PARAM_STR);
         $stmt->bindValue(':orderItemID', $Review->getOrderItemID(), PDO::PARAM_INT);
-        $stmt->bindValue(':answered', $Review->isAnswered(), PDO::PARAM_BOOL);
     }
 
     //C
@@ -85,7 +84,6 @@ class FReview {
     public static function createEntity($result){
         $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['orderItemID']);
         $obj->setId($result[0]['id']);
-        $obj->setAnswered($result[0]['answered']);
         return $obj;
     }
 
@@ -118,6 +116,7 @@ class FReview {
         }
         return $reviews;
     }
+
 
     public static function getReviewsByOrderItem($orderItem){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItem);

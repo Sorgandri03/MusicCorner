@@ -54,19 +54,29 @@
 	<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-
+	<br>
 	<!-- SHOW SELLER AND CUSTOMER REVIEW -->
-	<section id="show-customer-reviews">
+	<section id="show-all-reviews">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-						<h1 class="text-center"> Ecco tutte le tue recensioni: </h1>
+					{if count($reviews)>0}
+						<h1 class="text-center">Tutte le recensioni: </h1>
 						<br>
 						<ul class="list-unstyled">
-							{foreach from=$admin->getReviews() item=review}
+							{foreach from=$reviews item=review}
+							{assign var="sellershopname" value=FPersistentManager::getInstance()->retrieveObj(ESeller::class,$review->getSeller())}
+							{assign var="customerusername" value=FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer())}
+
 							<li class="review-item mb-4">
 								<div class="row">
-									<div class="col-md-9">
+									<div class="col-md-4">
+										<div class="review-heading">
+											<p id="justified">Venditore: <span class="seller-valutation">{$review->getSeller()}</span></p>	
+											<p id="justified">Cliente: <span class="product-valutation">{$review->getCustomer()}</span></p>																																										
+										</div>
+									</div>
+									<div class="col-md-8">
 										<div class="review-body">
 											<p id="justified"><span class="review-text">{$review->getReviewText()}</span></p>	
 										</div>
@@ -78,9 +88,9 @@
 						</ul>
                     {else}
                         <br>
-                        <h1>Non hai ancora lasciato recensioni</h1>
+                        <h1>Non ci sono recensioni</h1>
                     {/if}
-					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
+					<a href="/MusicCorner/Admin/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
 			</div>
 		</div>
