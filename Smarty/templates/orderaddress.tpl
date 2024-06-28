@@ -71,7 +71,7 @@
 							<div class="section-title">
 								<h3 class="title">Indirizzo di spedizione</h3>
 							</div>
-							<form action="/MusicCorner/Orders/payment/" method="post">
+							<form action="" method="post">
 							<div class="form-group">
 								<input class="input" type="text" name="first-name" placeholder="Nome" maxlength="25">
 							</div>
@@ -91,7 +91,6 @@
 						<!-- /Shipping Details -->
 						<div class="input-checkbox">
 							<div class="form-group">
-								<input type='hidden' value='false' name='saveAddress'>
 								<input type="checkbox" id="terms" name="saveAddress" value="true">
 								<label for="terms">
 									<span></span>
@@ -106,7 +105,6 @@
 									<div class="section-title">
 										<h3 class="title">Indirizzi salvati</h3>
 									</div>
-									<input type="hidden" name="useSavedAddress" value="0">
 									{foreach from=$customer->getAddresses() item=address}
 										<div class="form-group">											
 											<input type="radio" name="useSavedAddress" value="{$address->getId()}">
