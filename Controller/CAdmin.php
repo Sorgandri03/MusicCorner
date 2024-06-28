@@ -26,6 +26,15 @@ Class CAdmin{
     public static function reviews($customer){
 
     }
+    public static function moderateReviews(){
+        $view = new VAdmin();
+        $view->showAllReviews();
+
+    }
+    
+    
+    
+    
     /*
     public static function ban(ECustomer $customer, int $days){
 
