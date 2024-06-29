@@ -1,22 +1,20 @@
 <?php
 
 class EAdmin extends EUser {
-    private $reviews = array();
+    /**
+     * Create a new admin
+     * @param string $email the email of the admin
+     * @param string $password the password of the admin
+     */
     public function __construct(string $email, string $password) {
         parent::__construct($email, $password);
     }
+
+    /**
+     * Get the id of the admin
+     * @return string the id of the admin
+     */
     public function getId(): string {
         return parent::getId();
     }
-    public function setId(string $id) :void{
-        parent::setId($id);
-    }
-    public function getReviews(): array {
-        return $this->reviews;
-    }
-
-    public function setReviews(array $reviews) {
-        $this->reviews = $reviews;
-    }
-    
 }
