@@ -35,7 +35,11 @@ class FArticleDescription{
         $stmt->bindValue(':format', $articleDescription->getFormat(),PDO::PARAM_INT);
     }
     
-    //C
+    /**
+     * Create an article description in the database
+     * @param $obj
+     * @return bool
+     */
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -45,7 +49,11 @@ class FArticleDescription{
         }
     }
 
-    // R
+    /**
+     * Retrieve an article description from the database
+     * @param $id the EAN of the article description
+     * @return EArticleDescription|null the article description
+     */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
