@@ -95,10 +95,10 @@ public function __construct(){
         $this->showAnswerReview($reviewId);
     }
 
-    public function showSoldProducts(){
+    public function showRecentOrders(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
-        $this->smarty->display('soldproducts.tpl');
+        $this->smarty->display('recentorders.tpl');
     }
 
 

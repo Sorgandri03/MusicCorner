@@ -189,10 +189,10 @@ Class CSeller{
     }
 
 
-    public static function soldProducts(){
+    public static function recentOrders(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
-            $view->showSoldProducts();
+            $view->showRecentOrders();
         }
         else {
             header('Location: /MusicCorner/User/Login');

@@ -69,7 +69,7 @@
     </header>
     <!-- /HEADER -->
 
-    <!-- MODIFY STOCK -->
+    <!-- RECENT ORDERS -->
     <section id="modify-stock">
         <div class="container">
             <div class="row">
