@@ -92,7 +92,7 @@ class COrders{
             $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+            $cart = new ECart(USession::getInstance()->getSessionElement('email'));
         }
 
         /**
@@ -125,7 +125,7 @@ class COrders{
             $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+            $cart = new ECart(USession::getInstance()->getSessionElement('email'));
         }
 
         /**
@@ -168,7 +168,7 @@ class COrders{
             $cart = USession::getInstance()->getSessionElement('cart');
         }
         else{
-            $cart = new ECart(USession::getInstance()->isSetSessionElement('email'));
+            $cart = new ECart(USession::getInstance()->getSessionElement('email'));
         }
 
         /**

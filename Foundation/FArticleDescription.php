@@ -114,7 +114,7 @@ class FArticleDescription{
     /**
      * Create a EArticleDescription object from the result of a query
      * @param $result the result of the query
-     * @return EReview the review
+     * @return EArticleDescription the article object
      */
     public static function createEntity($result){
         $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], (int) $result[0]['format']);
@@ -152,7 +152,7 @@ class FArticleDescription{
     /**
      * Get all the article with a specific EAN
      * @param $ean the ean code to get the articles from
-     * @return array[EArticleDescription] the articles
+     * @return EArticleDescription the article
      */
     public static function getByEAN($ean) {
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
