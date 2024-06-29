@@ -84,6 +84,7 @@ class FSeller{
         $seller = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
         $seller->setStocks(FStock::getStocksBySeller($seller->getId()));
         $seller->setReviews(FReview::getReviewsBySeller($result[0]['email']));
+        $seller->setRecentOrders(FOrderItem::getOrdersBySeller($result[0]['email']));
         return $seller;
     }
 
@@ -91,5 +92,7 @@ class FSeller{
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);
     }
+   
+    
 
 }

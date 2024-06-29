@@ -33,6 +33,17 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+    <style>
+        .dashboard-button {
+            margin-top: 20px;
+        }
+        .product-details p {
+            margin: 0;
+        }
+        .product-img img {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 	
@@ -45,9 +56,9 @@
 			<!-- row -->
 			<div class="row">
 				<!-- LOGO -->
-						<a href="/MusicCorner/" class="logo">
-							<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
-						</a>
+				<a href="/MusicCorner/" class="logo">
+					<img src="/MusicCorner/Smarty/templates/img/biglogo.png" alt="" class="center">
+				</a>
 				<!-- /LOGO -->																						
 			</div>
 			<!-- row -->
@@ -62,46 +73,47 @@
     <section id="modify-stock">
         <div class="container">
             <div class="row">
+                <!-- Recent Orders -->
                 <div class="col-md-8">
-                    {if $seller->getStocks()|@count eq 0}
+                    {if $seller->getRecentOrders()|@count eq 0}
 						<br>
-						<h2>Non hai nessun articolo in vendita</h2>
+						<h2>Non hai venduto nessun articolo</h2>
 					{else}
                         <br>
-                        <h2>Articoli venduti</h2>
+                        <h2>Ordini recenti</h2>
                         <br>
-                        {foreach from=$seller->getStocks() item=stock}
-                        {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$stock->getArticle())}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+                        {foreach from=$seller->getRecentOrders() item=order}
+                            {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $order->getArticle())}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <br><br>
+                                    <div class="product-details">
+                                        <p class="product-category">{$article->getArtist()}</p>
+                                        <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                                        {if $article->getFormat()==1}
+                                            <p class="product-category">LP</p>
+                                        {else}
+                                            <p class="product-category">CD</p>
+                                        {/if}
+                                        <h4 class="product-category">Prezzo: €{$order->getPrice()}</h4>
+                                        <h4 class="product-category">Quantità: {$order->getQuantity()}</h4>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-7">
-                                <br><br>
-                                <div class="product-details">
-                                    <p class="product-category">{$article->getArtist()}</p>
-                                    <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
-                                    {if $article->getFormat()==1}
-                                        <p class="product-category">LP</p>
-                                    {elseif $article->getFormat()==1}
-                                        <p class="product-category">Cassetta</p>
-                                    {else}
-                                        <p class="product-category">CD</p>
-                                    {/if}
-                                    <h4 class="product-category">Prezzo: €{$stock->getPrice()}</h4>
-                                    <h4 class="product-category">Quantità: {$stock->getQuantity()}</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
+                            <br>
                         {/foreach}
                     {/if}
-                    <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
+                    <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Torna alla dashboard</strong></a>
                 </div>
+                <!-- /Recent Orders -->
+
                 <!-- Summary -->
                 <div class="col-md-4">
                     <div class="section-title">
@@ -119,4 +131,3 @@
     <!-- /MODIFY STOCK -->    
 </body>
 </html>
-					

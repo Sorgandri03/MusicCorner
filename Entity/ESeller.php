@@ -4,8 +4,8 @@ class ESeller extends EUser {
     private string $shopName;
     private float $shopRating=0;
     public array $catalogue = array();
-
     private $reviews = array();
+    private $recentorders = array();
     
     public function __construct(string $email, string $password, string $shopName) {
         $this->shopName = $shopName;
@@ -43,6 +43,12 @@ class ESeller extends EUser {
     public function getShopRating(): float {
         $this->calculateShopRating();
         return $this->shopRating;
+    }
+    public function getRecentOrders(): array {
+        return $this->recentorders;
+    }   
+    public function setRecentOrders(array $orders): void {
+        $this->recentorders = $orders;
     }
     private function calculateShopRating(): void {
         $this->getReviews();
