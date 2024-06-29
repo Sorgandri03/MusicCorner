@@ -73,7 +73,7 @@ class FReview {
     /**
      * Retrieve a review from the database
      * @param $id the EAN of the article description
-     * @return EReview|null the article description
+     * @return EReview|null the review
      */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
@@ -102,7 +102,7 @@ class FReview {
     /**
      * Delete review from the database
      * @param $obj the review to delete
-     * @return EReview|null the article description
+     * @return bool succes/not success of the deletion
      */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);

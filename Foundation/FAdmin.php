@@ -13,6 +13,7 @@ class FAdmin{
     private static $value = "(:email)";
     private static $key = "email";
     private static $updatequery = "email = :email";
+    
     /**
      * Return the fields of the table
      * @return string the fields of the table
@@ -42,12 +43,16 @@ class FAdmin{
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
-    
+
     public static function bind($stmt, $admin){
         $stmt->bindValue(':email', $admin->getId(), PDO::PARAM_STR);
     }
 
-    //C
+    /**
+     * Create an admin in the database
+     * @param $obj
+     * @return bool
+     */
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         $saveUser = FUser::saveUser($obj);
@@ -58,7 +63,11 @@ class FAdmin{
         }
     }
 
-    //R
+    /**
+     * Retrieve an admin from the database
+     * @param $id the email of the admin
+     * @return EAdmin|null the admin
+     */
     public static function retrieveObject ($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -69,7 +78,11 @@ class FAdmin{
         }
     }
 
-    //U
+    /**
+     * Update admin in the database
+     * @param $obj the admin to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $user = new EUser($obj->getId(), $obj->getPassword());
         $update = FUser::updateObject($user);
@@ -80,7 +93,11 @@ class FAdmin{
         }
     }
 
-    //D
+    /**
+     * Delete the admin from the database
+     * @param $obj the admin to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
@@ -91,15 +108,25 @@ class FAdmin{
             return false;
         }
     }
-
     // END OF CRUD
 
+    /**
+     * Create a EArticleDescription object from the result of a query
+     * @param $result the result of the query
+     * @return EAdmin the review
+     */
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $admin = new EAdmin($result[0]['email'], $user->getPassword());
         return $admin;
     }
 
+    /**
+     * Verify if an admin exists in the database
+     * @param $field the field to verify
+     * @param $id the id to verify for
+     * @return bool the result of the verification
+     */
     public static function verify($field, $id){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);

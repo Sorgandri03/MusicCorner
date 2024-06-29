@@ -14,7 +14,7 @@ class FArticleDescription{
     private static $value = "(:EAN, :name, :artist, :format)";
     private static $key = "EAN";
     private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, format = :format";
-    
+
     /**
      * Return the fields of the table
      * @return string the fields of the table
@@ -99,7 +99,7 @@ class FArticleDescription{
     /**
      * Delete the article description from the database
      * @param $obj the article description to delete
-     * @return EArticleDescription|null the article description
+     * @return bool succes/not success of the deletion
      */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
