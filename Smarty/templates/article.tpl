@@ -419,7 +419,7 @@
 								<div class="product-rating">
 								</div>
 							</div>
-							{if $product->isInStock()}
+							{if $product->isInStock()  && $customer}
 								<form action="/MusicCorner/Orders/addToCart/" method="post">
 									<div class="add-to-cart">
 										<button class="add-to-cart-btn" name="stockId" value={$stocks[0]->getId()}><i class="fa fa-shopping-cart"></i> add to cart</button>

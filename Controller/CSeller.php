@@ -191,6 +191,11 @@ Class CSeller{
 
     public static function recentOrders(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            if(UHTTPMethods::isPostSet('orderItem')){
+                $orderItem = FPersistentManager::getInstance()->retrieveObj('EOrderItem', UHTTPMethods::post('orderItem'));
+                $orderItem->setShipped(true);
+                FPersistentManager::getInstance()->updateObj($orderItem);
+            }
             $view = new VSeller();
             $view->showRecentOrders();
         }

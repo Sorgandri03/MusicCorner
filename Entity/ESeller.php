@@ -45,7 +45,13 @@ class ESeller extends EUser {
         return $this->shopRating;
     }
     public function getRecentOrders(): array {
-        return $this->recentorders;
+        $array = array();
+        foreach($this->recentorders as $orderitem) {
+            if($orderitem->isShipped()==false) {
+                $array[] = $orderitem;
+            }
+        }
+        return $array;
     }   
     public function setRecentOrders(array $orders): void {
         $this->recentorders = $orders;

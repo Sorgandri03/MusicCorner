@@ -52,7 +52,7 @@ class FOrderItem{
         $stmt->bindValue(':quantity', $orderItem->getQuantity(), PDO::PARAM_INT);
         $stmt->bindValue(':price', $orderItem->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(':orderID', $orderItem->getOrderId(), PDO::PARAM_INT);
-        $stmt->bindValue(':shipped', $orderItem->getShipped(), PDO::PARAM_BOOL);
+        $stmt->bindValue(':shipped', $orderItem->isShipped(), PDO::PARAM_BOOL);
     }
 
     /**

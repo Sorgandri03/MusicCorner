@@ -1,5 +1,4 @@
 DA FARE SUBITO:
-Indicare al venditore gli articoli da spedire ai vari clienti con indirizzo e possono eliminare una volta spediti (aggiungi riga a db)
 VCustomer
 Documentazione
 Steps

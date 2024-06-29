@@ -77,43 +77,52 @@
                 <div class="col-md-12">
                     {if $seller->getRecentOrders()|@count eq 0}
 						<br>
-						<h2>Non hai venduto nessun articolo</h2>
+						<h2>Non hai nessun articolo da spedire</h2>
 					{else}
                         <br>
                         <h2>Ordini recenti</h2>
                         <br>
                         {foreach from=$seller->getRecentOrders() item=orderItem}
-                            {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $orderItem->getArticle())}
-                            {assign var="order" value=FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderItem->getOrderId())}
-                            {assign var="customer" value=FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $order->getCustomer())}
-                            {assign var="shippingAddress" value=FPersistentManager::getInstance()->retrieveObj(EAddress::class, $order->getShippingAddress())}
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <br><br>
-                                    <div class="product-details">
-                                        <p class="product-category">{$article->getArtist()}</p>
-                                        <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
-                                        {if $article->getFormat()==1}
-                                            <p class="product-category">LP</p>
-                                        {else}
-                                            <p class="product-category">CD</p>
-                                        {/if}
-                                        <h4 class="product-category">Prezzo: €{$orderItem->getPrice()}</h4>
-                                        <h4 class="product-category">Quantità: {$orderItem->getQuantity()}</h4>
-                                        <h4 class="product-category">Username: {$customer->getUsername()}</h4>
-                                        <h4 class="product-category">Indirizzo di spedizione: {$shippingAddress->getStreet()},{$shippingAddress->getCity()},{$shippingAddress->getCap()}</h4>
-                                        <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Segna come spedito</strong></a>
+                        {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $orderItem->getArticle())}
+                        {assign var="order" value=FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderItem->getOrderId())}
+                        {assign var="customer" value=FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $order->getCustomer())}
+                        {assign var="shippingAddress" value=FPersistentManager::getInstance()->retrieveObj(EAddress::class, $order->getShippingAddress())}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="https://www.ibs.it/images/{$article->getId()}_0_536_0_75.jpg" alt="">
                                     </div>
                                 </div>
                             </div>
-                            <br>
+                            <div class="col-md-8">
+                                <br><br>
+                                <div class="product-details">
+                                    <p class="product-category">{$article->getArtist()}</p>
+                                    <smallbr></smallbr>
+                                    <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                                    <h3 class="product-name">{$article->getId()}</h3>
+                                    {if $article->getFormat()==1}
+                                        <p class="product-category">LP</p>
+                                    {else}
+                                        <p class="product-category">CD</p>
+                                    {/if}
+                                    <smallbr></smallbr>
+                                    <p class="product-category">Prezzo: €{$orderItem->getPrice()}</p>
+                                    <smallbr></smallbr>
+                                    <p class="product-category">Quantità: {$orderItem->getQuantity()}</p>
+                                    <smallbr></smallbr>
+                                    <p class="product-category">Username: {$customer->getUsername()}</p>
+                                    <br>
+                                    <h4 class="product-category">Indirizzo di spedizione: {$shippingAddress->getStreet()}, {$shippingAddress->getCity()}, {$shippingAddress->getCap()}</h4>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="orderItem" value="{$orderItem->getId()}">
+                                        <button class="btn btn-outline-primary btn-lg dashboard-button"><strong>Segna come spedito</strong></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         {/foreach}
                     {/if}
                     <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>               
