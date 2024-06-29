@@ -74,7 +74,7 @@
         <div class="container">
             <div class="row">
                 <!-- Recent Orders -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     {if $seller->getRecentOrders()|@count eq 0}
 						<br>
 						<h2>Non hai venduto nessun articolo</h2>
@@ -82,8 +82,11 @@
                         <br>
                         <h2>Ordini recenti</h2>
                         <br>
-                        {foreach from=$seller->getRecentOrders() item=order}
-                            {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $order->getArticle())}
+                        {foreach from=$seller->getRecentOrders() item=orderItem}
+                            {assign var="article" value=FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $orderItem->getArticle())}
+                            {assign var="order" value=FPersistentManager::getInstance()->retrieveObj(EOrder::class, $orderItem->getOrderId())}
+                            {assign var="customer" value=FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $order->getCustomer())}
+                            {assign var="shippingAddress" value=FPersistentManager::getInstance()->retrieveObj(EAddress::class, $order->getShippingAddress())}
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="product">
@@ -102,29 +105,21 @@
                                         {else}
                                             <p class="product-category">CD</p>
                                         {/if}
-                                        <h4 class="product-category">Prezzo: €{$order->getPrice()}</h4>
-                                        <h4 class="product-category">Quantità: {$order->getQuantity()}</h4>
+                                        <h4 class="product-category">Prezzo: €{$orderItem->getPrice()}</h4>
+                                        <h4 class="product-category">Quantità: {$orderItem->getQuantity()}</h4>
+                                        <h4 class="product-category">Username: {$customer->getUsername()}</h4>
+                                        <h4 class="product-category">Indirizzo di spedizione: {$shippingAddress->getStreet()},{$shippingAddress->getCity()},{$shippingAddress->getCap()}</h4>
+                                        <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Segna come spedito</strong></a>
                                     </div>
                                 </div>
                             </div>
                             <br>
                         {/foreach}
                     {/if}
-                    <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button"><strong>Torna alla dashboard</strong></a>
-                </div>
+                    <a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>               
                 <!-- /Recent Orders -->
 
-                <!-- Summary -->
-                <div class="col-md-4">
-                    <div class="section-title">
-                        <br>
-                        <h2 class="title">RIEPILOGO</h2>
-                    </div>
-                    <div class="cart-summary">
-                        <h3>Articoli venduti: {count($seller->getStocks())}</h3>
-                    </div>
-                </div>
-                <!-- /Summary -->
+                
             </div>
         </div>
     </section>
