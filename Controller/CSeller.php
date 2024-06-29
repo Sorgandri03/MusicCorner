@@ -4,7 +4,6 @@ Class CSeller{
 
     /**
      * Show the seller dashboard
-     * @throws SmartyException
      */
     public static function dashboard(){
         /**
@@ -25,7 +24,6 @@ Class CSeller{
 
     /**
      * Show the page to add an article to the catalogue
-     * @throws SmartyException
      */
     public static function addArticle(){
         /**
@@ -147,7 +145,7 @@ Class CSeller{
                 $review->setAnswered(true);
                 FPersistentManager::getInstance()->updateObj($review);
                 $view = new VSeller();
-                $view->showAnswerReviewSuccess(UHTTPMethods::post('reviewId'));
+                $view->showAnswerReviewSuccess();
             }
             else if(UHTTPMethods::isPostSet('answer')){
                 $view = new VSeller();
