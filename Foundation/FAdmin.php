@@ -13,18 +13,36 @@ class FAdmin{
     private static $value = "(:email)";
     private static $key = "email";
     private static $updatequery = "email = :email";
+    /**
+     * Return the fields of the table
+     * @return string the fields of the table
+     */
     public static function getValue(): string {
         return self::$value;
     }
+
+    /**
+     * Return the table name
+     * @return string the table name
+     */
     public static function getTable(): string {
         return self::$table;
     }
+    /**
+     * Return the key field of the table
+     * @return string the table name
+     */
     public static function getKey(): string {
         return self::$key;
     }
+    /**
+     * Return the update query
+     * @return string the update query
+     */
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
+    
     public static function bind($stmt, $admin){
         $stmt->bindValue(':email', $admin->getId(), PDO::PARAM_STR);
     }

@@ -51,6 +51,9 @@ class EArticleDescription {
     public function getLowestPrice(){
         $lowestPrice = 0;
         foreach($this->stocks as $stock){
+            if($stock->getQuantity() == 0){
+                continue;
+            }
             if($lowestPrice == 0 || $stock->getPrice() < $lowestPrice){
                 $lowestPrice = $stock->getPrice();
             }

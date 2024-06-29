@@ -13,13 +13,21 @@ public function __construct(){
      * Funzione che si occupa di visualizzare la pagina per l'aggiunta di un articolo
      * @throws SmartyException
      */
-    public function showAllReviews(){
-        $admin = FPersistentManager::getInstance()->retrieveObj(EAdmin::class,USession::getInstance()->getSessionElement('admin')->getId());
-        $reviews = FPersistentManager::getInstance()->retrieveAll(EReview::class);
+    public function showAllReviews($reviews){
         $this->smarty->assign('reviews',$reviews);
-        $this->smarty->assign('admin',$admin);
         $this->smarty->display('allreviews.tpl');
     }
     
+    public function showDeleteReview($review){
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer());
+        $this->smarty->assign('customer',$customer);
+        $this->smarty->assign('review',$review);
+        $this->smarty->display('deletereview.tpl');
+    }
+
+    public function showDeleteReviewSuccess(){
+        $this->smarty->assign('success',true);
+        $this->smarty->display('deletereview.tpl');
+    }
 
 }

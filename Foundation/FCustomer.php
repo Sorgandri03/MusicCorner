@@ -6,19 +6,35 @@ class FCustomer {
     public static $value = "(:email, :username, :suspensionTime)";
     public static $key = "email";
     private static $updatequery = "email = :email, username = :username, suspensionTime= :suspensionTime" ;
+    /**
+     * Return the fields of the table
+     * @return string the fields of the table
+     */
     public static function getValue(): string {
         return self::$value;
     }
+
+    /**
+     * Return the table name
+     * @return string the table name
+     */
     public static function getTable(): string {
         return self::$table;
     }
+    /**
+     * Return the key field of the table
+     * @return string the table name
+     */
     public static function getKey(): string {
         return self::$key;
     }
+    /**
+     * Return the update query
+     * @return string the update query
+     */
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
-
 
     public static function bind($stmt, $customer){
         $stmt->bindValue(':username', $customer->getUsername(), PDO::PARAM_STR);

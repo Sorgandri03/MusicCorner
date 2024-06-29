@@ -14,15 +14,32 @@ class FReview {
     private static $value = "(NULL, :customer, :reviewText, :articleRating, :sellerRating, :article, :seller, :orderItemID, :answered)";
     private static $key = "id";
     private static $updatequery = "customer = :customer, reviewText = :reviewText, articleRating = :articleRating, sellerRating = :sellerRating, article = :article, seller = :seller, orderItemID = :orderItemID, answered = :answered";
+    /**
+     * Return the fields of the table
+     * @return string the fields of the table
+     */
     public static function getValue(): string {
         return self::$value;
     }
+
+    /**
+     * Return the table name
+     * @return string the table name
+     */
     public static function getTable(): string {
         return self::$table;
     }
+    /**
+     * Return the key field of the table
+     * @return string the table name
+     */
     public static function getKey(): string {
         return self::$key;
     }
+    /**
+     * Return the update query
+     * @return string the update query
+     */
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
@@ -38,7 +55,11 @@ class FReview {
         $stmt->bindValue(':answered', $Review->isAnswered(), PDO::PARAM_BOOL);
     }
 
-    //C
+    /**
+     * Create a review in the database
+     * @param $obj
+     * @return bool
+     */
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -49,7 +70,11 @@ class FReview {
         }
     }
   
-    //R
+    /**
+     * Retrieve a review from the database
+     * @param $id the EAN of the article description
+     * @return EReview|null the article description
+     */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -60,7 +85,11 @@ class FReview {
         }   
     }
 
-    //U
+    /**
+     * Update a review in the database
+     * @param $obj the review to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -70,7 +99,11 @@ class FReview {
         }
     }
 
-    //D
+    /**
+     * Delete review from the database
+     * @param $obj the review to delete
+     * @return EReview|null the article description
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){
@@ -82,6 +115,11 @@ class FReview {
 
     //END CRUD
 
+    /**
+     * Create a EReview object from the result of a query
+     * @param $result the result of the query
+     * @return EReview the review
+     */
     public static function createEntity($result){
         $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['orderItemID']);
         $obj->setId($result[0]['id']);
@@ -89,6 +127,11 @@ class FReview {
         return $obj;
     }
 
+    /**
+     * Get all the reviews for an article
+     * @param $article the article to get the reviews from
+     * @return array[EReview] the reviews
+     */
     public static function getReviewsByArticle($article){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'article', $article);
         $reviews = array();
@@ -99,6 +142,11 @@ class FReview {
         return $reviews;
     }
 
+    /**
+     * Get all the reviews for a seller
+     * @param $seller the seller to get the reviews from
+     * @return array[EReview] the reviews
+     */
     public static function getReviewsBySeller($seller){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
         $reviews = array();
@@ -109,6 +157,11 @@ class FReview {
         return $reviews;
     }
 
+    /**
+     * Get all the reviews for a customer
+     * @param $customer the seller to get the reviews from
+     * @return array[EReview] the reviews
+     */
     public static function getReviewsByCustomer($customer){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
         $reviews = array();
@@ -119,7 +172,11 @@ class FReview {
         return $reviews;
     }
 
-
+    /**
+     * Get all the reviews for a orderItem
+     * @param $orderItem the orderItem to get the reviews from
+     * @return array[EReview] the reviews
+     */
     public static function getReviewsByOrderItem($orderItem){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItem);
         $reviews = array();
