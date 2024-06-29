@@ -41,7 +41,12 @@ class FCustomer {
         $stmt->bindValue(':email', $customer->getId(), PDO::PARAM_STR);
         $stmt->bindValue(':suspensionTime', $customer->getSuspensionTime()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
     }
-    //C
+
+    /**
+     * Create a customer in the database
+     * @param $obj the customer to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject($obj){
         $saveCustomer = FDB::getInstance()->create(self::class, $obj);
         $saveUser = FUser::createObject(new EUser($obj->getId(), $obj->getPassword()));
@@ -52,7 +57,11 @@ class FCustomer {
         }
     }
     
-    //R
+    /**
+     * Retrieve a customer from the database
+     * @param $email the email of the customer
+     * @return ECustomer|null the customer
+     */
     public static function retrieveObject($email){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
@@ -63,7 +72,11 @@ class FCustomer {
         }
     }
     
-    //U
+    /**
+     * Update a customer in the database
+     * @param $obj the customer to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $update = FDB::getInstance()->update(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
@@ -75,7 +88,11 @@ class FCustomer {
         }
     }
 
-    //D
+    /**
+     * Delete the customer from the database
+     * @param $obj the customer to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $delete = FDB::getInstance()->delete(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
@@ -93,9 +110,13 @@ class FCustomer {
         }
 
     }
-
     //END CRUD
 
+    /**
+     * Create a ECustomer object from the result of a query
+     * @param $result the result of the query
+     * @return ECustomer the customer object
+     */
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $customer = new ECustomer($result[0]['username'], $result[0]['email'], $user->getPassword());
@@ -106,7 +127,10 @@ class FCustomer {
         $customer->setReviews(FReview::getReviewsByCustomer($result[0]['email']));
         return $customer;
     }
-
+    /**
+     * Retrieve all the customers from the database
+     * @return ECustomer[] the customers
+     */
     public static function retrieveAllObjects(){
         $queryResult = FDB::getInstance()->retrieveEntries(self::getTable());
         $customers = array();
@@ -117,6 +141,12 @@ class FCustomer {
         return $customers;
     }
 
+    /**
+     * Verify if an customer exists in the database
+     * @param $field the field to verify
+     * @param $id the id to verify for
+     * @return bool the result of the verification
+     */
     public static function verify($field, $id){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);

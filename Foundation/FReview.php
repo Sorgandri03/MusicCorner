@@ -14,6 +14,7 @@ class FReview {
     private static $value = "(NULL, :customer, :reviewText, :articleRating, :sellerRating, :article, :seller, :orderItemID, :answered)";
     private static $key = "id";
     private static $updatequery = "customer = :customer, reviewText = :reviewText, articleRating = :articleRating, sellerRating = :sellerRating, article = :article, seller = :seller, orderItemID = :orderItemID, answered = :answered";
+    
     /**
      * Return the fields of the table
      * @return string the fields of the table
@@ -29,6 +30,7 @@ class FReview {
     public static function getTable(): string {
         return self::$table;
     }
+
     /**
      * Return the key field of the table
      * @return string the table name
@@ -36,6 +38,7 @@ class FReview {
     public static function getKey(): string {
         return self::$key;
     }
+
     /**
      * Return the update query
      * @return string the update query
@@ -57,8 +60,8 @@ class FReview {
 
     /**
      * Create a review in the database
-     * @param $obj
-     * @return bool
+     * @param $obj the review to create
+     * @return bool succes/not success of the creation
      */
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
@@ -130,7 +133,7 @@ class FReview {
     /**
      * Get all the reviews for an article
      * @param $article the article to get the reviews from
-     * @return array[EReview] the reviews
+     * @return EReview[] the reviews
      */
     public static function getReviewsByArticle($article){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'article', $article);
@@ -145,7 +148,7 @@ class FReview {
     /**
      * Get all the reviews for a seller
      * @param $seller the seller to get the reviews from
-     * @return array[EReview] the reviews
+     * @return EReview[] the reviews
      */
     public static function getReviewsBySeller($seller){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
@@ -160,7 +163,7 @@ class FReview {
     /**
      * Get all the reviews for a customer
      * @param $customer the seller to get the reviews from
-     * @return array[EReview] the reviews
+     * @return EReview[] the reviews
      */
     public static function getReviewsByCustomer($customer){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
@@ -175,7 +178,7 @@ class FReview {
     /**
      * Get all the reviews for a orderItem
      * @param $orderItem the orderItem to get the reviews from
-     * @return array[EReview] the reviews
+     * @return EReview[] the reviews
      */
     public static function getReviewsByOrderItem($orderItem){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItem);

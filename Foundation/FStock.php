@@ -49,7 +49,12 @@ class FStock{
         $stmt->bindValue(':article', $stock->getArticle(), PDO::PARAM_STR);
         $stmt->bindValue(':seller', $stock->getSeller(), PDO::PARAM_STR);
     }
-    //C
+
+    /**
+     * Create a stock in the database
+     * @param $obj the stock to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -59,8 +64,12 @@ class FStock{
             return false;
         }
     }
-    //R
-
+    
+    /**
+     * Retrieve a stock from the database
+     * @param $id the id of the stock
+     * @return EStock|null the stock object
+     */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -71,7 +80,12 @@ class FStock{
         }
 
     }
-    //U
+
+    /**
+     * Update a stock in the database
+     * @param $obj the stock to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -80,7 +94,12 @@ class FStock{
             return false;
         }
     }
-    //D
+
+    /**
+     * Delete the stock from the database
+     * @param $obj the stock to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){
@@ -90,13 +109,22 @@ class FStock{
         }
     }
 
-
+    /**
+     * Create a EStock object from the result of a query
+     * @param $result the result of the query
+     * @return EStock the stock object
+     */
     public static function createEntity($result){
         $obj = new EStock( $result[0]['article'], $result[0]['quantity'], $result[0]['price'], $result[0]['seller']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
 
+    /**
+     * Get all the stocks of a seller
+     * @param $seller the seller to get the stocks from
+     * @return EStock[] the stocks of the seller
+     */
     public static function getStocksBySeller($seller){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'seller', $seller);
         $stocks = array();
@@ -107,6 +135,11 @@ class FStock{
         return $stocks;
     }
 
+    /**
+     * Get all the stock of an artist
+     * @param $article the article to get the stocks from
+     * @return EStock[] the stocks of the artist
+     */
     public static function getStocksByArticle($article){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'article', $article);
         $stocks = array();

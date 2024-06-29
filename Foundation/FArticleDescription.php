@@ -54,8 +54,8 @@ class FArticleDescription{
     
     /**
      * Create an article description in the database
-     * @param $obj
-     * @return bool
+     * @param $obj the article to create
+     * @return bool succes/not success of the creation
      */
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
@@ -126,7 +126,7 @@ class FArticleDescription{
     /**
      * Get all the article of an artist
      * @param $artist the artist to get the articles from
-     * @return array[EArticleDescription] the articles
+     * @return EArticleDescription[] array of EArticleDescription
      */
     public static function getArticlesByArtist($artist){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'artist', $artist);

@@ -55,7 +55,11 @@ class FOrder{
         $stmt->bindValue(':shippingAddress', $order->getShippingAddress(), PDO::PARAM_INT);
     }
 
-    //C
+    /**
+     * Create an Order in the database
+     * @param $obj the order to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -66,7 +70,11 @@ class FOrder{
         }
     }
 
-    //R
+    /**
+     * Retrieve an Order from the database
+     * @param $id the id of the Order
+     * @return EOrder|null the Order
+     */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -77,7 +85,11 @@ class FOrder{
         }
     }
     
-    //U
+    /**
+     * Update an Order in the database
+     * @param $obj the Order to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -87,7 +99,11 @@ class FOrder{
         }
     }
 
-    //D
+    /**
+     * Update an Order in the database
+     * @param $obj the Order to update
+     * @return bool succes/not success of the update
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){
@@ -98,6 +114,11 @@ class FOrder{
     }
     //END CRUD
 
+    /**
+     * Create a EOrder object from the result of a query
+     * @param $result the result of the query
+     * @return EOrder the article object
+     */
     public static function createEntity($result){
         $obj = new EOrder($result[0]['customer'],$result[0]['shippingAddress'], $result[0]['payment'], $result[0]['price']);
         $obj->setId($result[0]['id']);
@@ -105,7 +126,12 @@ class FOrder{
         $obj->setOrderItems(FOrderItem::getItemsbyOrder($result[0]['id']));
         return $obj;
     }
-    
+
+    /**
+     * Get all the orders of a customer
+     * @param $customer the customer to get the articles from
+     * @return EOrder[] the orders of the customer
+     */
     public static function getOrdersbyCustomer($customer){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
         $orders = array();
