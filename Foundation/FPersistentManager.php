@@ -59,23 +59,41 @@ class FPersistentManager{
     }
 
     //END CRUD
-
+    /** 
+     * Check if the EAN is already in the database
+     * @param string $ean ean to verify
+     * @return bool the result of the verification
+     */
     public static function verifyEAN($ean){
         $result = FArticleDescription::verify('EAN', $ean);
         return $result;
     }
 
+    /**
+     * Retrieve an article by EAN
+     * @param string $ean ean of the article to retrieve
+     * @return EArticleDescription the article retrieved
+     */
     public function getArticleByEAN($ean) {
         return FArticleDescription::getByEAN($ean);
     }
-    
+
+    /** 
+     * Check if the email is already in the database
+     * @param string $email email to verify
+     * @return bool the result of the verification
+     */
     public static function verifyUserEmail($email){
         $result = FUser::verify('email', $email);
         return $result;
     }
 
+    /** 
+     * Get the email from the username in case of customer or from the shopName in case of seller
+     * @param string $username username to verify
+     * @return string|null the result of the verification
+     */
     public static function getEmailFromUsername($username){
-        // Cerca l'username nei Customer e lo shopName nei Seller
         $tables = ['Customer', 'Seller'];
         foreach ($tables as $table) {
             if ($table == 'Customer') {
@@ -90,8 +108,12 @@ class FPersistentManager{
         return null;
     }
 
+    /** 
+     * Check if the username is already in the database
+     * @param string $username email to verify
+     * @return bool the result of the verification
+     */
     public static function verifyUserUsername($username){
-        //in base all'utente verifico campi diversi xke user non ha il campo username
         $email=self::getEmailFromUsername($username);
         switch(self::checkUserTypeRegistration($email)){
             case "customer":
@@ -107,10 +129,9 @@ class FPersistentManager{
 
     /**
      * Check the type of user and if no email is matched it means that the email is available
-     * null 
      * customer
      * seller
-     * admin
+     * disponibile
      * @param string $email
      * @return string
      */
@@ -136,6 +157,11 @@ class FPersistentManager{
         else {return null;}
     }
 
+    /**
+     * Search for articles in the database
+     * @param string $query the query to search
+     * @return EArticleDescription[]|null the articles found
+     */
     public static function searchArticles($query){
         $results = FDB::getInstance()::searchArticles($query);
         $articles = array();
@@ -145,7 +171,11 @@ class FPersistentManager{
         }
         return $articles;
     }
-
+    /**
+     * Get random articles from the database
+     * @param int $quantity the quantity of random articles to get
+     * @return EArticleDescription[]|null the articles found
+     */
     public static function getRandomArticles($quantity){
         $results = FDB::getInstance()::getRandomArticles();
         $articles = array();
@@ -162,6 +192,11 @@ class FPersistentManager{
         return $articles;
     }
 
+    /**
+     * Get articles by format from the database
+     * @param string $category the category of the articles to get
+     * @return EArticleDescription[]|null the articles found
+     */
     public static function getArticlesByFormat($format){
         $results = FDB::getInstance()::getArticlesByFormat($format);
         $articles = array();
@@ -172,6 +207,11 @@ class FPersistentManager{
         return $articles;
     }
 
+    /**
+     * Get all the entries from the database of the specified entity
+     * @param string $entity the entity to retrieve
+     * @return array the articles found
+     */
     public static function retrieveAll($entity){
         $class = "F" . substr($entity,1);
         $queryResult = FDB::getInstance()->retrieve($class::getTable(),1,1);
@@ -183,11 +223,21 @@ class FPersistentManager{
         return $items;
     }
 
+    /**
+     * Retreive the password relative to the email
+     * @param string $email the email to retrieve the password
+     * @return string the password
+     */
     public static function retrievePassword($email){
         $result = FDB::retrieve('user', 'email' ,$email);
         return $result[0]['password'];
     }
 
+    /**
+     * Verify if an order item is reviewed
+     * @param EOrderItem $orderItem the order item to verify
+     * @return bool the result of the verification
+     */
     public static function isOrderItemReviewed($orderItem){
         $reviews = FReview::getReviewsByOrderItem($orderItem);
         return FDB::getInstance()::existInDb($reviews);

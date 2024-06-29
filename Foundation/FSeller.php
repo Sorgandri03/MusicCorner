@@ -43,7 +43,11 @@ class FSeller{
         $stmt->bindValue(':shopName', $Seller->getShopName(), PDO::PARAM_STR);
     }
 
-    //C
+    /**
+     * Create a seller in the database
+     * @param $obj the seller to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         $saveUser = FUser::saveUser($obj);
@@ -54,7 +58,11 @@ class FSeller{
         }
     }
 
-    //R
+    /**
+     * Retrieve a seller from the database
+     * @param $id the email of the seller
+     * @return ESeller|null the seller
+     */
     public static function retrieveObject($email){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $email);
         if(count($result) > 0){
@@ -65,7 +73,11 @@ class FSeller{
         }
     }
 
-    //U
+    /**
+     * Update a seller in the database
+     * @param $obj the seller to update
+     * @return bool succes/not success of the update
+     */
      public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
@@ -77,7 +89,11 @@ class FSeller{
         }
     }
 
-    //D
+    /**
+     * Delete the seller from the database
+     * @param $obj the seller to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         $user = new EUser($obj->getId(), $obj->getPassword());
@@ -94,6 +110,11 @@ class FSeller{
 
     //END CRUD
 
+    /**
+     * Create a ESeller object from the result of a query
+     * @param $result the result of the query
+     * @return ESeller the seller object
+     */
     public static function createEntity($result){
         $user = FUser::retrieveObject($result[0]['email']);
         $seller = new ESeller($result[0]['email'], $user->getPassword(), $result[0]['shopName']);
@@ -103,11 +124,15 @@ class FSeller{
         return $seller;
     }
 
+    /**
+     * Verify if a seller exists in the database
+     * @param $field the field to verify
+     * @param $id the id to verify for
+     * @return bool the result of the verification
+     */
     public static function verify($field, $id){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);
     }
    
-    
-
 }

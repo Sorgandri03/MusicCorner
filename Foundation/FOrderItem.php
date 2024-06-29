@@ -131,7 +131,7 @@ class FOrderItem{
     /**
      * Get all the items of an order
      * @param $order the order to get the order-item from
-     * @return array[EOrderItem] the order-item
+     * @return EOrderItem[] the order-item
      */
     public static function getItemsbyOrder($order){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderID', $order);
@@ -146,7 +146,7 @@ class FOrderItem{
     /**
      * Get all the items ordered from a seller
      * @param $seller the seller to get the order-item from
-     * @return array[EOrderItem] the order-item
+     * @return EOrderItem[] the order-item
      */
     public static function getOrdersBySeller($seller){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), "seller", $seller);

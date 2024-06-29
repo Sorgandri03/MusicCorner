@@ -23,7 +23,6 @@ class FAddress{
     public static function getValue(): string {
         return self::$value;
     }
-
     /**
      * Return the table name
      * @return string the table name
@@ -54,7 +53,11 @@ class FAddress{
         $stmt->bindValue(':customer', $address->getCustomer(), PDO::PARAM_STR);
     }
 
-    //C
+    /**
+     * Create an address in the database
+     * @param $obj the article to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject ($obj){
         $saveArticle = FDB::getInstance()->create(self::class, $obj);
         if($saveArticle !== null){
@@ -65,7 +68,11 @@ class FAddress{
         }
     }
 
-    //R
+    /**
+     * Retrieve an address from the database
+     * @param $id the EAN of the address
+     * @return EAddress|null the address
+     */
     public static function retrieveObject($id){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $id);
         if(count($result) > 0){
@@ -77,7 +84,11 @@ class FAddress{
 
     }
 
-    //U
+    /**
+     * Update an address in the database
+     * @param $obj the address to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -87,7 +98,11 @@ class FAddress{
         }
     }
 
-    //D
+    /**
+     * Delete the address from the database
+     * @param $obj the address to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){
@@ -98,14 +113,23 @@ class FAddress{
     }
 
     // END OF CRUD
-
+    
+    /**
+     * Create a EAddress object from the result of a query
+     * @param $result the result of the query
+     * @return EAddress the article object
+     */
     public static function createEntity($result){
         $obj = new EAddress($result[0]['street'], $result[0]['city'], $result[0]['cap'], $result[0]['name'], $result[0]['customer']);
         $obj->setId($result[0]['id']);
         return $obj;
     }
 
-    
+    /**
+     * Get all the article of an artist
+     * @param $artist the artist to get the articles from
+     * @return EAddress[] array of EAddress
+     */
     public static function getAddressesbyCustomer($customer){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customer', $customer);
         $addresses = array();

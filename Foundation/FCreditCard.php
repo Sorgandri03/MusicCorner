@@ -53,7 +53,11 @@ class FCreditCard{
         $stmt->bindValue(':cvv', $creditCard->getCvv(), PDO::PARAM_STR);
     }
 
-    //C
+    /**
+     * Create an credit card in the database
+     * @param $obj the article to create
+     * @return bool succes/not success of the creation
+     */
     public static function createObject($obj){
         $create = FDB::getInstance()->create(self::class, $obj);
         if($create !== null){
@@ -64,7 +68,11 @@ class FCreditCard{
         }
     }
 
-    //R
+    /**
+     * Retrieve an credit card from the database
+     * @param $cardNumber the number of the credit card
+     * @return ECreditCard|null the credit card
+     */
     public static function retrieveObject($cardNumber){
         $result = FDB::getInstance()->retrieve(self::getTable(), self::getKey(), $cardNumber);
         if(count($result) > 0){
@@ -75,7 +83,11 @@ class FCreditCard{
         }
     }
 
-    //U
+    /**
+     * Update an credit card in the database
+     * @param $obj the credit card to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $update = FDB::getInstance()->update(self::class, $obj);
         if($update !== null){
@@ -85,7 +97,11 @@ class FCreditCard{
         }
     }
 
-    //D
+    /**
+     * Delete the credit card from the database
+     * @param $obj the credit card to delete
+     * @return bool succes/not success of the deletion
+     */
     public static function deleteObject($obj){
         $delete = FDB::getInstance()->delete(self::class, $obj);
         if($delete !== null){
@@ -97,13 +113,22 @@ class FCreditCard{
 
     //END CRUD
 
-
+    /**
+     * Create a ECreditCard object from the result of a query
+     * @param $result the result of the query
+     * @return ECreditCard the article object
+     */
     public static function createEntity($result){
         $card = new ECreditCard($result[0]['cardNumber'], $result[0]['expiringDate'], $result[0]['cvv'], $result[0]['owner'], $result[0]['customerId'], $result[0]['billingAddress']);
         $card->setId($result[0][self::getKey()]);
         return $card;
     }
 
+    /**
+     * Get all the cards of a customer
+     * @param $customerId the customer to get the cards from
+     * @return ECreditCard[] array of ECreditCard
+     */
     public static function getCardsByCustomer($customerId){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'customerId', $customerId);
         $cards = array();
