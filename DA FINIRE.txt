@@ -8,3 +8,10 @@ Decremento Stock con ordini (fatto) - Transaction Lock
 
 DA FARE ALLA FINE:
 Tutti i link una volta su altervista
+
+
+
+
+
+
+me tocca documeta order e orderitem
