@@ -6,24 +6,16 @@
 class UHTTPMethods{
 
     /**
-     * can access to $_POST superglobal
+     * Can access to $_POST superglobal
      */
     public static function post($param){
         return $_POST[$param];
     }
 
     /**
-     * checks if a post parameter is set
+     * Checks if a post parameter is set
      */
     public static function isPostSet($param){
         return isset($_POST[$param]);
     }
-    
-    /**
-     * can access to $_GET superglobal
-     */
-    public static function get($param){
-        return $_GET[$param];
-    }
-
 }
