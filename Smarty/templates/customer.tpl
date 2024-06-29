@@ -68,7 +68,7 @@
 					<h1>Benvenuto {$username} </h1>
 					<ul>
 						<li><a href="/MusicCorner/Customer/orders" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
-						<li><a href="/MusicCorner/Customer/CustomerReviews" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
+						<li><a href="/MusicCorner/Customer/customerReviews" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
 						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a></li>
 						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-inverse-red" ><strong>Logout</strong></a></li>
 					</ul>

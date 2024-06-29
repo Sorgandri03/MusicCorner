@@ -1,7 +1,6 @@
 <?php
 
 Class CAdmin{
-
     /**
      * Show the admin dashboard
      */
@@ -10,8 +9,8 @@ Class CAdmin{
          * Check if the user is logged and if it is an admin
          */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
-            $view = new VUser();
-            $view->showUserDashboard();
+            $view = new VAdmin();
+            $view->showDashboard();
             return;
         }
         /**
@@ -62,7 +61,7 @@ Class CAdmin{
                 FPersistentManager::getInstance()->updateObj($customer);
                 FPersistentManager::getInstance()->deleteObj($review);
                 $view = new VAdmin();
-                $view->showDeleteReviewSuccess($review);
+                $view->showDeleteReviewSuccess();
             }
             /**
              * Check if the admin didn't send the ban request and the review is set

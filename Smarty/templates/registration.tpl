@@ -67,9 +67,6 @@
 					{if $regErr==true}
 					<p class="error-message">L'email o lo username desiderati non sono disponibili </p>
 					{/if}
-					{if $emptyFields == true}
-					<p class="error-message">Devi riempire tutti i campi</p>
-					{/if}
 					{if $passwordError == true}
 					<p class="error-message">Le password non coincidono</p>
 					{/if}
