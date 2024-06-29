@@ -97,4 +97,13 @@ class FOrderItem{
         }
         return $items;
     }
+    public static function getOrdersBySeller($seller){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), "seller", $seller);
+        $orders = array();
+        for($i = 0; $i < count($queryResult); $i++){
+            $order = self::retrieveObject($queryResult[$i]['id']);
+            $orders[] = $order;
+        }
+        return $orders;
+    }
 }
