@@ -15,15 +15,32 @@ class FArticleDescription{
     private static $key = "EAN";
     private static $updatequery = "EAN = :EAN, name = :name, artist = :artist, format = :format";
     
+    /**
+     * Return the fields of the table
+     * @return string the fields of the table
+     */
     public static function getValue(): string {
         return self::$value;
     }
+
+    /**
+     * Return the table name
+     * @return string the table name
+     */
     public static function getTable(): string {
         return self::$table;
     }
+    /**
+     * Return the key field of the table
+     * @return string the table name
+     */
     public static function getKey(): string {
         return self::$key;
     }
+    /**
+     * Return the update query
+     * @return string the update query
+     */
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
@@ -65,7 +82,11 @@ class FArticleDescription{
 
     }
 
-    // U
+    /**
+     * Update an article description in the database
+     * @param $obj the article description to update
+     * @return bool succes/not success of the update
+     */
     public static function updateObject($obj){
         $updateArticle = FDB::getInstance()->update(self::class, $obj);
         if($updateArticle !== null){
@@ -75,7 +96,11 @@ class FArticleDescription{
         }
     }
 
-    // D
+    /**
+     * Delete the article description from the database
+     * @param $obj the article description to delete
+     * @return EArticleDescription|null the article description
+     */
     public static function deleteObject($obj){
         $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
         if($deleteArticle !== null){
@@ -86,7 +111,11 @@ class FArticleDescription{
     }
     // END OF CRUD
 
-
+    /**
+     * Create a EArticleDescription object from the result of a query
+     * @param $result the result of the query
+     * @return EReview the review
+     */
     public static function createEntity($result){
         $obj = new EArticleDescription($result[0]['EAN'], $result[0]['name'], $result[0]['artist'], (int) $result[0]['format']);
         $obj->setStocks(FStock::getStocksByArticle($result[0]['EAN']));
@@ -94,6 +123,11 @@ class FArticleDescription{
         return $obj;
     }
 
+    /**
+     * Get all the article of an artist
+     * @param $artist the artist to get the articles from
+     * @return array[EArticleDescription] the articles
+     */
     public static function getArticlesByArtist($artist){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'artist', $artist);
         $articles = array();
@@ -104,16 +138,33 @@ class FArticleDescription{
         return $articles;
     }
 
+    /**
+     * Verify if an article exists in the database
+     * @param $field the field to verify
+     * @param $id the id to verify for
+     * @return bool the result of the verification
+     */
     public static function verify($field, $id){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), $field, $id);
         return FDB::getInstance()->existInDb($queryResult);
     }
 
+    /**
+     * Get all the article with a specific EAN
+     * @param $ean the ean code to get the articles from
+     * @return array[EArticleDescription] the articles
+     */
     public static function getByEAN($ean) {
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
         $article = self::retrieveObject($queryResult[0][self::getKey()]);     
         return $article;
     }
+
+    /**
+     * Verify if an article exists in the database
+     * @param $ean the ean to verify
+     * @return bool the result of the verification
+     */
     public static function existEAN($ean){
         $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
         return FDB::getInstance()->existInDb($queryResult);

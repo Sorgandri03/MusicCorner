@@ -3,3 +3,5 @@ Documentazione
 Steps
 Decremento Stock con ordini (fatto) - Transaction Lock
 Indicare al venditore gli articoli da spedire ai vari clienti con indirizzo e possono eliminare una volta spediti ???
+
+me tocca documenta FOrder e FOrderItem

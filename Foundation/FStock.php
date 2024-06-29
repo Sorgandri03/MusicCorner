@@ -13,15 +13,32 @@ class FStock{
     private static $value = "(NULL, :price, :quantity, :article, :seller)";
     private static $key = "id";
     private static $updatequery = "price = :price, quantity = :quantity, article = :article, seller = :seller";
+    /**
+     * Return the fields of the table
+     * @return string the fields of the table
+     */
     public static function getValue(): string {
         return self::$value;
     }
+
+    /**
+     * Return the table name
+     * @return string the table name
+     */
     public static function getTable(): string {
         return self::$table;
     }
+    /**
+     * Return the key field of the table
+     * @return string the table name
+     */
     public static function getKey(): string {
         return self::$key;
     }
+    /**
+     * Return the update query
+     * @return string the update query
+     */
     public static function getUpdateQuery(): string {
         return self::$updatequery;
     }
