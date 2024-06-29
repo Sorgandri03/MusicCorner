@@ -193,7 +193,9 @@
 									<form action="/MusicCorner/Orders/addToCart/" method="post">
 									<select class="store-select" name="stockId">
 										{foreach from=$article->getStocks() item=stock}
+										{if $stock->getQuantity()>0}
 										<option value={$stock->getId()}>{FPersistentManager::getInstance()->retrieveObj(ESeller::class,$stock->getSeller())->getShopName()} : €{$stock->getPrice()}</option>
+										{/if}
 										{/foreach}	
 									</select>
 									<button class="add-to-cart-btn" formaction="/MusicCorner/Search/store"><i class="fa fa-shopping-bag"></i>Vai al negozio</button>

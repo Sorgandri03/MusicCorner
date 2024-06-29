@@ -38,6 +38,7 @@ class CUser{
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
         if($customer->getSuspensionTime() > new DateTime()) {
+            USession::unsetSessionElement('customer');
             return true;
         }
         else {
@@ -77,7 +78,7 @@ class CUser{
                             $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $user->getId());
                             USession::setSessionElement('customer', $customer);
                             if(self::isBanned()){
-                                echo "sei bannato";
+                                $view->loginBan();
                                 break;
                             }
                             else{
@@ -93,7 +94,7 @@ class CUser{
                                 }
                                 header('Location: /MusicCorner/');
                                 break;
-                            }                            
+                            }
                         case "seller":
                             $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $user->getId());
                             USession::setSessionElement('seller', $seller);

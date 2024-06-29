@@ -55,19 +55,20 @@ public function __construct(){
         $this->smarty->display('addarticle.tpl');
     }   
 
-
     public function showModifyCatalogue(){
         USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId()));
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('modifycatalogue.tpl');
     }
+
     public function showModifyCatalogueError(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->assign('error',true);
         $this->smarty->display('modifycatalogue.tpl');
     }
+    
     public function showModifyCatalogueSuccess(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
