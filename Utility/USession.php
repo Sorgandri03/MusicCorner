@@ -1,13 +1,13 @@
 <?php
 
 /**
- * class to access to the $_SESSION superglobal array, you Must use this class instead of using directly the array
+ * Class to access to the $_SESSION superglobal array, you Must use this class instead of using directly the array
  */
 class USession{
 
     /**
-     * singleton class
-     * class for the session, if you want to manipulate the _SESSION superglobal you need to use this class
+     * Singleton class
+     * Class for the session, if you want to manipulate the _SESSION superglobal you need to use this class
      */
 
     private static $instance;
@@ -26,50 +26,53 @@ class USession{
     return self::$instance;
     }
 
+    //END SINGLETON
+
     /**
-     * return session status. If you want to check if the session is staretd you can use this
+     * Returns session status. If you want to check if the session is staretd you can use this
+     * @return int
      */
     public static function getSessionStatus(){
         return session_status();
     }
 
     /**
-     * unset all the elements in the _SESSION superglobal
+     * Unset all the elements in the _SESSION superglobal
      */
     public static function unsetSession(){
         session_unset();
     }
 
     /**
-     * unset of an element of _SESSION superglobal
+     * Unset of an element of _SESSION superglobal
      */
     public static function unsetSessionElement($id){
         unset($_SESSION[$id]);
     }
 
     /**
-     * destroy the session
+     * Destroy the session
      */
     public static function destroySession(){
         session_destroy();
     }
 
     /**
-     * get element in the _SESSION superglobal
+     * Get element in the _SESSION superglobal
      */
     public static function getSessionElement($id){
         return $_SESSION[$id];
     }
 
     /**
-     * set an element in _SESSION superglobal
+     * Set an element in _SESSION superglobal
      */
     public static function setSessionElement($id, $value){
         $_SESSION[$id] = $value;
     }
 
     /**
-     * check if an element is set or not
+     * Check if an element is set or not
      * @return boolean
      */
     public static function isSetSessionElement($id){

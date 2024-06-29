@@ -5,7 +5,8 @@
 class UCookie
 {
     /**
-     * check if is set the specific id in the COOKIE
+     * Check if specific id in the COOKIE is set
+     * @param string $id
      * @return bool
      */
     public static function isSet($id){
@@ -15,5 +16,4 @@ class UCookie
             return false;
         }
     }
-
 }

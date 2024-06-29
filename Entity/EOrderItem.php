@@ -9,8 +9,16 @@ class EOrderItem
     private int $quantity;
     private float $price;
     private int $orderId;
+    private bool $shipped = false;
 
-
+    /**
+     * Create a new order item
+     * @param string $article the article of the order item
+     * @param string $seller the seller of the order item
+     * @param int $quantity the quantity that the user bought
+     * @param float $price the price of the order item
+     * @param int $orderId the id of the order that contains the order item
+     */
     public function __construct(string $article, string $seller, int $quantity, float $price, int $orderId)
     {
         $this->article = $article;
@@ -36,19 +44,9 @@ class EOrderItem
         return $this->article;
     }
 
-    public function setArticle(string $article): void
-    {
-        $this->article = $article;
-    }
-
     public function getSeller(): string
     {
         return $this->seller;
-    }
-
-    public function setSeller(string $seller): void
-    {
-        $this->seller = $seller;
     }
 
     public function getQuantity(): int
@@ -56,28 +54,23 @@ class EOrderItem
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): void
-    {
-        $this->quantity = $quantity;
-    }
-
     public function getPrice(): float
     {
         return $this->price;
-    }
-
-    public function setPrice(float $price): void
-    {
-        $this->price = $price;
     }
 
     public function getOrderId(): int
     {
         return $this->orderId;
     }
-
-    public function setOrderId(int $orderId): void
+    
+    public function isShipped(): bool
     {
-        $this->orderId = $orderId;
+        return $this->shipped;
+    }
+
+    public function setShipped(bool $shipped): void
+    {
+        $this->shipped = $shipped;
     }
 }

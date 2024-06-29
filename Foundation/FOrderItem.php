@@ -12,9 +12,9 @@ class FOrderItem{
     //END SINGLETON
     
     private static $table = "OrderItem";
-    private static $value = "(NULL, :article, :seller, :quantity, :price, :orderID)";
+    private static $value = "(NULL, :article, :seller, :quantity, :price, :orderID, :shipped)";
     private static $key = "id";
-    private static $updatequery = "article = :article, seller = :seller, quantity = :quantity, price = :price, orderID = :orderID";
+    private static $updatequery = "article = :article, seller = :seller, quantity = :quantity, price = :price, orderID = :orderID, shipped = :shipped";
 
     /**
      * Return the fields of the table
@@ -52,6 +52,7 @@ class FOrderItem{
         $stmt->bindValue(':quantity', $orderItem->getQuantity(), PDO::PARAM_INT);
         $stmt->bindValue(':price', $orderItem->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(':orderID', $orderItem->getOrderId(), PDO::PARAM_INT);
+        $stmt->bindValue(':shipped', $orderItem->isShipped(), PDO::PARAM_BOOL);
     }
 
     /**
@@ -123,6 +124,7 @@ class FOrderItem{
     public static function createEntity($result){
         $obj = new EOrderItem($result[0]['article'], $result[0]['seller'], $result[0]['quantity'], $result[0]['price'], $result[0]['orderID']);
         $obj->setId($result[0]['id']);
+        $obj->setShipped($result[0]['shipped']);
         return $obj;
     }
 

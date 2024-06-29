@@ -70,7 +70,9 @@
                         <h1>Lista degli ordini</h1>
                         <ul>
                             {foreach from=$customer->getOrders() item=order}
-                                <li><a href="/MusicCorner/Customer/order/{$order->getId()}" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del {$order->getOrderDateTime()}</strong></a></li>
+								<form action="/MusicCorner/Customer/order" method="post">
+                                <li><button class="btn btn-outline-primary btn-lg dashboard-button" name="orderID" value="{$order->getId()}"><strong>Ordine del {$order->getOrderDateTime()}</strong></button></li>
+								</form>
                             {/foreach}
                         </ul>
                     {else}

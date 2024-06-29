@@ -1,6 +1,7 @@
 DA FARE SUBITO:
-Indicare al venditore gli articoli da spedire ai vari clienti con indirizzo e possono eliminare una volta spediti (aggiungi riga a db)
-Documentazione
+Documentazione:
+    Entity
+    Controller
 Steps
 
 DA FARE DOPO:
@@ -8,4 +9,3 @@ Decremento Stock con ordini (fatto) - Transaction Lock
 
 DA FARE ALLA FINE:
 Tutti i link una volta su altervista
-

@@ -1,16 +1,24 @@
 <?php
 require_once 'StartSmarty.php';
 class VSeller{
-       
+
 private $smarty;
 
 public function __construct(){
-
     $this->smarty = StartSmarty::configuration();
-
 }
- /**
-     * Funzione che si occupa di visualizzare la pagina per l'aggiunta di un articolo
+
+    /**
+     * Show the seller dashboard
+     * @throws SmartyException
+     */
+    public function showDashboard(){
+        $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
+        $this->smarty->display('seller.tpl');
+    }
+
+    /**
+     * Show the article adding form
      * @throws SmartyException
      */
     public function showAddArticle(){
@@ -20,9 +28,9 @@ public function __construct(){
         $this->smarty->assign('found',"");
         $this->smarty->display('addArticle.tpl');
     }
-    
+
     /**
-     * Funzione che si occupa di visualizzare la pagina per l'aggiunta di un articolo nel caso in cui l'EAN sia esistente nel DB
+     * Show the article adding form with some already filled fields because the article was found
      * @throws SmartyException
      */
     public function addArticleSuccess($article) {
@@ -36,10 +44,11 @@ public function __construct(){
         $this->smarty->assign('format', Format[$article->getFormat()]);
         $this->smarty->display('addarticle.tpl');
     }
-    /**
-     * Funzione che si occupa di visualizzare la pagina per l'aggiunta di un articolo nel caso in cui l'EAN non sia esistente nel DB
-     */
 
+    /**
+     * Show the article adding form with an error message because the article was not found
+     * @throws SmartyException
+     */
     public function addArticleFail() {
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('formats', Format);
@@ -49,12 +58,20 @@ public function __construct(){
         $this->smarty->display('addarticle.tpl');
     }
 
+    /**
+     * Show the article added successfully message
+     * @throws SmartyException
+     */
     public function showSuccessMessage() {
         $this->smarty->assign('success', "true");
         $this->smarty->assign('found',"finish");
         $this->smarty->display('addarticle.tpl');
     }   
 
+    /**
+     * Show the catalogue of the seller with the possibility to modify it
+     * @throws SmartyException
+     */
     public function showModifyCatalogue(){
         USession::getInstance()->setSessionElement('seller',FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId()));
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
@@ -62,26 +79,21 @@ public function __construct(){
         $this->smarty->display('modifycatalogue.tpl');
     }
 
-    public function showModifyCatalogueError(){
-        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
-        $this->smarty->assign('seller',$seller);
-        $this->smarty->assign('error',true);
-        $this->smarty->display('modifycatalogue.tpl');
-    }
-    
-    public function showModifyCatalogueSuccess(){
-        $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
-        $this->smarty->assign('seller',$seller);
-        $this->smarty->assign('success',true);
-        $this->smarty->display('modifycatalogue.tpl');
-    }
-
+    /**
+     * Show the seller's reviews
+     * @throws SmartyException
+     */
     public function showSellerReviews(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('sellerreview.tpl');
     }
 
+    /**
+     * Show the form to answer a review
+     * @param int $reviewId
+     * @throws SmartyException
+     */
     public function showAnswerReview($reviewId){
         $review = FPersistentManager::getInstance()->retrieveObj(EReview::class,$reviewId);
         $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer());
@@ -90,16 +102,22 @@ public function __construct(){
         $this->smarty->display('answerreview.tpl');
     }
 
-    public function showAnswerReviewSuccess($reviewId){
+    /**
+     * Show the success message after answering a review
+     * @throws SmartyException
+     */
+    public function showAnswerReviewSuccess(){
         $this->smarty->assign('success',true);
-        $this->showAnswerReview($reviewId);
+        $this->showAnswerReview(null);
     }
 
+    /**
+     * Show the recent orders that customer to the seller
+     * @throws SmartyException
+     */
     public function showRecentOrders(){
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('seller',$seller);
         $this->smarty->display('recentorders.tpl');
     }
-
-
 }

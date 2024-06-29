@@ -2,30 +2,59 @@
 
 Class CSeller{
 
+    /**
+     * Show the seller dashboard
+     * @throws SmartyException
+     */
     public static function dashboard(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
-            $view = new VUser();
-            $view->showUserDashboard();
+            $view = new VSeller();
+            $view->showDashboard();
             return;
         }
+        /**
+         * Redirect to login if the user is not logged or is not a seller
+         */
         else{
             header('Location: /MusicCorner/User/Login');
         }
     }
 
+    /**
+     * Show the page to add an article to the catalogue
+     * @throws SmartyException
+     */
     public static function addArticle(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            /**
+             * Check if the seller submitted the article
+             */
             if(UHTTPMethods::isPostSet('EAN') && UHTTPMethods::isPostSet('product-name')){
                 self::pullArticle();
             }
+            /**
+             * Check if the seller searched for an EAN
+             */
             else if(UHTTPMethods::isPostSet('EAN')){
                 self::searchEAN();
             }
+            /**
+             * Show the add article page
+             */
             else{
                 $view = new VSeller();
                 $view->showAddArticle();
             }
         }
+        /**
+         * Redirect to login if the user is not logged or is not a seller
+         */
         else {
             header('Location: /MusicCorner/User/Login');
         }
@@ -191,6 +220,11 @@ Class CSeller{
 
     public static function recentOrders(){
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            if(UHTTPMethods::isPostSet('orderItem')){
+                $orderItem = FPersistentManager::getInstance()->retrieveObj('EOrderItem', UHTTPMethods::post('orderItem'));
+                $orderItem->setShipped(true);
+                FPersistentManager::getInstance()->updateObj($orderItem);
+            }
             $view = new VSeller();
             $view->showRecentOrders();
         }
