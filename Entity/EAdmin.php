@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * The EAdmin class represents the admin in the MusicCorner application.
+ */
 class EAdmin extends EUser {
     /**
      * Create a new admin
