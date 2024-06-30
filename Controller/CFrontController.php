@@ -2,6 +2,10 @@
 
 class CFrontController{
     
+    /**
+     * This function is responsible for managing the path and calling the corresponding controller and method
+     * @param string $path
+     */
     public function run($path){
         $result = explode("/", $path);       
         
@@ -35,12 +39,18 @@ class CFrontController{
                         else if ($num == 2) $controller::$method($param[0], $param[1]);
 
                 }else{
+                    /**
+                     * If the method does not exist, the 404 page is displayed
+                     */
                     $view = new V404();
                     $view->show404();
                 }
             }
             
         }else{
+            /**
+             * If the controller does not exist, the 404 page is displayed
+             */
             $view = new V404();
             $view->show404();
         }
