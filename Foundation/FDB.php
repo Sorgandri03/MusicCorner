@@ -7,7 +7,6 @@ class FDB {
         try{
             self::$db = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST."; charset=utf8;", DB_USER, DB_PASS);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //echo "Connected successfully";
         }catch(PDOException $e){
             echo "ERROR". $e->getMessage();
             die;
@@ -23,7 +22,13 @@ class FDB {
 
     //END SINGLETON
 
-    //C
+    /**
+     * Create an object in the database
+     * @param $foundclass the class of the object to create
+     * @param $obj the object to create
+     * @return bool|string
+     * @throws Exception if there is an error executing the SQL query.
+     */
     public static function create($foundClass, $obj){
         try{
             $query = "INSERT INTO " . $foundClass::getTable() . " VALUES " . $foundClass::getValue() . ";";
@@ -31,7 +36,6 @@ class FDB {
             $foundClass::bind($stmt, $obj);
             $stmt->execute();
             $id = self::$db->lastInsertId();
-            //echo $id;
             return $id;
         }catch(Exception $e){
             echo "ERROR: " . $e->getMessage();
@@ -39,7 +43,14 @@ class FDB {
         }
     }
 
-    //R
+    /**
+     * Retrieve an object from the database
+     * @param string $table The name of the table from which retrieve records.
+     * @param string $field The field name to match against the provided ID.
+     * @param mixed $id The value to match against the specified field.
+     * @return array An associative array of the matching records, or an empty array if no matches are found
+     * @throws PDOException If there is an error executing the SQL query.
+     */
     public static function retrieve($table, $field ,$id){
         try{
             $query = "SELECT * FROM " .$table. " WHERE ".$field." = '".$id."';";
@@ -62,7 +73,13 @@ class FDB {
         }
     }
 
-    //U
+    /**
+     * Updates a record in the database with the values from the provided object.
+     * @param string $foundClass The class name which defines the table and key information.
+     * @param object $obj The object containing the values to be updated.
+     * @return bool Returns true if the update is successful, false otherwise.
+     * @throws Exception If there is an error executing the SQL query.
+     */
     public static function update($foundClass, $obj){
         try{
             $query = "UPDATE " . $foundClass::getTable() . " SET ". $foundClass::getUpdateQuery()  . " WHERE " . $foundClass::getKey() . " = '" . $obj->getId() . "';";
@@ -76,7 +93,13 @@ class FDB {
         }
     }
 
-    //D
+    /**
+     * Deletes a record from the database corresponding to the provided object.
+     * @param string $foundClass The class name which defines the table and key information.
+     * @param object $obj The object containing the ID of the record to be deleted.
+     * @return bool Returns true if the deletion is successful, false otherwise.
+     * @throws Exception If there is an error executing the SQL query.
+     */
     public static function delete($foundClass, $obj){
         try{
             $query = "DELETE FROM " . $foundClass::getTable() . " WHERE " . $foundClass::getKey() . " = '" . $obj->getId() . "';";
@@ -88,9 +111,13 @@ class FDB {
             return false;
         }
     }
-
     //END CRUD
 
+    /**
+     * Checks if the provided query result match any records in the database.
+     * @param array $queryResult The result array from a database query.
+     * @return bool Returns true if the result array contains one or more records, false otherwise.
+     */
     public static function existInDb($queryResult){
         if(count($queryResult) > 0){
             return true;
@@ -99,6 +126,12 @@ class FDB {
         }
     }
 
+    /**
+     * Searches for articles in the database that match the provided search term.
+     * @param string $search The search term to look for in the `ArticleDescription` table.
+     * @return array|bool An associative array of the matching articles, or an empty array if no matches are found.
+     * @throws Exception If there is an error executing the SQL query.
+     */
     public static function searchArticles($search){
         try{
             $query = "SELECT * FROM ArticleDescription WHERE name LIKE '%" . $search . "%' OR EAN LIKE '%" . $search . "%' OR Artist LIKE '%" . $search . "%';";
@@ -121,6 +154,12 @@ class FDB {
         }
     }
 
+    /**
+     * Retrieves all entries from a specified table.
+     * @param string $table The name of the table from which retrieve records.
+     * @return array|bool An associative array of the retrieved records, or an empty array if no records are found.
+     * @throws Exception If there is an error executing the SQL query.
+     */
     public static function retrieveEntries($table){
         try{
             $query = "SELECT * FROM " . $table . ";";
@@ -143,6 +182,11 @@ class FDB {
         }
     }
 
+    /**
+     * Retrieves random articles from the `ArticleDescription` table.
+     * @return array|bool An associative array of the retrieved random articles, or an empty array if no records are found.
+     * @throws Exception If there is an error executing the SQL query.
+     */
     public static function getRandomArticles(){
         try{
             $query = "SELECT * FROM ArticleDescription ORDER BY RAND() ;";
@@ -165,6 +209,12 @@ class FDB {
         }
     }
 
+    /**
+     * Retrieves articles from the `ArticleDescription` table that match the specified format.
+     * @param string $format The format to filter articles by.
+     * @return array|bool An associative array of the retrieved articles, or an empty array if no records are found.
+     * @throws Exception If there is an error executing the SQL query.
+    */
     public static function getArticlesByFormat($format){
         try{
             $query = "SELECT * FROM ArticleDescription WHERE format=" . $format . ";";
