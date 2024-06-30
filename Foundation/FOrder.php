@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FOrder
+ * This class manages the interactions with the Orders table in the database.
+ * It includes CRUD operations and methods to verify and retrieve orders.
+ */
 class FOrder{
     
     private static $instance = null;

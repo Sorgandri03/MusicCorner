@@ -1,7 +1,8 @@
 <?php
-
+/**
+ * Class to manage the search and display of articles and the homepage of a seller
+ */
 class CSearch{
-
     /**
      * The page with the search results
      */

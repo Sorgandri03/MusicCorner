@@ -1,7 +1,9 @@
 <?php
-
+/**
+ * Class that contains all the seller methods
+ 
+ */
 Class CSeller{
-
     /**
      * Show the seller dashboard
      */

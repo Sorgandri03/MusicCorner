@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Class that contains all the customer methods
+ 
+ */
 Class CCustomer{
     /**
      * Show the customer dashboard

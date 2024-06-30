@@ -1,7 +1,8 @@
 <?php
-//quando loggo come user, non funziona bene il checkLogin a causa del isBanned
+/**
+ * Class that contains all the login and registration methods
+ */
 class CUser{
-
     /**
      * Check the type of the user
      * @param EUser $user The user to check

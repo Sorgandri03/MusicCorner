@@ -1,7 +1,8 @@
 <?php
-
-class COrders{
-    
+/**
+ * Controller to manage the orders and the cart
+ */
+class COrders{    
     /**
      * Add a product to the cart using a post request
      */
