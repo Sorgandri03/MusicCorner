@@ -3,6 +3,8 @@
  * Class FPersistentManager
  * This class manages the persistent storage and retrieval of objects in the database by using the Foundation classes.
  * It includes CRUD operations and various utility methods for verification and retrieval.
+ * Acts as an intermediary between the database access layer (FDB) and specific entity classes (e.g., FUser, FSeller, FReview).
+ * Provides methods to create, retrieve, update, and delete objects using corresponding Foundation classes.
  */
 class FPersistentManager{
 

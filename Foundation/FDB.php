@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Class FDB
+ *
+ * This class provides a Singleton interface for managing database operations using PDO in PHP. It encapsulates CRUD operations and specific queries.
+ * Is designed to be the sole direct interface for database operations. Other classes within the application should use the methods provided by this class
+ * to access the database securely and efficiently.
+ */
 class FDB {
     private static $instance = null;
     private static $db;
