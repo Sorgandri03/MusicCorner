@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Class that calls the controllers and methods written in the URL
+ 
+ */
 class CFrontController{
     
     /**
