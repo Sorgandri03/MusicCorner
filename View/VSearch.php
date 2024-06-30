@@ -1,5 +1,9 @@
 <?php
 require_once 'StartSmarty.php';
+/**
+ * This View is responsible for rendering the search page in the MusicCorner application.
+ * 
+ */
 class VSearch
 {
     private $smarty;

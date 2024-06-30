@@ -1,5 +1,8 @@
 <?php
 require_once 'StartSmarty.php';
+/**
+ * This view is responsible for displaying the user registration form and handling user input.
+ */
 class VRegistration
 {
     private $smarty;

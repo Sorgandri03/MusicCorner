@@ -1,5 +1,10 @@
 <?php
 require_once 'StartSmarty.php';
+/** 
+ * This view is responsible for managing administrative tasks in the application.
+ * It provides methods for handling user management, access control, and other administrative functions.
+ */ 
+
 class VAdmin{
     private $smarty;
 

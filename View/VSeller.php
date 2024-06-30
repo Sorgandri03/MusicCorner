@@ -1,5 +1,9 @@
 <?php
 require_once 'StartSmarty.php';
+/**
+ * This view is responsible for rendering the seller dashboard, the article adding form, the catalogue, the reviews and the recent orders pages in the MusicCorner application.
+ * 
+ */
 class VSeller{
 
 private $smarty;
