@@ -1,6 +1,6 @@
 <?php
 /**
- * class to access to $_COOKIE superglobal array, You must use this class and not directly the _COOKIE array
+ * Class to access to $_COOKIE superglobal array, You must use this class and not directly the _COOKIE array
  */
 class UCookie
 {

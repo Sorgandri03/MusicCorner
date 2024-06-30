@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Class that contains all the admin methods
+ */
 Class CAdmin{
     /**
      * Show the admin dashboard
