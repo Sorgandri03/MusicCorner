@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * The EAddress class represents the address of a customer in the MusicCorner application.
+ */
 
 class EAddress {
     private string $street;
