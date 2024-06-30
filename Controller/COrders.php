@@ -2,6 +2,9 @@
 
 class COrders{
     
+    /**
+     * Add a product to the cart using a post request
+     */
     public static function addToCart(){
         $stockId = UHTTPMethods::post('stockId');
         if(UHTTPMethods::isPostSet('quantity')){
@@ -18,6 +21,11 @@ class COrders{
         header('Location: /MusicCorner/Orders/cart');
     }
 
+    /**
+     * Add a product to the cart not using a post request, does not redirect to the cart page
+     * @param int $stockId The id of the stock
+     * @param int $quantity The quantity of the product
+     */
     public static function cartAdd($stockId, $quantity){
         /**
          * Retrieve user cart from the session
@@ -65,7 +73,13 @@ class COrders{
         }
     }
     
+    /**
+     * The cart page
+     */
     public static function cart(){
+        /**
+         * Check if the user is updating a cart item
+         */
         if(UHTTPMethods::isPostSet('stockId') && UHTTPMethods::isPostSet('quantity')){
             self::updateCart();
             return;
@@ -79,6 +93,9 @@ class COrders{
         }        
     }
 
+    /**
+     * Remove a product from the cart
+     */
     public static function removeFromCart(){
         /**
          * Retrieve stockId from the post request
@@ -111,6 +128,9 @@ class COrders{
         header('Location: /MusicCorner/Orders/cart');
     }
 
+    /**
+     * Update the quantity of a product in the cart
+     */
     public static function updateCart(){
         /**
          * Retrieve stockId and quantity from the post request
@@ -160,6 +180,9 @@ class COrders{
         }
     }
 
+    /**
+     * Clear the cart
+     */
     public static function clearCart(){
         /**
          * Retrieve user cart from the session
@@ -188,6 +211,9 @@ class COrders{
         header('Location: /MusicCorner/Orders/cart');
     }
 
+    /**
+     * The first page of the order, where the user can choose the address
+     */
     public static function checkout(){
         if(!CUser::islogged()){
             header('Location: /MusicCorner/User/login');
@@ -256,6 +282,9 @@ class COrders{
         $v->showOrderAddress();
     }
 
+    /**
+     * The last page of the order, where the user can choose the payment method
+     */
     public static function payment(){
         if(!CUser::islogged() && CUser::userType(USession::getInstance()->getSessionElement('customer')) == 'customer'){
             header('Location: /MusicCorner/User/login');
@@ -338,7 +367,13 @@ class COrders{
         $v->showOrderPayment();
     }
     
+    /**
+     * The order confirmation page
+     */
     public static function orderConfirm(){
+        /**
+         * Check if the user is logged in and is not a seller or admin
+         */
         if(!CUser::islogged()){
             header('Location: /MusicCorner/User/login');
             return;            

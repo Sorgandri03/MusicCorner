@@ -58,6 +58,9 @@ Class CSeller{
         }
     }
    
+    /**
+     * 
+     */
     public static function pullArticle(){
         $view = new VSeller();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -76,6 +79,9 @@ Class CSeller{
                 }
                 $price = UHTTPMethods::post('price');
                 $quantity = UHTTPMethods::post('quantity');
+            /**
+             * Check if the user is logged and if it is a seller
+             */
             if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){  
                 $article = new EArticleDescription($EAN, $name, $artist, $format);
                 $stock = new EStock($article->getId(), $quantity, $price, USession::getSessionElement('seller')->getId());
@@ -99,24 +105,38 @@ Class CSeller{
         }
     }
 
+    /**
+     * Search for an article by EAN, if it exists 
+     */
     public static function searchEAN() {
-        $view = new VSeller();
-        $ean = UHTTPMethods::post('EAN');
-        $exists = FPersistentManager::getInstance()->verifyEAN($ean);
-        
-        if ($exists) {
-            $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
-            if ($article) {
-                $view->addArticleSuccess($article);
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+            $view = new VSeller();
+            $ean = UHTTPMethods::post('EAN');
+            $exists = FPersistentManager::getInstance()->verifyEAN($ean);
+            
+            if ($exists) {
+                $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
+                if ($article) {
+                    $view->addArticleSuccess($article);
+                } else {
+                    $view->addArticleFail();
+                }
             } else {
                 $view->addArticleFail();
             }
-        } else {
-            $view->addArticleFail();
+        }
+        else {
+            header('Location: /MusicCorner/User/Login');
         }
     }
 
+    /**
+     * Show the page with the success message for the article addition
+     */
     public static function showSuccessArticle(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
             $view->showSuccessMessage();
@@ -125,8 +145,14 @@ Class CSeller{
             header('Location: /MusicCorner/User/Login');
         }
     }
-    
+  
+    /**
+     * The page with the reviews of the seller
+     */
     public static function showReviews(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
             $view->showSellerReviews();
@@ -136,7 +162,13 @@ Class CSeller{
         }
     }
 
+    /**
+     * The page with the form to answer a review
+     */
     public static function answerReview(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             if(UHTTPMethods::isPostSet('text')){
                 $review = FPersistentManager::getInstance()->retrieveObj('EReview', UHTTPMethods::post('reviewId'));
@@ -161,7 +193,13 @@ Class CSeller{
         }
     }
 
+    /**
+     * The page with the catalogue of the seller with the possibility to modify it
+     */
     public static function modifyCatalogue(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             $view = new VSeller();
             $view->showModifyCatalogue();
@@ -170,53 +208,78 @@ Class CSeller{
             header('Location: /MusicCorner/User/Login');
         }
     }
+
+    /**
+     * The method to update the stock of an article
+     */
     public static function updateStock() {
-        // Recupera i dati POST
+        /**
+         * Get the POST parameters
+         */
         $stockId = UHTTPMethods::post('stockId');
         $price = UHTTPMethods::post('price');
         $quantity = UHTTPMethods::post('quantity');
 
-        if (!is_numeric($price) || !is_numeric($quantity)) {
-            echo "Errore: Price e Quantity devono essere valori numerici.";
-            return;
-        }
-
+        /**
+         * Convert the parameters to the correct type
+         */
         $price = floatval($price);
         $quantity = intval($quantity);
 
-        // Recupera lo stock dal database
-        $persistentManager = FPersistentManager::getInstance();
-        $stock = $persistentManager->retrieveObj('EStock', $stockId);
+        /**
+         * Retrieve the stock from the database
+         */
+        $stock = FPersistentManager::getInstance()->retrieveObj('EStock', $stockId);
 
-        // Aggiorna i dettagli dello stock
+        /**
+         * Change the stock parameters
+         */
         $stock->setPrice($price);
         $stock->setQuantity($quantity);
 
-        // Salva le modifiche nel database
-        $persistentManager->updateObj($stock);
+        /**
+         * Save the updated stock
+         */
+        FPersistentManager::getInstance()->updateObj($stock);
 
-        // Redirige alla pagina di gestione dello stock
+        /**
+         * Redirect to the catalogue page
+         */
         header('Location: /MusicCorner/Seller/modifyCatalogue');
     }
 
+    /**
+     * The method to remove an article from the stock of the seller
+     */
     public static function removeFromStock() {
-        // Recupera stockId dal POST
+        /**
+         * Get the POST parameter
+         */
         $stockId = UHTTPMethods::post('stockId');
 
-        // Recupera lo stock dal database
-        $persistentManager = FPersistentManager::getInstance();
-        $stock = $persistentManager->retrieveObj('EStock', $stockId);
+        /**
+         * Retrieve the stock from the database
+         */
+        $stock = FPersistentManager::getInstance()->retrieveObj('EStock', $stockId);
 
-        // Rimuove lo stock dal database
-        $persistentManager->deleteObj($stock);
+        /**
+         * Delete the stock from the database
+         */
+        FPersistentManager::getInstance()->deleteObj($stock);
 
-        // Redirige alla pagina di gestione dello stock
+        /**
+         * Redirect to the catalogue page
+         */
         header('Location: /MusicCorner/Seller/modifyCatalogue');
-        
     }
 
-
+    /**
+     * The recent orders recieved by the seller
+     */
     public static function recentOrders(){
+        /**
+         * Check if the user is logged and if it is a seller
+         */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             if(UHTTPMethods::isPostSet('orderItem')){
                 $orderItem = FPersistentManager::getInstance()->retrieveObj('EOrderItem', UHTTPMethods::post('orderItem'));
@@ -226,19 +289,11 @@ Class CSeller{
             $view = new VSeller();
             $view->showRecentOrders();
         }
+        /**
+         * Redirect to login if the user is not logged or is not a seller
+         */
         else {
             header('Location: /MusicCorner/User/Login');
         }
     }
-
-    public static function review(){
-
-    }
-    public static function sendReview(){
-
-    }
-    public static function contact(){
-
-    }
-
 }

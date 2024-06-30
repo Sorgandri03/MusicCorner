@@ -143,12 +143,8 @@ class FPersistentManager{
 
     /**
      * Check the type of user
-     * null 
-     * customer
-     * seller
-     * admin
      * @param string $email
-     * @return string
+     * @return null|string customer | seller | admin
      */
     public static function checkUserType($email) : string{
         if(FCustomer::retrieveObject($email)) {return "customer";}

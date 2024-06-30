@@ -2,13 +2,21 @@
 //quando loggo come user, non funziona bene il checkLogin a causa del isBanned
 class CUser{
 
+    /**
+     * Check the type of the user
+     * @param EUser $user The user to check
+     * @return string The type of the user
+     */
     public static function userType($user){
         return FPersistentManager::getInstance()->checkUserType($user->getId());
     }
 
+    /**
+     * Check if the user is logged
+     * @return bool The result of the check
+     */
     public static function isLogged(){
         $logged = false;
-
         if(UCookie::isSet('PHPSESSID')){
             if(session_status() == PHP_SESSION_NONE){
                 USession::getInstance();
@@ -25,16 +33,18 @@ class CUser{
                 $logged = true;
         }
         if(USession::isSetSessionElement('seller')){
-            //echo USession::getSessionElement('seller');
             $logged = true;
         }
         if(USession::isSetSessionElement('admin')){
-            //echo USession::getSessionElement('admin');
             $logged = true;
         }
         return $logged;
     }
     
+    /**
+     * Check whether the user is banned or not. If it is, unset the customer from the session and return true
+     * @return bool The result of the check
+     */
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
         if($customer->getSuspensionTime() > new DateTime()) {
@@ -46,6 +56,9 @@ class CUser{
         }
     }
 
+    /**
+     * Check if the user is logged and redirect them to their dashboard, if not, show the login page
+     */
     public static function login(){
         if(self::isLogged()){
             if(USession::isSetSessionElement('customer')){
@@ -64,6 +77,9 @@ class CUser{
         }
     }
 
+    /**
+     * Check the login credentials and log the user in or display an error message
+     */
     public static function checkLogin(){
         $view = new VUser();
         $validemail = FPersistentManager::getInstance()->verifyUserEmail(UHTTPMethods::post('email'));                                 
@@ -120,18 +136,29 @@ class CUser{
 
         }
     }
+
+    /**
+     * Show the general registration page where you can choose the type of registration (seller or customer)
+     */
     public static function registration(){
         $view = new VRegistration();
         $view->showRegistration();
     }
-    public static function registrationCustomer() {
-        $view = new VRegistration();  
+
+    /**
+     * Processes the POST request for customer registration. It checks if all required fields
+     * are set, validates the passwords, and verifies the uniqueness of the email and username. 
+     * If everything is valid, it creates new user and customer objects and saves them in the db.
+     * In case of any validation errors, it invokes the appropriate error views.
+     */
+    public static function registrationCustomer() { 
         if (UHTTPMethods::isPostSet('email') && UHTTPMethods::isPostSet('username') && UHTTPMethods::isPostSet('password') && UHTTPMethods::isPostSet('confirm-password')) {
             $email = UHTTPMethods::post('email');
             $username = UHTTPMethods::post('username');
             $password = UHTTPMethods::post('password');
             $confirmPassword = UHTTPMethods::post('confirm-password');
             if ($password !== $confirmPassword) {
+                $view = new VRegistration(); 
                 $view->passwordError();
                 return;
             }            
@@ -143,15 +170,23 @@ class CUser{
                 header('Location: /MusicCorner/User/login');
                 exit;
             } else {
+                $view = new VRegistration(); 
                 $view->registrationError(); 
                 return;
             }
         } else {
-            $view->emptyFields(); 
+            $view = new VRegistration(); 
+            $view->registrationError(); 
             return;
         }        
     }
 
+    /**
+     * Processes the POST request for seller registration. It checks if all required fields
+     * are set, validates the passwords, and verifies the uniqueness of the email and username. 
+     * If everything is valid, it creates new user and seller objects and saves them in the db.
+     * In case of any validation errors, it invokes the appropriate error views.
+     */
     public static function registrationSeller(){
         $view = new VRegistration();  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -188,7 +223,9 @@ class CUser{
         }
     }
     
-    //da fixare 
+    /**
+     * Logout the user
+     */
     public static function logout(){
         USession::getInstance();
         if(USession::isSetSessionElement('customer')){
@@ -201,11 +238,5 @@ class CUser{
             USession::unsetSessionElement('admin');
         }
         header('Location: /MusicCorner/User/login');
-    }
-    
-    public static function destroySession(){
-        USession::getInstance();
-        USession::destroySession();
-        header('Location: /MusicCorner/');
     }
 }
