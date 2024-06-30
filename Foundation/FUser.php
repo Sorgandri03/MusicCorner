@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class FUser
+ * This class manages the interactions with the User table in the database.
+ * It includes CRUD operations and methods to verify and retrieve users.
+ */
 class FUser{
     private static $instance = null;
     public static function getInstance(){

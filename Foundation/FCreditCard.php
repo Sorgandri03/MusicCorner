@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FCreditCard
+ * This class manages the interactions with the CreditCard table in the database.
+ * It includes CRUD operations and methods to verify and retrieve articles.
+ */
 class FCreditCard{
     private static $instance = null;
     public static function getInstance(){

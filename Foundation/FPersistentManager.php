@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FPersistentManager
+ * This class manages the persistent storage and retrieval of objects in the database by using the Foundation classes.
+ * It includes CRUD operations and various utility methods for verification and retrieval.
+ */
 class FPersistentManager{
 
     private static $instance = null;

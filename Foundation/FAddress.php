@@ -1,6 +1,9 @@
 <?php
-
-
+/**
+ * Class FAddress
+ * This class manages the interactions with the Address table in the database.
+ * It includes CRUD operations and methods to verify and retrieve addresses.
+ */
 class FAddress{
     private static $instance = null;
     private function __construct(){}

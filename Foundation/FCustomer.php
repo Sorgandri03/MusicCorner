@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FCustomer
+ * This class manages the interactions with the Customer table in the database.
+ * It includes CRUD operations and methods to verify and retrieve articles.
+ */
 class FCustomer {
     
     private static $table = "Customer";

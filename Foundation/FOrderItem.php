@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class FOrderItem
+ * This class manages the interactions with the OrderItem table in the database.
+ * It includes CRUD operations and methods to verify and retrieve articles.
+ */
 class FOrderItem{
     private static $instance = null;
     private function __construct(){}
