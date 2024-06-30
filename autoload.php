@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This function is responsible for loading all the classes
+ * @param string $className
+ */
 function my_autoloader($className) {
 
         $firstLetter = $className[0];
@@ -27,4 +31,7 @@ function my_autoloader($className) {
     }
 }
 
+/**
+ * Register the autoloader
+ */
 spl_autoload_register('my_autoloader');

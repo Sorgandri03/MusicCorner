@@ -1,6 +1,10 @@
 <?php
 
 class CSearch{
+
+    /**
+     * The page with the search results
+     */
     public static function search(){
         $query = UHTTPMethods::post('query');
         /**
@@ -14,6 +18,11 @@ class CSearch{
         $view = new VSearch();
         $view->showSearch($articles);
     }
+
+    /**
+     * The page with the details of an article
+     * @param string $articleId The EAN of the article
+     */
     public static function article(string $articleId){
         /**
         * Retrieve article from idArticle
@@ -27,6 +36,10 @@ class CSearch{
         $view->showArticle($article);
     }
 
+    /**
+     * The page with every article of a specific format
+     * @param string $format The format of the articles
+     */
     public static function format(string $format){
         /**
         * Convert format to integer
@@ -52,10 +65,14 @@ class CSearch{
         $view->showSearch($articles);
     }
 
+    /**
+     * The homepage of a seller
+     */
     public static function store(){
         $stockId = UHTTPMethods::post('stockId');
         $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $stock->getSeller());
+        
         $v = new VSearch();
         $v->showSellerHomepageFromCustomer($seller);
     }

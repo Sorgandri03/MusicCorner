@@ -3,20 +3,20 @@
 class CUser{
 
     /**
-     * check the user type
-     * @param $user the user to check
+     * Check the type of the user
+     * @param EUser $user The user to check
+     * @return string The type of the user
      */
     public static function userType($user){
         return FPersistentManager::getInstance()->checkUserType($user->getId());
     }
 
     /**
-     * check if the user is logged
-     * @return bool true if the user is logged, false otherwise
+     * Check if the user is logged
+     * @return bool The result of the check
      */
     public static function isLogged(){
         $logged = false;
-
         if(UCookie::isSet('PHPSESSID')){
             if(session_status() == PHP_SESSION_NONE){
                 USession::getInstance();
@@ -42,8 +42,8 @@ class CUser{
     }
     
     /**
-     * Check if the customer is banned
-     * @return bool true if the customer is banned, false otherwise
+     * Check whether the user is banned or not. If it is, unset the customer from the session and return true
+     * @return bool The result of the check
      */
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
@@ -57,7 +57,7 @@ class CUser{
     }
 
     /**
-     * Show the login page according to the user type
+     * Check if the user is logged and redirect them to their dashboard, if not, show the login page
      */
     public static function login(){
         if(self::isLogged()){
@@ -78,7 +78,7 @@ class CUser{
     }
 
     /**
-     * Check the login credentials and log the user in
+     * Check the login credentials and log the user in or display an error message
      */
     public static function checkLogin(){
         $view = new VUser();
@@ -223,6 +223,9 @@ class CUser{
         }
     }
     
+    /**
+     * Logout the user
+     */
     public static function logout(){
         USession::getInstance();
         if(USession::isSetSessionElement('customer')){
@@ -235,11 +238,5 @@ class CUser{
             USession::unsetSessionElement('admin');
         }
         header('Location: /MusicCorner/User/login');
-    }
-    
-    public static function destroySession(){
-        USession::getInstance();
-        USession::destroySession();
-        header('Location: /MusicCorner/');
     }
 }
