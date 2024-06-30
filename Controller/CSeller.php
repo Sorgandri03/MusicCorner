@@ -59,49 +59,46 @@ Class CSeller{
     }
    
     /**
-     * 
+     * Handle the addition of a new article to the database.
+     * Checks necessary POST parameters, verifies user authentication and authorization,
+     * and creates the article and its stock entry in the database.
      */
     public static function pullArticle(){
-        $view = new VSeller();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['EAN']) && isset($_POST['product-name']) && isset($_POST['artist-name']) && isset($_POST['format'])  && isset($_POST['price']) && isset($_POST['quantity'])) {
-                $EAN = UHTTPMethods::post('EAN');
-                $name = UHTTPMethods::post('product-name');
-                $artist = UHTTPMethods::post('artist-name');
-                $formattext = UHTTPMethods::post('format');
-                switch($formattext){
-                    case 'CD':
-                        $format = 0;
-                        break;
-                    case 'LP':
-                        $format = 1;
-                        break;
-                }
-                $price = UHTTPMethods::post('price');
-                $quantity = UHTTPMethods::post('quantity');
-            /**
-             * Check if the user is logged and if it is a seller
-             */
-            if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){  
-                $article = new EArticleDescription($EAN, $name, $artist, $format);
-                $stock = new EStock($article->getId(), $quantity, $price, USession::getSessionElement('seller')->getId());
-                $exists = FArticleDescription::getInstance()->existEAN($EAN);
-                FPersistentManager::getInstance()->createObj($stock);
-                if (!$exists) {
-                    FPersistentManager::getInstance()->createObj($article);
-                }
-                self::showSuccessArticle();
-            }else{
-                header('Location: /MusicCorner/User/login');
-                return;
-            }   
-            
-            } else {
-                
-                return;
+        if(UHTTPMethods::ispostset('EAN') && UHTTPMethods::ispostset('product-name') && UHTTPMethods::ispostset('artist-name') && UHTTPMethods::ispostset('format')  && UHTTPMethods::ispostset('price') && UHTTPMethods::ispostset('quantity')) {
+            $EAN = UHTTPMethods::post('EAN');
+            $name = UHTTPMethods::post('product-name');
+            $artist = UHTTPMethods::post('artist-name');
+            $formattext = UHTTPMethods::post('format');
+            switch($formattext){
+                case 'CD':
+                    $format = 0;
+                    break;
+                case 'LP':
+                    $format = 1;
+                    break;
             }
+            $price = UHTTPMethods::post('price');
+            $quantity = UHTTPMethods::post('quantity');
+        /**
+         * Check if the user is logged and if it is a seller
+         */
+        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){  
+            $article = new EArticleDescription($EAN, $name, $artist, $format);
+            $stock = new EStock($article->getId(), $quantity, $price, USession::getSessionElement('seller')->getId());
+            $exists = FArticleDescription::getInstance()->existEAN($EAN);
+            FPersistentManager::getInstance()->createObj($stock);
+            if (!$exists) {
+                FPersistentManager::getInstance()->createObj($article);
+            }
+            self::showSuccessArticle();
+        }else{
+            header('Location: /MusicCorner/User/login');
+            return;
+        }   
         } else {
-            
+            $view = new VSeller();
+            $view->addArticleFail(null);
+            return;
         }
     }
 
@@ -115,14 +112,14 @@ Class CSeller{
             $exists = FPersistentManager::getInstance()->verifyEAN($ean);
             
             if ($exists) {
-                $article = FPersistentManager::getInstance()->getArticleByEAN($ean);
+                $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class,$ean);
                 if ($article) {
                     $view->addArticleSuccess($article);
                 } else {
-                    $view->addArticleFail();
+                    $view->addArticleFail($ean);
                 }
             } else {
-                $view->addArticleFail();
+                $view->addArticleFail($ean);
             }
         }
         else {
@@ -163,7 +160,7 @@ Class CSeller{
     }
 
     /**
-     * The page with the form to answer a review
+     * Show the page with the form to answer a review
      */
     public static function answerReview(){
         /**

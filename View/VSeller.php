@@ -49,10 +49,11 @@ public function __construct(){
      * Show the article adding form with an error message because the article was not found
      * @throws SmartyException
      */
-    public function addArticleFail() {
+    public function addArticleFail($ean) {
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class,USession::getInstance()->getSessionElement('seller')->getId());
         $this->smarty->assign('formats', Format);
         $this->smarty->assign('success', "false");
+        $this->smarty->assign('EAN', $ean);
         $this->smarty->assign('seller',$seller);
         $this->smarty->assign('found',"false");
         $this->smarty->display('addarticle.tpl');

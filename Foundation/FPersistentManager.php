@@ -69,15 +69,6 @@ class FPersistentManager{
         return $result;
     }
 
-    /**
-     * Retrieve an article by EAN
-     * @param string $ean ean of the article to retrieve
-     * @return EArticleDescription the article retrieved
-     */
-    public function getArticleByEAN($ean) {
-        return FArticleDescription::getByEAN($ean);
-    }
-
     /** 
      * Check if the email is already in the database
      * @param string $email email to verify

@@ -71,8 +71,10 @@
 						<!-- Verifica EAN - Sempre visibile -->
 						{if $success=="true"}
 							<div class="section-title">
-								<h3 class="title" style="color: green;">Articolo inserito con successo!</h3>
-								<p>Il tuo articolo è stato aggiunto con successo.</p>
+								<h2 class="title" style="color: green;">Articolo inserito con successo!</h2>
+								<br>
+								<br>
+								<br>
 								<a href="/MusicCorner/Seller/addArticle" class="primary-btn order-submit">Aggiungi un altro articolo</a>
 								<a href="/MusicCorner/Seller/dashboard" class="primary-btn order-submit">Torna alla dashboard</a>
 							</div>
@@ -123,7 +125,7 @@
 							<p style="color: red;">Questo EAN non è mai stato usato!</p>
 							<form action="/MusicCorner/Seller/pullArticle" method="post">
 								<div class="form-group">
-									<input class="input form-control" type="text" name="EAN" placeholder="Inserisci qui l'EAN del tuo prodotto" required pattern="[0-9]*" minlength="0" maxlength="13" title="EAN deve essere un numero di 13 cifre">
+									<input class="input" type="text" name="EAN" value="{$EAN}" required readonly>
 								</div>
 								<div class="form-group">
 									<input class="input" type="text" name="product-name" placeholder="Inserisci nome prodotto" required>
@@ -151,7 +153,10 @@
 							<br>
 						{/if}
 						{/if}
-						<a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
+						{if $success=="false"}
+							<a href="/MusicCorner/Seller/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
+						{/if}
+
 					</div>
 						
 						<!-- /Form Inserimento Prodotto -->					
@@ -161,8 +166,6 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-	
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

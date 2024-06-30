@@ -150,17 +150,6 @@ class FArticleDescription{
     }
 
     /**
-     * Get all the article with a specific EAN
-     * @param $ean the ean code to get the articles from
-     * @return EArticleDescription the article
-     */
-    public static function getByEAN($ean) {
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'EAN', $ean);
-        $article = self::retrieveObject($queryResult[0][self::getKey()]);     
-        return $article;
-    }
-
-    /**
      * Verify if an article exists in the database
      * @param $ean the ean to verify
      * @return bool the result of the verification

@@ -224,7 +224,8 @@ class CUser{
     }
     
     /**
-     * Logout the user
+     * Logs out the current user by unsetting the appropriate session element. After unsetting the session element,
+     * it redirects the user to the login page.
      */
     public static function logout(){
         USession::getInstance();
