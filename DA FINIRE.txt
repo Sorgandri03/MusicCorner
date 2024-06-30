@@ -6,6 +6,7 @@ Steps
 
 DA FARE DOPO:
 Decremento Stock con ordini (fatto) - Transaction Lock
+Ingrandire DB - stock e recensioni
 
 DA FARE ALLA FINE:
 Tutti i link una volta su altervista
