@@ -90,7 +90,7 @@ class CUser{
             if(password_verify(UHTTPMethods::post('password'), $passworddb)){
                 if(USession::getSessionStatus() == PHP_SESSION_NONE){
                     USession::getInstance();
-                    switch(FPersistentManager::getInstance()->checkUserType($user->getId())){
+                    switch(self::userType($user)){
                         case "customer":
                             $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $user->getId());
                             USession::setSessionElement('customer', $customer);

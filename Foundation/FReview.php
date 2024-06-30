@@ -1,6 +1,5 @@
 <?php
 /**
- * Class FReview
  * This class manages the interactions with the Review table in the database.
  * It includes CRUD operations and methods to verify and retrieve stocks.
  */

@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Represents an order item in the MusicCorner application.
  */
