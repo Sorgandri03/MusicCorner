@@ -1,7 +1,10 @@
 <?php
 require_once 'StartSmarty.php';
-class VOrders
-{
+/**
+ * This  View is responsible for rendering the cart, the order address, the order payment and the order confirmation pages in the MusicCorner application.
+ * 
+ */
+class VOrders{
     private $smarty;
     public function __construct(){
         $this->smarty = StartSmarty::configuration();

@@ -1,5 +1,8 @@
 <?php
 require_once 'StartSmarty.php';
+/**
+ * This view is responsible for rendering the login page of the MusicCorner website.
+ */
 class VUser{
     private $smarty;
     public function __construct(){

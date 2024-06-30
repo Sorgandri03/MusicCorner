@@ -1,5 +1,11 @@
 <?php
 require_once 'StartSmarty.php';
+
+/**
+ * This view is responsible for displaying a custom error page when a requested page is not found (404 error).
+ * It provides a user-friendly interface with relevant information about the error and suggestions for the user.
+ * 
+*/
 class V404
 {
     private $smarty;

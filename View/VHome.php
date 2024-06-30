@@ -2,8 +2,10 @@
 
 require_once 'StartSmarty.php';
 
-class VHome
-{
+/**
+ * This view is responsible for rendering the Home page of the MusicCorner website.
+ */
+class VHome{
     private $smarty;
 
     public function __construct(){

@@ -1,5 +1,9 @@
 <?php
 require_once 'StartSmarty.php';
+/**
+ * Represents the view for the customer page.
+ */
+
 class VCustomer{
     private $smarty;
 
