@@ -1,10 +1,4 @@
 DA FARE SUBITO:
-Documentazione:
-    Entity
-    Controller
-Steps
-
-DA FARE DOPO:
 Decremento Stock con ordini (fatto) - Transaction Lock
 Ingrandire DB - stock e recensioni
 
