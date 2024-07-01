@@ -221,7 +221,7 @@ class FPersistentManager{
      * @return string the password
      */
     public static function retrievePassword($email){
-        $result = FDB::retrieve('user', 'email' ,$email);
+        $result = FDB::retrieve('User', 'email' ,$email);
         return $result[0]['password'];
     }
 

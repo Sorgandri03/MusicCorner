@@ -1019,6 +1019,7 @@ img.small {
 .product .product-body .product-name {
   text-transform: uppercase;
   font-size: 14px;
+  min-height: 34px;
 }
 
 .product .product-body .product-name>a {
