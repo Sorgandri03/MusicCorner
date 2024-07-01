@@ -1,4 +1,7 @@
 <?php
+/**
+ * This file contains the configuration of the database and the global arrays
+ */
 
 /*
 define('DB_HOST', '5jg.h.filess.io:3305');

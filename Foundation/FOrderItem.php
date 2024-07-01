@@ -1,6 +1,5 @@
 <?php
 /**
- * Class FOrderItem
  * This class manages the interactions with the OrderItem table in the database.
  * It includes CRUD operations and methods to verify and retrieve articles.
  */
@@ -160,5 +159,17 @@ class FOrderItem{
             $orders[] = $order;
         }
         return $orders;
+    }
+
+    /**
+     * Delete all the order items of an order
+     * @param $order the order to delete the order items from
+     * @return void
+     */
+    public static function deleteItemsByOrder($order){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderID', $order);
+        for($i = 0; $i < count($queryResult); $i++){
+            self::deleteObject($queryResult[$i][self::getKey()]);
+        }
     }
 }

@@ -1,10 +1,10 @@
 <?php
+require_once 'Smarty\libs\Smarty.class.php';
+use Smarty\Smarty;
 /**
  * This class is responsible for initializing the Smarty template engine.
  * It sets the directories for the templates, configs, cache and compiled templates.
  */
-require_once 'Smarty\libs\Smarty.class.php';
-use Smarty\Smarty;
 class StartSmarty{
     /**
      * Starts Smarty and sets the directories

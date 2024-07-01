@@ -1,6 +1,5 @@
 <?php
 /**
- * Class FPersistentManager
  * This class manages the persistent storage and retrieval of objects in the database by using the Foundation classes.
  * It includes CRUD operations and various utility methods for verification and retrieval.
  * Acts as an intermediary between the database layer classes and the control layer classes. 
@@ -187,7 +186,7 @@ class FPersistentManager{
 
     /**
      * Get articles by format from the database
-     * @param string $category the category of the articles to get
+     * @param string $format the format of the articles to get
      * @return EArticleDescription[]|null the articles found
      */
     public static function getArticlesByFormat($format){
@@ -235,6 +234,33 @@ class FPersistentManager{
         $reviews = FReview::getReviewsByOrderItem($orderItem);
         return FDB::getInstance()::existInDb($reviews);
     }
+
+    /**
+     * Locks the stocks table
+     * @return bool true if the lock and transaction were successful, false otherwise
+     */
+    public static function lockStockAndOrder(){
+        return FDB::getInstance()->lockStockAndOrder();
+    }
+
+    /**
+     * Commits the new stock to the stocks table
+     * @param EStock $stock the new stock to commit
+     * @return bool true if the commit was successful, false otherwise
+     */
+    public static function commitStock($stock){
+        return FDB::getInstance()->commitStock($stock);
+    }
+
+    /**
+     * Unlocks the stocks table
+     * @return bool true if the unlock and commit were successful, false otherwise
+     */
+    public static function unlockStockAndOrder(){
+        return FDB::getInstance()->unlockStockAndOrder();
+    }
+
+
 }
 
 

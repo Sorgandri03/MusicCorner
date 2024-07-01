@@ -1019,6 +1019,7 @@ img.small {
 .product .product-body .product-name {
   text-transform: uppercase;
   font-size: 14px;
+  min-height: 34px;
 }
 
 .product .product-body .product-name>a {
@@ -1610,10 +1611,10 @@ img.small {
 }
 
 .product-details .product-available {
-  font-size: 12px;
+  font-size: 22px;
   text-transform: uppercase;
   font-weight: 700;
-  margin-left: 30px;
+  margin-left: 20px;
   color: #0037b8;
 }
 

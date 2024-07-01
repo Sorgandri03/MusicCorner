@@ -1,6 +1,5 @@
 <?php
 /**
- * Class FSeller
  * This class manages the interactions with the Seller table in the database.
  * It includes CRUD operations and methods to verify and retrieve sellers.
  */
