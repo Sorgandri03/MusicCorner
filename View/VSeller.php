@@ -96,11 +96,10 @@ public function __construct(){
 
     /**
      * Show the form to answer a review
-     * @param int $reviewId
+     * @param EReview $review
      * @throws SmartyException
      */
-    public function showAnswerReview($reviewId){
-        $review = FPersistentManager::getInstance()->retrieveObj(EReview::class,$reviewId);
+    public function showAnswerReview($review){
         $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class,$review->getCustomer());
         $this->smarty->assign('review',$review);
         $this->smarty->assign('customer',$customer);

@@ -90,6 +90,11 @@ Class CCustomer{
              */
             $orderItemId = UHTTPMethods::post('orderItemID');
             $orderItem = FPersistentManager::getInstance()->retrieveObj(EOrderItem::class, $orderItemId);
+            if(FPersistentManager::getInstance()->verifyReviewByOrderItem($orderItemId)){
+                $v = new VCustomer();
+                $v->showReviewSuccess();
+                return;
+            }
             /**
              * Check if the customer sent the review
              */

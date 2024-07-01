@@ -84,7 +84,8 @@
                                 {/for}
                             {/if}
                         </div>
-                    </div>                    
+                        <span>({count($seller->getReviews())} recensioni)</span>
+                    </div>
                 {/if}
                 <br>
                 {foreach from=$seller->getStocks() item=stock}

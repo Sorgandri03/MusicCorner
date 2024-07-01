@@ -170,7 +170,12 @@ Class CSeller{
          */
         if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
             if(UHTTPMethods::isPostSet('text')){
-                $review = FPersistentManager::getInstance()->retrieveObj('EReview', UHTTPMethods::post('reviewId'));
+                $review = FPersistentManager::getInstance()->retrieveObj(EReview::class, UHTTPMethods::post('reviewId'));
+                if($review->isAnswered()){
+                    $view = new VSeller();
+                    $view->showAnswerReviewSuccess();
+                    return;
+                }
                 $oldtext = $review->getReviewText();
                 $review->setReviewText($oldtext . "<br><br>RISPOSTA DEL VENDITORE<br>" . UHTTPMethods::post('text'));
                 $review->setAnswered(true);
@@ -179,8 +184,15 @@ Class CSeller{
                 $view->showAnswerReviewSuccess();
             }
             else if(UHTTPMethods::isPostSet('answer')){
-                $view = new VSeller();
-                $view->showAnswerReview(UHTTPMethods::post('answer'));
+                $review = FPersistentManager::getInstance()->retrieveObj(EReview::class, UHTTPMethods::post('answer'));
+                if($review->isAnswered()){
+                    $view = new VSeller();
+                    $view->showAnswerReviewSuccess();
+                }
+                else{
+                    $view = new VSeller();
+                    $view->showAnswerReview($review);
+                }   
             }
             else{
                 $view = new V404();
