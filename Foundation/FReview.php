@@ -129,7 +129,7 @@ class FReview {
     public static function createEntity($result){
         $obj = new EReview($result[0]['customer'], $result[0]['reviewText'], $result[0]['articleRating'], $result[0]['sellerRating'], $result[0]['article'], $result[0]['seller'], $result[0]['orderItemID']);
         $obj->setId($result[0]['id']);
-        $obj->setAnswered(false);
+        $obj->setAnswered($result[0]['answered']);
         return $obj;
     }
 
@@ -180,11 +180,11 @@ class FReview {
 
     /**
      * Get all the reviews for a orderItem
-     * @param $orderItem the orderItem to get the reviews from
+     * @param int $orderItemID the ID of the orderItem to get the reviews from
      * @return EReview[] the reviews
      */
-    public static function getReviewsByOrderItem($orderItem){
-        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItem);
+    public static function getReviewsByOrderItem($orderItemID){
+        $queryResult = FDB::getInstance()->retrieve(self::getTable(), 'orderItemID', $orderItemID);
         $reviews = array();
         for($i = 0; $i < count($queryResult); $i++){
             $review = self::retrieveObject($queryResult[$i][self::getKey()]);

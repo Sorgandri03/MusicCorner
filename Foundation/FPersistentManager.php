@@ -260,7 +260,14 @@ class FPersistentManager{
         return FDB::getInstance()->unlockStockAndOrder();
     }
 
-
+    /**
+     * Verify if an OrderItem is already reviewed
+     * @param int $orderItemID the OrderItem to verify
+     */
+    public static function verifyReviewByOrderItem($orderItemID){
+        $reviews = FReview::getReviewsByOrderItem($orderItemID);
+        return FDB::getInstance()::existInDb($reviews);
+    }
 }
 
 
