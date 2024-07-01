@@ -186,7 +186,8 @@
 								{else}
 								<div>
 									<h4 class="product-price">€{$article->getLowestPrice()}</h4>
-									<span class="product-available">In Stock</span>
+									{assign var="stocks" value=$article->getStocks()}
+									<span class="product-available">{$stocks[0]->getQuantity()} in Stock</span>
 								</div>
 								<label>
 									Negozi&nbsp&nbsp
