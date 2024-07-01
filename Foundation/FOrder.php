@@ -103,12 +103,13 @@ class FOrder{
     }
 
     /**
-     * Update an Order in the database
+     * Delete an Order and all its Order Items in the database
      * @param $obj the Order to update
      * @return bool succes/not success of the update
      */
     public static function deleteObject($obj){
-        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);
+        FOrderItem::deleteItemsByOrder($obj->getId());        
+        $deleteArticle = FDB::getInstance()->delete(self::class, $obj);        
         if($deleteArticle !== null){
             return true;
         }else{

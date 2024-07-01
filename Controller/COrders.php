@@ -436,17 +436,30 @@ class COrders{
          * Add order items to the order
          */
         foreach($cart->getCartItems() as $item => $quantity){
+            FPersistentManager::getInstance()->lockStockAndOrder();
             $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
-            $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
-            $stock->setQuantity($stock->getQuantity() - $quantity);
-            FPersistentManager::getInstance()->updateObj($stock);
-            FPersistentManager::getInstance()->createObj($orderItem);
+            if($stock->getQuantity() < $quantity){
+                echo "Non ci sono abbastanza prodotti in magazzino";
+                $order->setPrice($order->getPrice() - $stock->getPrice() * $quantity);
+                FPersistentManager::getInstance()->updateObj($order);
+                $cart->updateArticle($item, $stock->getQuantity());
+            }
+            else{
+                $orderItem = new EOrderItem($stock->getArticle(), $stock->getSeller(), $quantity, $stock->getPrice(), $order->getId());
+                $stock->setQuantity($stock->getQuantity() - $quantity);
+                $cart->removeArticle($item);
+                FPersistentManager::getInstance()->commitStock($stock);
+                FPersistentManager::getInstance()->createObj($orderItem);
+            }
+            FPersistentManager::getInstance()->unlockStockAndOrder();
         }
 
-        /**
-         * Clear cart
-         */
-        $cart->clearCart();
+        $order = FPersistentManager::getInstance()->retrieveObj(EOrder::class, $order->getId());
+        if(count($order->getOrderItems()) == 0){
+            FPersistentManager::getInstance()->deleteObj($order);
+            header('Location: /MusicCorner/Orders/cart');
+            return;
+        }
 
         /**
          * Save cart in the session

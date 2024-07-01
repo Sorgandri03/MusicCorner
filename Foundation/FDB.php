@@ -241,4 +241,53 @@ class FDB {
         }
     }
 
+    /**
+     * Locks the stock table, starts a transaction, and then unlocks the table.
+     * @return bool Returns true if the lock and transaction were successful, false otherwise.
+     * @throws Exception If there is an error executing the SQL query.
+     */
+    public static function lockStockAndOrder(){
+        try{
+            self::$db->exec("LOCK TABLES Stock WRITE, Orders WRITE;");
+            return true;
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * Updates the stock table with the provided stock object.
+     * @param EStock $stock The stock object to update the database with.
+     * @return bool Returns true if the update was successful, false otherwise.
+     * @throws Exception If there is an error executing the SQL query.
+     */
+    public static function commitStock($stock){
+        try{
+            self::$db->beginTransaction();
+            self::update(FStock::class, $stock);
+            self::$db->commit();
+            return true;
+        }catch(Exception $e){
+            self::$db->rollBack();
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * Unlocks the stock table.
+     * @return bool Returns true if the unlock was successful, false otherwise.
+     * @throws Exception If there is an error executing the SQL query.
+     */
+    public static function unlockStockAndOrder(){
+        try{
+            self::$db->exec("UNLOCK TABLES;");
+            return true;
+        }catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }
