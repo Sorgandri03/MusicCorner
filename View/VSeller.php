@@ -113,7 +113,7 @@ public function __construct(){
      */
     public function showAnswerReviewSuccess(){
         $this->smarty->assign('success',true);
-        $this->showAnswerReview(null);
+        $this->smarty->display('answerreview.tpl');
     }
 
     /**

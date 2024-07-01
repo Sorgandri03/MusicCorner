@@ -96,6 +96,8 @@
                         </div>
                         <br>
                         <h3>Nella sua recensione, {$customer->getUsername()} ha scritto:</h3>
+                        <p class="review-text">{$review->getReviewText()}</p>
+                        <h3>E ha valutato il tuo servizio come segue:</h3>
                         <div class="review-rating-wide">
                             {for $i=0 to $review->getSellerRating()-1}
                                 <i class="fa fa-star"></i>
@@ -104,12 +106,11 @@
                                 <i class="fa fa-star-o empty"></i>
                             {/for}																	
                         </div>
-                        <h4>{$review->getReviewText()}</h4>
                         <br>
                         <h3>La tua risposta sarà pubblicata a nome: {$seller->getShopName()}</h3>
                         <form class="review-form" action="" method="post">
                             <input type="hidden" name="reviewId" value="{$review->getId()}">
-                            <textarea class="input" placeholder="Scrivi qui la recensione" name="text" required></textarea>
+                            <textarea class="input" placeholder="Scrivi qui la tua risposta" name="text" required></textarea>
                             <button class="primary-btn">Invia risposta</button>
                         </form>
                     </div>
