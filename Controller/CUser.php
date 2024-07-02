@@ -153,53 +153,57 @@ class CUser{
      * In case of any validation errors, it invokes the appropriate error views.
      */
     public static function registrationCustomer() { 
-        if (UHTTPMethods::isPostSet('email') && UHTTPMethods::isPostSet('username') && UHTTPMethods::isPostSet('password') && UHTTPMethods::isPostSet('confirm-password')) {
-            $email = UHTTPMethods::post('email');
-            $username = UHTTPMethods::post('username');
-            $password = UHTTPMethods::post('password');
-            $confirmPassword = UHTTPMethods::post('confirm-password');
-            if ($password !== $confirmPassword) {
-                $view = new VRegistration(); 
-                $view->passwordError();
-                return;
-            }            
-            if (FPersistentManager::getInstance()->verifyUserEmail($email) == false && FPersistentManager::getInstance()->verifyUserUsername($username) == false) {
-                $user = new EUser($email, $password);
-                $customer = new ECustomer($username, $email, $password);
-                FPersistentManager::getInstance()->createObj($user);
-                FPersistentManager::getInstance()->createObj($customer);
-                header('Location: /MusicCorner/User/login');
-                exit;
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (UHTTPMethods::isPostSet('email') && UHTTPMethods::isPostSet('username') && UHTTPMethods::isPostSet('password') && UHTTPMethods::isPostSet('confirm-password')) {
+                $email = UHTTPMethods::post('email');
+                $username = UHTTPMethods::post('username');
+                $password = UHTTPMethods::post('password');
+                $confirmPassword = UHTTPMethods::post('confirm-password');
+                if ($password !== $confirmPassword) {
+                    $view = new VRegistration();  
+                    $view->passwordError(); 
+                    return;
+                }
+                
+                if (FPersistentManager::getInstance()->verifyUserEmail($email)==false && FPersistentManager::getInstance()->verifyUserUsername($username)==false) {
+                    $user = new EUser($email, $password);
+                    $seller = new ECustomer($username, $email, $password);
+                    FPersistentManager::getInstance()->createObj($user);
+                    FPersistentManager::getInstance()->createObj($seller);
+                    header('Location: /MusicCorner/User/login');
+                    exit;
+                } else {
+                    $view = new VRegistration();  
+                    $view->registrationError(); 
+                }
             } else {
-                $view = new VRegistration(); 
-                $view->registrationError(); 
+                $view = new VRegistration();  
+                $view->registrationError();
                 return;
             }
         } else {
-            $view = new VRegistration(); 
-            $view->registrationError(); 
-            return;
-        }        
+            $view = new VRegistration();  
+            $view->showRegistrationCustomer();
+        }
     }
-
     /**
      * Processes the POST request for seller registration. It checks if all required fields
      * are set, validates the passwords, and verifies the uniqueness of the email and username. 
      * If everything is valid, it creates new user and seller objects and saves them in the db.
      * In case of any validation errors, it invokes the appropriate error views.
      */
-    public static function registrationSeller(){
-        $view = new VRegistration();  
+    public static function registrationSeller(){  
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['email']) && isset($_POST['shopname']) && isset($_POST['password']) && isset($_POST['confirm-password'])) {
+            if (UHTTPMethods::isPostSet('email') && UHTTPMethods::isPostSet('shopname') && UHTTPMethods::isPostSet('password') && UHTTPMethods::isPostSet('confirm-password')) {
                 $email = UHTTPMethods::post('email');
                 $username = UHTTPMethods::post('shopname');
                 $password = UHTTPMethods::post('password');
                 $confirmPassword = UHTTPMethods::post('confirm-password');
                 $GLOBALS['justRegistered'] = true;
                 if ($password !== $confirmPassword) {
-                    $view->registrationError();
-                    echo "Le password non coincidono"; 
+                    $view = new VRegistration();  
+                    $view->passwordError(); 
                     return;
                 }
                 
@@ -211,15 +215,17 @@ class CUser{
                     header('Location: /MusicCorner/User/login');
                     exit;
                 } else {
+                    $view = new VRegistration();
                     $view->registrationError(); 
                     return;
                 }
             } else {
+                $view = new VRegistration();
                 $view->registrationError();
-                echo "Compila tutti i campi"; 
                 return;
             }
         } else {
+            $view = new VRegistration();
             $view->showRegistrationSeller();
         }
     }
