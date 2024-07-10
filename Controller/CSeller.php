@@ -11,7 +11,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             $view = new VSeller();
             $view->showDashboard();
             return;
@@ -31,7 +31,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             /**
              * Check if the seller submitted the article
              */
@@ -84,7 +84,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){  
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){  
             $article = new EArticleDescription($EAN, $name, $artist, $format);
             $stock = new EStock($article->getId(), $quantity, $price, USession::getSessionElement('seller')->getId());
             $exists = FArticleDescription::getInstance()->existEAN($EAN);
@@ -108,7 +108,7 @@ Class CSeller{
      * Search for an article by EAN, if it exists 
      */
     public static function searchEAN() {
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             $view = new VSeller();
             $ean = UHTTPMethods::post('EAN');
             $exists = FPersistentManager::getInstance()->verifyEAN($ean);
@@ -136,7 +136,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             $view = new VSeller();
             $view->showSuccessMessage();
         }
@@ -152,7 +152,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             $view = new VSeller();
             $view->showSellerReviews();
         }
@@ -168,7 +168,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             if(UHTTPMethods::isPostSet('text')){
                 $review = FPersistentManager::getInstance()->retrieveObj(EReview::class, UHTTPMethods::post('reviewId'));
                 if($review->isAnswered()){
@@ -211,7 +211,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             $view = new VSeller();
             $view->showModifyCatalogue();
         }
@@ -291,7 +291,7 @@ Class CSeller{
         /**
          * Check if the user is logged and if it is a seller
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('seller')) == 'seller'){
+        if(CUser::islogged() && USession::isSetSessionElement('seller')){
             if(UHTTPMethods::isPostSet('orderItem')){
                 $orderItem = FPersistentManager::getInstance()->retrieveObj('EOrderItem', UHTTPMethods::post('orderItem'));
                 $orderItem->setShipped(true);

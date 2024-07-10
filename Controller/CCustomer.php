@@ -11,7 +11,7 @@ Class CCustomer{
         /**
          * Check if the user is logged and if it is a customer
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+        if(CUser::islogged() && USession::isSetSessionElement('customer')){
             $view = new VCustomer();
             $view->showDashboard();
         }
@@ -30,7 +30,7 @@ Class CCustomer{
         /**
          * Check if the user is logged and if it is a customer
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+        if(CUser::islogged() && USession::isSetSessionElement('customer')){
             $v = new VCustomer();
             $v->showOrderList();
         }
@@ -49,7 +49,7 @@ Class CCustomer{
         /**
          * Check if the user is logged and if it is a customer
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+        if(CUser::islogged() && USession::isSetSessionElement('customer')){
             /**
              * Get the order id and the order
              */
@@ -84,7 +84,7 @@ Class CCustomer{
         /**
          * Check if the user is logged and if it is a customer
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+        if(CUser::islogged() && USession::isSetSessionElement('customer')){
             /**
              * Get the order item id and the order item
              */
@@ -142,7 +142,7 @@ Class CCustomer{
         /**
          * Check if the user is logged and if it is a customer
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('customer')) == 'customer'){
+        if(CUser::islogged() && USession::isSetSessionElement('customer')){
             $view = new VCustomer();
             $view->showCustomerReviews();
         }

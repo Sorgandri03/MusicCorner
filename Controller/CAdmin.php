@@ -10,7 +10,7 @@ Class CAdmin{
         /**
          * Check if the user is logged and if it is an admin
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
+        if(CUser::islogged() && USession::isSetSessionElement('admin')){
             $view = new VAdmin();
             $view->showDashboard();
             return;
@@ -31,7 +31,7 @@ Class CAdmin{
         /**
          * Check if the user is logged and if it is an admin
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
+        if(CUser::islogged() && USession::isSetSessionElement('admin')){
             $reviews = FPersistentManager::getInstance()->retrieveAll(EReview::class);
             $view = new VAdmin();
             $view->showAllReviews($reviews);
@@ -51,7 +51,7 @@ Class CAdmin{
         /**
          * Check if the user is logged and if it is an admin
          */
-        if(CUser::isLogged() && CUser::userType(USession::getSessionElement('admin')) == 'admin'){
+        if(CUser::islogged() && USession::isSetSessionElement('admin')){
             /**
              * Check if the admin sent the ban request
              */
