@@ -82,9 +82,7 @@ class FCustomer {
      */
     public static function updateObject($obj){
         $update = FDB::getInstance()->update(self::class, $obj);
-        $user = new EUser($obj->getId(), $obj->getPassword());
-        $updateUser = FUser::updateObject($user);
-        if($update !== null && $updateUser !== null){
+        if($update !== null){
             return true;
         }else{
             return false;

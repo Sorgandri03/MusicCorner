@@ -559,7 +559,7 @@ class COrders{
             FPersistentManager::getInstance()->lockStockAndOrder();
             $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $item);
             if($stock->getQuantity() < $quantity){
-                echo "Non ci sono abbastanza prodotti in magazzino";
+                $failure = true;
                 $order->setPrice($order->getPrice() - $stock->getPrice() * $quantity);
                 FPersistentManager::getInstance()->updateObj($order);
                 $cart->updateArticle($item, $stock->getQuantity());

@@ -126,7 +126,7 @@
                             <div class="col-md-7">
                                 <p></p>
                                 <p class="product-category">{$article->getArtist()}</p>
-                                <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                                <h3 class="product-name"><a href="/MusicCorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
                                 {if $article->getFormat()==1}
                                     <p class="product-category">LP</p>
                                 {elseif $article->getFormat()==2}

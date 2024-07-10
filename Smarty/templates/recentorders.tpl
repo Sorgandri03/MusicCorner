@@ -100,7 +100,7 @@
                                 <div class="product-details">
                                     <p class="product-category">{$article->getArtist()}</p>
                                     <smallbr></smallbr>
-                                    <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                                    <h3 class="product-name"><a href="/Musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
                                     <h3 class="product-name">{$article->getId()}</h3>
                                     {if $article->getFormat()==1}
                                         <p class="product-category">LP</p>

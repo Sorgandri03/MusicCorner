@@ -174,9 +174,6 @@
 								{/if}
 								<a class="review-link">{count($article->getReviews())} Review(s)</p>
 							</div>
-							
-							
-
 							<div class="product-options">
 								{if $article->isInStock()==false}
 								<div>
@@ -187,7 +184,7 @@
 								<div>
 									<h4 class="product-price">€{$article->getLowestPrice()}</h4>
 									{assign var="stocks" value=$article->getStocks()}
-									<span class="product-available">{$stocks[0]->getQuantity()} in Stock</span>
+									<span class="product-available">{$article->getLowestStock()->getQuantity()} in Stock</span>
 								</div>
 								<label>
 									Negozi&nbsp&nbsp
@@ -226,8 +223,6 @@
 								<li>Formato</li>
 								{if $article->getFormat()==1}
 									<li><a href="/MusicCorner/Search/format/Vinyl">LP</a></li>
-								{elseif $article->getFormat()==1}
-									<li><a href="/MusicCorner/Search/format/Cassette">Cassetta</a></li>
 								{else}
 									<li><a href="/MusicCorner/Search/format/CD">CD</a></li>
 								{/if}								

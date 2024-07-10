@@ -84,7 +84,7 @@
                         <div class="col-md-7">
                             <p></p>
                             <h4 class="product-category">{$article->getArtist()}</h4>
-                            <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+                            <h3 class="product-name"><a href="/Musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
                             {if $article->getFormat()==1}
                                 <h4 class="product-category">LP</h4>
                             {elseif $article->getFormat()==2}

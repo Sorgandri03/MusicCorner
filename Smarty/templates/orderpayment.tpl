@@ -69,7 +69,37 @@
 					</h1>
 					<br>
 					<br>
-					<a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
+					<a href="/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
+				</div>
+			</div>
+		</div>
+		{else if $error}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<br>
+					<h1 class="text-center">
+						Alcuni degli articoli sono stati rimossi dal carrello, controlla i prodotti che hai ordinato
+					</h1>
+					<br>
+					<br>
+					<a href="/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
+				</div>
+			</div>
+		</div>
+		{else if $totalerror}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<br>
+					<h1 class="text-center">
+						Nessun articolo dell'ordine era disponibile, controlla gli articoli e riprova
+					</h1>
+					<br>
+					<br>
+					<a href="/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a>
 				</div>
 			</div>
 		</div>

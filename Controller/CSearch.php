@@ -23,6 +23,8 @@ class CSearch{
             $view = new VSearch();
             $view->showSearch($articles);
         }
+        
+
     }
 
     /**

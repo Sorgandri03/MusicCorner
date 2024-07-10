@@ -30,7 +30,7 @@ public function __construct(){
         $this->smarty->assign('seller',$seller);
         $this->smarty->assign('success', "false");
         $this->smarty->assign('found',"");
-        $this->smarty->display('addArticle.tpl');
+        $this->smarty->display('addarticle.tpl');
     }
 
     /**

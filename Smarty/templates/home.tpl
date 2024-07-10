@@ -97,8 +97,8 @@
 											<h5>SUBTOTALE: €{$cart->getTotalPrice()}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="/MusicCorner/Orders/cart">View Cart</a>
-											<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/Orders/cart">Carrello</a>
+											<a href="/Orders/checkout">Ordina<i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -205,7 +205,7 @@
 												</div>
 												<div class="product-body">
 													<p class="product-category">{$article->getArtist()}</p>
-													<h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
+													<h3 class="product-name"><a href="/Musiccorner/Search/article/{$article->getId()}">{$article->getName()}</a></h3>
 													{if $article->getFormat()==1}
 														<p class="product-category">LP</p>
 													{elseif $article->getFormat()==1}

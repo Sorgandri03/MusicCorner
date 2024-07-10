@@ -138,7 +138,7 @@ class FDB {
      */
     public static function searchArticles($search){
         try{
-            $query = "SELECT * FROM ArticleDescription WHERE name LIKE '%" . $search . "%' OR EAN LIKE '%" . $search . "%' OR Artist LIKE '%" . $search . "%';";
+            $query = "SELECT * FROM ArticleDescription WHERE name LIKE '%" . $search . "%' OR Artist LIKE '%" . $search . "%';";
             $stmt = self::$db->prepare($query);
             $stmt->execute();
             $rowNum = $stmt->rowCount();

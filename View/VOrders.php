@@ -68,7 +68,7 @@ class VOrders{
                 USession::getInstance()->setSessionElement('cartguest',$cart);
             }
         }
-
+        COrders::checkCart();
         $this->smarty->assign('cart', $cart);
         $this->smarty->display('cart.tpl');
     }

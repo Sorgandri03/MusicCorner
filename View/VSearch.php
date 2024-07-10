@@ -122,7 +122,7 @@ class VSearch
                 USession::getInstance()->setSessionElement('cartguest',$cart);
             }
         }
-        
+        COrders::checkCart();
         $this->smarty->assign('Format', Format);
         $this->smarty->assign('cart', $cart);
         $this->smarty->assign('article', $article);

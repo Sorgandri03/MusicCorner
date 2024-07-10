@@ -117,7 +117,7 @@ class EArticleDescription {
     }
     
     /**
-     * Get the lowest price of the article.
+     * Get the lowest price in stock of the article.
      * 
      * @return int The lowest price of the article.
      */
@@ -132,6 +132,26 @@ class EArticleDescription {
             }
         }
         return $lowestPrice;   
+    }
+    
+    /**
+     * Get the lowest price stock in stock of the article.
+     * 
+     * @return EStock The lowest priced stock of the article.
+     */
+    public function getLowestStock(){
+        $lowestPrice = 0;
+        $lowestStock = null;
+        foreach($this->stocks as $stock){
+            if($stock->getQuantity() == 0){
+                continue;
+            }
+            if($lowestPrice == 0 || $stock->getPrice() < $lowestPrice){
+                $lowestPrice = $stock->getPrice();
+                $lowestStock = $stock;
+            }
+        }
+        return $lowestStock;
     }
     
     /**

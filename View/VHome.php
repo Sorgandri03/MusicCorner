@@ -72,7 +72,7 @@ class VHome{
                 USession::getInstance()->setSessionElement('cartguest',$cart);
             }
         }
-        
+        COrders::checkCart();
         $result = FPersistentManager::getInstance()->getRandomArticles(10);
         $this->smarty->assign('cart', $cart);
         $this->smarty->assign('result', $result);
