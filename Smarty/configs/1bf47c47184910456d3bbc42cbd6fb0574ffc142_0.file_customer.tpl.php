@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-24 18:38:06
+/* Smarty version 5.1.0, created on 2024-07-10 17:19:36
   from 'file:customer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6679a0ee6f4832_88473766',
+  'unifunc' => 'content_668ea68821da90_64053952',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1bf47c47184910456d3bbc42cbd6fb0574ffc142' => 
     array (
       0 => 'customer.tpl',
-      1 => 1719245038,
+      1 => 1720620853,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6679a0ee6f4832_88473766 (\Smarty\Template $_smarty_tpl) {
+function content_668ea68821da90_64053952 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you</title>
+		<title><?php echo $_smarty_tpl->getValue('username');?>
+ dashboard</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -97,7 +98,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
  </h1>
 					<ul>
 						<li><a href="/MusicCorner/Customer/orders" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Ordini</strong></a></li>
-						<li><a href="/MusicCorner/Customer/CustomerReviews" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
+						<li><a href="/MusicCorner/Customer/customerReviews" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Lista Recensioni</strong></a></li>
 						<li><a href="/MusicCorner/" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla home</strong></a></li>
 						<li><a href="/MusicCorner/User/logout" class="btn btn-outline-primary btn-lg dashboard-button-inverse-red" ><strong>Logout</strong></a></li>
 					</ul>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-24 12:02:11
+/* Smarty version 5.1.0, created on 2024-07-10 17:19:59
   from 'file:order.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_667944231fae88_13454308',
+  'unifunc' => 'content_668ea69f22ead8_35914734',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f4d0c9b1a674eb98d3ac986b69bf6e681c3ac9d' => 
     array (
       0 => 'order.tpl',
-      1 => 1719223327,
+      1 => 1720622516,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_667944231fae88_13454308 (\Smarty\Template $_smarty_tpl) {
+function content_668ea69f22ead8_35914734 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you</title>
+		<title>MusicCorner - Ordina</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -120,7 +120,7 @@ _0_536_0_75.jpg" alt="">
                             <p></p>
                             <h4 class="product-category"><?php echo $_smarty_tpl->getValue('article')->getArtist();?>
 </h4>
-                            <h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/<?php echo $_smarty_tpl->getValue('article')->getId();?>
+                            <h3 class="product-name"><a href="/Musiccorner/Search/article/<?php echo $_smarty_tpl->getValue('article')->getId();?>
 "><?php echo $_smarty_tpl->getValue('article')->getName();?>
 </a></h3>
                             <?php if ($_smarty_tpl->getValue('article')->getFormat() == 1) {?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-24 19:22:55
+/* Smarty version 5.1.0, created on 2024-07-10 17:19:25
   from 'file:login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6679ab6f73f933_37859392',
+  'unifunc' => 'content_668ea67ddbd955_78234062',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f123f58d13bccb888cb040bd52408472408f16cd' => 
     array (
       0 => 'login.tpl',
-      1 => 1719249744,
+      1 => 1720620853,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6679ab6f73f933_37859392 (\Smarty\Template $_smarty_tpl) {
+function content_668ea67ddbd955_78234062 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you - Login</title>
+		<title>Login</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -96,24 +96,24 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 					<div class="container-small">
 						<!-- Login Form -->
 						<?php if ($_smarty_tpl->getValue('error') == true) {?>
-						<p class="error-message">username or password incorrect</p>
+						<p class="error-message">lo username o la password è sbagliata</p>
 						<?php }?>
 					    <?php if ($_smarty_tpl->getValue('ban') == true) {?>
-						<p class="error-message">the user you are trying to access is banned</p>
+						<p class="error-message">l'utente a cui stai cercando di loggare è bannato</p>
 						<?php }?>
 						<form class="login-form" action="/MusicCorner/User/checkLogin" method="post">
 							<div class="section-title-center">
 								<h1 class="title">Login</h1>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text"  placeholder="Enter Email" name="email" required>
+								<input class="input" type="text"  placeholder="Inserisci qui la tua Email" name="email" required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password"  placeholder="Enter Password" name="password" required>
+								<input class="input" type="password"  placeholder="Inserisci qui la tua Password" name="password" required>
                             </div>
 							<div class="form-group">
-								<button type="submit" class="submit-btn-custom">Log in</button>
-								<div>Don't have an account? <a href="/MusicCorner/User/registration" class="centered-link">Register</a></div>
+								<button type="submit" class="submit-btn-custom">Entra</button>
+								<div>Non hai un account? <a href="/MusicCorner/User/registration" class="centered-link">Registrati</a></div>
 							</div>
 						<!-- /Login Form -->
 						</form>																																

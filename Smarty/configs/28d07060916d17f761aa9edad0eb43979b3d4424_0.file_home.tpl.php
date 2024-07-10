@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-23 18:40:16
+/* Smarty version 5.1.0, created on 2024-07-10 17:19:14
   from 'file:home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66784ff0a02f63_59114890',
+  'unifunc' => 'content_668ea67274aa26_14299931',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '28d07060916d17f761aa9edad0eb43979b3d4424' => 
     array (
       0 => 'home.tpl',
-      1 => 1719160813,
+      1 => 1720622477,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66784ff0a02f63_59114890 (\Smarty\Template $_smarty_tpl) {
+function content_668ea67274aa26_14299931 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you</title>
+		<title>MusicCorner - Homepage</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -135,13 +135,13 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 										</div>
 										<div class="cart-summary">
 											<small><?php echo $_smarty_tpl->getValue('cart')->getCartQuantity();?>
- Item(s) selected</small>
-											<h5>SUBTOTAL: €<?php echo $_smarty_tpl->getValue('cart')->getTotalPrice();?>
+ Oggetti nel carrello</small>
+											<h5>SUBTOTALE: €<?php echo $_smarty_tpl->getValue('cart')->getTotalPrice();?>
 </h5>
 										</div>
 										<div class="cart-btns">
-											<a href="/MusicCorner/Orders/cart">View Cart</a>
-											<a href="/MusicCorner/Orders/checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/Orders/cart">Carrello</a>
+											<a href="/Orders/checkout">Ordina<i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -181,7 +181,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 				<!-- row -->
 				<div class="row">
 					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
+					<div class="col-md-6 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="/MusicCorner/Smarty/templates/img/CD.jpg" alt="">
@@ -195,9 +195,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 					<!-- /shop -->
 
 					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
+					<div class="col-md-6 col-xs-6">
 						<div class="shop">
-							<div class="shop-img">
+							<div class="shop-img" id="right">
 								<img src="/MusicCorner/Smarty/templates/img/Vinile.jpg" alt="">
 							</div>
 							<div class="shop-body">
@@ -208,19 +208,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 					</div>
 					<!-- /shop -->
 
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="/MusicCorner/Smarty/templates/img/Cassetta.jpg" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Catalogo<br>Cassette</h3>
-								<a href="/MusicCorner/Search/format/Cassette" class="cta-btn">COMPRA ORA <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
+					
 				</div>
 				<!-- /row -->
 			</div>
@@ -268,7 +256,7 @@ _0_536_0_75.jpg" alt="">
 												<div class="product-body">
 													<p class="product-category"><?php echo $_smarty_tpl->getValue('article')->getArtist();?>
 </p>
-													<h3 class="product-name"><a href="https://localhost/musiccorner/Search/article/<?php echo $_smarty_tpl->getValue('article')->getId();?>
+													<h3 class="product-name"><a href="/Musiccorner/Search/article/<?php echo $_smarty_tpl->getValue('article')->getId();?>
 "><?php echo $_smarty_tpl->getValue('article')->getName();?>
 </a></h3>
 													<?php if ($_smarty_tpl->getValue('article')->getFormat() == 1) {?>
@@ -278,7 +266,7 @@ _0_536_0_75.jpg" alt="">
 													<?php } else { ?>
 														<p class="product-category">CD</p>
 													<?php }?>	
-													<?php if ($_smarty_tpl->getValue('article')->getLowestPrice() == 0) {?>
+													<?php if ($_smarty_tpl->getValue('article')->isInStock() == false) {?>
 													<h4 class="product-price">Non in stock</h4>
 													<?php } else { ?>
 													<h4 class="product-price">€<?php echo $_smarty_tpl->getValue('article')->getLowestPrice();?>

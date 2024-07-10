@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-22 11:50:13
+/* Smarty version 5.1.0, created on 2024-07-10 17:19:56
   from 'file:orderlist.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66769e55640fc6_85287860',
+  'unifunc' => 'content_668ea69ca94d56_17073577',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '33aedbffd555dd5a88056780cc315b510face3c7' => 
     array (
       0 => 'orderlist.tpl',
-      1 => 1719049810,
+      1 => 1720620853,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66769e55640fc6_85287860 (\Smarty\Template $_smarty_tpl) {
+function content_668ea69ca94d56_17073577 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>MusicCorner - Music for you</title>
+		<title>MusicCorner - Lista Ordini</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -103,18 +103,20 @@ $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('order')->value) {
 $foreach0DoElse = false;
 ?>
-                                <li><a href="/MusicCorner/Customer/order/<?php echo $_smarty_tpl->getValue('order')->getId();?>
-" class="btn btn-outline-primary btn-lg dashboard-button" ><strong>Ordine del <?php echo $_smarty_tpl->getValue('order')->getOrderDateTime();?>
-</strong></a></li>
+								<form action="/MusicCorner/Customer/order" method="post">
+                                <li><button class="btn btn-outline-primary btn-lg dashboard-button" name="orderID" value="<?php echo $_smarty_tpl->getValue('order')->getId();?>
+"><strong>Ordine del <?php echo $_smarty_tpl->getValue('order')->getOrderDateTime();?>
+</strong></button></li>
+								</form>
                             <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-                            <li><a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a></li>
                         </ul>
                     <?php } else { ?>
-                        <br><br>
+                        <br>
                         <h1>Non hai ancora effettuato ordini</h1>
                     <?php }?>
+					<a href="/MusicCorner/Customer/dashboard" class="btn btn-outline-primary btn-lg dashboard-button-inverse" ><strong>Torna alla dashboard</strong></a>
 				</div>
 			</div>
 		</div>
