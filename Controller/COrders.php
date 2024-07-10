@@ -95,6 +95,9 @@ class COrders{
         }        
     }
 
+    /**
+     * Check the cart and update the quantity of the products if they were changed
+     */
     public static function checkCart(){
         /**
          * Retrieve user cart from the session
