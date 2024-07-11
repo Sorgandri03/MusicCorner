@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-29 11:35:40
+/* Smarty version 5.1.0, created on 2024-07-11 11:02:09
   from 'file:Smarty\templates\404.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_667fd56c016857_78803444',
+  'unifunc' => 'content_668f9f913452a2_68482361',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0283d9861d1a71a241e260b24a096526b094cb3a' => 
     array (
       0 => 'Smarty\\templates\\404.tpl',
-      1 => 1719586189,
+      1 => 1720688491,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_667fd56c016857_78803444 (\Smarty\Template $_smarty_tpl) {
+function content_668f9f913452a2_68482361 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\MusicCorner\\Smarty\\templates';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -174,25 +174,18 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 		<!-- /HEADER -->
 
         
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
-			<!-- container -->
+        <!-- 404 MESSAGE -->
+		<div class="customer-dashboard section">
 			<div class="container">
-				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">ERRORE 404</h3>
-						<ul class="breadcrumb-tree">
-							<li>Non abbiamo trovato la pagina che cercavi</li>
-							
-						</ul>
+						<h1>ERRORE 404</h1>
+						<h2>La pagina che stai cercando non esiste</h2>
 					</div>
 				</div>
-				<!-- /row -->
 			</div>
-			<!-- /container -->
 		</div>
-        <!-- /BREADCRUMB -->
+		<!-- /404 MESSAGE -->
 
 		<!-- jQuery Plugins -->
 		<?php echo '<script'; ?>

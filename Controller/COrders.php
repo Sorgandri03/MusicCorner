@@ -388,7 +388,7 @@ class COrders{
             return;            
         }
         if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
-            header('Location: /404');
+            header('Location: /MusicCorner/404');
             return;            
         }
         
@@ -493,7 +493,7 @@ class COrders{
             return;            
         }
         if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
-            header('Location: /404');
+            header('Location: /MusicCorner/404');
             return;
         }
         

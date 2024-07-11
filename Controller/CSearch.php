@@ -37,7 +37,7 @@ class CSearch{
         */
         $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $articleId);
         if($article == null){
-            header("Location: /404");
+            header("Location: /MusicCorner/404");
             return;
         }
         /**
@@ -63,7 +63,7 @@ class CSearch{
                 $format = 1;
                 break;
             default:
-                header("Location: /404");
+                header("Location: /MusicCorner/404");
                 return;
         }
         $articles = FPersistentManager::getInstance()->getArticlesByFormat($format);
@@ -83,7 +83,7 @@ class CSearch{
         $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $stock->getSeller());
         if($seller == null){
-            header("Location: /404");
+            header("Location: /MusicCorner/404");
             return;
         }
         $v = new VSearch();

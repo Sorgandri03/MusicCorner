@@ -45,7 +45,7 @@ class CFrontController{
                     /**
                      * If the method does not exist, the 404 page is displayed
                      */
-                    header("Location: /404");
+                    header("Location: /MusicCorner/404");
                 }
             }
             
