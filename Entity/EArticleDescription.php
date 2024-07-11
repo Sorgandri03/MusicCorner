@@ -133,7 +133,7 @@ class EArticleDescription {
         }
         return $lowestPrice;   
     }
-    
+
     /**
      * Get the lowest price stock in stock of the article.
      * 
