@@ -25,10 +25,8 @@ class CUser{
         }
         if(USession::isSetSessionElement('customer')){
             if(self::isBanned()){
-                USession::unsetSession();
-                USession::destroySession();
+                self::logout();
                 $logged = false;
-            echo "sei bannato";
             }
             else
                 $logged = true;
@@ -48,11 +46,13 @@ class CUser{
      */
     public static function isBanned(){
         $customer = USession::getSessionElement('customer');
+        $customer = FPersistentManager::getInstance()->retrieveObj(ECustomer::class, $customer->getId());
         if($customer->getSuspensionTime() > new DateTime()) {
             USession::unsetSessionElement('customer');
             return true;
         }
         else {
+            USession::setSessionElement('customer', $customer);
             return false;
         }
     }

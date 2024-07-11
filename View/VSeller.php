@@ -17,6 +17,7 @@ public function __construct(){
      * @throws SmartyException
      */
     public function showDashboard(){
+        $this->smarty->assign('seller', USession::getInstance()->getSessionElement('seller'));
         $this->smarty->assign('username',USession::getInstance()->getSessionElement('seller')->getShopName());
         $this->smarty->display('seller.tpl');
     }
