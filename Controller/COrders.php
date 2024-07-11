@@ -493,7 +493,7 @@ class COrders{
             return;            
         }
         if(USession::getInstance()->isSetSessionElement('seller') || USession::getInstance()->isSetSessionElement('admin')){
-            CUser::logout();
+            header('Location: /404');
             return;
         }
         

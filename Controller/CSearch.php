@@ -36,7 +36,10 @@ class CSearch{
         * Retrieve article from idArticle
         */
         $article = FPersistentManager::getInstance()->retrieveObj(EArticleDescription::class, $articleId);
-        
+        if($article == null){
+            header("Location: /404");
+            return;
+        }
         /**
         * Show article page
         */
@@ -60,8 +63,7 @@ class CSearch{
                 $format = 1;
                 break;
             default:
-                $view = new V404();
-                $view->show404();
+                header("Location: /404");
                 return;
         }
         $articles = FPersistentManager::getInstance()->getArticlesByFormat($format);
@@ -80,7 +82,10 @@ class CSearch{
         $stockId = UHTTPMethods::post('stockId');
         $stock = FPersistentManager::getInstance()->retrieveObj(EStock::class, $stockId);
         $seller = FPersistentManager::getInstance()->retrieveObj(ESeller::class, $stock->getSeller());
-        
+        if($seller == null){
+            header("Location: /404");
+            return;
+        }
         $v = new VSearch();
         $v->showSellerHomepageFromCustomer($seller);
     }

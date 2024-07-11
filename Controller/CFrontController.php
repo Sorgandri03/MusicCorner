@@ -45,8 +45,7 @@ class CFrontController{
                     /**
                      * If the method does not exist, the 404 page is displayed
                      */
-                    $view = new V404();
-                    $view->show404();
+                    header("Location: /404");
                 }
             }
             

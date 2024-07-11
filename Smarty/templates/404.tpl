@@ -130,25 +130,18 @@
 		<!-- /HEADER -->
 
         
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
-			<!-- container -->
+        <!-- 404 MESSAGE -->
+		<div class="customer-dashboard section">
 			<div class="container">
-				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">ERRORE 404</h3>
-						<ul class="breadcrumb-tree">
-							<li>Non abbiamo trovato la pagina che cercavi</li>
-							
-						</ul>
+						<h1>ERRORE 404</h1>
+						<h2>La pagina che stai cercando non esiste</h2>
 					</div>
 				</div>
-				<!-- /row -->
 			</div>
-			<!-- /container -->
 		</div>
-        <!-- /BREADCRUMB -->
+		<!-- /404 MESSAGE -->
 
 		<!-- jQuery Plugins -->
 		<script src="/MusicCorner/Smarty/templates/js/jquery.min.js"></script>
