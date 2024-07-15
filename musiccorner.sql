@@ -259,29 +259,6 @@ INSERT INTO `Customer` (`email`, `username`, `suspensionTime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Message`
---
-
-CREATE TABLE `Message` (
-  `id` int NOT NULL,
-  `sender` varchar(30) NOT NULL,
-  `receiver` varchar(30) NOT NULL,
-  `text` text NOT NULL,
-  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `Message`
---
-
-INSERT INTO `Message` (`id`, `sender`, `receiver`, `text`, `timestamp`) VALUES
-(1, 'petricola@petricolastore.it', 'viniciomaurizio@musiccorner.it', 'tutto bene', '2024-05-17 16:28:03'),
-(2, 'viniciomaurizio@musiccorner.it', 'petricola@petricolastore.it', 'ciao', '2024-05-17 18:19:33'),
-(3, 'viniciomaurizio@musiccorner.it', 'petricola@petricolastore.it', 'come va?', '2024-05-17 19:00:00');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `OrderItem`
 --
 
@@ -908,12 +885,6 @@ ALTER TABLE `CreditCard`
 --
 ALTER TABLE `Customer`
   ADD PRIMARY KEY (`email`);
-
---
--- Indexes for table `Message`
---
-ALTER TABLE `Message`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `OrderItem`
